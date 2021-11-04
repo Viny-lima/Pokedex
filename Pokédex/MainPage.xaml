@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:data="using:Pokédex.Models"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
@@ -15,21 +16,18 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" >
-            <TextBox    Name="Id"
-                        Width="400"
-                        Margin="20"
-                        Padding="10"                   
-                        />
-            <Button Content="FIND" Click="Button_Click" Margin="20" Background="Green" Foreground="White"/>
+        <StackPanel Orientation="Horizontal" >            
+            <TextBox Text="{x:Bind pokemon.Sprite, Mode=TwoWay}"
+                     Name="IdPokemon"
+                     Width="400"
+                     Margin="20"
+                     Padding="10"                   
+                     />
+            <Button Content="FIND" Margin="20" Background="Green" Foreground="White" Click="ChangePokemon"/>            
         </StackPanel>
 
-        <TextBlock Name="NameId" Grid.Row="1" FontSize="30" HorizontalAlignment="Center" Margin="10"/>
-        
-        <StackPanel Grid.Row="2" Width="500">
-            <Image Name="imgPokemom" Source="{x:Bind local:MainPage.IdPokemom,  Mode=OneTime}"/>
-        </StackPanel>
-        
+        <Image Source="{x:Bind pokemon.Sprite,  Mode=TwoWay}" Width="500" Grid.Row="1"/>
+
 
     </Grid>
 </Page>

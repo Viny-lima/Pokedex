@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pokédex.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,18 +23,23 @@ namespace Pokédex
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public static string IdPokemom = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png";
+        Pokemon pokemon = new Pokemon();
 
         public MainPage()
         {
-            this.InitializeComponent();            
+            this.InitializeComponent();
+            CreatePokemon();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CreatePokemon()
         {
-            string ID = Id.Text;            
-            IdPokemom = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{ID}.png";
-            NameId.Text = IdPokemom;
-        }      
+            pokemon.Sprite = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png";
+        }
+
+        private void ChangePokemon(object sender, RoutedEventArgs e)
+        {
+            pokemon.Sprite = IdPokemon.Text;
+        }
+
     }
 }
