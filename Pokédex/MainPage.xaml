@@ -9,7 +9,7 @@
     xmlns:data="using:Pokédex.Models"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Name="MyGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -17,17 +17,13 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" >            
-            <TextBox Text="{x:Bind pokemon.Sprite, Mode=TwoWay}"
-                     Name="IdPokemon"
+            <TextBox Name="IdPokemon"
                      Width="400"
                      Margin="20"
                      Padding="10"                   
                      />
             <Button Content="FIND" Margin="20" Background="Green" Foreground="White" Click="ChangePokemon"/>            
-        </StackPanel>
-
-        <Image Source="{x:Bind pokemon.Sprite,  Mode=TwoWay}" Width="500" Grid.Row="1"/>
-
-
+        </StackPanel> 
+        
     </Grid>
 </Page>

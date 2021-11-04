@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pokédex.Models
 {
-    public class Pokemon 
+    public class Pokemon : ObservableObject
     {
         private string _sprite;
         public string Sprite 
@@ -18,7 +19,7 @@ namespace Pokédex.Models
             }
             set 
             {
-                _sprite = value;
+                this.SetProperty(ref this._sprite, value, nameof(Sprite));
             }
         }     
 

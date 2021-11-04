@@ -33,12 +33,12 @@ namespace Pokédex
 
         private void CreatePokemon()
         {
-            pokemon.Sprite = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png";
+            pokemon.Sprite = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png";
         }
 
         private void ChangePokemon(object sender, RoutedEventArgs e)
         {
-            pokemon.Sprite = IdPokemon.Text;
+            pokemon.Sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{IdPokemon}.png";
         }
 
     }
