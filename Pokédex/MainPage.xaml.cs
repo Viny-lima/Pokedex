@@ -39,7 +39,6 @@ namespace Pokédex
         private void ChangePokemon(object sender, RoutedEventArgs e)
         {
             pokemon.Sprite = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{IdPokemon.Text}.png";
-            TestURl.Text = IdPokemon.Text;
         }
 
     }
