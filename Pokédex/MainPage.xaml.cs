@@ -22,7 +22,7 @@ namespace Pokédex
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public static string IdPokemom = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png";
+        public static string IdPokemom = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png";
 
         public MainPage()
         {
@@ -31,9 +31,9 @@ namespace Pokédex
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string ID = Id.Text;
-            NameId.Text = IdPokemom;
+            string ID = Id.Text;            
             IdPokemom = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{ID}.png";
-        }        
+            NameId.Text = IdPokemom;
+        }      
     }
 }

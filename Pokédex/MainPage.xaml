@@ -27,7 +27,7 @@
         <TextBlock Name="NameId" Grid.Row="1" FontSize="30" HorizontalAlignment="Center" Margin="10"/>
         
         <StackPanel Grid.Row="2" Width="500">
-            <Image Name="imgPokemom" Source="{x:Bind local:MainPage.IdPokemom,  Mode=TwoWay}"/>
+            <Image Name="imgPokemom" Source="{x:Bind local:MainPage.IdPokemom,  Mode=OneTime}"/>
         </StackPanel>
         
 

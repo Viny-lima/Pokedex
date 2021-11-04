@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Pokédex.Models
 {
-    class Pokemon
+    public class Pokemon
     {
+        public string Sprite { get; set; }
     }
 }
