@@ -23,7 +23,10 @@
                      Padding="10"                   
                      />
             <Button Content="FIND" Margin="20" Background="Green" Foreground="White" Click="ChangePokemon"/>            
-        </StackPanel> 
+        </StackPanel>
+
+        <TextBlock Name="TestURl" Grid.Row="1"/>
         
+        <Image Source="{x:Bind pokemon.Sprite, Mode=TwoWay}" Width="500" Grid.Row="2"/>
     </Grid>
 </Page>
