@@ -21,14 +21,9 @@
             <TextBox Name="IdPokemon"
                      Width="300"
                      Margin="30"
-                     Padding="10" TextChanged="IdPokemon_TextChanged"                   
+                     Padding="10"                
                      />
             <Button Content="FIND" Margin="20" Background="Green" Foreground="White" Click="ChangePokemon"/>
-
-
-
-
-
 
         </StackPanel>
         
@@ -37,13 +32,12 @@
                 <BitmapImage UriSource="{x:Bind pokemon.Sprite, Mode=OneWay}" />
             </Image.Source>
         </Image>
-        <Button Content="Button" Margin="292,170,0,0" Background="DarkViolet" Grid.Row="2" VerticalAlignment="Top"/>
 
-
+        <Button Content="Button"
+                Background="DarkViolet" 
+                Grid.Row="2" VerticalAlignment="Top"/>
 
 
     </Grid>
 </Page>
-</Page>
-
     
