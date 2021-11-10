@@ -17,7 +17,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" >
+        <StackPanel Orientation="Horizontal">
             <TextBox Name="IdPokemon"
                      Width="400"
                      Margin="20"
@@ -25,10 +25,8 @@
                      />
             <Button Content="FIND" Margin="20" Background="Green" Foreground="White" Click="ChangePokemon"/>
         </StackPanel>
-
-        <TextBlock Name="TestURl" Grid.Row="1"/>
-
-        <Image Width="500" Grid.Row="2" >
+        
+        <Image Width="500" Grid.Row="1">
             <Image.Source>
                 <BitmapImage UriSource="{x:Bind pokemon.Sprite, Mode=OneWay}" />
             </Image.Source>
