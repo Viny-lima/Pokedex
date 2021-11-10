@@ -17,10 +17,10 @@ namespace Pokédex.Models
             {
                 return _sprite;
             }
-            set             {
+            set
+            {
                 
                 this.SetProperty(ref this._sprite, value, nameof(Sprite));
-                _sprite = value;
             }
         }     
 
