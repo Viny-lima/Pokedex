@@ -33,7 +33,7 @@ namespace Pokédex
 
         private void CreatePokemon()
         {
-            pokemon.Sprite = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png";
+            pokemon.Sprite = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png";
         }
 
         private void ChangePokemon(object sender, RoutedEventArgs e)
@@ -41,5 +41,6 @@ namespace Pokédex
             pokemon.Sprite = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{IdPokemon.Text}.png";
         }
 
+        
     }
 }
