@@ -17,36 +17,45 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <RelativePanel>
-            <Button 
-                    Name="ButtonHamburguer"
-                    Content="&#xe700;"                    
-                    Click="ButtonHamburguer_Click"
+        <RelativePanel Grid.Row="0">
+            <Button Name="ButtonHamburguer"
+                    Height="40"
+                    Width="40"                    
+                    Content="&#xe700;"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="25"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignTopWithPanel="True"/>
             <TextBlock Name="TitlePage"
+                       Height="21" 
+                       Width="81"
+                       Margin="10,0"
                        Text="Pokédex"
-                       Margin="10"
                        FontWeight="Bold"                       
-                       RelativePanel.RightOf="ButtonHamburguer"/>
-
-        </RelativePanel>
-
-        <StackPanel                       
-            Orientation="Horizontal">
+                       RelativePanel.RightOf="ButtonHamburguer"
+                       RelativePanel.AlignVerticalCenterWith="ButtonHamburguer" />            
             <TextBox Name="IdPokemon"
                      Width="300"
-                     Margin="30"
-                     Padding="10"                        
-
-            />
-            <Button Content="FIND" 
-                    Margin="20"
+                     Height="32"
+                     FontSize="15"
+                     RelativePanel.LeftOf="Button_ChangePokemon"
+                     RelativePanel.AlignVerticalCenterWithPanel="True"
+                     />
+            <Button Name="Button_ChangePokemon"
+                    Content="&#xe71e;"
+                    FontSize="8"
+                    FontFamily="Segoe MDL2 Assets"
                     Background="Green" 
                     Foreground="White" 
-                    Click="ChangePokemon"/>
+                    Height="32"
+                    Width="32"
+                    Margin="0,0,10,0"
+                    Click="ChangePokemon"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignVerticalCenterWithPanel="True"/>
+        </RelativePanel>
 
-        </StackPanel>
+
 
         <Image Width="500" Grid.Row="1">
             <Image.Source>
@@ -56,4 +65,4 @@
 
     </Grid>
 
-    </Page>
+</Page>
