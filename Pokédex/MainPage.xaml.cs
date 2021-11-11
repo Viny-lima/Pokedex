@@ -1,4 +1,4 @@
-﻿using Pokédex.Models;
+﻿using Pokedex.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,31 +16,34 @@ using Windows.UI.Xaml.Navigation;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x416
 
-namespace Pokédex
+namespace Pokedex
 {
     /// <summary>
     /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        Pokemon pokemon = new Pokemon();
+        public static ApiRequest api = new ApiRequest();
+        public List<Pokemon> pokemons = api.GetListaPokemons().Lista;
 
         public MainPage()
         {
             this.InitializeComponent();
-            CreatePokemon();
         }
 
-        private void CreatePokemon()
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            pokemon.Sprite = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png";
+
         }
 
-        private void ChangePokemon(object sender, RoutedEventArgs e)
+        private void Next_Pokemon_Click(object sender, RoutedEventArgs e)
         {
-            pokemon.Sprite = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{IdPokemon.Text}.png";
+            pokemons = api.GetListaPokemons().Lista;
         }
 
-        
+        private void Previus_Pokemon_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

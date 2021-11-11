@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace Pokédex
+namespace Pokedex
 {
     /// <resumo>
     ///Fornece o comportamento específico do aplicativo para complementar a classe Application padrão.
