@@ -17,27 +17,43 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal">
+        <RelativePanel>
+            <Button 
+                    Name="ButtonHamburguer"
+                    Content="&#xe700;"                    
+                    Click="ButtonHamburguer_Click"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True"/>
+            <TextBlock Name="TitlePage"
+                       Text="Pokédex"
+                       Margin="10"
+                       FontWeight="Bold"                       
+                       RelativePanel.RightOf="ButtonHamburguer"/>
+
+        </RelativePanel>
+
+        <StackPanel                       
+            Orientation="Horizontal">
             <TextBox Name="IdPokemon"
                      Width="300"
                      Margin="30"
-                     Padding="10"                
-                     />
-            <Button Content="FIND" Margin="20" Background="Green" Foreground="White" Click="ChangePokemon"/>
+                     Padding="10"                        
+
+            />
+            <Button Content="FIND" 
+                    Margin="20"
+                    Background="Green" 
+                    Foreground="White" 
+                    Click="ChangePokemon"/>
 
         </StackPanel>
-        
+
         <Image Width="500" Grid.Row="1">
             <Image.Source>
                 <BitmapImage UriSource="{x:Bind pokemon.Sprite, Mode=OneWay}" />
             </Image.Source>
         </Image>
 
-        <Button Content="Button"
-                Background="DarkViolet" 
-                Grid.Row="2" VerticalAlignment="Top"/>
-
-
     </Grid>
-</Page>
-    
+
+    </Page>
