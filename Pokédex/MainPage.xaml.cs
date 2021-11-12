@@ -1,6 +1,8 @@
 ﻿using Pokedex.Models;
+using Pokédex.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,8 +25,8 @@ namespace Pokedex
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public static ApiRequest api = new ApiRequest();
-        public List<Pokemon> pokemons = api.GetListaPokemons().Lista;
+        public ObservableCollection<Pokemon> pokemonsObservables = ApiRequest.GetListaPokemons(0,500).Results;
+        
 
         public MainPage()
         {
@@ -38,7 +40,7 @@ namespace Pokedex
 
         private void Next_Pokemon_Click(object sender, RoutedEventArgs e)
         {
-            pokemons = api.GetListaPokemons().Lista;
+            
         }
 
         private void Previus_Pokemon_Click(object sender, RoutedEventArgs e)

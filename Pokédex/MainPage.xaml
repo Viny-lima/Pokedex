@@ -15,7 +15,6 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -71,7 +70,10 @@
         </RelativePanel>
 
 
-        <ListView ItemsSource="{x:Bind pokemons}" Grid.Row="1">
+        <ListView ItemsSource="{x:Bind pokemonsObservables}" 
+                  Grid.Row="1"
+                  ScrollViewer.VerticalScrollMode="Enabled"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:Pokemon">
                     <StackPanel Orientation="Horizontal">

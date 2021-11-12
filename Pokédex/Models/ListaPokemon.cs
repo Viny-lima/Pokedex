@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,19 +9,67 @@ using System.Threading.Tasks;
 
 namespace Pokedex.Models
 {
-    public class ListaPokemon
+    public class ListaPokemon : ObservableObject
     {
 
         [JsonProperty("count")]
-        public long? TamanhoDaLista { get; set; }
+        private long? _tamanhoDaLista;
+        public long? TamanhoDaLista
+        {
+            get
+            {
+                return _tamanhoDaLista;
+            }
+
+            set
+            {
+                SetProperty(ref _tamanhoDaLista, value, nameof(TamanhoDaLista));
+            }
+        }
 
         [JsonProperty("next")]
-        public Uri Next { get; set; }
+        private Uri _next;
+        public Uri Next
+        {
+            get
+            {
+                return _next;
+            }
+
+            set
+            {
+                SetProperty(ref _next, value, nameof(Next));
+            }
+        }
 
         [JsonProperty("previus")]
-        public Uri Previous { get; set; }
+        private Uri _previos;
+        public Uri Previous
+        {
+            get
+            {
+                return _previos;
+            }
+
+            set
+            {
+                SetProperty(ref _previos, value, nameof(Previous));
+            }
+        }
 
         [JsonProperty("results")]
-        public List<Pokemon> Lista { get; set; }
+        private ObservableCollection<Pokemon> _results;
+        public ObservableCollection<Pokemon> Results
+        {
+            get
+            {
+                return _results;
+            }
+
+            set
+            {
+                SetProperty(ref _results, value, nameof(Results));
+            }
+        }
     }
 }

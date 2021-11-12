@@ -10,20 +10,12 @@ using System.Threading.Tasks;
 
 namespace Pokedex
 {
-    public class ApiRequest
+    public static class ApiRequest
     {
-        public string url { get; set; }
 
-        private int actual = 0;
-
-        public ApiRequest()
-        {
-            url = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=";//Lista de Pokemons da PokéAPI
-        }
-
-        public ListaPokemon GetListaPokemons()
-        {
-            var consulta = (HttpWebRequest)WebRequest.Create(url + actual);
+        public static ListaPokemon GetListaPokemons(int startIndex = 0, int qtdPokemons = 10)
+        {            
+            var consulta = (HttpWebRequest)WebRequest.Create($"https://pokeapi.co/api/v2/pokemon?limit={qtdPokemons}&offset={startIndex}");
             consulta.Method = "GET";
             consulta.ContentType = "application/json";
             consulta.Accept = "application/json";
@@ -41,8 +33,7 @@ namespace Pokedex
                     {
                         string repostaString = leitorDadosAPI.ReadToEnd();
 
-                        ListaPokemon listaDePokemons = JsonConvert.DeserializeObject<ListaPokemon>(repostaString);
-                        actual += 10;
+                        ListaPokemon listaDePokemons = JsonConvert.DeserializeObject<ListaPokemon>(repostaString);                        
 
                         return listaDePokemons;
                     }

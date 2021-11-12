@@ -126,7 +126,7 @@
     <Compile Include="Models\ListaPokemon.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\MainView.cs" />
+    <Compile Include="ViewModels\ListaPokemonViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

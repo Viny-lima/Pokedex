@@ -1,4 +1,4 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using Pokedex;
 using Pokedex.Models;
 using System;
 using System.Collections.Generic;
@@ -6,11 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pokedex.ViewModel
+namespace Pokédex.ViewModels
 {
-    public class MainView : ObservableObject
+    public class ListaPokemonViewModel : ListaPokemon
     {
-
 
 
     }

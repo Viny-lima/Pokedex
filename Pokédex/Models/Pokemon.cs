@@ -12,13 +12,37 @@ using Windows.UI.Xaml;
 
 namespace Pokedex.Models
 {
-    public class Pokemon : DataTemplate
+    public class Pokemon : ObservableObject
     {
         [JsonProperty("name")]
-        public string NamePokemon { get; set; }
+        private string _name;
+        public string NamePokemon
+        {
+            get
+            {
+                return _name;
+            }
+
+            set
+            {
+                SetProperty(ref _name, value, nameof(NamePokemon));
+            }
+        }
 
         [JsonProperty("url")]
-        public Uri UrlPokemon { get; set; }
+        private Uri _url;
+        public Uri UrlPokemon
+        {
+            get
+            {
+                return _url;
+            }
+
+            set
+            {
+                SetProperty(ref _url, value, nameof(UrlPokemon));
+            }
+        }
 
         public string SpriteUrl
         {
