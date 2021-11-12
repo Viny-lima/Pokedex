@@ -70,7 +70,7 @@
         </RelativePanel>
 
 
-        <ListView ItemsSource="{x:Bind pokemonsObservables}" 
+        <ListView ItemsSource="{x:Bind ListaPokemonView.ListaPokemons}" 
                   Grid.Row="1"
                   ScrollViewer.VerticalScrollMode="Enabled"
                   ScrollViewer.VerticalScrollBarVisibility="Hidden">

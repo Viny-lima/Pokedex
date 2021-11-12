@@ -25,8 +25,9 @@ namespace Pokedex
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public ObservableCollection<Pokemon> pokemonsObservables = ApiRequest.GetListaPokemons(0,500).Results;
-        
+        private static ApiRequest api = new ApiRequest();
+
+        public ListaPokemonViewModel ListaPokemonView = new ListaPokemonViewModel(api, 0, 10);
 
         public MainPage()
         {
@@ -40,12 +41,12 @@ namespace Pokedex
 
         private void Next_Pokemon_Click(object sender, RoutedEventArgs e)
         {
-            
+            ListaPokemonView.NextPageListPokemons();
         }
 
         private void Previus_Pokemon_Click(object sender, RoutedEventArgs e)
         {
-
+            ListaPokemonView.PreviosPageListPokemons();
         }
     }
 }

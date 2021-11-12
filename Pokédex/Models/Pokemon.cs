@@ -12,7 +12,7 @@ using Windows.UI.Xaml;
 
 namespace Pokedex.Models
 {
-    public class Pokemon : ObservableObject
+    public class Pokemon 
     {
         [JsonProperty("name")]
         private string _name;
@@ -25,7 +25,7 @@ namespace Pokedex.Models
 
             set
             {
-                SetProperty(ref _name, value, nameof(NamePokemon));
+                _name = value;
             }
         }
 
@@ -40,7 +40,7 @@ namespace Pokedex.Models
 
             set
             {
-                SetProperty(ref _url, value, nameof(UrlPokemon));
+                _url = value;
             }
         }
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Pokedex.Models
 {
-    public class ListaPokemon : ObservableObject
+    public class PropertiesListPokemon : ObservableObject
     {
 
         [JsonProperty("count")]
@@ -58,8 +58,8 @@ namespace Pokedex.Models
         }
 
         [JsonProperty("results")]
-        private ObservableCollection<Pokemon> _results;
-        public ObservableCollection<Pokemon> Results
+        private List<Pokemon> _results;
+        public List<Pokemon> Results
         {
             get
             {
