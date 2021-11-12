@@ -10,10 +10,9 @@ using System.Threading.Tasks;
 
 namespace Pokedex
 {
-    public static class ApiRequest
+    public class ApiRequest
     {
-
-        public static ListaPokemon GetListaPokemons(int startIndex = 0, int qtdPokemons = 10)
+        public PropertiesListPokemon GetListaPokemons(int startIndex = 0, int qtdPokemons = 10)
         {            
             var consulta = (HttpWebRequest)WebRequest.Create($"https://pokeapi.co/api/v2/pokemon?limit={qtdPokemons}&offset={startIndex}");
             consulta.Method = "GET";
@@ -33,7 +32,7 @@ namespace Pokedex
                     {
                         string repostaString = leitorDadosAPI.ReadToEnd();
 
-                        ListaPokemon listaDePokemons = JsonConvert.DeserializeObject<ListaPokemon>(repostaString);                        
+                        PropertiesListPokemon listaDePokemons = JsonConvert.DeserializeObject<PropertiesListPokemon>(repostaString);                        
 
                         return listaDePokemons;
                     }
