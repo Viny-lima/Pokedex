@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pokédex.Context
 {
-    public class PokemonContext:DbContext
+    public class PokemonContext : DbContext
     {
         public DbSet<Pokemon> Pokemons { get; set; }
 
