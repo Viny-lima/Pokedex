@@ -1,5 +1,6 @@
 ﻿using Pokedex;
 using Pokedex.Models;
+using Pokedex.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
