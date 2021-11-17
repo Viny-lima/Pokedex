@@ -10,7 +10,7 @@ namespace Pokédex.Context
 {
     public class PokemonContext : DbContext
     {
-        public DbSet<Pokemon> Pokemons { get; set; }
+        public DbSet<AddressPokemon> Pokemons { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

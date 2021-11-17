@@ -12,38 +12,68 @@ namespace Pokedex.Service
 {
     public class ApiRequest
     {
-        public PropertiesListPokemon GetListaPokemons(int startIndex = 0, int qtdPokemons = 10)
-        {            
-            var consulta = (HttpWebRequest)WebRequest.Create($"https://pokeapi.co/api/v2/pokemon?limit={qtdPokemons}&offset={startIndex}");
-            consulta.Method = "GET";
-            consulta.ContentType = "application/json";
-            consulta.Accept = "application/json";
+        private T Get<T>(string Url)
+        {
+            var request = WebRequest.Create(Url);
+            request.Method = "GET";
+            request.Credentials = CredentialCache.DefaultCredentials;
+            request.ContentType = "application/json";
 
             try
             {
-                using (WebResponse reposta = consulta.GetResponse())
-                using (Stream dadosAPI = reposta.GetResponseStream())
+                using (HttpWebResponse reponse = (HttpWebResponse)request.GetResponse())
+                using (Stream dataStream = reponse.GetResponseStream())
                 {
-                    if (dadosAPI == null)
-                    {
-                        return null;
-                    }
-                    using (StreamReader leitorDadosAPI = new StreamReader(dadosAPI))
-                    {
-                        string repostaString = leitorDadosAPI.ReadToEnd();
+                    if (dataStream == null) throw new NullReferenceException("dataStream Pokemon é null !");
 
-                        PropertiesListPokemon listaDePokemons = JsonConvert.DeserializeObject<PropertiesListPokemon>(repostaString);                        
+                    using (StreamReader reader = new StreamReader(dataStream))
+                    {
+                        string responseString = reader.ReadToEnd();
 
-                        return listaDePokemons;
+                        T obj = JsonConvert.DeserializeObject<T>(responseString);
+
+                        return obj;
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+
+                return default(T);
+            }
+        }
+
+        public Pokemon GetPokemon(int Id)
+        {
+            var stringUrl = $"https://pokeapi.co/api/v2/pokemon/{Id}";
+
+            return Get<Pokemon>(stringUrl);
+        }
+
+        public PropertiesListPokemon GetPropertiesListPokemons(int startIndex = 0, int qtdPokemons = 10)
+        {
+            string stringUrl = $"https://pokeapi.co/api/v2/pokemon?limit={qtdPokemons}&offset={startIndex}";
+
+            return Get<PropertiesListPokemon>(stringUrl);
+        }        
+
+        public List<Pokemon> GetListaDePokemons(int startIndex = 0, int qtdPokemons = 10)
+        {
+            PropertiesListPokemon propertiesList = GetPropertiesListPokemons(startIndex, qtdPokemons);
+
+            List<Pokemon> ListaDePokemons = new List<Pokemon>();
+
+            foreach (AddressPokemon pokemon in propertiesList.Results)
+            {
+                string stringUrl = pokemon.Url.ToString();
+
+                ListaDePokemons.Add(Get<Pokemon>(stringUrl));
             }
 
-
-        }
+                
+            return ListaDePokemons;
+        }                    
     }
 }

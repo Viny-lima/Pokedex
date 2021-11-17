@@ -75,17 +75,31 @@
                   ScrollViewer.VerticalScrollMode="Enabled"
                   ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="data:Pokemon">
+                <DataTemplate x:DataType="data:AddressPokemon">
                     <StackPanel Orientation="Horizontal">
                         <Image Width="100" Height="100" Stretch="Fill">
                             <Image.Source>
                                 <BitmapImage UriSource="{x:Bind SpriteUrl}"/>
                             </Image.Source>
                         </Image>
+                        
                         <TextBlock Text="{x:Bind NamePokemon}" 
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
                                    FontSize="20"/>
+                        
+                        <!--Testando a visualização das Habilidades do Pokemon
+                        
+                        <GridView ItemsSource="{x:Bind Abilities}">
+                            <GridView.ItemTemplate>
+                                <DataTemplate x:DataType="data:Ability">
+                                    <TextBlock Text="{x:Bind PropertiesAbility.Name}"/>
+                                </DataTemplate>                                
+                            </GridView.ItemTemplate>
+                        </GridView> 
+                        
+                        -->
+                        
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
