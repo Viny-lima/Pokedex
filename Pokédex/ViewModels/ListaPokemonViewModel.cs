@@ -15,18 +15,16 @@ namespace Pokédex.ViewModels
         private ObservableCollection<AddressPokemon> _pokemons = new ObservableCollection<AddressPokemon>();
         private int _startindex;
         private readonly int _qtdPokemons;
-        private ApiRequest _apiRequests;
 
 
         public ObservableCollection<AddressPokemon> ListaPokemons { get { return _pokemons; } }
 
-        public ListaPokemonViewModel(ApiRequest api, int startIndex, int qtdPokeomns)
+        public ListaPokemonViewModel(int startIndex, int qtdPokeomns)
         {
             _startindex = startIndex;
             _qtdPokemons = qtdPokeomns;
-            _apiRequests = api;
 
-            List<AddressPokemon> ListaPokemons = _apiRequests.GetPropertiesListPokemons(_startindex, _qtdPokemons).Results;
+            List<AddressPokemon> ListaPokemons = ApiRequest.GetPropertiesListPokemons(_startindex, _qtdPokemons).Results;
 
             foreach (var pokemon in ListaPokemons)
             {
@@ -39,7 +37,7 @@ namespace Pokédex.ViewModels
         /// </summary>
         private void UpdateListPokemons()
         {
-            List<AddressPokemon> listPokemon = _apiRequests.GetPropertiesListPokemons(_startindex, _qtdPokemons).Results;
+            List<AddressPokemon> listPokemon = ApiRequest.GetPropertiesListPokemons(_startindex, _qtdPokemons).Results;
             this._pokemons.Clear();
 
             foreach (AddressPokemon newPokemon in listPokemon)
