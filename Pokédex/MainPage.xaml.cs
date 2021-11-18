@@ -28,7 +28,6 @@ namespace Pokedex
     public sealed partial class MainPage : Page
     {
         public ListaPokemonViewModel listaPokemonViewModel = new ListaPokemonViewModel(0, 10);
-        public PokemonViewModel pokemonViewModel = new PokemonViewModel(1);
 
         public PokemonContext context = new PokemonContext();
 
@@ -38,9 +37,8 @@ namespace Pokedex
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
-        { 
-            if (context.Pokemons.Count==0)
-
+        {            
+            
         }
 
         private void Next_Pokemon_Click(object sender, RoutedEventArgs e)
@@ -51,6 +49,15 @@ namespace Pokedex
         private void Previus_Pokemon_Click(object sender, RoutedEventArgs e)
         {
             listaPokemonViewModel.PreviosPageListPokemons();
+        } 
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var pokemonSelected = e.ClickedItem as AddressPokemon;
+            var pokemon = ApiRequest.Get<Pokemon>(pokemonSelected.Url);
+
+            SpritePokemonView.UriSource = pokemon.Sprites.FrontDefault;
+            NamePokemonView.Text = pokemonSelected.NamePokemon;
         }
     }
 }

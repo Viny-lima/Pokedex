@@ -10,17 +10,17 @@ namespace Pokédex.ViewModels
 {
     public class PokemonViewModel 
     {
-        Pokemon _pokemon = new Pokemon();
+        private Pokemon _pokemon = new Pokemon();
         public Pokemon MyPokemon { get { return _pokemon; } }
 
-        public PokemonViewModel(int IdPokemon)
+        public PokemonViewModel()
         {
-            _pokemon = ApiRequest.GetPokemon(IdPokemon);
+            _pokemon = ApiRequest.GetPokemon(1);
         }
 
-        public void Update(Pokemon pokemonSelected)
-        {
-            _pokemon = ApiRequest.GetPokemon(pokemonSelected.Id);
+        public void Update(AddressPokemon pokemonSelected)
+        {            
+            _pokemon = ApiRequest.Get<Pokemon>(pokemonSelected.Url);
         }
     }
 }
