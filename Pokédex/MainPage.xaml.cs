@@ -1,4 +1,5 @@
-﻿using Pokedex.Models;
+﻿using Pokédex.Context;
+using Pokedex.Models;
 using Pokedex.Service;
 using Pokédex.ViewModels;
 using System;
@@ -30,13 +31,16 @@ namespace Pokedex
 
         public ListaPokemonViewModel ListaPokemonView = new ListaPokemonViewModel(api, 0, 10);
 
+        public PokemonContext context = new PokemonContext();
+
         public MainPage()
         {
             this.InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
+        { 
+            if (context.Pokemons.Count==0)
 
         }
 
