@@ -16,6 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <RelativePanel Grid.Row="0">
@@ -70,10 +71,11 @@
         </RelativePanel>
 
 
-        <ListView ItemsSource="{x:Bind ListaPokemonView.ListaPokemons}" 
+        <ListView ItemsSource="{x:Bind listaPokemonViewModel.ListaPokemons}" 
                   Grid.Row="1"
                   ScrollViewer.VerticalScrollMode="Enabled"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"                  
+                  >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:AddressPokemon">
                     <StackPanel Orientation="Horizontal">
@@ -86,24 +88,20 @@
                         <TextBlock Text="{x:Bind NamePokemon}" 
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
-                                   FontSize="20"/>
-                        
-                        <!--Testando a visualização das Habilidades do Pokemon
-                        
-                        <GridView ItemsSource="{x:Bind Abilities}">
-                            <GridView.ItemTemplate>
-                                <DataTemplate x:DataType="data:Ability">
-                                    <TextBlock Text="{x:Bind PropertiesAbility.Name}"/>
-                                </DataTemplate>                                
-                            </GridView.ItemTemplate>
-                        </GridView> 
-                        
-                        -->
-                        
+                                   FontSize="20"/>                                                                      
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+
+        <RelativePanel Grid.Row="2">
+            <Image Width="300">
+                <Image.Source>
+                    <BitmapImage UriSource="{x:Bind pokemonViewModel.MyPokemon.Sprites.FrontDefault}"/>
+                </Image.Source>
+            </Image>
+        </RelativePanel>
 
     </Grid>
 

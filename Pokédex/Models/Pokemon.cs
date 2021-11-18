@@ -1,60 +1,197 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using System.Globalization;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Pokedex.Models
 {   
 
-    public class Pokemon
+    public class Pokemon : ObservableObject
     {
 
         [JsonProperty("id")]
-        public long? Id { get; set; }
+        private int _id;
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                SetProperty(ref _id, value, nameof(Id));
+            }
+        }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                SetProperty(ref _name, value, nameof(Name));
+            }
+        }
 
         [JsonProperty("height")]
-        public long? Height { get; set; }
+        private int _height;
+        public int Height
+        {
+            get
+            {
+                return _height;
+            }
+            set
+            {
+                SetProperty(ref _height, value, nameof(Height));
+            }
+        }
 
         [JsonProperty("weight")]
-        public long? Weight { get; set; }
+        private int _weigth;
+        public int Weight
+        {
+            get
+            {
+                return _weigth;
+            }
+            set
+            {
+                SetProperty(ref _weigth, value, nameof(Weight));
+            }
+        }
 
         [JsonProperty("abilities")]
-        public List<Ability> Abilities { get; set; }
+        private List<Ability> _abilities;
+        public List<Ability> Abilities
+        {
+            get
+            {
+                return _abilities;
+            }
+            set
+            {
+                SetProperty(ref _abilities, value, nameof(Abilities));
+            }
+        }
 
         [JsonProperty("base_experience")]
-        public long? BaseExperience { get; set; }
+        private int _baseExperience;
+        public int BaseExperience
+        {
+            get
+            {
+                return _baseExperience;
+            }
+            set
+            {
+                SetProperty(ref _baseExperience, value, nameof(BaseExperience));
+            }
+        }
 
         [JsonProperty("stats")]
-        public List<Stats> StatusBase { get; set; }
-
-        [JsonProperty("species")]
-        public NameUrl Species { get; set; }
+        private List<Stats> _statusBase;
+        public List<Stats> StatusBase
+        {
+            get
+            {
+                return _statusBase;
+            }
+            set
+            {
+                SetProperty(ref _statusBase, value, nameof(StatusBase));
+            }
+        }
 
         [JsonProperty("sprites")]
-        public Sprites Sprites { get; set; }
+        private Sprites _sprites;
+        public Sprites Sprites
+        {
+            get
+            {
+                return _sprites;
+            }
+            set
+            {
+                SetProperty(ref _sprites, value, nameof(Sprites));
+            }
+        }
 
         [JsonProperty("types")]
-        public List<TypeElement> Types { get; set; }
+        private List<TypeElement> _types;
+        public List<TypeElement> Types
+        {
+            get
+            {
+                return _types;
+            }
+            set
+            {
+                SetProperty(ref _types, value, nameof(Types));
+            }
+        }
 
         [JsonProperty("moves")]
-        public List<Move> Moves { get; set; }
-
-        [JsonProperty("forms")]
-        public List<NameUrl> Forms { get; set; }
+        private List<Move> _moves;
+        public List<Move> Moves
+        {
+            get
+            {
+                return _moves;
+            }
+            set
+            {
+                SetProperty(ref _moves, value, nameof(Moves));
+            }
+        }
 
         [JsonProperty("held_items")]
-        public List<object> HeldItems { get; set; }        
+        private List<object> _heldItems;
+        public List<object> HeldItems
+        {
+            get
+            {
+                return _heldItems;
+            }
+            set
+            {
+                SetProperty(ref _heldItems, value, nameof(HeldItems));
+            }
+        }
 
         [JsonProperty("is_default")]
-        public bool? IsDefault { get; set; }
+        private bool _isDefault;
+        public bool IsDefault
+        {
+            get
+            {
+                return _isDefault;
+            }
+            set
+            {
+                SetProperty(ref _isDefault, value, nameof(IsDefault));
+            }
+        }
 
         [JsonProperty("location_area_encounters")]
-        public Uri LocationAreaEncounters { get; set; }                      
+        public Uri _locationAreaEncounters;
+        public Uri LocationAreaEncounters
+        {
+            get
+            {
+                return _locationAreaEncounters;
+            }
+            set
+            {
+                SetProperty(ref _locationAreaEncounters, value, nameof(LocationAreaEncounters));
+            }
+        }                    
         
     }
 
