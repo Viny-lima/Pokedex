@@ -197,94 +197,331 @@ namespace Pokedex.Models
 
     #region Class Map Json
 
-    public class Ability
+    public class Ability : ObservableObject
     {
+
         [JsonProperty("ability")]
-        public NameUrl PropertiesAbility { get; set; }
+        private NameUrl _propertiesAbility;
+        public NameUrl PropertiesAbility
+        {
+            get
+            {
+                return _propertiesAbility;
+            }
+            set
+            {
+                SetProperty(ref _propertiesAbility, value, nameof(PropertiesAbility));
+            }
+        }
 
         [JsonProperty("is_hidden")]
-        public bool? IsHidden { get; set; }
+        private bool _isHidden;
+        public bool IsHidden
+        {
+            get
+            {
+                return _isHidden;
+            }
+            set
+            {
+                SetProperty(ref _isHidden, value, nameof(IsHidden));
+            }
+        }
 
         [JsonProperty("slot")]
-        public long? Slot { get; set; }
+        private long _slot;
+        public long Slot
+        {
+            get
+            {
+                return _slot;
+            }
+            set
+            {
+                SetProperty(ref _slot, value, nameof(Slot));
+            }
+        }
+
     }
 
-    public class NameUrl
+    public class NameUrl : ObservableObject
     {
+
         [JsonProperty("name")]
-        public string Name { get; set; }
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                SetProperty(ref _name, value, nameof(Name));
+            }
+        }
 
         [JsonProperty("url")]
-        public Uri Url { get; set; }
+        private Uri _url;
+        public Uri Url
+        {
+            get
+            {
+                return _url;
+            }
+            set
+            {
+                SetProperty(ref _url, value, nameof(Url));
+            }
+        }
+
     }
 
-    public  class Move
+    public  class Move : ObservableObject
     {
+
         [JsonProperty("move")]
-        public NameUrl MoveMove { get; set; }
+        private NameUrl _moves;
+        public NameUrl Moves
+        {
+            get
+            {
+                return _moves;
+            }
+            set
+            {
+                SetProperty(ref _moves, value, nameof(Moves));
+            }
+        }
+
     }    
         
-    public  class Sprites
-    {       
+    public  class Sprites : ObservableObject
+    {
+
         [JsonProperty("front_default")]
-        public Uri FrontDefault { get; set; }
+        private Uri _frontDefault;
+        public Uri FrontDefault
+        {
+            get
+            {
+                return _frontDefault;
+            }
+            set
+            {
+                SetProperty(ref _frontDefault, value, nameof(FrontDefault));
+            }
+        }
 
         [JsonProperty("front_shiny")]
-        public Uri FrontShiny { get; set; }
+        private Uri _frontShiny;
+        public Uri FrontShiny
+        {
+            get
+            {
+                return _frontShiny;
+            }
+            set
+            {
+                SetProperty(ref _frontShiny, value, nameof(FrontShiny));
+            }
+        }
 
         [JsonProperty("other")]
-        public Other Other { get; set; }
+        private Other _other;
+        public Other Other
+        {
+            get
+            {
+                return _other;
+            }
+            set
+            {
+                SetProperty(ref _other, value, nameof(Other));
+            }
+        }
+
     }    
 
-    public class DreamWorld
+    public class DreamWorld : ObservableObject
     {
+
         [JsonProperty("front_default")]
-        public Uri FrontDefault { get; set; }
+        private Uri _frontDefault;
+        public Uri FrontDefault
+        {
+            get
+            {
+                return _frontDefault;
+            }
+            set
+            {
+                SetProperty(ref _frontDefault, value, nameof(FrontDefault));
+            }
+        }
+
     }
 
-    public class Other
+    public class Other : ObservableObject
     {
+
         [JsonProperty("dream_world")]
-        public DreamWorld DreamWorld { get; set; }
+        private DreamWorld _dreamWorld;
+        public DreamWorld DreamWorld
+        {
+            get
+            {
+                return _dreamWorld;
+            }
+            set
+            {
+                SetProperty(ref _dreamWorld, value, nameof(DreamWorld));
+            }
+        }
 
         [JsonProperty("official-artwork")]
-        public OfficialArtwork OfficialArtwork { get; set; }
+        private OfficialArtwork _officialArtwork;
+        public OfficialArtwork OfficialArtwork
+        {
+            get
+            {
+                return _officialArtwork;
+            }
+            set
+            {
+                SetProperty(ref _officialArtwork, value, nameof(OfficialArtwork));
+            }
+        }
+
     }
 
-    public class OfficialArtwork
+    public class OfficialArtwork : ObservableObject
     {
+
         [JsonProperty("front_default")]
-        public Uri FrontDefault { get; set; }
+        private Uri _frontDefault;
+        public Uri FrontDefault
+        {
+            get
+            {
+                return _frontDefault;
+            }
+            set
+            {
+                SetProperty(ref _frontDefault, value, nameof(FrontDefault));
+            }
+        }
+
     }
 
-    public class Stats
+    public class Stats : ObservableObject
     {
         [JsonProperty("base_stat")]
-        public long? ValueState { get; set; }
+        private long _valueState;
+        public long ValueState
+        {
+            get
+            {
+                return _valueState;
+            }
+            set
+            {
+                SetProperty(ref _valueState, value, nameof(ValueState));
+            }
+        }
 
         [JsonProperty("effort")]
-        public long? EffortState { get; set; }
+        private long _efforState;
+        public long EffortState
+        {
+            get
+            {
+                return _efforState;
+            }
+            set
+            {
+                SetProperty(ref _efforState, value, nameof(EffortState));
+            }
+        }
 
         [JsonProperty("stat")]
-        public NameUrl PropertiesState { get; set; }
+        private NameUrl _propertiesState;
+        public NameUrl PropertiesState
+        {
+            get
+            {
+                return _propertiesState;
+            }
+            set
+            {
+                SetProperty(ref _propertiesState, value, nameof(PropertiesState));
+            }
+        }
+
     }
 
-    public class TypeElement
+    public class TypeElement : ObservableObject
     {
         [JsonProperty("slot")]
-        public long? Slot { get; set; }
+        private long _slot;
+        public long Slot
+        {
+            get
+            {
+                return _slot;
+            }
+            set
+            {
+                SetProperty(ref _slot, value, nameof(Slot));
+            }
+        }
 
         [JsonProperty("type")]
-        public NameUrl Type { get; set; }
+        private NameUrl _type;
+        public NameUrl Type
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                SetProperty(ref _type, value, nameof(Type));
+            }
+        }
+
     }
 
-    public class Species
+    public class Species : ObservableObject
     {
         [JsonProperty("name")]
-        public string Name { get; set; }
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                SetProperty(ref _name, value, nameof(Name));
+            }
+        }
 
         [JsonProperty("url")]
-        public Uri Url { get; set; }
+        private Uri _url;
+        public Uri Url
+        {
+            get
+            {
+                return _url;
+            }
+            set
+            {
+                SetProperty(ref _url, value, nameof(Url));
+            }
+        }
+
     }
 
     #endregion 
