@@ -39,7 +39,7 @@ namespace Pokedex
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         { 
-            if (context.Pokemons.Count==0)
+
 
         }
 
