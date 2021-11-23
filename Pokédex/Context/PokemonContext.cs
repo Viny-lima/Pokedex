@@ -14,9 +14,9 @@ namespace Pokédex.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=LojaDB;Trusted_Connection=true;");
+            optionsBuilder.UseSqlite("Data source = DataPokemon.db");
+
         }       
-    
     
     
     }

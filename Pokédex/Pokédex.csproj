@@ -116,6 +116,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controller\PokemonController.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="Pages\PokemonPage.xaml.cs">
       <DependentUpon>PokemonPage.xaml</DependentUpon>

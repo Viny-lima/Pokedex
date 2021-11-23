@@ -1,4 +1,5 @@
 ﻿using Pokédex.Context;
+using Pokédex.Controller;
 using Pokedex.Models;
 using Pokedex.Service;
 using Pokédex.ViewModels;
@@ -31,7 +32,7 @@ namespace Pokedex
         
         public PokemonViewModel pokemonViewModel = new PokemonViewModel();
 
-        public PokemonContext context = new PokemonContext();
+        public PokemonController pokemonController = new PokemonController();
 
         public MainPage()
         {
@@ -39,9 +40,9 @@ namespace Pokedex
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
-        { 
+        {
 
-
+            pokemonController.StartUp();
         }
 
         private void Next_Pokemon_Click(object sender, RoutedEventArgs e)
