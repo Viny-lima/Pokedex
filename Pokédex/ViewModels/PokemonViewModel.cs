@@ -1,4 +1,5 @@
-﻿using Pokedex.Models;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Pokedex.Models;
 using Pokedex.Service;
 using System;
 using System.Collections.Generic;
@@ -8,19 +9,22 @@ using System.Threading.Tasks;
 
 namespace Pokédex.ViewModels
 {
-    public class PokemonViewModel 
+    public class PokemonViewModel : ObservableObject
     {
-        Pokemon _pokemon = new Pokemon();
-        public Pokemon MyPokemon { get { return _pokemon; } }
-
-        public PokemonViewModel(int IdPokemon)
+        private Pokemon _pokemon = new Pokemon();
+        public Pokemon MyPokemon
         {
-            _pokemon = ApiRequest.GetPokemon(IdPokemon);
+            get
+            {
+                return _pokemon;
+            }
+            set
+            {
+                SetProperty(ref _pokemon, value, nameof(MyPokemon));
+            }
         }
 
-        public void Update(Pokemon pokemonSelected)
-        {
-            _pokemon = ApiRequest.GetPokemon(pokemonSelected.Id);
-        }
+        public PokemonViewModel() { }       
+        
     }
 }

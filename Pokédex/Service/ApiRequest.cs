@@ -54,6 +54,46 @@ namespace Pokedex.Service
         }
 
         /// <summary>
+        /// Método genérico de Requisições <see cref="WebRequest"/> usando a <paramref name="Url"/> passada no parâmetro.
+        /// Em seguida ocorre um <see cref="JsonConvert.DeserializeObject(string)"/> no <see cref="object"/> do tipo <paramref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">Tipo <see cref="object"/> a ser deserializado do Json</typeparam>.
+        /// <param name="Url">Url usada para requisição <see cref="WebRequest.Create()"/></param>
+        /// <returns> Retona um <see cref="Object"/> do tipo especificado .</returns>
+        public static T Get<T>(Uri Url)
+        {
+            var request = WebRequest.Create(Url);
+            request.Method = "GET";
+            request.Credentials = CredentialCache.DefaultCredentials;
+            request.ContentType = "application/json";
+
+            try
+            {
+                using (HttpWebResponse reponse = (HttpWebResponse)request.GetResponse())
+                using (Stream dataStream = reponse.GetResponseStream())
+                {
+                    if (dataStream == null) throw new NullReferenceException("dataStream é null !");
+
+                    using (StreamReader reader = new StreamReader(dataStream))
+                    {
+                        string responseString = reader.ReadToEnd();
+
+                        T obj = JsonConvert.DeserializeObject<T>(responseString);
+
+                        return obj;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+
+                return default(T);
+            }
+        }
+
+        /// <summary>
         /// Responsável construção de um <see cref="Object"/> da class <see cref="Pokemon"/> apartir de um Json da API. Gerado por uma Url + <paramref name="Id"/>.
         /// </summary>
         /// <param name="Id">Index do Pokemon na API></param>
