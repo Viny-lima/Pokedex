@@ -117,7 +117,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controller\PokemonController.cs" />
+    <Compile Include="Models\Ability.cs" />
+    <Compile Include="Models\DreamWorld.cs" />
+    <Compile Include="Models\Move.cs" />
+    <Compile Include="Models\NameUrl.cs" />
+    <Compile Include="Models\OfficialArtwork.cs" />
+    <Compile Include="Models\Other.cs" />
     <Compile Include="Models\Pokemon.cs" />
+    <Compile Include="Models\Species.cs" />
+    <Compile Include="Models\Sprites.cs" />
+    <Compile Include="Models\Stats.cs" />
+    <Compile Include="Models\TypeElement.cs" />
     <Compile Include="Pages\PokemonPage.xaml.cs">
       <DependentUpon>PokemonPage.xaml</DependentUpon>
     </Compile>
