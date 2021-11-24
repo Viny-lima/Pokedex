@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace Pokédex.ViewModels
 {
-    public class ListaPokemonViewModel
+    public class PokemonViewModelList
     {
-        private ObservableCollection<AddressPokemon> _pokemons = new ObservableCollection<AddressPokemon>();
+        private ObservableCollection<PokemonAddress> _pokemons = new ObservableCollection<PokemonAddress>();
         private int _startindex;
         private readonly int _qtdPokemons;
 
 
-        public ObservableCollection<AddressPokemon> ListaPokemons { get { return _pokemons; } }
+        public ObservableCollection<PokemonAddress> ListaPokemons { get { return _pokemons; } }
 
-        public ListaPokemonViewModel(int startIndex, int qtdPokeomns)
+        public PokemonViewModelList(int startIndex, int qtdPokeomns)
         {
             _startindex = startIndex;
             _qtdPokemons = qtdPokeomns;
 
-            List<AddressPokemon> ListaPokemons = ApiRequest.GetPropertiesListPokemons(_startindex, _qtdPokemons).Results;
+            List<PokemonAddress> ListaPokemons = ApiRequest.GetPropertiesListPokemons(_startindex, _qtdPokemons).Results;
 
             foreach (var pokemon in ListaPokemons)
             {
@@ -37,10 +37,10 @@ namespace Pokédex.ViewModels
         /// </summary>
         private void UpdateListPokemons()
         {
-            List<AddressPokemon> listPokemon = ApiRequest.GetPropertiesListPokemons(_startindex, _qtdPokemons).Results;
+            List<PokemonAddress> listPokemon = ApiRequest.GetPropertiesListPokemons(_startindex, _qtdPokemons).Results;
             this._pokemons.Clear();
 
-            foreach (AddressPokemon newPokemon in listPokemon)
+            foreach (PokemonAddress newPokemon in listPokemon)
             {
                 this._pokemons.Add(newPokemon);
             }

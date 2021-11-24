@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pokédex.Context
+namespace Pokédex.Data
 {
     public class PokemonContext : DbContext
     {
@@ -16,12 +16,7 @@ namespace Pokédex.Context
         {
             optionsBuilder.UseSqlite("Data source = DataPokemon.db");
 
-        }       
-    
-    
+        }             
     }
-
-
-
     
 }

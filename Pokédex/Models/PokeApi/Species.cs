@@ -6,11 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pokédex.Models
+namespace Pokédex.Models.PokeApi
 {
-    public class NameUrl : ObservableObject
+    public class Species : ObservableObject
     {
-
         [JsonProperty("name")]
         private string _name;
         public string Name
@@ -24,6 +23,21 @@ namespace Pokédex.Models
                 SetProperty(ref _name, value, nameof(Name));
             }
         }
+
+        [JsonProperty("url")]
+        private Uri _url;
+        public Uri Url
+        {
+            get
+            {
+                return _url;
+            }
+            set
+            {
+                SetProperty(ref _url, value, nameof(Url));
+            }
+        }
+
     }
 
 }

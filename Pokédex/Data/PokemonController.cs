@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Pokédex.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pokédex.Controller
+namespace Pokédex.Data
 {
     public class PokemonController
     {

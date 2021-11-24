@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pokédex.Models
+namespace Pokédex.Models.PokeApi
 {
-    public class Sprites : ObservableObject
+    public class OfficialArtwork : ObservableObject
     {
 
         [JsonProperty("front_default")]
@@ -26,5 +26,4 @@ namespace Pokédex.Models
         }
 
     }
-
 }

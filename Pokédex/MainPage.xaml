@@ -71,7 +71,7 @@
         </RelativePanel>
 
 
-        <ListView ItemsSource="{x:Bind listaPokemonViewModel.ListaPokemons}" 
+        <ListView ItemsSource="{x:Bind PokeList.ListaPokemons}" 
                   Grid.Row="1"
                   ScrollViewer.VerticalScrollMode="Enabled"
                   ScrollViewer.VerticalScrollBarVisibility="Hidden"
@@ -80,7 +80,7 @@
                   ItemClick="ListView_ItemClick"
                   >
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="data:AddressPokemon">
+                <DataTemplate x:DataType="data:PokemonAddress">
                     <StackPanel Orientation="Horizontal">
                         <Image Width="100" Height="100" Stretch="Fill">
                             <Image.Source>
@@ -101,11 +101,10 @@
         <RelativePanel Grid.Row="2">
             <Image Width="200">
                 <Image.Source>
-                    <BitmapImage UriSource="{x:Bind pokemonViewModel.MyPokemon.Sprites.Other.OfficialArtwork.FrontDefault, Mode=TwoWay}"
-/>
+                    <BitmapImage UriSource="{x:Bind PokeView.Pokemon.Sprites.Other.OfficialArtwork.FrontDefault, Mode=TwoWay}"/>
                 </Image.Source>
             </Image>
-            <TextBlock Text="{x:Bind pokemonViewModel.MyPokemon.Name, Mode=TwoWay}"/>
+            <TextBlock Text="{x:Bind PokeView.Pokemon.Name, Mode=TwoWay}"/>
         </RelativePanel>
 
     </Grid>

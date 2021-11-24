@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pokédex.Models
+namespace Pokédex.Models.PokeApi
 {
     public class Other : ObservableObject
     {
@@ -24,6 +24,21 @@ namespace Pokédex.Models
                 SetProperty(ref _dreamWorld, value, nameof(DreamWorld));
             }
         }
+
+        [JsonProperty("official-artwork")]
+        private OfficialArtwork _officialArtwork;
+        public OfficialArtwork OfficialArtwork
+        {
+            get
+            {
+                return _officialArtwork;
+            }
+            set
+            {
+                SetProperty(ref _officialArtwork, value, nameof(OfficialArtwork));
+            }
+        }
+
     }
 
 }

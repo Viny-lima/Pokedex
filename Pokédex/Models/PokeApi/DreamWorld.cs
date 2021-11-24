@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pokédex.Models
+namespace Pokédex.Models.PokeApi
 {
     public class DreamWorld : ObservableObject
     {

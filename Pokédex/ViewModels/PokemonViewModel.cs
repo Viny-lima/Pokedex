@@ -12,7 +12,7 @@ namespace Pokédex.ViewModels
     public class PokemonViewModel : ObservableObject
     {
         private Pokemon _pokemon = new Pokemon();
-        public Pokemon MyPokemon
+        public Pokemon Pokemon
         {
             get
             {
@@ -20,7 +20,7 @@ namespace Pokédex.ViewModels
             }
             set
             {
-                SetProperty(ref _pokemon, value, nameof(MyPokemon));
+                SetProperty(ref _pokemon, value, nameof(Pokemon));
             }
         }
 

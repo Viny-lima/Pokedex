@@ -116,33 +116,30 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controller\PokemonController.cs" />
-    <Compile Include="Models\Ability.cs" />
-    <Compile Include="Models\DreamWorld.cs" />
-    <Compile Include="Models\Move.cs" />
-    <Compile Include="Models\NameUrl.cs" />
-    <Compile Include="Models\OfficialArtwork.cs" />
-    <Compile Include="Models\Other.cs" />
+    <Compile Include="Data\PokemonController.cs" />
+    <Compile Include="Models\PokeApi\Ability.cs" />
+    <Compile Include="Models\PokeApi\DreamWorld.cs" />
+    <Compile Include="Models\PokeApi\Move.cs" />
+    <Compile Include="Models\PokeApi\NameUrl.cs" />
+    <Compile Include="Models\PokeApi\OfficialArtwork.cs" />
+    <Compile Include="Models\PokeApi\Other.cs" />
     <Compile Include="Models\Pokemon.cs" />
-    <Compile Include="Models\Species.cs" />
-    <Compile Include="Models\Sprites.cs" />
-    <Compile Include="Models\Stats.cs" />
-    <Compile Include="Models\TypeElement.cs" />
-    <Compile Include="Pages\PokemonPage.xaml.cs">
-      <DependentUpon>PokemonPage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Models\PokeApi\Species.cs" />
+    <Compile Include="Models\PokeApi\Sprites.cs" />
+    <Compile Include="Models\PokeApi\Stats.cs" />
+    <Compile Include="Models\PokeApi\TypeElement.cs" />
     <Compile Include="Service\ApiRequest.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Context\PokemonContext.cs" />
+    <Compile Include="Data\PokemonContext.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\PropertiesListPokemon.cs" />
-    <Compile Include="Models\AddressPokemon.cs" />
+    <Compile Include="Models\PokemonPropertiesList.cs" />
+    <Compile Include="Models\PokemonAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ListaPokemonViewModel.cs" />
+    <Compile Include="ViewModels\PokemonViewModelList.cs" />
     <Compile Include="ViewModels\PokemonViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,10 +165,6 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\PokemonPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

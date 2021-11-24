@@ -6,23 +6,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pokédex.Models
+namespace Pokédex.Models.PokeApi
 {
-    public class Stats : ObservableObject
+    public class Move : ObservableObject
     {
-        [JsonProperty("base_stat")]
-        private long _valueState;
-        public long ValueState
+
+        [JsonProperty("move")]
+        private NameUrl _moves;
+        public NameUrl Moves
         {
             get
             {
-                return _valueState;
+                return _moves;
             }
             set
             {
-                SetProperty(ref _valueState, value, nameof(ValueState));
+                SetProperty(ref _moves, value, nameof(Moves));
             }
         }
+
     }
 
 }

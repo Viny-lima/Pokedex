@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pokédex.Models
+namespace Pokédex.Models.PokeApi
 {
     public class TypeElement : ObservableObject
     {
@@ -21,6 +21,20 @@ namespace Pokédex.Models
             set
             {
                 SetProperty(ref _slot, value, nameof(Slot));
+            }
+        }
+
+        [JsonProperty("type")]
+        private NameUrl _type;
+        public NameUrl Type
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                SetProperty(ref _type, value, nameof(Type));
             }
         }
 

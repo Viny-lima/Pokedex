@@ -2,16 +2,11 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pokedex.Models
 {
-    public class PropertiesListPokemon : ObservableObject
+    public class PokemonPropertiesList : ObservableObject
     {
-
         [JsonProperty("count")]
         private long? _tamanhoDaLista;
         public long? TamanhoDaLista
@@ -58,8 +53,8 @@ namespace Pokedex.Models
         }
 
         [JsonProperty("results")]
-        private List<AddressPokemon> _results;
-        public List<AddressPokemon> Results
+        private List<PokemonAddress> _results;
+        public List<PokemonAddress> Results
         {
             get
             {

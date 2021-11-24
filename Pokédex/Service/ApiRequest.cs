@@ -106,15 +106,15 @@ namespace Pokedex.Service
         }
 
         /// <summary>
-        /// Responsável construção de um <see cref="Object"/> da class <see cref="PropertiesListPokemon"/> apartir de um Json da API.
+        /// Responsável construção de um <see cref="Object"/> da class <see cref="PokemonPropertiesList"/> apartir de um Json da API.
         /// </summary>
         /// <param name="startIndex">Id do primeiro <see cref="Pokemon"/> que se deseja na adicionar na lista.</param>
         /// <param name="qtdPokemons">Quantidade de <see cref="Pokemon"/> adiciondos a lista.</param>
-        /// <returns>Um object <see cref="PropertiesListPokemon"/> construido pela API.</returns>
-        public static PropertiesListPokemon GetPropertiesListPokemons(int startIndex = 0, int qtdPokemons = 10)
+        /// <returns>Um object <see cref="PokemonPropertiesList"/> construido pela API.</returns>
+        public static PokemonPropertiesList GetPropertiesListPokemons(int startIndex = 0, int qtdPokemons = 10)
         {
             string stringUrl = $"https://pokeapi.co/api/v2/pokemon?limit={qtdPokemons}&offset={startIndex}";
-            return Get<PropertiesListPokemon>(stringUrl);
+            return Get<PokemonPropertiesList>(stringUrl);
         }
 
         /// <summary>
@@ -125,11 +125,11 @@ namespace Pokedex.Service
         /// <returns>Uma <see cref="List{Pokemon}"/> de pokemons construidas pela API.</returns>
         public static List<Pokemon> GetListaDePokemons(int startIndex = 0, int qtdPokemons = 10)
         {
-            PropertiesListPokemon propertiesList = GetPropertiesListPokemons(startIndex, qtdPokemons);
+            PokemonPropertiesList propertiesList = GetPropertiesListPokemons(startIndex, qtdPokemons);
 
             List<Pokemon> ListaDePokemons = new List<Pokemon>();
 
-            foreach (AddressPokemon address in propertiesList.Results)
+            foreach (PokemonAddress address in propertiesList.Results)
             {
                 string stringUrl = address.Url.ToString();
 
