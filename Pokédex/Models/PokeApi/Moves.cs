@@ -2,29 +2,31 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Pokédex.Models.PokeApi
 {
-    public class Move : ObservableObject
+    public class Moves : ObservableObject
     {
+        [Key]
+        public int Id_Moves { get; set; }
 
         [JsonProperty("move")]
-        private NameUrl _moves;
-        public NameUrl Moves
+        private PropertiesMove _move;
+        public PropertiesMove Move
         {
             get
             {
-                return _moves;
+                return _move;
             }
             set
             {
-                SetProperty(ref _moves, value, nameof(Moves));
+                SetProperty(ref _move, value);
             }
         }
-
     }
 
 }

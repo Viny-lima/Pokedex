@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ namespace Pokédex.Models.PokeApi
 {
     public class Other : ObservableObject
     {
+        [Key]
+        public int Id_Other { get; set; }
 
         [JsonProperty("dream_world")]
         private DreamWorld _dreamWorld;

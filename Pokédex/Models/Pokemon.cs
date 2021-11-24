@@ -136,8 +136,8 @@ namespace Pokedex.Models
         }
 
         [JsonProperty("moves")]
-        private List<Move> _moves;
-        public List<Move> Moves
+        private List<Moves> _moves;
+        public List<Moves> Moves
         {
             get
             {

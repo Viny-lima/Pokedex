@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,9 @@ namespace Pokédex.Models.PokeApi
 {
     public class TypeElement : ObservableObject
     {
+        [Key]
+        public int Id_TypeElement { get; set; }
+
         [JsonProperty("slot")]
         private long _slot;
         public long Slot
@@ -25,8 +29,8 @@ namespace Pokédex.Models.PokeApi
         }
 
         [JsonProperty("type")]
-        private NameUrl _type;
-        public NameUrl Type
+        private PropertiesAbility _type;
+        public PropertiesAbility Type
         {
             get
             {

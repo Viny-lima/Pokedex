@@ -119,10 +119,13 @@
     <Compile Include="Data\PokemonController.cs" />
     <Compile Include="Models\PokeApi\Ability.cs" />
     <Compile Include="Models\PokeApi\DreamWorld.cs" />
-    <Compile Include="Models\PokeApi\Move.cs" />
-    <Compile Include="Models\PokeApi\NameUrl.cs" />
+    <Compile Include="Models\PokeApi\PropertiesMove.cs" />
+    <Compile Include="Models\PokeApi\Moves.cs" />
+    <Compile Include="Models\PokeApi\PropertiesAbility.cs" />
     <Compile Include="Models\PokeApi\OfficialArtwork.cs" />
     <Compile Include="Models\PokeApi\Other.cs" />
+    <Compile Include="Models\PokeApi\PropertiesState.cs" />
+    <Compile Include="Models\PokeApi\PropertiesType.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="Models\PokeApi\Species.cs" />
     <Compile Include="Models\PokeApi\Sprites.cs" />

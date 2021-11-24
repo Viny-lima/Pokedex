@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,9 @@ namespace Pokédex.Models.PokeApi
 {
     public class Stats : ObservableObject
     {
+        [Key]
+        public int Id_Stats { get; set; }
+
         [JsonProperty("base_stat")]
         private long _valueState;
         public long ValueState
@@ -39,8 +43,8 @@ namespace Pokédex.Models.PokeApi
         }
 
         [JsonProperty("stat")]
-        private NameUrl _propertiesState;
-        public NameUrl PropertiesState
+        private PropertiesAbility _propertiesState;
+        public PropertiesAbility PropertiesState
         {
             get
             {

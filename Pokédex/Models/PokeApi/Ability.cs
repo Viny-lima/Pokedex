@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Pokedex.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +12,12 @@ namespace Pokédex.Models.PokeApi
 {
     public class Ability : ObservableObject
     {
+        [Key]
+        public int Id_Ability { get; set; }
 
         [JsonProperty("ability")]
-        private NameUrl _propertiesAbility;
-        public NameUrl PropertiesAbility
+        private PropertiesAbility _propertiesAbility;
+        public PropertiesAbility PropertiesAbility
         {
             get
             {
