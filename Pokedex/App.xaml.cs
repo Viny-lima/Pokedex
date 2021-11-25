@@ -31,12 +31,6 @@ namespace Pokedex
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-
-            using (var db = new Pokedex.Model.PokemonDbContext())
-            {
-                db.Database.EnsureCreated();
-                db.Database.Migrate();
-            }
         }
 
         /// <summary>
@@ -77,6 +71,11 @@ namespace Pokedex
                 }
                 // Verifique se a janela atual está ativa
                 Window.Current.Activate();
+            }
+
+            using (var db = new Pokedex.Model.PokemonDbContext())
+            {
+                db.Database.Migrate();
             }
         }
 

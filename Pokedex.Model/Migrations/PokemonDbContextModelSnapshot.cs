@@ -14,20 +14,25 @@ namespace Pokedex.Model.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
+                .HasAnnotation("ProductVersion", "3.1.21");
 
             modelBuilder.Entity("Pokedex.Model.PokeApi.Ability", b =>
                 {
                     b.Property<int>("Id_Ability")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<bool>("IsHidden");
+                    b.Property<bool>("IsHidden")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("PokemonId");
+                    b.Property<int?>("PokemonId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("PropertiesAbilityId_PropertiesAbility");
+                    b.Property<int?>("PropertiesAbilityId_PropertiesAbility")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<long>("Slot");
+                    b.Property<long>("Slot")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id_Ability");
 
@@ -41,9 +46,11 @@ namespace Pokedex.Model.Migrations
             modelBuilder.Entity("Pokedex.Model.PokeApi.DreamWorld", b =>
                 {
                     b.Property<int>("Id_DreamWorld")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("FrontDefault");
+                    b.Property<string>("FrontDefault")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id_DreamWorld");
 
@@ -53,11 +60,14 @@ namespace Pokedex.Model.Migrations
             modelBuilder.Entity("Pokedex.Model.PokeApi.Moves", b =>
                 {
                     b.Property<int>("Id_Moves")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("MoveId_PropertiesMove");
+                    b.Property<int?>("MoveId_PropertiesMove")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("PokemonId");
+                    b.Property<int?>("PokemonId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id_Moves");
 
@@ -71,9 +81,11 @@ namespace Pokedex.Model.Migrations
             modelBuilder.Entity("Pokedex.Model.PokeApi.OfficialArtwork", b =>
                 {
                     b.Property<int>("Id_OfficialArtwork")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("FrontDefault");
+                    b.Property<string>("FrontDefault")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id_OfficialArtwork");
 
@@ -83,11 +95,14 @@ namespace Pokedex.Model.Migrations
             modelBuilder.Entity("Pokedex.Model.PokeApi.Other", b =>
                 {
                     b.Property<int>("Id_Other")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("DreamWorldId_DreamWorld");
+                    b.Property<int?>("DreamWorldId_DreamWorld")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("OfficialArtworkId_OfficialArtwork");
+                    b.Property<int?>("OfficialArtworkId_OfficialArtwork")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id_Other");
 
@@ -101,11 +116,14 @@ namespace Pokedex.Model.Migrations
             modelBuilder.Entity("Pokedex.Model.PokeApi.PropertiesAbility", b =>
                 {
                     b.Property<int>("Id_PropertiesAbility")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Url");
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id_PropertiesAbility");
 
@@ -115,11 +133,14 @@ namespace Pokedex.Model.Migrations
             modelBuilder.Entity("Pokedex.Model.PokeApi.PropertiesMove", b =>
                 {
                     b.Property<int>("Id_PropertiesMove")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("Url");
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id_PropertiesMove");
 
@@ -129,13 +150,17 @@ namespace Pokedex.Model.Migrations
             modelBuilder.Entity("Pokedex.Model.PokeApi.Sprites", b =>
                 {
                     b.Property<int>("Id_Sprites")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("FrontDefault");
+                    b.Property<string>("FrontDefault")
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("FrontShiny");
+                    b.Property<string>("FrontShiny")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int?>("OtherId_Other");
+                    b.Property<int?>("OtherId_Other")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id_Sprites");
 
@@ -147,15 +172,20 @@ namespace Pokedex.Model.Migrations
             modelBuilder.Entity("Pokedex.Model.PokeApi.Stats", b =>
                 {
                     b.Property<int>("Id_Stats")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<long>("EffortState");
+                    b.Property<long>("EffortState")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("PokemonId");
+                    b.Property<int?>("PokemonId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("PropertiesStateId_PropertiesAbility");
+                    b.Property<int?>("PropertiesStateId_PropertiesAbility")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<long>("ValueState");
+                    b.Property<long>("ValueState")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id_Stats");
 
@@ -169,13 +199,17 @@ namespace Pokedex.Model.Migrations
             modelBuilder.Entity("Pokedex.Model.PokeApi.TypeElement", b =>
                 {
                     b.Property<int>("Id_TypeElement")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("PokemonId");
+                    b.Property<int?>("PokemonId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<long>("Slot");
+                    b.Property<long>("Slot")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("TypeId_PropertiesAbility");
+                    b.Property<int?>("TypeId_PropertiesAbility")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id_TypeElement");
 
@@ -189,17 +223,23 @@ namespace Pokedex.Model.Migrations
             modelBuilder.Entity("Pokedex.Model.Pokemon", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("BaseExperience");
+                    b.Property<int>("BaseExperience")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("Height");
+                    b.Property<int>("Height")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int?>("SpritesId_Sprites");
+                    b.Property<int?>("SpritesId_Sprites")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("Weight");
+                    b.Property<int>("Weight")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -210,7 +250,7 @@ namespace Pokedex.Model.Migrations
 
             modelBuilder.Entity("Pokedex.Model.PokeApi.Ability", b =>
                 {
-                    b.HasOne("Pokedex.Model.Pokemon")
+                    b.HasOne("Pokedex.Model.Pokemon", null)
                         .WithMany("Abilities")
                         .HasForeignKey("PokemonId");
 
@@ -225,7 +265,7 @@ namespace Pokedex.Model.Migrations
                         .WithMany()
                         .HasForeignKey("MoveId_PropertiesMove");
 
-                    b.HasOne("Pokedex.Model.Pokemon")
+                    b.HasOne("Pokedex.Model.Pokemon", null)
                         .WithMany("Moves")
                         .HasForeignKey("PokemonId");
                 });
@@ -250,7 +290,7 @@ namespace Pokedex.Model.Migrations
 
             modelBuilder.Entity("Pokedex.Model.PokeApi.Stats", b =>
                 {
-                    b.HasOne("Pokedex.Model.Pokemon")
+                    b.HasOne("Pokedex.Model.Pokemon", null)
                         .WithMany("StatusBase")
                         .HasForeignKey("PokemonId");
 
@@ -261,7 +301,7 @@ namespace Pokedex.Model.Migrations
 
             modelBuilder.Entity("Pokedex.Model.PokeApi.TypeElement", b =>
                 {
-                    b.HasOne("Pokedex.Model.Pokemon")
+                    b.HasOne("Pokedex.Model.Pokemon", null)
                         .WithMany("Types")
                         .HasForeignKey("PokemonId");
 
