@@ -15,8 +15,8 @@ namespace Pokedex.Model.PokeApi
         public int Id_Stats { get; set; }
 
         [JsonProperty("base_stat")]
-        private long _valueState;
-        public long ValueState
+        private int _valueState;
+        public int ValueState
         {
             get
             {
@@ -29,8 +29,8 @@ namespace Pokedex.Model.PokeApi
         }
 
         [JsonProperty("effort")]
-        private long _efforState;
-        public long EffortState
+        private int _efforState;
+        public int EffortState
         {
             get
             {
