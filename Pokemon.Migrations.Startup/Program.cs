@@ -1,5 +1,5 @@
 ﻿using Pokedex.Model;
-using System;
+using Pokedex.Model.PokeApi;
 
 namespace Pokemon.Migrations.Startup
 {
@@ -7,7 +7,10 @@ namespace Pokemon.Migrations.Startup
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using(var db = new PokemonDbContext())
+            {
+                
+            }
         }
     }
 }

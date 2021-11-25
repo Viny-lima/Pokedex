@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pokedex.Model;
 
 namespace Pokedex.Model.Migrations
 {
     [DbContext(typeof(PokemonDbContext))]
-    partial class PokemonDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211125130932_InitialPokemonDb")]
+    partial class InitialPokemonDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
