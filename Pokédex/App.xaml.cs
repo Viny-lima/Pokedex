@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pokédex.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,6 +31,11 @@ namespace Pokedex
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            using(var db = new PokemonData())
+            {
+                db.Database.EnsureCreated();
+            }
         }
 
         /// <summary>

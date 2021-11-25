@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Pokédex.Data
 {
-    public class PokemonContext : DbContext
+    public class PokemonData : DbContext
     {
         public DbSet<Pokemon> Pokemons { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data source = DataPokemon.db");
+            optionsBuilder.UseSqlite("Data Source=DataPokemon.db");
 
         }             
     }
