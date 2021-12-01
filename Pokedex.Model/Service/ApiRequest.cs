@@ -1,13 +1,11 @@
 ﻿using Newtonsoft.Json;
+using Pokedex.Model.PokeApi;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Pokedex.Model.PokeApi
+namespace Pokedex.Model.Service
 {
     public static class ApiRequest
     {

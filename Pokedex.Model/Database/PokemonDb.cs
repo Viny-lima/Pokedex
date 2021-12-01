@@ -149,33 +149,7 @@ namespace Pokedex.Model
             {
                 SetProperty(ref _baseExperience, value, nameof(BaseExperience));
             }
-        }
-
-        private string _abilitiesSlotOne;
-        public string AbilitiesSlotOne
-        {
-            get
-            {
-                return _abilitiesSlotOne;
-            }
-            set
-            {
-                SetProperty(ref _abilitiesSlotOne, value);
-            }
-        }
-
-        private string _abilitiesSlotTwo;
-        public string AbilitiesSlotTwo
-        {
-            get
-            {
-                return _abilitiesSlotTwo;
-            }
-            set
-            {
-                SetProperty(ref _abilitiesSlotTwo, value);
-            }
-        }        
+        }      
 
         private string _spritesFrontDefault;
         public string SpritesFrontDefault
@@ -203,21 +177,34 @@ namespace Pokedex.Model
             }
         }
 
-        private string _typeOne;
-        public string TypeOne
+        private List<string> _abilities;
+        public List<string> Abilities
         {
             get
             {
-                return _typeOne;
+                return _abilities;
             }
             set
             {
-                SetProperty(ref _typeOne, value);
+                SetProperty(ref _abilities, value);
             }
         }
 
-        private List<Moves> _moves;
-        public List<Moves> Moves
+        private List<string> _types;
+        public List<string> Types
+        {
+            get
+            {
+                return _types;
+            }
+            set
+            {
+                SetProperty(ref _types, value); 
+            }
+        }
+
+        private List<string> _moves;
+        public List<string> Moves
         {
             get
             {
@@ -225,7 +212,7 @@ namespace Pokedex.Model
             }
             set
             {
-                SetProperty(ref _moves, value, nameof(Moves));
+                SetProperty(ref _moves, value);
             }
         }                      
     }

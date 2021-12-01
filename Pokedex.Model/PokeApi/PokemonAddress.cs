@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Pokedex.Model
+namespace Pokedex.Model.PokeApi
 {
     public class PokemonAddress 
     {

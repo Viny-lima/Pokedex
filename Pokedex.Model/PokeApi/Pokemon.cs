@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
-using Pokedex.Model.PokeApi;
 
-namespace Pokedex.Model
+namespace Pokedex.Model.PokeApi
 {
 
     public class Pokemon : ObservableObject
     {
-
         [JsonProperty("id")]
         private int _id;
         public int Id
@@ -77,21 +75,7 @@ namespace Pokedex.Model
             {
                 SetProperty(ref _baseExperience, value, nameof(BaseExperience));
             }
-        }
-
-        [JsonProperty("abilities")]
-        private List<Ability> _abilities;
-        public List<Ability> Abilities
-        {
-            get
-            {
-                return _abilities;
-            }
-            set
-            {
-                SetProperty(ref _abilities, value, nameof(Abilities));
-            }
-        }
+        }       
 
         [JsonProperty("stats")]
         private List<Stats> _statusBase;
@@ -118,6 +102,20 @@ namespace Pokedex.Model
             set
             {
                 SetProperty(ref _sprites, value, nameof(Sprites));
+            }
+        }
+
+        [JsonProperty("abilities")]
+        private List<Ability> _abilities;
+        public List<Ability> Abilities
+        {
+            get
+            {
+                return _abilities;
+            }
+            set
+            {
+                SetProperty(ref _abilities, value, nameof(Abilities));
             }
         }
 

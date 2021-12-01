@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
-namespace Pokedex.Model
+namespace Pokedex.Model.PokeApi
 {
     public class PokemonPropertiesList : ObservableObject
     {

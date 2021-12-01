@@ -1,10 +1,5 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Pokedex.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pokedex.Model.PokeApi;
 
 namespace Pokedex.ViewModels
 {

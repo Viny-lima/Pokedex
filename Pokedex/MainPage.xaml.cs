@@ -1,5 +1,6 @@
 ﻿using Pokedex.Model;
 using Pokedex.Model.PokeApi;
+using Pokedex.Model.Service;
 using Pokedex.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
