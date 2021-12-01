@@ -1,5 +1,4 @@
 ﻿using Pokedex.Model.Interfaces;
-using Pokedex.Model.PokeApi;
 using System;
 
 namespace Pokedex.Model
