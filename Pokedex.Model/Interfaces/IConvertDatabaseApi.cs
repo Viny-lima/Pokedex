@@ -1,4 +1,5 @@
-﻿using Pokedex.Model.PokeApi;
+﻿using Pokedex.Model.Database;
+using Pokedex.Model.PokeApi;
 using System;
 using System.Collections.Generic;
 using System.Text;

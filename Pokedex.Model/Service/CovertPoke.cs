@@ -1,4 +1,5 @@
-﻿using Pokedex.Model.Interfaces;
+﻿using Pokedex.Model.Database;
+using Pokedex.Model.Interfaces;
 using Pokedex.Model.PokeApi;
 
 namespace Pokedex.Model.Service
@@ -15,7 +16,7 @@ namespace Pokedex.Model.Service
             pokemon.SpritesFrontDefault = pokemonAPI.Sprites.FrontDefault;
             pokemon.SpritesOfficialArtwork = pokemonAPI.Sprites.Other.OfficialArtwork.FrontDefault;
             pokemon.Defense = pokemonAPI.StatusBase[2].ValueState;
-            pokemon.SpecialAttackense = pokemonAPI.StatusBase[3].ValueState;
+            pokemon.SpecialAttack = pokemonAPI.StatusBase[3].ValueState;
             pokemon.SpecialDefense = pokemonAPI.StatusBase[4].ValueState;
             pokemon.Speed = pokemonAPI.StatusBase[5].ValueState;
             pokemon.Name = pokemonAPI.Name;

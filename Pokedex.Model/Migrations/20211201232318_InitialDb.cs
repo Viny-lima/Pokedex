@@ -2,7 +2,7 @@
 
 namespace Pokedex.Model.Migrations
 {
-    public partial class InitialPokemonDb : Migration
+    public partial class InitialDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,18 +15,15 @@ namespace Pokedex.Model.Migrations
                     Hp = table.Column<int>(nullable: false),
                     Attack = table.Column<int>(nullable: false),
                     Defense = table.Column<int>(nullable: false),
-                    SpecialAttackense = table.Column<int>(nullable: false),
+                    SpecialAttack = table.Column<int>(nullable: false),
                     SpecialDefense = table.Column<int>(nullable: false),
                     Speed = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Height = table.Column<int>(nullable: false),
                     Weight = table.Column<int>(nullable: false),
                     BaseExperience = table.Column<int>(nullable: false),
-                    AbilitiesSlotOne = table.Column<string>(nullable: true),
-                    AbilitiesSlotTwo = table.Column<string>(nullable: true),
                     SpritesFrontDefault = table.Column<string>(nullable: true),
-                    SpritesOfficialArtwork = table.Column<string>(nullable: true),
-                    TypeOne = table.Column<string>(nullable: true)
+                    SpritesOfficialArtwork = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -34,63 +31,91 @@ namespace Pokedex.Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PropertiesMove",
+                name: "Abilities",
                 columns: table => new
                 {
-                    Id_PropertiesMove = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
-                    Url = table.Column<string>(nullable: true)
+                    PokemonID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PropertiesMove", x => x.Id_PropertiesMove);
+                    table.PrimaryKey("PK_Abilities", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Abilities_Pokemons_PokemonID",
+                        column: x => x.PokemonID,
+                        principalTable: "Pokemons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Moves",
                 columns: table => new
                 {
-                    Id_Moves = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    MoveId_PropertiesMove = table.Column<int>(nullable: true),
-                    PokemonDbId = table.Column<int>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    PokemonID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Moves", x => x.Id_Moves);
+                    table.PrimaryKey("PK_Moves", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Moves_PropertiesMove_MoveId_PropertiesMove",
-                        column: x => x.MoveId_PropertiesMove,
-                        principalTable: "PropertiesMove",
-                        principalColumn: "Id_PropertiesMove",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Moves_Pokemons_PokemonDbId",
-                        column: x => x.PokemonDbId,
+                        name: "FK_Moves_Pokemons_PokemonID",
+                        column: x => x.PokemonID,
                         principalTable: "Pokemons",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Types",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true),
+                    PokemonID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Types", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Types_Pokemons_PokemonID",
+                        column: x => x.PokemonID,
+                        principalTable: "Pokemons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Moves_MoveId_PropertiesMove",
-                table: "Moves",
-                column: "MoveId_PropertiesMove");
+                name: "IX_Abilities_PokemonID",
+                table: "Abilities",
+                column: "PokemonID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Moves_PokemonDbId",
+                name: "IX_Moves_PokemonID",
                 table: "Moves",
-                column: "PokemonDbId");
+                column: "PokemonID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Types_PokemonID",
+                table: "Types",
+                column: "PokemonID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Abilities");
+
+            migrationBuilder.DropTable(
                 name: "Moves");
 
             migrationBuilder.DropTable(
-                name: "PropertiesMove");
+                name: "Types");
 
             migrationBuilder.DropTable(
                 name: "Pokemons");

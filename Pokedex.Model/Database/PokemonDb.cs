@@ -3,7 +3,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
 using Pokedex.Model.PokeApi;
 
-namespace Pokedex.Model
+namespace Pokedex.Model.Database
 {
 
     public class PokemonDb : ObservableObject
@@ -61,7 +61,7 @@ namespace Pokedex.Model
         }
 
         private int _specialAttack;
-        public int SpecialAttackense
+        public int SpecialAttack
         {
             get
             {
@@ -176,44 +176,5 @@ namespace Pokedex.Model
                 SetProperty(ref _spritesOfficialArtwork, value);
             }
         }
-
-        private List<string> _abilities;
-        public List<string> Abilities
-        {
-            get
-            {
-                return _abilities;
-            }
-            set
-            {
-                SetProperty(ref _abilities, value);
-            }
-        }
-
-        private List<string> _types;
-        public List<string> Types
-        {
-            get
-            {
-                return _types;
-            }
-            set
-            {
-                SetProperty(ref _types, value); 
-            }
-        }
-
-        private List<string> _moves;
-        public List<string> Moves
-        {
-            get
-            {
-                return _moves;
-            }
-            set
-            {
-                SetProperty(ref _moves, value);
-            }
-        }                      
     }
 }
