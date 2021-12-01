@@ -1,8 +1,7 @@
 ﻿using Pokedex.Model.Interfaces;
 using Pokedex.Model.PokeApi;
-using System;
 
-namespace Pokedex.Model
+namespace Pokedex.Model.Service
 {
     class CovertPoke : IConvertDatabaseApi
     {
@@ -24,7 +23,6 @@ namespace Pokedex.Model
             pokemon.Weight = pokemonAPI.Weight;
             pokemon.BaseExperience = pokemonAPI.BaseExperience;
 
-            pokemon.Moves = pokemonAPI.Moves;
 
             return pokemon;
         }
