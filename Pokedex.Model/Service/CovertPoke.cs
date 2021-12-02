@@ -1,4 +1,4 @@
-﻿using Pokedex.Model.Database;
+﻿using Pokedex.Model.DAO;
 using Pokedex.Model.Interfaces;
 using Pokedex.Model.PokeApi;
 
@@ -6,9 +6,9 @@ namespace Pokedex.Model.Service
 {
     class CovertPoke : IConvertDatabaseApi
     {
-        public PokemonDb ConvertPokemon(Pokemon pokemonAPI)
+        public DAO.Pokemon ConvertPokemon(PokeApi.Pokemon pokemonAPI)
         {
-            var pokemon = new PokemonDb();
+            var pokemon = new DAO.Pokemon();
 
             pokemon.Id = pokemonAPI.Id;
             pokemon.Hp = pokemonAPI.StatusBase[0].ValueState;

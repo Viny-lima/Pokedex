@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Pokedex.Model.Database;
+using Pokedex.Model.DAO;
 
 namespace Pokedex.Model.Migrations
 {
     [DbContext(typeof(PokemonDbContext))]
-    [Migration("20211201232318_InitialDb")]
-    partial class InitialDb
+    [Migration("20211202023713_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,7 +17,7 @@ namespace Pokedex.Model.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.21");
 
-            modelBuilder.Entity("Pokedex.Model.Database.AbilitiesDb", b =>
+            modelBuilder.Entity("Pokedex.Model.DAO.Ability", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -26,17 +26,27 @@ namespace Pokedex.Model.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PokemonID")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PokemonID");
 
                     b.ToTable("Abilities");
                 });
 
-            modelBuilder.Entity("Pokedex.Model.Database.MovesDb", b =>
+            modelBuilder.Entity("Pokedex.Model.DAO.AbilityPokemon", b =>
+                {
+                    b.Property<int>("AbilityId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PokemonId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("AbilityId", "PokemonId");
+
+                    b.HasIndex("PokemonId");
+
+                    b.ToTable("AbilityPokemon");
+                });
+
+            modelBuilder.Entity("Pokedex.Model.DAO.Move", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,17 +55,27 @@ namespace Pokedex.Model.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PokemonID")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PokemonID");
 
                     b.ToTable("Moves");
                 });
 
-            modelBuilder.Entity("Pokedex.Model.Database.PokemonDb", b =>
+            modelBuilder.Entity("Pokedex.Model.DAO.MovePokemon", b =>
+                {
+                    b.Property<int>("MoveId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PokemonId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("MoveId", "PokemonId");
+
+                    b.HasIndex("PokemonId");
+
+                    b.ToTable("MovePokemon");
+                });
+
+            modelBuilder.Entity("Pokedex.Model.DAO.Pokemon", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -102,7 +122,7 @@ namespace Pokedex.Model.Migrations
                     b.ToTable("Pokemons");
                 });
 
-            modelBuilder.Entity("Pokedex.Model.Database.TypesDb", b =>
+            modelBuilder.Entity("Pokedex.Model.DAO.TypeElement", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -111,39 +131,67 @@ namespace Pokedex.Model.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PokemonID")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PokemonID");
 
                     b.ToTable("Types");
                 });
 
-            modelBuilder.Entity("Pokedex.Model.Database.AbilitiesDb", b =>
+            modelBuilder.Entity("Pokedex.Model.DAO.TypeElementPokemon", b =>
                 {
-                    b.HasOne("Pokedex.Model.Database.PokemonDb", "Pokemon")
-                        .WithMany()
-                        .HasForeignKey("PokemonID")
+                    b.Property<int>("TypeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PokemonId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("TypeId", "PokemonId");
+
+                    b.HasIndex("PokemonId");
+
+                    b.ToTable("TypeElementPokemon");
+                });
+
+            modelBuilder.Entity("Pokedex.Model.DAO.AbilityPokemon", b =>
+                {
+                    b.HasOne("Pokedex.Model.DAO.Ability", "Ability")
+                        .WithMany("Pokemons")
+                        .HasForeignKey("AbilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Pokedex.Model.DAO.Pokemon", "Pokemon")
+                        .WithMany("Abilities")
+                        .HasForeignKey("PokemonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Pokedex.Model.Database.MovesDb", b =>
+            modelBuilder.Entity("Pokedex.Model.DAO.MovePokemon", b =>
                 {
-                    b.HasOne("Pokedex.Model.Database.PokemonDb", "Pokemon")
-                        .WithMany()
-                        .HasForeignKey("PokemonID")
+                    b.HasOne("Pokedex.Model.DAO.Move", "Move")
+                        .WithMany("Pokemons")
+                        .HasForeignKey("MoveId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Pokedex.Model.DAO.Pokemon", "Pokemon")
+                        .WithMany("Moves")
+                        .HasForeignKey("PokemonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Pokedex.Model.Database.TypesDb", b =>
+            modelBuilder.Entity("Pokedex.Model.DAO.TypeElementPokemon", b =>
                 {
-                    b.HasOne("Pokedex.Model.Database.PokemonDb", "Pokemon")
-                        .WithMany()
-                        .HasForeignKey("PokemonID")
+                    b.HasOne("Pokedex.Model.DAO.Pokemon", "Pokemon")
+                        .WithMany("Types")
+                        .HasForeignKey("PokemonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Pokedex.Model.DAO.TypeElement", "Type")
+                        .WithMany("Pokemons")
+                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

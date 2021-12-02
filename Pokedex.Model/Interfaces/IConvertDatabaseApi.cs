@@ -1,4 +1,4 @@
-﻿using Pokedex.Model.Database;
+﻿using Pokedex.Model.DAO;
 using Pokedex.Model.PokeApi;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,6 @@ namespace Pokedex.Model.Interfaces
 {
     public interface IConvertDatabaseApi
     {
-       PokemonDb ConvertPokemon(Pokemon pokemonAPI);
+        DAO.Pokemon ConvertPokemon(PokeApi.Pokemon pokemonAPI);
     }
 }
