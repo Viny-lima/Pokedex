@@ -38,6 +38,13 @@ namespace Pokedex.Model.DAO
 
         public IList<TypeElementPokemon> Types { get; internal set; }
 
+        public Pokemon()
+        {
+            this.Abilities = new List<AbilityPokemon>();
+            this.Moves = new List<MovePokemon>();
+            this.Types = new List<TypeElementPokemon>();
+        }
+
         public void AddAbility(Ability ability)
         {
             this.Abilities.Add(new AbilityPokemon() { Ability = ability });
