@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Newtonsoft.Json;
-using Pokedex.Model.PokeApi;
 
-namespace Pokedex.Model.Database
+namespace Pokedex.Model.DAO
 {
 
-    public class PokemonDb : ObservableObject
+    public class Pokemon : ObservableObject
     {
         private int _id;
         public int Id
@@ -176,5 +174,27 @@ namespace Pokedex.Model.Database
                 SetProperty(ref _spritesOfficialArtwork, value);
             }
         }
+
+        public IList<AbilityPokemon> Abilities { get; internal set; }
+
+        public IList<MovePokemon> Moves { get; internal set; }
+
+        public IList<TypeElementPokemon> Types { get; internal set; }
+
+        public void AddAbility(Ability ability)
+        {
+            this.Abilities.Add(new AbilityPokemon() { Ability = ability });
+        }
+
+        public void AddMove(Move move)
+        {
+            this.Moves.Add(new MovePokemon() { Move = move });
+        }
+
+        public void AddType(TypeElement type)
+        {
+            this.Types.Add(new TypeElementPokemon() { Type = type });
+        }
+
     }
 }

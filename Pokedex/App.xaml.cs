@@ -73,7 +73,7 @@ namespace Pokedex
                 Window.Current.Activate();
             }
 
-            using (var db = new Pokedex.Model.Database.PokemonDbContext())
+            using (var db = new Pokedex.Model.DAO.PokemonDbContext())
             {
                 db.Database.Migrate();
             }
