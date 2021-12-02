@@ -26,11 +26,11 @@ namespace Pokedex.Model.DAO
 
         public int Weight { get; set; }
 
-        public int BaseExperience { get; set; }    
+        public int BaseExperience { get; set; }
 
         public string SpritesFrontDefault { get; set; }
 
-        public string SpritesOfficialArtwork { get; set; }        
+        public string SpritesOfficialArtwork { get; set; }
 
         public IList<AbilityPokemon> Abilities { get; internal set; }
 
