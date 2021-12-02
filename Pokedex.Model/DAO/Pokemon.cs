@@ -4,33 +4,176 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 namespace Pokedex.Model.DAO
 {
 
-    public class Pokemon
+    public class Pokemon : ObservableObject
     {
-        public int Id { get; set; }
+        private int _id;
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                SetProperty(ref _id, value, nameof(Id));
+            }
+        }
 
-        public int Hp { get; set; }
+        private int _hp;
+        public int Hp
+        {
+            get
+            {
+                return _hp;
+            }
+            set
+            {
+                SetProperty(ref _hp, value);
+            }
+        }
 
-        public int Attack { get; set; }
+        private int _attack;
+        public int Attack
+        {
+            get
+            {
+                return _attack;
+            }
+            set
+            {
+                SetProperty(ref _attack, value);
+            }
+        }
 
-        public int Defense { get; set; }
+        private int _defense;
+        public int Defense
+        {
+            get
+            {
+                return _defense;
+            }
+            set
+            {
+                SetProperty(ref _defense, value);
+            }
+        }
 
-        public int SpecialAttack { get; set; }
+        private int _specialAttack;
+        public int SpecialAttack
+        {
+            get
+            {
+                return _specialAttack;
+            }
+            set
+            {
+                SetProperty(ref _specialAttack, value);
+            }
+        }
 
-        public int SpecialDefense { get; set; }
+        private int _specialDefense;
+        public int SpecialDefense
+        {
+            get
+            {
+                return _specialDefense;
+            }
+            set
+            {
+                SetProperty(ref _specialDefense, value);
+            }
+        }
 
-        public int Speed { get; set; }
+        private int _speed;
+        public int Speed
+        {
+            get
+            {
+                return _speed;
+            }
+            set
+            {
+                SetProperty(ref _speed, value);
+            }
+        }
 
-        public string Name { get; set; }
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                SetProperty(ref _name, value, nameof(Name));
+            }
+        }
 
-        public int Height { get; set; }
+        private int _height;
+        public int Height
+        {
+            get
+            {
+                return _height;
+            }
+            set
+            {
+                SetProperty(ref _height, value, nameof(Height));
+            }
+        }
 
-        public int Weight { get; set; }
+        private int _weigth;
+        public int Weight
+        {
+            get
+            {
+                return _weigth;
+            }
+            set
+            {
+                SetProperty(ref _weigth, value, nameof(Weight));
+            }
+        }
 
-        public int BaseExperience { get; set; }    
+        private int _baseExperience;
+        public int BaseExperience
+        {
+            get
+            {
+                return _baseExperience;
+            }
+            set
+            {
+                SetProperty(ref _baseExperience, value, nameof(BaseExperience));
+            }
+        }      
 
-        public string SpritesFrontDefault { get; set; }
+        private string _spritesFrontDefault;
+        public string SpritesFrontDefault
+        {
+            get
+            {
+                return _spritesFrontDefault;
+            }
+            set
+            {
+                SetProperty(ref _spritesFrontDefault, value);
+            }
+        }
 
-        public string SpritesOfficialArtwork { get; set; }        
+        private string _spritesOfficialArtwork;
+        public string SpritesOfficialArtwork
+        {
+            get
+            {
+                return _spritesOfficialArtwork;
+            }
+            set
+            {
+                SetProperty(ref _spritesOfficialArtwork, value);
+            }
+        }
 
         public IList<AbilityPokemon> Abilities { get; internal set; }
 
