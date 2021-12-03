@@ -1,6 +1,6 @@
 ﻿namespace Pokedex.Model.DAO
 {
-    public class Attributes
+    public class AttributesDB
     {
         public int Id { get; set; }
 

@@ -1,19 +1,10 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class Stats : ObservableObject
+    public class StatsAPI : ObservableObject
     {
-        [Key]
-        public int Id_Stats { get; set; }
-
         [JsonProperty("base_stat")]
         private int _valueState;
         public int ValueState
@@ -43,8 +34,8 @@ namespace Pokedex.Model.PokeApi
         }
 
         [JsonProperty("stat")]
-        private PropertiesAbility _propertiesState;
-        public PropertiesAbility PropertiesState
+        private PropertiesAbilityAPI _propertiesState;
+        public PropertiesAbilityAPI PropertiesState
         {
             get
             {

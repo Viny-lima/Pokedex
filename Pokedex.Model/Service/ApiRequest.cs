@@ -91,22 +91,22 @@ namespace Pokedex.Model.Service
         }
 
         /// <summary>
-        /// Responsável construção de um <see cref="Object"/> da class <see cref="Pokemon"/> apartir de um Json da API. Gerado por uma Url + <paramref name="Id"/>.
+        /// Responsável construção de um <see cref="Object"/> da class <see cref="PokemonAPI"/> apartir de um Json da API. Gerado por uma Url + <paramref name="Id"/>.
         /// </summary>
         /// <param name="Id">Index do Pokemon na API></param>
-        /// <returns>Um object <see cref="Pokemon"/> construido pela API.</returns>
-        public static Pokemon GetPokemon(int Id)
+        /// <returns>Um object <see cref="PokemonAPI"/> construido pela API.</returns>
+        public static PokemonAPI GetPokemon(int Id)
         {
             var stringUrl = $"https://pokeapi.co/api/v2/pokemon/{Id}";
 
-            return Get<Pokemon>(stringUrl);
+            return Get<PokemonAPI>(stringUrl);
         }
 
         /// <summary>
         /// Responsável construção de um <see cref="Object"/> da class <see cref="PokemonPropertiesList"/> apartir de um Json da API.
         /// </summary>
-        /// <param name="startIndex">Id do primeiro <see cref="Pokemon"/> que se deseja na adicionar na lista.</param>
-        /// <param name="qtdPokemons">Quantidade de <see cref="Pokemon"/> adiciondos a lista.</param>
+        /// <param name="startIndex">Id do primeiro <see cref="PokemonAPI"/> que se deseja na adicionar na lista.</param>
+        /// <param name="qtdPokemons">Quantidade de <see cref="PokemonAPI"/> adiciondos a lista.</param>
         /// <returns>Um object <see cref="PokemonPropertiesList"/> construido pela API.</returns>
         public static PokemonPropertiesList GetPropertiesListPokemons(int startIndex = 0, int qtdPokemons = 10)
         {
@@ -115,22 +115,22 @@ namespace Pokedex.Model.Service
         }
 
         /// <summary>
-        /// Responsável pela criação de um <see cref="List{Pokemon}"/> de <see cref="Pokemon"/> apartir de um Json da API.
+        /// Responsável pela criação de um <see cref="List{Pokemon}"/> de <see cref="PokemonAPI"/> apartir de um Json da API.
         /// </summary>
-        /// <param name="startIndex">Id do primeiro <see cref="Pokemon"/> que se deseja na adicionar na lista.</param>
-        /// <param name="qtdPokemons">Quantidade de <see cref="Pokemon"/> adiciondos a lista.</param>
+        /// <param name="startIndex">Id do primeiro <see cref="PokemonAPI"/> que se deseja na adicionar na lista.</param>
+        /// <param name="qtdPokemons">Quantidade de <see cref="PokemonAPI"/> adiciondos a lista.</param>
         /// <returns>Uma <see cref="List{Pokemon}"/> de pokemons construidas pela API.</returns>
-        public static List<Pokemon> GetListaDePokemons(int startIndex = 0, int qtdPokemons = 10)
+        public static List<PokemonAPI> GetListaDePokemons(int startIndex = 0, int qtdPokemons = 10)
         {
             PokemonPropertiesList propertiesList = GetPropertiesListPokemons(startIndex, qtdPokemons);
 
-            List<Pokemon> ListaDePokemons = new List<Pokemon>();
+            List<PokemonAPI> ListaDePokemons = new List<PokemonAPI>();
 
-            foreach (PokemonAddress address in propertiesList.Results)
+            foreach (PokemonAddressAPI address in propertiesList.Results)
             {
                 string stringUrl = address.Url.ToString();
 
-                ListaDePokemons.Add(Get<Pokemon>(stringUrl));
+                ListaDePokemons.Add(Get<PokemonAPI>(stringUrl));
             }
                 
             return ListaDePokemons;

@@ -1,11 +1,11 @@
 ﻿namespace Pokedex.Model.DAO
 {
-    public class TypeElementPokemon
+    public class TypePokemonDB
     {
         public int PokemonId { get; set; }
-        public Pokemon Pokemon { get; set; }
+        public PokemonDB Pokemon { get; set; }
 
         public int TypeId { get; set; }
-        public TypeElement Type { get; set; }
+        public TypeDB Type { get; set; }
     }
 }

@@ -8,6 +8,6 @@ namespace Pokedex.Model.Interfaces
 {
     public interface IConvertDatabaseApi
     {
-        DAO.Pokemon ConvertPokemon(PokeApi.Pokemon pokemonAPI);
+        DAO.PokemonDB ConvertPokemon(PokeApi.PokemonAPI pokemonAPI);
     }
 }

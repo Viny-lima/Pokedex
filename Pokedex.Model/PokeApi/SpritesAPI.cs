@@ -1,19 +1,10 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class Sprites : ObservableObject
+    public class SpritesAPI : ObservableObject
     {
-        [Key]
-        public int Id_Sprites { get; set; }
-
         [JsonProperty("front_default")]
         private string _frontDefault;
         public string FrontDefault
@@ -43,8 +34,8 @@ namespace Pokedex.Model.PokeApi
         }
 
         [JsonProperty("other")]
-        private Other _other;
-        public Other Other
+        private OtherAPI _other;
+        public OtherAPI Other
         {
             get
             {

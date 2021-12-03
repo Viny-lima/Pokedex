@@ -2,12 +2,12 @@
 
 namespace Pokedex.Model.DAO
 {
-    public class PokemonDbContext : DbContext
+    public class PokedexContext : DbContext
     {
-        public DbSet<Pokemon> Pokemons { get; set; }
-        public DbSet<Move> Moves { get; set; }
-        public DbSet<Ability> Abilities { get; set;}
-        public DbSet<TypeElement>  Types { get; set; }
+        public DbSet<PokemonDB> Pokemons { get; set; }
+        public DbSet<MoveDB> Moves { get; set; }
+        public DbSet<AbilityDB> Abilities { get; set;}
+        public DbSet<TypeDB>  Types { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -21,15 +21,15 @@ namespace Pokedex.Model.DAO
             //Criação das chaves compostas das tabelas join
 
             modelBuilder
-                .Entity<AbilityPokemon>()
+                .Entity<AbilityPokemonDB>()
                 .HasKey(p => new { p.AbilityId, p.PokemonId });
 
             modelBuilder
-                .Entity<MovePokemon>()
+                .Entity<MovePokemonDB>()
                 .HasKey(p => new { p.MoveId, p.PokemonId });            
 
             modelBuilder
-                .Entity<TypeElementPokemon>()
+                .Entity<TypePokemonDB>()
                 .HasKey(p => new { p.TypeId, p.PokemonId});
 
 

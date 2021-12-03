@@ -1,11 +1,11 @@
 ﻿namespace Pokedex.Model.DAO
 {
-    public class AbilityPokemon
+    public class AbilityPokemonDB
     {
         public int PokemonId { get; set; }
-        public Pokemon Pokemon { get; set; }
+        public PokemonDB Pokemon { get; set; }
 
         public int AbilityId { get; set; }
-        public Ability Ability { get; set; }
+        public AbilityDB Ability { get; set; }
     }
 }

@@ -1,19 +1,10 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class OfficialArtwork : ObservableObject
-    {
-        [Key]
-        public int Id_OfficialArtwork { get; set; }
-
+    public class OfficialArtworkAPI : ObservableObject
+    {    
         [JsonProperty("front_default")]
         private string _frontDefault;
         public string FrontDefault

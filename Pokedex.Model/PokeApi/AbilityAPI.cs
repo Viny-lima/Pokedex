@@ -1,22 +1,13 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class Ability : ObservableObject
+    public class AbilityAPI : ObservableObject
     {
-        [Key]
-        public int Id_Ability { get; set; }
-
         [JsonProperty("ability")]
-        private PropertiesAbility _propertiesAbility;
-        public PropertiesAbility PropertiesAbility
+        private PropertiesAbilityAPI _propertiesAbility;
+        public PropertiesAbilityAPI PropertiesAbility
         {
             get
             {

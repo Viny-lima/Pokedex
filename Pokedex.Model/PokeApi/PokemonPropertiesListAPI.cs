@@ -53,8 +53,8 @@ namespace Pokedex.Model.PokeApi
         }
 
         [JsonProperty("results")]
-        private List<PokemonAddress> _results;
-        public List<PokemonAddress> Results
+        private List<PokemonAddressAPI> _results;
+        public List<PokemonAddressAPI> Results
         {
             get
             {

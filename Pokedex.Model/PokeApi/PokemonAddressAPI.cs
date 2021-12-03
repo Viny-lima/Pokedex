@@ -1,9 +1,8 @@
 ﻿using Newtonsoft.Json;
-using System;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class PokemonAddress 
+    public class PokemonAddressAPI 
     {
         [JsonProperty("name")]
         private string _name;

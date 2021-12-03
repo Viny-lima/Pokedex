@@ -35,9 +35,9 @@ namespace Pokedex
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var pokemonSelected = e.ClickedItem as PokemonAddress;
+            var pokemonSelected = e.ClickedItem as PokemonAddressAPI;
 
-            PokeView.Pokemon = ApiRequest.Get<Pokemon>(pokemonSelected.Url);
+            PokeView.Pokemon = ApiRequest.Get<PokemonAPI>(pokemonSelected.Url);
         }
     }
 }

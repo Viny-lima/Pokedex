@@ -9,36 +9,33 @@ using System.Threading.Tasks;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class TypeElement : ObservableObject
+    public class PropertiesAbilityAPI : ObservableObject
     {
-        [Key]
-        public int Id_TypeElement { get; set; }
-
-        [JsonProperty("slot")]
-        private long _slot;
-        public long Slot
+        [JsonProperty("name")]
+        private string _name;
+        public string Name
         {
             get
             {
-                return _slot;
+                return _name;
             }
             set
             {
-                SetProperty(ref _slot, value, nameof(Slot));
+                SetProperty(ref _name, value, nameof(Name));
             }
         }
 
-        [JsonProperty("type")]
-        private PropertiesAbility _type;
-        public PropertiesAbility Type
+        [JsonProperty("url")]
+        private string _url;
+        public string Url
         {
             get
             {
-                return _type;
+                return _url;
             }
             set
             {
-                SetProperty(ref _type, value, nameof(Type));
+                SetProperty(ref _url, value, nameof(Url));
             }
         }
 

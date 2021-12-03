@@ -1,22 +1,13 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class Other : ObservableObject
+    public class OtherAPI : ObservableObject
     {
-        [Key]
-        public int Id_Other { get; set; }
-
         [JsonProperty("dream_world")]
-        private DreamWorld _dreamWorld;
-        public DreamWorld DreamWorld
+        private DreamWorldAPI _dreamWorld;
+        public DreamWorldAPI DreamWorld
         {
             get
             {
@@ -29,8 +20,8 @@ namespace Pokedex.Model.PokeApi
         }
 
         [JsonProperty("official-artwork")]
-        private OfficialArtwork _officialArtwork;
-        public OfficialArtwork OfficialArtwork
+        private OfficialArtworkAPI _officialArtwork;
+        public OfficialArtworkAPI OfficialArtwork
         {
             get
             {

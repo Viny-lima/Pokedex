@@ -4,7 +4,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 namespace Pokedex.Model.DAO
 {
 
-    public class Pokemon
+    public class PokemonDB
     {
         public int Id { get; set; }
 
@@ -32,32 +32,32 @@ namespace Pokedex.Model.DAO
 
         public string SpritesOfficialArtwork { get; set; }
 
-        public IList<AbilityPokemon> Abilities { get; internal set; }
+        public IList<AbilityPokemonDB> Abilities { get; internal set; }
 
-        public IList<MovePokemon> Moves { get; internal set; }
+        public IList<MovePokemonDB> Moves { get; internal set; }
 
-        public IList<TypeElementPokemon> Types { get; internal set; }
+        public IList<TypePokemonDB> Types { get; internal set; }
 
-        public Pokemon()
+        public PokemonDB()
         {
-            this.Abilities = new List<AbilityPokemon>();
-            this.Moves = new List<MovePokemon>();
-            this.Types = new List<TypeElementPokemon>();
+            this.Abilities = new List<AbilityPokemonDB>();
+            this.Moves = new List<MovePokemonDB>();
+            this.Types = new List<TypePokemonDB>();
         }
 
-        public void AddAbility(Ability ability)
+        public void AddAbility(AbilityDB ability)
         {
-            this.Abilities.Add(new AbilityPokemon() { Ability = ability });
+            this.Abilities.Add(new AbilityPokemonDB() { Ability = ability });
         }
 
-        public void AddMove(Move move)
+        public void AddMove(MoveDB move)
         {
-            this.Moves.Add(new MovePokemon() { Move = move });
+            this.Moves.Add(new MovePokemonDB() { Move = move });
         }
 
-        public void AddType(TypeElement type)
+        public void AddType(TypeDB type)
         {
-            this.Types.Add(new TypeElementPokemon() { Type = type });
+            this.Types.Add(new TypePokemonDB() { Type = type });
         }
 
     }

@@ -4,8 +4,7 @@ using Newtonsoft.Json;
 
 namespace Pokedex.Model.PokeApi
 {
-
-    public class Pokemon : ObservableObject
+    public class PokemonAPI : ObservableObject
     {
         [JsonProperty("id")]
         private int _id;
@@ -78,8 +77,8 @@ namespace Pokedex.Model.PokeApi
         }       
 
         [JsonProperty("stats")]
-        private List<Stats> _statusBase;
-        public List<Stats> StatusBase
+        private List<StatsAPI> _statusBase;
+        public List<StatsAPI> StatusBase
         {
             get
             {
@@ -92,8 +91,8 @@ namespace Pokedex.Model.PokeApi
         }
 
         [JsonProperty("sprites")]
-        private Sprites _sprites;
-        public Sprites Sprites
+        private SpritesAPI _sprites;
+        public SpritesAPI Sprites
         {
             get
             {
@@ -106,8 +105,8 @@ namespace Pokedex.Model.PokeApi
         }
 
         [JsonProperty("abilities")]
-        private List<Ability> _abilities;
-        public List<Ability> Abilities
+        private List<AbilityAPI> _abilities;
+        public List<AbilityAPI> Abilities
         {
             get
             {
@@ -120,8 +119,8 @@ namespace Pokedex.Model.PokeApi
         }
 
         [JsonProperty("types")]
-        private List<TypeElement> _types;
-        public List<TypeElement> Types
+        private List<TypeAPI> _types;
+        public List<TypeAPI> Types
         {
             get
             {
@@ -134,8 +133,8 @@ namespace Pokedex.Model.PokeApi
         }
 
         [JsonProperty("moves")]
-        private List<Moves> _moves;
-        public List<Moves> Moves
+        private List<MoveAPI> _moves;
+        public List<MoveAPI> Moves
         {
             get
             {

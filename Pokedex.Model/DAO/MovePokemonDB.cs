@@ -1,12 +1,12 @@
 ﻿namespace Pokedex.Model.DAO
 {
-    public class MovePokemon
+    public class MovePokemonDB
     {
         public int PokemonId { get; set; }
-        public Pokemon Pokemon { get; set; }
+        public PokemonDB Pokemon { get; set; }
 
         public int MoveId { get; set; }
-        public Move Move { get; set; }
+        public MoveDB Move { get; set; }
 
     }
 }

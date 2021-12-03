@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Pokedex"
     xmlns:model="using:Pokedex.Model.PokeApi"
-    xmlns:data="using:Pokedex.Model"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -82,7 +81,7 @@
                   >
             
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:PokemonAddress">
+                <DataTemplate x:DataType="model:PokemonAddressAPI">
                     <StackPanel Orientation="Horizontal">
                         <Image Width="100" Height="100" Stretch="Fill">
                             <Image.Source>

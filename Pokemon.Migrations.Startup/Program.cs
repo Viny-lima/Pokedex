@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using Pokedex.Model.Service;
+using Pokedex.Model.DAO;
 
 namespace Pokedex.Migrations.Startup
 {
@@ -7,15 +9,14 @@ namespace Pokedex.Migrations.Startup
     {
         static void Main(string[] args)
         {
-            using(var contexto = new Model.DAO.PokemonDbContext())
+
+            var p = ControllerDbContext.CreatePokemonDb(ApiRequest.GetPokemon(25));
+
+            using(var contexto = new PokedexContext())
             {
-                contexto.Database.Migrate();
+                contexto.Pokemons.Add(p);
+                contexto.SaveChanges();
             }
-
-            
-
-
-
         }
     }
 }

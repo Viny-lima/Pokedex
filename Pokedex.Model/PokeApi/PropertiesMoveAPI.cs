@@ -1,19 +1,12 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class Species : ObservableObject
+    public class PropertiesMove : ObservableObject
     {
-        [Key]
-        public int Id_Species { get; set; }
-
         [JsonProperty("name")]
         private string _name;
         public string Name
@@ -41,7 +34,5 @@ namespace Pokedex.Model.PokeApi
                 SetProperty(ref _url, value, nameof(Url));
             }
         }
-
     }
-
 }
