@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Pokedex.Model.Interfaces
+namespace Pokedex.Model.Repository
 {
     public interface IRepositoryEntity
     {

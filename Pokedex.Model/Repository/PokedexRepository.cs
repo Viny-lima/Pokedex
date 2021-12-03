@@ -1,27 +1,28 @@
-﻿using System;
+﻿using Pokedex.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Pokedex.Model.DAO
+namespace Pokedex.Model.Repository
 {
-    public abstract class PokedexDAO<T> : IDAO<T>
+    public class PokedexRepository : IRepositoryEntity
     {
-        public void Add(T type)
+        public List<AbilityDB> GetAbilities()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(T type)
+        public List<MoveDB> GetMoves()
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(T type)
+        public List<PokemonDB> GetPokemons()
         {
             throw new NotImplementedException();
         }
 
-        public IList<T> FindAll()
+        public List<TypeDB> GetTypes()
         {
             throw new NotImplementedException();
         }
