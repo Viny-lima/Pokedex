@@ -31,6 +31,7 @@ namespace Pokedex.Model.Entities
             modelBuilder
                 .Entity<TypePokemonDB>()
                 .HasKey(p => new { p.TypeId, p.PokemonId});
+                                
 
 
             base.OnModelCreating(modelBuilder);

@@ -2,6 +2,7 @@
 using System;
 using Pokedex.Model.Service;
 using Pokedex.Model.Entities;
+using System.Linq;
 
 namespace Pokedex.Migrations.Startup
 {
@@ -10,12 +11,11 @@ namespace Pokedex.Migrations.Startup
         static void Main(string[] args)
         {
 
-            var p = ControllerDbContext.CreatePokemonDb(ApiRequest.GetPokemon(25));
+            var p = new PokemonDB(ApiRequest.GetPokemon(25));
 
             using(var contexto = new PokedexContext())
             {
-                contexto.Pokemons.Add(p);
-                contexto.SaveChanges();
+
             }
         }
     }
