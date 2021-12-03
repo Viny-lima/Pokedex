@@ -1,6 +1,6 @@
 ﻿namespace Pokedex.Model.Entities
 {
-    public class TypePokemonDB
+    public class TypePokemonDB : IEntity
     {
         public int PokemonId { get; set; }
         public PokemonDB Pokemon { get; set; }

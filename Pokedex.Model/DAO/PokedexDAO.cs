@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Pokedex.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Pokedex.Model.DAO
 {
-    public abstract class PokedexDAO<T> : IDAO<T>
+    public abstract class PokedexDAO<T> : IDAO<T> where T : IEntity
     {
         public virtual void Add(T type)
         {

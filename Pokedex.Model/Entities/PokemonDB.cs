@@ -5,7 +5,7 @@ using Pokedex.Model.PokeApi;
 namespace Pokedex.Model.Entities
 {
 
-    public class PokemonDB
+    public class PokemonDB : IEntity
     {
         public int Id { get; set; }
 
