@@ -6,22 +6,22 @@ namespace Pokedex.Model.DAO
 {
     public abstract class PokedexDAO<T> : IDAO<T>
     {
-        public void Add(T type)
+        public virtual void Add(T type)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(T type)
+        public virtual void Update(T type)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(T type)
+        public virtual void Delete(T type)
         {
             throw new NotImplementedException();
         }
 
-        public IList<T> FindAll()
+        public virtual IList<T> FindAll()
         {
             throw new NotImplementedException();
         }

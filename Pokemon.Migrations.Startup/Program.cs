@@ -3,6 +3,7 @@ using System;
 using Pokedex.Model.Service;
 using Pokedex.Model.Entities;
 using System.Linq;
+using Pokedex.Model.DAO;
 
 namespace Pokedex.Migrations.Startup
 {

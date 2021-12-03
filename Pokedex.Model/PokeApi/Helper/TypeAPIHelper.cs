@@ -1,4 +1,5 @@
-﻿using Pokedex.Model.Entities;
+﻿using Pokedex.Model.DAO;
+using Pokedex.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
