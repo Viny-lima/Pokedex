@@ -1,4 +1,4 @@
-﻿namespace Pokedex.Model.DAO
+﻿namespace Pokedex.Model.Entities
 {
     public class TypePokemonDB
     {

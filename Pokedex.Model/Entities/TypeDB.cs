@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Pokedex.Model.DAO
+namespace Pokedex.Model.Entities
 {
     public class TypeDB : AttributesDB
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using Pokedex.Model.Service;
-using Pokedex.Model.DAO;
+using Pokedex.Model.Entities;
 
 namespace Pokedex.Migrations.Startup
 {

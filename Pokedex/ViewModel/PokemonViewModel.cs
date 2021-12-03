@@ -1,5 +1,5 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Pokedex.Model.DAO;
+using Pokedex.Model.Entities;
 using Pokedex.Model.PokeApi;
 
 namespace Pokedex.ViewModels
