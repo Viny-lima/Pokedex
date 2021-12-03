@@ -1,4 +1,4 @@
-﻿using Pokedex.Model.DAO;
+﻿using Pokedex.Model.Entities;
 using Pokedex.Model.Interfaces;
 using Pokedex.Model.PokeApi;
 using System.Collections;
@@ -10,7 +10,7 @@ namespace Pokedex.Model.Service
     {
         public static PokemonDB CreatePokemonDb(PokemonAPI pokemonAPI)
         {
-            var pokemonDB = new DAO.PokemonDB();
+            var pokemonDB = new Entities.PokemonDB();
             pokemonDB.Id = pokemonAPI.Id;
             pokemonDB.Hp = pokemonAPI.StatusBase[0].ValueState;
             pokemonDB.Attack = pokemonAPI.StatusBase[1].ValueState;
@@ -29,7 +29,7 @@ namespace Pokedex.Model.Service
             for (int i = 0; i < pokemonAPI.Abilities.Count; i++)
             {
                 var abilityAPI = pokemonAPI.Abilities[i];
-                var abilityDatabase = new DAO.AbilityDB()
+                var abilityDatabase = new Entities.AbilityDB()
                 {
                     Name = abilityAPI.PropertiesAbility.Name          
                 };
@@ -41,7 +41,7 @@ namespace Pokedex.Model.Service
             for (int i = 0; i < pokemonAPI.Moves.Count; i++)
             {
                 var moveAPI = pokemonAPI.Moves[i];
-                var moveDB = new DAO.MoveDB()
+                var moveDB = new Entities.MoveDB()
                 {
                     Name = moveAPI.Move.Name
                 };
@@ -53,7 +53,7 @@ namespace Pokedex.Model.Service
             for (int i = 0; i < pokemonAPI.Types.Count; i++)
             {
                 var typeAPI = pokemonAPI.Types[i];
-                var typrDB = new DAO.TypeDB()
+                var typrDB = new Entities.TypeDB()
                 {
                     Name = typeAPI.Type.Name
                 };

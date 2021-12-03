@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
-namespace Pokedex.Model.DAO
+namespace Pokedex.Model.Entities
 {
 
     public class PokemonDB
