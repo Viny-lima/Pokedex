@@ -1,15 +1,17 @@
 ﻿using Pokedex.Model.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Pokedex.Model.DAO
 {
-    public interface IDAO<T> where T : IEntity
+    public interface IDAO<T> where T : class, IEntity
     {
-        void Add(T type);
-        void Update(T type);
-        void Delete(T type);
-        IList<T> FindAll();
+        Task Add(T type);
+        Task Update(T type);
+        Task Delete(T type);
+        Task<IList<T>> FindAll();
     }
 }

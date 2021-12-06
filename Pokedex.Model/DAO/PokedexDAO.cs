@@ -1,30 +1,44 @@
-﻿using Pokedex.Model.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Pokedex.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Pokedex.Model.DAO
 {
-    public abstract class PokedexDAO<T> : IDAO<T> where T : IEntity
+    public abstract class PokedexDAO<T> : IDAO<T> where T : class, IEntity
     {
-        public virtual void Add(T type)
+        public virtual async Task Add(T entity)
         {
-            throw new NotImplementedException();
+            PokedexContext context = new PokedexContext();
+            await context.Set<T>().AddAsync(entity);
+            await context.SaveChangesAsync();
         }
 
-        public virtual void Update(T type)
+        public async virtual Task Update(T entity)
         {
-            throw new NotImplementedException();
+            PokedexContext context = new PokedexContext();
+            context.Set<T>().Update(entity);
+            await context.SaveChangesAsync();
         }
 
-        public virtual void Delete(T type)
+        public async virtual Task Delete(T entity)
         {
-            throw new NotImplementedException();
+            PokedexContext context = new PokedexContext();
+            context.Set<T>().Remove(entity);
+            await context.SaveChangesAsync();
         }
 
-        public virtual IList<T> FindAll()
+        public async virtual Task<IList<T>> FindAll()
         {
-            throw new NotImplementedException();
+            PokedexContext context = new PokedexContext();
+
+            var list = await context.Set<T>().ToListAsync();
+
+            return list;
         }
+
+        public abstract Task<bool> CheckIfExists(T t);
     }
 }
