@@ -39,6 +39,5 @@ namespace Pokedex.Model.DAO
             return list;
         }
 
-        public abstract Task<bool> CheckIfExists(T t);
     }
 }
