@@ -39,5 +39,10 @@ namespace Pokedex
 
             PokeView.Pokemon = ApiRequest.Get<PokemonAPI>(pokemonSelected.Url);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
