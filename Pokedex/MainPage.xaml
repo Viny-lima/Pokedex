@@ -83,7 +83,7 @@
         </RelativePanel>
 
         <RelativePanel            
-            Margin="0,42,0,614" Grid.Row="1"
+            Margin="0" Grid.Row="1"
             Height="30,0"
             
             >
@@ -105,7 +105,7 @@
         </RelativePanel>
 
         <ListView  
-                  Grid.Row="3"
+                  Grid.Row="2"
                   ScrollViewer.VerticalScrollMode="Enabled"
                   ScrollViewer.VerticalScrollBarVisibility="Hidden"
                   SelectionMode="Single"
