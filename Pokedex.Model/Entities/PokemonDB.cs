@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Pokedex.Model.DAO;
 using Pokedex.Model.PokeApi;
 
 namespace Pokedex.Model.Entities
@@ -53,71 +56,103 @@ namespace Pokedex.Model.Entities
             this.Moves = new List<MovePokemonDB>();
             this.Types = new List<TypePokemonDB>();
 
-            var pokemonDB = new Entities.PokemonDB();
-            pokemonDB.Id = pokemonAPI.Id;
-            pokemonDB.Hp = pokemonAPI.StatusBase[0].ValueState;
-            pokemonDB.Attack = pokemonAPI.StatusBase[1].ValueState;
-            pokemonDB.SpritesFrontDefault = pokemonAPI.Sprites.FrontDefault;
-            pokemonDB.SpritesOfficialArtwork = pokemonAPI.Sprites.Other.OfficialArtwork.FrontDefault;
-            pokemonDB.Defense = pokemonAPI.StatusBase[2].ValueState;
-            pokemonDB.SpecialAttack = pokemonAPI.StatusBase[3].ValueState;
-            pokemonDB.SpecialDefense = pokemonAPI.StatusBase[4].ValueState;
-            pokemonDB.Speed = pokemonAPI.StatusBase[5].ValueState;
-            pokemonDB.Name = pokemonAPI.Name;
-            pokemonDB.Height = pokemonAPI.Height;
-            pokemonDB.Weight = pokemonAPI.Weight;
-            pokemonDB.BaseExperience = pokemonAPI.BaseExperience;
+            this.Id = pokemonAPI.Id;
+            this.Hp = pokemonAPI.StatusBase[0].ValueState;
+            this.Attack = pokemonAPI.StatusBase[1].ValueState;
+            this.SpritesFrontDefault = pokemonAPI.Sprites.FrontDefault;
+            this.SpritesOfficialArtwork = pokemonAPI.Sprites.Other.OfficialArtwork.FrontDefault;
+            this.Defense = pokemonAPI.StatusBase[2].ValueState;
+            this.SpecialAttack = pokemonAPI.StatusBase[3].ValueState;
+            this.SpecialDefense = pokemonAPI.StatusBase[4].ValueState;
+            this.Speed = pokemonAPI.StatusBase[5].ValueState;
+            this.Name = pokemonAPI.Name;
+            this.Height = pokemonAPI.Height;
+            this.Weight = pokemonAPI.Weight;
+            this.BaseExperience = pokemonAPI.BaseExperience;
 
-            //Adicionando Abilities
-            for (int i = 0; i < pokemonAPI.Abilities.Count; i++)
-            {
-                var abilityAPI = pokemonAPI.Abilities[i];
-                var abilityDatabase = new Entities.AbilityDB()
-                {
-                    Name = abilityAPI.PropertiesAbility.Name
-                };
+            AddTypes(pokemonAPI);
+            AddMoves(pokemonAPI);
+            AddAbilities(pokemonAPI);
+        }  
 
-                pokemonDB.AddAbility(abilityDatabase);
-            }
-
-            //Adicionando Moves
-            for (int i = 0; i < pokemonAPI.Moves.Count; i++)
-            {
-                var moveAPI = pokemonAPI.Moves[i];
-                var moveDB = new Entities.MoveDB()
-                {
-                    Name = moveAPI.Move.Name
-                };
-
-                pokemonDB.AddMove(moveDB);
-            }
-
-            //Adicionando Types
+        private async void AddTypes(PokemonAPI pokemonAPI)
+        {
             for (int i = 0; i < pokemonAPI.Types.Count; i++)
             {
-                var typeAPI = pokemonAPI.Types[i];
-                var typrDB = new Entities.TypeDB()
-                {
-                    Name = typeAPI.Type.Name
-                };
+                await ToCheckAndAdd(i);
+            }      
+            
+            Task ToCheckAndAdd(int i)       
+            {
+                var db = new TypeDAO();
+                var typeDB = new TypeDB() { Name = pokemonAPI.Types[i].Type.Name };                                              
 
-                pokemonDB.AddType(typrDB);
+                if (db.Exists(typeDB))
+                {
+                    typeDB = db.FindAll().Result.FirstOrDefault(p => p.Name == typeDB.Name);
+
+                    Types.Add(new TypePokemonDB() { TypeId = typeDB.Id });
+                }
+                else
+                {
+                    Types.Add(new TypePokemonDB() { Type = typeDB });
+                }
+
+                return Task.CompletedTask;
             }
         }
 
-        public void AddAbility(AbilityDB ability)
+        private async void AddMoves(PokemonAPI pokemonAPI)
         {
-            this.Abilities.Add(new AbilityPokemonDB() { Ability = ability });
+            for (int i = 0; i < pokemonAPI.Moves.Count; i++)
+            {
+                await ToCheckAndAdd(i);
+            }
+
+            Task ToCheckAndAdd(int i)
+            {
+                var db = new MoveDAO();
+                var moveDB = new MoveDB() { Name = pokemonAPI.Moves[i].Move.Name };
+
+                if (db.Exists(moveDB))
+                {
+                    moveDB = db.FindAll().Result.FirstOrDefault(p => p.Name == moveDB.Name);
+
+                    Moves.Add(new MovePokemonDB() { MoveId = moveDB.Id});
+                }
+                else
+                {
+                    Moves.Add(new MovePokemonDB() { Move = moveDB });
+                }
+
+                return Task.CompletedTask;
+            }
         }
 
-        public void AddMove(MoveDB move)
+        private async void AddAbilities(PokemonAPI pokemonAPI)
         {
-            this.Moves.Add(new MovePokemonDB() { Move = move });
-        }
+            for (int i = 0; i < pokemonAPI.Moves.Count; i++)
+            {
+                await ToCheckAndAdd(i);
+            }
 
-        public void AddType(TypeDB type)
-        {
-            this.Types.Add(new TypePokemonDB() { Type = type });
+            Task ToCheckAndAdd(int i)
+            {
+                var db = new AbilityDAO();
+                var abilityDB = new AbilityDB() { Name = pokemonAPI.Moves[i].Move.Name };
+
+                if (db.Exists(abilityDB))
+                {
+                    abilityDB = db.FindAll().Result.FirstOrDefault(p => p.Name == abilityDB.Name);
+                    Abilities.Add(new AbilityPokemonDB() { AbilityId = abilityDB.Id });
+                }
+                else
+                {
+                    Abilities.Add(new AbilityPokemonDB() { Ability = abilityDB });
+                }
+
+                return Task.CompletedTask;
+            }
         }
 
     }
