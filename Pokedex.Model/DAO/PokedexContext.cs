@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pokedex.Model.Entities;
 
-namespace Pokedex.Model.Entities
+namespace Pokedex.Model.DAO
 {
     public class PokedexContext : DbContext
     {
@@ -31,6 +32,7 @@ namespace Pokedex.Model.Entities
             modelBuilder
                 .Entity<TypePokemonDB>()
                 .HasKey(p => new { p.TypeId, p.PokemonId});
+                                
 
 
             base.OnModelCreating(modelBuilder);

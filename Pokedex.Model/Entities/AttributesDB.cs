@@ -1,6 +1,6 @@
 ﻿namespace Pokedex.Model.Entities
 {
-    public class AttributesDB
+    public abstract class AttributesDB
     {
         public int Id { get; set; }
 
