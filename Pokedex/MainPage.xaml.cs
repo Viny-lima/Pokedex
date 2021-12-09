@@ -13,14 +13,13 @@ namespace Pokedex
 {
     public sealed partial class MainPage : Page
     {
-        private static PokemonDAO pokemonDAO = new PokemonDAO();
-
-        public PokemonDB Pokemon = pokemonDAO.FindById(1).Result;
+        public PokeViewModel PokeView = new PokeViewModel(1);
 
 
         public MainPage()
         {
             this.InitializeComponent();
+            
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

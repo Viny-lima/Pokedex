@@ -1,19 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pokedex.Model.DAO;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace Pokedex
@@ -31,6 +22,11 @@ namespace Pokedex
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            using (var db = new PokedexContext())
+            {
+                db.Database.Migrate();
+            }
         }
 
         /// <summary>
@@ -71,11 +67,6 @@ namespace Pokedex
                 }
                 // Verifique se a janela atual está ativa
                 Window.Current.Activate();
-            }
-
-            using (var db = new Pokedex.Model.DAO.PokedexContext())
-            {
-                db.Database.Migrate();
             }
         }
 

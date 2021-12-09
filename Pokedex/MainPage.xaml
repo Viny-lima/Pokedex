@@ -73,7 +73,14 @@
 
 
         <StackPanel Grid.Row="2">
-            <TextBlock Text="{x:Bind Pokemon.Name}"/>
+            <Image Width="200">
+                <Image.Source>
+                    <BitmapImage UriSource="{x:Bind PokeView.Pokemon.SpritesFrontDefault}"/>
+                </Image.Source>
+            </Image>
+            <TextBlock Text="{x:Bind PokeView.Pokemon.Id}" FontSize="20" Foreground="black"/>
+            <TextBlock Text="{x:Bind PokeView.Pokemon.Name}" FontSize="20" Foreground="black"/>
+            <TextBlock Text="{x:Bind PokeView.Pokemon.BaseExperience}" FontSize="20" Foreground="black"/>
         </StackPanel>
 
     </Grid>
