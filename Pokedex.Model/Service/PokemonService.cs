@@ -38,8 +38,12 @@ namespace Pokedex.Model.Service
             if (pokemonFound == null)
             {
                 var pokemonApi = ApiRequest.GetPokemon(id);
-                pokemonFound = new PokemonDB(pokemonApi);
-                await _pokemonDAO.Add(pokemonFound);
+                
+                if (pokemonApi != null)
+                {
+                    pokemonFound = new PokemonDB(pokemonApi);
+                    await _pokemonDAO.Add(pokemonFound);
+                }
             }
 
             return pokemonFound;

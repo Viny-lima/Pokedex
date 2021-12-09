@@ -14,12 +14,12 @@ namespace Pokedex.Migrations.Startup
             //p.Database.Migrate();
             IPokemonService<PokemonDB> service = new PokemonService();
 
-            var pokemon = service.FindPokemonById(1).Result;
+            var pokemon = service.FindPokemonById(215236).Result;
 
-            Console.WriteLine(pokemon.Name);
-            Console.WriteLine(pokemon.Attack);
-            Console.WriteLine(pokemon.Hp);
-            Console.WriteLine(pokemon.Height);
+            Console.WriteLine(pokemon);
+            //Console.WriteLine(pokemon.Attack);
+            //Console.WriteLine(pokemon.Hp);
+            //Console.WriteLine(pokemon.Height);
 
             MostrarPokemons();
             //MostrarTiposDosPokemonsNoDatabase();
