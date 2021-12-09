@@ -2,7 +2,7 @@
 
 namespace Pokedex.Model.Entities
 {
-    public class MoveDB : AttributesDB, IEntity
+    public class MoveDB : AttributesDB
     {
         public IList<MovePokemonDB> Pokemons { get; set; }
     }
