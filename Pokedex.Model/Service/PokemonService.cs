@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pokedex.Model.Service
 {
-    class PokemonService : IPokemonService<PokemonDB>
+    public class PokemonService : IPokemonService<PokemonDB>
     {
         private IDAO<PokemonDB> _pokemonDAO;
 
@@ -37,7 +37,9 @@ namespace Pokedex.Model.Service
 
             if (pokemonFound == null)
             {
-                
+                var pokemonApi = ApiRequest.GetPokemon(id);
+                pokemonFound = new PokemonDB(pokemonApi);
+                await _pokemonDAO.Add(pokemonFound);
             }
 
             return pokemonFound;

@@ -10,8 +10,19 @@ namespace Pokedex.Migrations.Startup
     {
         static void Main(string[] args)
         {
+            //var p = new PokedexContext();
+            //p.Database.Migrate();
+            IPokemonService<PokemonDB> service = new PokemonService();
+
+            var pokemon = service.FindPokemonById(1).Result;
+
+            Console.WriteLine(pokemon.Name);
+            Console.WriteLine(pokemon.Attack);
+            Console.WriteLine(pokemon.Hp);
+            Console.WriteLine(pokemon.Height);
 
             MostrarPokemons();
+            //MostrarTiposDosPokemonsNoDatabase();
 
         }
 
@@ -31,13 +42,17 @@ namespace Pokedex.Migrations.Startup
         {
             var db = new PokemonDAO();
 
+            Console.WriteLine("----------Types-------------");
+
             foreach (var pokemons in db.FindAll().Result)
             {
+                Console.WriteLine(pokemons.Name);
+                Console.Write("type:");
                 foreach (var type in pokemons.Types)
                 {
-                    Console.Write(type.Type.Name + " / ");
+                    Console.WriteLine(type.Type.Name);
                 }
-                Console.WriteLine("");
+                Console.WriteLine("------------------");
             }
         }
         
@@ -47,18 +62,18 @@ namespace Pokedex.Migrations.Startup
 
             foreach (var pokemon in db.FindAll().Result)
             {
-                Console.WriteLine("---------------------------");
-                Console.WriteLine(pokemon.Id);
-                Console.WriteLine(pokemon.Name);
-                Console.WriteLine(pokemon.Height);
-                Console.WriteLine(pokemon.Weight);
-                Console.WriteLine(pokemon.Hp);
-                Console.WriteLine(pokemon.Attack);
-                Console.WriteLine(pokemon.SpecialAttack);
-                Console.WriteLine(pokemon.Defense);
-                Console.WriteLine(pokemon.SpecialDefense);
-                Console.WriteLine(pokemon.Speed);
-                Console.WriteLine("---------------------------");
+                Console.WriteLine("----------------------------");
+                Console.WriteLine("id: " + pokemon.Id);
+                Console.WriteLine("name: " + pokemon.Name);
+                Console.WriteLine("height: " + pokemon.Height);
+                Console.WriteLine("weight: " + pokemon.Weight);
+                Console.WriteLine("hp: " + pokemon.Hp);
+                Console.WriteLine("attack: " + pokemon.Attack);
+                Console.WriteLine("special attack: " + pokemon.SpecialAttack);
+                Console.WriteLine("defense: " + pokemon.Defense);
+                Console.WriteLine("special defense: " + pokemon.SpecialDefense);
+                Console.WriteLine("speed: " + pokemon.Speed);
+                Console.WriteLine("----------------------------");
             }
         }
 
