@@ -19,12 +19,12 @@ namespace Pokedex.Model.DAO
             return pokemon;
         }
 
-        public PokemonDB FindByName(string name)
+        public async Task<PokemonDB> FindByName(string name)
         {
             PokedexContext context = new PokedexContext();
 
-            var pokemon = context.Pokemons
-                .FirstOrDefault(p => p.Name == name);
+            var pokemon = await context.Pokemons
+                .FirstOrDefaultAsync(p => p.Name == name);
 
             return pokemon;
         }
