@@ -1,68 +1,34 @@
-﻿using Pokedex.Model.PokeApi;
+﻿using Pokedex.Model.DAO;
+using Pokedex.Model.Entities;
+using Pokedex.Model.PokeApi;
 using Pokedex.Model.Service;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Pokedex.ViewModels
 {
     public class PokemonViewModelList
     {
-        private ObservableCollection<PokemonAddressAPI> _pokemons = new ObservableCollection<PokemonAddressAPI>();
-        private int _startindex;
-        private readonly int _qtdPokemons;
+        private ObservableCollection<PokemonDB> _pokemons = new ObservableCollection<PokemonDB>();
 
+        private PokemonDAO _pokemonDAO;
 
-        public ObservableCollection<PokemonAddressAPI> ListaPokemons { get { return _pokemons; } }
+        public ObservableCollection<PokemonDB> ListaPokemons { get { return _pokemons; } }
 
-        public PokemonViewModelList(int startIndex, int qtdPokeomns)
+        public PokemonViewModelList()
         {
-            _startindex = startIndex;
-            _qtdPokemons = qtdPokeomns;
+            _pokemonDAO = new PokemonDAO();
 
-            List<PokemonAddressAPI> ListaPokemons = ApiRequest.GetPropertiesListPokemons(_startindex, _qtdPokemons).Results;
+            IList<PokemonDB> ListaPokemons = _pokemonDAO.FindAll().Result;
 
             foreach (var pokemon in ListaPokemons)
             {
+                Debug.WriteLine(pokemon.Name);
                 this._pokemons.Add(pokemon);
             }
         }
-
-        /// <summary>
-        /// Redefine a lista em exibição basedo nas propriedades <see cref="_startindex"/> e <see cref="_qtdPokemons"/>.
-        /// </summary>
-        private void UpdateListPokemons()
-        {
-            List<PokemonAddressAPI> listPokemon = ApiRequest.GetPropertiesListPokemons(_startindex, _qtdPokemons).Results;
-            this._pokemons.Clear();
-
-            foreach (PokemonAddressAPI newPokemon in listPokemon)
-            {
-                this._pokemons.Add(newPokemon);
-            }
-        }
-
-        /// <summary>
-        /// O método adiciona 10 ao index que foi definido inicialmente no construtor. 
-        /// Assim Criando uma nova exbição de dados.
-        /// </summary>
-        public void NextPageListPokemons()
-        {
-            _startindex += 10;
-            if (_startindex > 100) _startindex = 0;
-
-            UpdateListPokemons();
-        }
-        /// <summary>
-        /// O método subtrai 10 ao index que foi definido inicialmente no construtor. 
-        /// Assim Criando uma nova exbição de dados.
-        /// </summary>
-        public void PreviosPageListPokemons()
-        {
-            _startindex -= 10;
-            if (_startindex < 0) _startindex = 0;
-
-            UpdateListPokemons();
-        }
+        
     }
 
 }

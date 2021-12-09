@@ -3,6 +3,7 @@ using System;
 using Pokedex.Model.Service;
 using Pokedex.Model.Entities;
 using Pokedex.Model.DAO;
+using System.Collections.Generic;
 
 namespace Pokedex.Migrations.Startup
 {
@@ -12,14 +13,22 @@ namespace Pokedex.Migrations.Startup
         {
             var pokemonDAO = new PokemonDAO();
 
-            var p = pokemonDAO.FindById(1).Result;
+            IList<PokemonDB> ListaPokemons = pokemonDAO.FindAll().Result;
 
-            Console.WriteLine(p.Types[0].Type.Name);
-
+            foreach (var p in ListaPokemons)
+            {
+                Console.WriteLine(p.Name);
+                Console.WriteLine(p.SpritesFrontDefault + "\n");
+            }
         }
 
         private static void AdicionandoSemDuplicidade()
         {          
+            using(var contexto = new PokedexContext())
+            {
+                contexto.Database.Migrate();
+            }
+
             var pokemonDAO = new PokemonDAO();
 
             for (int i = 1; i < 10; i++)

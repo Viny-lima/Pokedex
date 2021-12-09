@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Pokedex"
     xmlns:model="using:Pokedex.Model.PokeApi"
+    xmlns:data="using:Pokedex.Model.Entities"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -71,42 +72,9 @@
         </RelativePanel>
 
 
-        <ListView ItemsSource="{x:Bind PokeList.ListaPokemons}" 
-                  Grid.Row="1"
-                  ScrollViewer.VerticalScrollMode="Enabled"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                  SelectionMode="Single"
-                  IsItemClickEnabled="True"
-                  ItemClick="ListView_ItemClick"
-                  >
-            
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:PokemonAddressAPI">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Width="100" Height="100" Stretch="Fill">
-                            <Image.Source>
-                                <BitmapImage UriSource="{x:Bind SpriteUrl}"/>
-                            </Image.Source>
-                        </Image>
-
-                        <TextBlock Text="{x:Bind NamePokemon}" 
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   FontSize="20"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-
-        <RelativePanel Grid.Row="2">
-            <Image Width="200">
-                <Image.Source>
-                    <BitmapImage UriSource="{x:Bind PokeView.Pokemon.Sprites.Other.OfficialArtwork.FrontDefault, Mode=TwoWay}"/>
-                </Image.Source>
-            </Image>
-            <TextBlock Text="{x:Bind PokeView.Pokemon.Name, Mode=TwoWay}"/>
-        </RelativePanel>
+        <StackPanel Grid.Row="2">
+            <TextBlock Text="{x:Bind Pokemon.Name}"/>
+        </StackPanel>
 
     </Grid>
 

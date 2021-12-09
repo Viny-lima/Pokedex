@@ -34,13 +34,13 @@ namespace Pokedex.Model.DAO
             PokedexContext context = new PokedexContext();
 
             var list = await context
-                                .Set<PokemonDB>()
+                                .Set<PokemonDB>()/*
                                 .Include(prop => prop.Types)
                                 .ThenInclude(prop => prop.Type)
                                 .Include(prop => prop.Moves)
                                 .ThenInclude(prop => prop.Move)
                                 .Include(prop => prop.Abilities)
-                                .ThenInclude(prop => prop.Ability)
+                                .ThenInclude(prop => prop.Ability)*/
                                 .ToListAsync();
             return list;
         }
