@@ -87,69 +87,47 @@
             Height="30,0"
             
             >
-            <Button Name="B#" 
-                Content="BY#" 
+            <Button Name="BY" 
+                Content="BY" 
                 Margin="200,0"                 
                 />
-            <Button x:Name="BY NAME"
-                    Content="BY NAME"
+            <Button Name="BYNAME"
+                    Content="BYNAME"
                     Margin="300,0"
                     Click="Button_Click" 
-                   RelativePanel.RightOf="B#"                                   
+                   RelativePanel.RightOf="BY"                                   
                     />
-            <Button x:Name="BY TYPE"
-                    Content="BY TYPE"
+            <Button Name="BYTYPE"
+                    Content="BYTYPE"
                     Margin="80,0"
-                     RelativePanel.RightOf="BY NAME"                    
+                     RelativePanel.RightOf="BYNAME"                    
                     />
         </RelativePanel>
-
-        <ListView  
+        <ListView ItemsSource="{x:Bind PokeList.ListaPokemons}" 
                   Grid.Row="2"
                   ScrollViewer.VerticalScrollMode="Enabled"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"                                   
                   SelectionMode="Single"
                   IsItemClickEnabled="True"
-                  ItemClick="ListView_ItemClick"        
-         >
-            <ListViewItem
-                Padding="10">
-                <StackPanel Orientation="Horizontal">
-                    <Image Width="98" Source="Assets/item.png"/>
-                </StackPanel>
-            </ListViewItem>
-            <ListViewItem>
-                <StackPanel Orientation="Horizontal">
-                    <Image Width="98" Source="Assets/item.png"/>
-                </StackPanel>
-            </ListViewItem>
-            <ListViewItem>
-                <StackPanel Orientation="Horizontal">
-                    <Image Width="98" Source="Assets/item.png"/>
-                </StackPanel>
-            </ListViewItem>
-            <ListViewItem>
-                <StackPanel Orientation="Horizontal">
-                    <Image Width="100" Source="Assets/item.png"/>
-                </StackPanel>
-            </ListViewItem>
-            <ListViewItem>
-                <StackPanel Orientation="Horizontal">
-                    <Image Width="100" Source="Assets/item.png"/>
-                </StackPanel>
-            </ListViewItem>
-            <ListViewItem>
-                <StackPanel Orientation="Horizontal">
-                    <Image Width="100" Source="Assets/item.png"/>
-                </StackPanel>
-            </ListViewItem>
-            <ListViewItem>
-                <StackPanel Orientation="Horizontal">
-                    <Image Width="100" Source="Assets/item.png"/>
-                </StackPanel>
-            </ListViewItem>
-        </ListView>
+                  ItemClick="ListView_ItemClick"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:PokemonAddressAPI">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="100" Height="100" Stretch="Fill">
+                            <Image.Source>
+                                <BitmapImage UriSource="{x:Bind SpriteUrl}"/>
+                            </Image.Source>
+                        </Image>
 
+                        <TextBlock Text="{x:Bind NamePokemon}" 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontSize="20"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 
 </Page>
