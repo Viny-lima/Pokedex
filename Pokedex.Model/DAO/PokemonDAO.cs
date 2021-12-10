@@ -14,7 +14,15 @@ namespace Pokedex.Model.DAO
         {
             PokedexContext context = new PokedexContext();
 
-            var pokemon = await context.FindAsync<PokemonDB>(id);
+            var pokemon = await context
+                                .Pokemons
+                                .Include(prop => prop.Types)
+                                .ThenInclude(prop => prop.Type)
+                                .Include(prop => prop.Moves)
+                                .ThenInclude(prop => prop.Move)
+                                .Include(prop => prop.Abilities)
+                                .ThenInclude(prop => prop.Ability)
+                                .FirstOrDefaultAsync(p => p.Id == id);
 
             return pokemon;
         }
@@ -24,7 +32,13 @@ namespace Pokedex.Model.DAO
             PokedexContext context = new PokedexContext();
 
             var pokemon = await context.Pokemons
-                .FirstOrDefaultAsync(p => p.Name == name);
+                                .Include(prop => prop.Types)
+                                .ThenInclude(prop => prop.Type)
+                                .Include(prop => prop.Moves)
+                                .ThenInclude(prop => prop.Move)
+                                .Include(prop => prop.Abilities)
+                                .ThenInclude(prop => prop.Ability)
+                                .FirstOrDefaultAsync(p => p.Name == name);
 
             return pokemon;
         }
@@ -33,15 +47,8 @@ namespace Pokedex.Model.DAO
         {
             PokedexContext context = new PokedexContext();
 
-            var list = await context
-                                .Set<PokemonDB>()
-                                .Include(prop => prop.Types)
-                                .ThenInclude(prop => prop.Type)
-                                .Include(prop => prop.Moves)
-                                .ThenInclude(prop => prop.Move)
-                                .Include(prop => prop.Abilities)
-                                .ThenInclude(prop => prop.Ability)
-                                .ToListAsync();
+            var list = await context.Set<PokemonDB>().ToListAsync();
+
             return list;
         }
     }

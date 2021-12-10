@@ -103,6 +103,18 @@ namespace Pokedex.Model.Service
         }
 
         /// <summary>
+        /// Responsável construção de um <see cref="Object"/> da class <see cref="PokemonAPI"/> apartir de um Json da API. Gerado por uma Url + <paramref name="name"/>.
+        /// </summary>
+        /// <param name="name">Nome do Pokemon na API></param>
+        /// <returns>Um object <see cref="PokemonAPI"/> construido pela API.</returns>
+        public static PokemonAPI GetPokemon(string name)
+        {
+            var stringUrl = $"https://pokeapi.co/api/v2/pokemon/{name}";
+
+            return Get<PokemonAPI>(stringUrl);
+        }
+
+        /// <summary>
         /// Responsável construção de um <see cref="Object"/> da class <see cref="PokemonPropertiesList"/> apartir de um Json da API.
         /// </summary>
         /// <param name="startIndex">Id do primeiro <see cref="PokemonAPI"/> que se deseja na adicionar na lista.</param>

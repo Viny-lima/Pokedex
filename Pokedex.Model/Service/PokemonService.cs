@@ -51,7 +51,20 @@ namespace Pokedex.Model.Service
 
         public async Task<PokemonDB> FindPokemonByName(string name)
         {
-            return await ((PokemonDAO)_pokemonDAO).FindByName(name);
+            var pokemonFound = await ((PokemonDAO)_pokemonDAO).FindByName(name);
+
+            if (pokemonFound == null)
+            {
+                var pokemonApi = ApiRequest.GetPokemon(name);
+
+                if (pokemonApi != null)
+                {
+                    pokemonFound = new PokemonDB(pokemonApi);
+                    await _pokemonDAO.Add(pokemonFound);
+                }
+            }
+
+            return pokemonFound;
         }
 
         public Task<IList<PokemonDB>> FindPokemons()
