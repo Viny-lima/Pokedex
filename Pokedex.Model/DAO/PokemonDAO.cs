@@ -43,11 +43,13 @@ namespace Pokedex.Model.DAO
             return pokemon;
         }
 
-        public async override Task<IList<PokemonDB>> FindAll()
+        public async Task<IList<PokemonDB>> FindInRange(int start, int end)
         {
             PokedexContext context = new PokedexContext();
 
-            var list = await context.Set<PokemonDB>().ToListAsync();
+            var list = await context.Set<PokemonDB>()
+                .Where(p => p.Id >= start && p.Id <= end)
+                .ToListAsync();
 
             return list;
         }
