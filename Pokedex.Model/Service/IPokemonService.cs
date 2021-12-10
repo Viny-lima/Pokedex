@@ -11,7 +11,7 @@ namespace Pokedex.Model.Service
         Task AddPokemon(T pokemon);
         Task UpdatePokemon(T pokemon);
         Task DeletePokemon(T pokemon);
-        Task<IList<T>> FindPokemons();
+        Task<IList<T>> FindPokemonsById(int start, int quantity);
         Task<IList<T>> FindPokemonsByType(string type);
         Task<T> FindPokemonByName(string name);
         Task<T> FindPokemonById(int id);

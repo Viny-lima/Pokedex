@@ -3,6 +3,7 @@ using System;
 using Pokedex.Model.Service;
 using Pokedex.Model.Entities;
 using Pokedex.Model.DAO;
+using System.Linq;
 
 namespace Pokedex.Migrations.Startup
 {
@@ -14,15 +15,13 @@ namespace Pokedex.Migrations.Startup
             //p.Database.Migrate();
             IPokemonService<PokemonDB> service = new PokemonService();
 
-            var pokemon = service.FindPokemonById(215236).Result;
+            var pokemons = service.FindPokemonsById(2, 10).Result;
 
-            Console.WriteLine(pokemon);
-            //Console.WriteLine(pokemon.Attack);
-            //Console.WriteLine(pokemon.Hp);
-            //Console.WriteLine(pokemon.Height);
-
-            MostrarPokemons();
-            //MostrarTiposDosPokemonsNoDatabase();
+            foreach (var pokemon in pokemons)
+            {
+                Console.WriteLine(pokemon.Id);
+                Console.WriteLine(pokemon.Name);
+            }
 
         }
 
@@ -73,6 +72,13 @@ namespace Pokedex.Migrations.Startup
                 Console.WriteLine("defense: " + pokemon.Defense);
                 Console.WriteLine("special defense: " + pokemon.SpecialDefense);
                 Console.WriteLine("speed: " + pokemon.Speed);
+                if (pokemon.Types != null)
+                {
+                    foreach (var pk in pokemon.Types)
+                    {
+                        Console.WriteLine("type: " + pk.Type.Name);
+                    }
+                }
                 Console.WriteLine("----------------------------");
             }
         }

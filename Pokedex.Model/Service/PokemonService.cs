@@ -2,6 +2,7 @@
 using Pokedex.Model.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -67,9 +68,29 @@ namespace Pokedex.Model.Service
             return pokemonFound;
         }
 
-        public Task<IList<PokemonDB>> FindPokemons()
+        public async Task<IList<PokemonDB>> FindPokemonsById(int start, int quantity)
         {
-            throw new NotImplementedException();
+            int end = start + quantity;
+
+            var pokemons = await ((PokemonDAO)_pokemonDAO).FindInRange(start, end);
+
+            if (pokemons.Count < 10)
+            {
+                var pokemonsApi = ApiRequest.GetPokemonsList(start - 1, quantity);
+
+                var pokemonsToBeAdded = pokemonsApi
+                                        .Where(api => !pokemons.Any(p => p.Id == api.Id))
+                                        .ToList();
+
+                foreach (var pokemon in pokemonsToBeAdded)
+                {
+                    var pokemonDb = new PokemonDB(pokemon);
+                    pokemons.Add(pokemonDb);
+                    await _pokemonDAO.Add(pokemonDb);
+                }
+            }
+
+            return pokemons;
         }
 
         public Task<IList<PokemonDB>> FindPokemonsByType(string name)
