@@ -120,9 +120,9 @@ namespace Pokedex.Model.Service
         /// <param name="startIndex">Id do primeiro <see cref="PokemonAPI"/> que se deseja na adicionar na lista.</param>
         /// <param name="qtdPokemons">Quantidade de <see cref="PokemonAPI"/> adiciondos a lista.</param>
         /// <returns>Um object <see cref="PokemonPropertiesList"/> construido pela API.</returns>
-        public static PokemonPropertiesList GetPropertiesListPokemons(int startIndex = 0, int qtdPokemons = 10)
+        public static PokemonPropertiesList GetPropertiesListPokemons(int startIndex = 0, int quantity = 10)
         {
-            string stringUrl = $"https://pokeapi.co/api/v2/pokemon?limit={qtdPokemons}&offset={startIndex}";
+            string stringUrl = $"https://pokeapi.co/api/v2/pokemon?limit={quantity}&offset={startIndex}";
             return Get<PokemonPropertiesList>(stringUrl);
         }
 
@@ -130,22 +130,22 @@ namespace Pokedex.Model.Service
         /// Responsável pela criação de um <see cref="List{Pokemon}"/> de <see cref="PokemonAPI"/> apartir de um Json da API.
         /// </summary>
         /// <param name="startIndex">Id do primeiro <see cref="PokemonAPI"/> que se deseja na adicionar na lista.</param>
-        /// <param name="qtdPokemons">Quantidade de <see cref="PokemonAPI"/> adiciondos a lista.</param>
+        /// <param name="quantity">Quantidade de <see cref="PokemonAPI"/> adiciondos a lista.</param>
         /// <returns>Uma <see cref="List{Pokemon}"/> de pokemons construidas pela API.</returns>
-        public static List<PokemonAPI> GetListaDePokemons(int startIndex = 0, int qtdPokemons = 10)
+        public static List<PokemonAPI> GetPokemonsList(int startIndex = 0, int quantity = 10)
         {
-            PokemonPropertiesList propertiesList = GetPropertiesListPokemons(startIndex, qtdPokemons);
+            PokemonPropertiesList propertiesList = GetPropertiesListPokemons(startIndex, quantity);
 
-            List<PokemonAPI> ListaDePokemons = new List<PokemonAPI>();
+            List<PokemonAPI> pokemons = new List<PokemonAPI>();
 
             foreach (PokemonAddressAPI address in propertiesList.Results)
             {
                 string stringUrl = address.Url.ToString();
 
-                ListaDePokemons.Add(Get<PokemonAPI>(stringUrl));
+                pokemons.Add(Get<PokemonAPI>(stringUrl));
             }
                 
-            return ListaDePokemons;
+            return pokemons;
         }                  
     }
 }
