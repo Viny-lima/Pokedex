@@ -4,6 +4,7 @@ using Pokedex.Model.Service;
 using Pokedex.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 namespace Pokedex
 {
@@ -40,9 +41,12 @@ namespace Pokedex
             PokeView.Pokemon = ApiRequest.Get<PokemonAPI>(pokemonSelected.Url);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonOnMouse(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
+            Button b = sender as Button;
+            b.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 0, 0));          
 
         }
+
     }
 }
