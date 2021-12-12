@@ -8,8 +8,46 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <
+    <RelativePanel Grid.Row="0"
+                    Background="{StaticResource MyColorHome}"
+                    >
+        <Image Name="HOME_FUNDO"
+                Source="../Assets/Components/HOME_FUNDO.jpg"
+                Stretch="UniformToFill"
+                />
 
-    </Grid>
+        <Image Name="LOGO"
+                Width="30"
+                Margin="20"
+                Source="..\Assets\Components\LOGO.png"
+                />
+
+        <Button Name="ButtonHome"
+                Content="Home"
+                Style="{StaticResource MyButtonHome}"
+                RelativePanel.LeftOf="ButtonTypes"
+                />
+
+        <Button Name="ButtonTypes"
+                Content="Types"
+                Style="{StaticResource MyButtonHome}"                    
+                RelativePanel.LeftOf="ButtonAllPokemons"                  
+                />
+
+        <Button Name="ButtonAllPokemons"
+                Content="All"
+                Style="{StaticResource MyButtonHome}"
+                RelativePanel.LeftOf="ButtonAbout"                  
+                />
+
+        <Button Name="ButtonAbout"
+                Content="About"
+                Style="{StaticResource MyButtonHome}"
+                RelativePanel.AlignRightWithPanel="True"
+                />
+
+        <TextBlock Name="Welcome" />
+
+    </RelativePanel>
+    
 </Page>
