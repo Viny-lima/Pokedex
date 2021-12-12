@@ -4,12 +4,22 @@
     
     <SolidColorBrush x:Key="MyColorHome" Color="#00000000" />
     <SolidColorBrush x:Key="MyColorHomeFont" Color="Aqua" />
+    <SolidColorBrush x:Key="MyColorDescribe" Color="White" />
 
     <Style TargetType="TextBlock" x:Key="MyFonteTitleHome">
         <Setter Property="FontSize" Value="30" />
         <Setter Property="Padding" Value="10" />
         <Setter Property="Margin" Value="10,0" />
         <Setter Property="Foreground" Value="{StaticResource MyColorHomeFont}"/>
+        <Setter Property="FontFamily" Value="Verdana" />
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="MyDescribe">
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="Margin" Value="10,0" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Foreground" Value="{StaticResource MyColorDescribe}"/>
         <Setter Property="FontFamily" Value="Verdana" />
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
@@ -101,6 +111,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>   
+    
     
 </ResourceDictionary>

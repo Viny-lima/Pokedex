@@ -8,46 +8,93 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <RelativePanel Grid.Row="0"
-                    Background="{StaticResource MyColorHome}"
-                    >
-        <Image Name="HOME_FUNDO"
-                Source="../Assets/Components/HOME_FUNDO.jpg"
-                Stretch="UniformToFill"
-                />
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/Components/HOME_FUNDO.jpg"/>
+        </Grid.Background>
 
-        <Image Name="LOGO"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.RowSpan="5" Grid.ColumnSpan="2"  >
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,2" EndPoint="2,0" >
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#00000000" Offset="0.5"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <RelativePanel Grid.Row="0" 
+                       Grid.ColumnSpan="3">           
+
+            <Image Name="LOGO"
                 Width="30"
                 Margin="20"
                 Source="..\Assets\Components\LOGO.png"
                 />
 
-        <Button Name="ButtonHome"
+            <Button Name="ButtonHome"
                 Content="Home"
                 Style="{StaticResource MyButtonHome}"
                 RelativePanel.LeftOf="ButtonTypes"
                 />
 
-        <Button Name="ButtonTypes"
+            <Button Name="ButtonTypes"
                 Content="Types"
                 Style="{StaticResource MyButtonHome}"                    
                 RelativePanel.LeftOf="ButtonAllPokemons"                  
                 />
 
-        <Button Name="ButtonAllPokemons"
+            <Button Name="ButtonAllPokemons"
                 Content="All"
                 Style="{StaticResource MyButtonHome}"
                 RelativePanel.LeftOf="ButtonAbout"                  
                 />
 
-        <Button Name="ButtonAbout"
+            <Button Name="ButtonAbout"
                 Content="About"
                 Style="{StaticResource MyButtonHome}"
                 RelativePanel.AlignRightWithPanel="True"
                 />
 
-        <TextBlock Name="Welcome" />
+            <AutoSuggestBox QueryIcon="Find"
+                            MinWidth="300"
+                            PlaceholderText="Search for a Pokemon here..."
+                            VerticalAlignment="Center"
+                            RelativePanel.LeftOf="ButtonHome"
+                            Margin="0,10"
+                            />
+        </RelativePanel>
 
-    </RelativePanel>
+        
+        
+        <StackPanel Grid.Row="1"
+                    VerticalAlignment="Bottom"
+                    >
+            <TextBlock Grid.Row="1"
+                   Text="Welcome"
+                   Style="{StaticResource MyFonteTitleHome}"
+                   FontSize="80"
+                   />
+            <TextBlock  TextWrapping="Wrap"
+                        Style="{StaticResource MyDescribe}"
+                        Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics,Abilities and Movements."   
+                        />
+            <Button Name="ButtonAllTwo"
+                    Content="See the pokemons"
+                    FontSize="20"
+                    Style="{StaticResource MyButtonHome}"
+                    />
+        </StackPanel>
+
+    </Grid>
     
 </Page>
