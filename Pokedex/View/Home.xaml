@@ -1,0 +1,96 @@
+﻿<Page
+    x:Class="Pokedex.View.Home"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Pokedex.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Frame Name="RootFrame">
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="../Assets/Components/HOME_FUNDO.jpg"
+                        Stretch="UniformToFill"
+                        />
+            </Grid.Background>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Rectangle  x:Name="ShadowPage"
+                    Grid.RowSpan="5" 
+                    Grid.ColumnSpan="2">
+
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="2,0" StartPoint="0,2">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#00000000" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <StackPanel x:Name="HOME_TEXT"
+                    Grid.Row="1"
+                    VerticalAlignment="Center"
+                    >
+                <TextBlock Name="Welcome"
+                       Grid.Row="1"
+                       Text="Welcome"
+                       Style="{StaticResource MyFontTitle}"
+                       FontSize="80"
+                       />
+                <TextBlock  Name="Describe"
+                        TextWrapping="Wrap"
+                        Style="{StaticResource MyDescribe}"
+                        Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics,Abilities and Movements."   
+                        />
+                <AutoSuggestBox Name="BarSearchResponsive"
+                            QueryIcon="Find"
+                            MinWidth="300"
+                            PlaceholderText="Search for a Pokemon here..."
+                            TextChanged="BarSearchResponsive_TextChanged"
+                            HorizontalAlignment="Left"
+                            Margin="20"
+                            QuerySubmitted="BarSearchResponsive_QuerySubmitted"
+                            />
+                <Button Name="ButtonAllTwo"
+                    Content="See the pokemons"
+                    FontSize="20"
+                    Style="{StaticResource MyButtonHome}"
+                    />
+            </StackPanel>
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup>
+                    <VisualState x:Name="NarrowLayout">
+                        <VisualState.StateTriggers>
+                            <AdaptiveTrigger MinWindowWidth="0"/>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Target="Welcome.FontSize" Value="40"/>
+                            <Setter Target="Describe.FontSize" Value="12"/>
+                            <Setter Target="ButtonAllTwo.FontSize" Value="20"/>
+                            <Setter Target="BarSearchResponsive.PlaceholderText" Value="Search..."/>
+                            <Setter Target="ShadowPage.Fill" Value="#B2000000"/>
+                        </VisualState.Setters>
+                    </VisualState>
+
+                    <VisualState x:Name="WideLayout">
+                        <VisualState.StateTriggers>
+                            <AdaptiveTrigger MinWindowWidth="800"/>
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Target="Welcome.FontSize" Value="70"/>
+                            <Setter Target="Describe.FontSize" Value="20"/>
+                            <Setter Target="ButtonAllTwo.FontSize" Value="20"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </Frame>
+</Page>

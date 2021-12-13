@@ -26,5 +26,30 @@ namespace Pokedex.View
         {
             this.InitializeComponent();
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            RootFrame.Navigate(typeof(Home));
+        }
+
+        private void ButtonHome_Click(object sender, RoutedEventArgs e)
+        {
+            RootFrame.Navigate(typeof(Home));
+        }
+
+        private void ButtonTypes_Click(object sender, RoutedEventArgs e)
+        {
+            RootFrame.Navigate(typeof(Types));
+        }
+
+        private void ButtonAllPokemons_Click(object sender, RoutedEventArgs e)
+        {
+            RootFrame.Navigate(typeof(All));
+        }
+
+        private void ButtonAbout_Click(object sender, RoutedEventArgs e)
+        {
+            RootFrame.Navigate(typeof(About));
+        }
     }
 }

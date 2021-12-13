@@ -20,9 +20,9 @@ namespace Pokedex.View
     /// <summary>
     /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
     /// </summary>
-    public sealed partial class ListAll : Page
+    public sealed partial class All : Page
     {
-        public ListAll()
+        public All()
         {
             this.InitializeComponent();
         }

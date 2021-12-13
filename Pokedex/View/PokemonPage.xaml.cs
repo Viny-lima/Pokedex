@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Pokedex.Model.DAO;
+using Pokedex.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,11 +22,21 @@ namespace Pokedex.View
     /// <summary>
     /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
     /// </summary>
-    public sealed partial class search : Page
+    public sealed partial class PokemonPage : Page
     {
-        public search()
+        public PokemonViewModel View = new PokemonViewModel();
+
+        public PokemonPage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var nameSearch = e.Parameter as String;
+
+            var pokemonDAO = new PokemonDAO();
+            View.Pokemon = pokemonDAO.FindByName(nameSearch);
         }
     }
 }

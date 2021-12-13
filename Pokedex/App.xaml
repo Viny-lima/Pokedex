@@ -6,7 +6,11 @@
     RequestedTheme="Light">
     
     <Application.Resources>
-        <ResourceDictionary Source="DictionaryResourcesOne.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\DictionaryResourcesMain.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 
 </Application>

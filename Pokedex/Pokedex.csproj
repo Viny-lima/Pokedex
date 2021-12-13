@@ -119,23 +119,23 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\PokemonViewModel.cs" />
-    <Compile Include="ViewModel\PokemonViewModelList.cs" />
-    <Compile Include="View\about.xaml.cs">
-      <DependentUpon>about.xaml</DependentUpon>
+    <Compile Include="View\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\All.xaml.cs">
       <DependentUpon>All.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\PokemonViewModel.cs" />
+    <Compile Include="ViewModel\PokemonViewModelList.cs" />
     <Compile Include="View\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pokemon.xaml.cs">
-      <DependentUpon>Pokemon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\search.xaml.cs">
-      <DependentUpon>search.xaml</DependentUpon>
+    <Compile Include="View\PokemonPage.xaml.cs">
+      <DependentUpon>PokemonPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Types.xaml.cs">
       <DependentUpon>Types.xaml</DependentUpon>
@@ -154,6 +154,8 @@
     <Content Include="Assets\BadgeLogo.scale-400.png" />
     <Content Include="Assets\Components\HOME_FUNDO.jpg" />
     <Content Include="Assets\Components\LOGO.png" />
+    <Content Include="Assets\Components\POKEMONPAGE_FUNDO.jpg" />
+    <Content Include="Assets\Components\TEST_IMG.png" />
     <Content Include="Assets\Components\TYPES\T1.png" />
     <Content Include="Assets\Components\TYPES\T10.png" />
     <Content Include="Assets\Components\TYPES\T11.png" />
@@ -249,11 +251,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="DictionaryResourcesOne.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\about.xaml">
+    <Page Include="View\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -261,15 +259,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DictionaryResourcesMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pokemon.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\search.xaml">
+    <Page Include="View\PokemonPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

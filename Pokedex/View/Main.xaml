@@ -6,95 +6,50 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Loaded="Page_Loaded"
+    >      
 
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="../Assets/Components/HOME_FUNDO.jpg"/>
-        </Grid.Background>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Frame x:Name="RootFrame"/>
 
-        <Rectangle Grid.RowSpan="5" Grid.ColumnSpan="2"  >
-            <Rectangle.Fill>
-                <LinearGradientBrush StartPoint="0,2" EndPoint="2,0" >
-                    <GradientStop Color="Black"/>
-                    <GradientStop Color="#00000000" Offset="0.5"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
+        <RelativePanel x:Name="NAVE">
 
-        <RelativePanel Grid.Row="0" 
-                       Grid.ColumnSpan="3">           
-
-            <Image Name="LOGO"
-                Width="30"
-                Margin="20"
-                Source="..\Assets\Components\LOGO.png"
-                />
+            <Image  Name="LOGO"
+                    Width="30"
+                    Margin="20"
+                    Source="..\Assets\Components\LOGO.png"
+                    />
 
             <Button Name="ButtonHome"
                 Content="Home"
                 Style="{StaticResource MyButtonHome}"
-                RelativePanel.LeftOf="ButtonTypes"
+                RelativePanel.LeftOf="ButtonTypes" 
+                Click="ButtonHome_Click"
                 />
 
             <Button Name="ButtonTypes"
                 Content="Types"
                 Style="{StaticResource MyButtonHome}"                    
-                RelativePanel.LeftOf="ButtonAllPokemons"                  
+                RelativePanel.LeftOf="ButtonAllPokemons" 
+                Click="ButtonTypes_Click"                  
                 />
 
             <Button Name="ButtonAllPokemons"
                 Content="All"
                 Style="{StaticResource MyButtonHome}"
-                RelativePanel.LeftOf="ButtonAbout"                  
+                RelativePanel.LeftOf="ButtonAbout" 
+                Click="ButtonAllPokemons_Click"                  
                 />
 
             <Button Name="ButtonAbout"
                 Content="About"
                 Style="{StaticResource MyButtonHome}"
-                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True" 
+                Click="ButtonAbout_Click"
                 />
-
-            <AutoSuggestBox QueryIcon="Find"
-                            MinWidth="300"
-                            PlaceholderText="Search for a Pokemon here..."
-                            VerticalAlignment="Center"
-                            RelativePanel.LeftOf="ButtonHome"
-                            Margin="0,10"
-                            />
         </RelativePanel>
 
-        
-        
-        <StackPanel Grid.Row="1"
-                    VerticalAlignment="Bottom"
-                    >
-            <TextBlock Grid.Row="1"
-                   Text="Welcome"
-                   Style="{StaticResource MyFonteTitleHome}"
-                   FontSize="80"
-                   />
-            <TextBlock  TextWrapping="Wrap"
-                        Style="{StaticResource MyDescribe}"
-                        Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics,Abilities and Movements."   
-                        />
-            <Button Name="ButtonAllTwo"
-                    Content="See the pokemons"
-                    FontSize="20"
-                    Style="{StaticResource MyButtonHome}"
-                    />
-        </StackPanel>
-
     </Grid>
-    
+
 </Page>

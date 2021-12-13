@@ -3,14 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <SolidColorBrush x:Key="MyColorHome" Color="#00000000" />
-    <SolidColorBrush x:Key="MyColorHomeFont" Color="Aqua" />
-    <SolidColorBrush x:Key="MyColorDescribe" Color="White" />
+    <SolidColorBrush x:Key="MyColorFontTitle" Color="Aqua" />
+    <SolidColorBrush x:Key="MyColorDescribe" Color="White" />       
 
-    <Style TargetType="TextBlock" x:Key="MyFonteTitleHome">
+    <Style TargetType="TextBlock" x:Key="MyFontTitle">
         <Setter Property="FontSize" Value="30" />
         <Setter Property="Padding" Value="10" />
         <Setter Property="Margin" Value="10,0" />
-        <Setter Property="Foreground" Value="{StaticResource MyColorHomeFont}"/>
+        <Setter Property="Foreground" Value="{StaticResource MyColorFontTitle}"/>
         <Setter Property="FontFamily" Value="Verdana" />
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
@@ -28,7 +28,7 @@
         <Setter Property="FontSize" Value="15" />
         <Setter Property="Padding" Value="10" />
         <Setter Property="Margin" Value="10,0" />
-        <Setter Property="Foreground" Value="{StaticResource MyColorHomeFont}"/>
+        <Setter Property="Foreground" Value="{StaticResource MyColorFontTitle}"/>
         <Setter Property="FontFamily" Value="Verdana" />
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Background" Value="#00000000"/>
@@ -111,7 +111,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>   
-    
+    </Style>       
     
 </ResourceDictionary>
