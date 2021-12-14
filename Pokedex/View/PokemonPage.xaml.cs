@@ -33,10 +33,43 @@ namespace Pokedex.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var nameSearch = e.Parameter as String;
+            var search = e.Parameter as String;
 
             var pokemonDAO = new PokemonDAO();
-            View.Pokemon = pokemonDAO.FindByName(nameSearch);
+
+            try
+            {
+
+                var Id = int.Parse(search);
+                View.Pokemon = pokemonDAO.FindById(Id).Result;
+
+                if(View.Pokemon == null)
+                {
+                    //Implementar tela de Erro e ExcetionPokemonNotFound
+                    /*throw new Exception();*/
+                }
+            }
+            catch (FormatException)
+            {
+                View.Pokemon = pokemonDAO.FindByName(search as String);
+            }
+            
+        }
+
+        private void ButtonAbilities_Click(object sender, RoutedEventArgs e)
+        {
+            PanelAbilities.Visibility = Visibility.Visible;
+        }
+
+        private void ButtonMoves_Click(object sender, RoutedEventArgs e)
+        {
+            PanelMoves.Visibility = Visibility.Visible;
+        }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            PanelAbilities.Visibility= Visibility.Collapsed;
+            PanelMoves.Visibility= Visibility.Collapsed;
         }
     }
 }

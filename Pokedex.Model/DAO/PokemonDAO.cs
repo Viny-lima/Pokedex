@@ -24,7 +24,13 @@ namespace Pokedex.Model.DAO
             PokedexContext context = new PokedexContext();
 
             var pokemon = context.Pokemons
-                .FirstOrDefault(p => p.Name == name);
+                                .Include(prop => prop.Types)
+                                .ThenInclude(prop => prop.Type)
+                                .Include(prop => prop.Moves)
+                                .ThenInclude(prop => prop.Move)
+                                .Include(prop => prop.Abilities)
+                                .ThenInclude(prop => prop.Ability)
+                                .FirstOrDefault(p => p.Name == name);
 
             return pokemon;
         }

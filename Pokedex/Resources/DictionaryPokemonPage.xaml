@@ -25,12 +25,13 @@
     
 
     <Style TargetType="Button" x:Key="MyButtonPokemonPage">
-        <Setter Property="FontSize" Value="25" />
+        <Setter Property="FontSize" Value="15" />
         <Setter Property="Padding" Value="10" />
         <Setter Property="Margin" Value="10,0" />
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontFamily" Value="Verdana" />
         <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="MinWidth" Value="100"/>
         <Setter Property="Background" Value="{StaticResource  MyColorPokemonPage}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -52,7 +53,7 @@
 
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                      Storyboard.TargetProperty="FontSize">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="20" />
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="16" />
                                         </ObjectAnimationUsingKeyFrames>
 
                                         <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
@@ -63,7 +64,7 @@
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                      Storyboard.TargetProperty="FontSize">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="20" />
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="16" />
                                         </ObjectAnimationUsingKeyFrames>
 
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
