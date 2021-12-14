@@ -24,7 +24,7 @@ namespace Pokedex.View
     /// </summary>
     public sealed partial class Home : Page
     {
-        public string nameSearch;
+        private string search;
 
         public Home()
         {
@@ -45,12 +45,42 @@ namespace Pokedex.View
             var filtered = ListNamesPokemonsInDataBase.Where(p => p.StartsWith(autoSuggestBox.Text)).ToArray();
             autoSuggestBox.ItemsSource = filtered;
 
-            nameSearch = autoSuggestBox.Text;
+            search = autoSuggestBox.Text;
         }
 
         private void BarSearchResponsive_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            RootFrame.Navigate(typeof(PokemonPage), nameSearch);
+            try
+            {
+                var id = int.Parse(search);
+                var pokemonSearch = new PokemonDB();
+                var pokemonDAO = new PokemonDAO();  
+
+                pokemonSearch = pokemonDAO.FindById(id).Result;
+
+                if (pokemonSearch == null)
+                {
+                    //Implementar tela de Erro e ExcetionPokemonNotFound
+                    /*throw new Exception();*/
+                }
+
+                RootFrame.Navigate(typeof(PokemonPage), pokemonSearch);
+            }
+            catch (ArgumentNullException)
+            {
+                ERRO.Visibility = Visibility.Visible;
+                ERRO.Text = "ERRO: This pokemon doesn't exist";
+            }
+            catch (FormatException)
+            {
+                var pokemonSearch = new PokemonDB();
+                var pokemonDAO = new PokemonDAO();
+
+                pokemonSearch = pokemonDAO.FindByName(search as String);
+
+                RootFrame.Navigate(typeof(PokemonPage), pokemonSearch);
+            }
+            
         }
     }
 }

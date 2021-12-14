@@ -48,49 +48,54 @@
                         Style="{StaticResource MyDescribe}"
                         Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics,Abilities and Movements."   
                         />
+                <TextBlock Name="ERRO"
+                           Style="{StaticResource MyFontTitle}" 
+                           FontSize="12"
+                           Foreground="Red" 
+                           Visibility="Collapsed"/>
                 <AutoSuggestBox Name="BarSearchResponsive"
-                            QueryIcon="Find"
-                            MinWidth="300"
-                            PlaceholderText="Search for a Pokemon here..."
-                            TextChanged="BarSearchResponsive_TextChanged"
-                            HorizontalAlignment="Left"
-                            Margin="20"
-                            QuerySubmitted="BarSearchResponsive_QuerySubmitted"
-                            />
+                                QueryIcon="Find"
+                                MinWidth="300"
+                                PlaceholderText="Search for a Pokemon here..."
+                                TextChanged="BarSearchResponsive_TextChanged"
+                                HorizontalAlignment="Left"
+                                Margin="20"
+                                QuerySubmitted="BarSearchResponsive_QuerySubmitted"
+                                />
                 <Button Name="ButtonAllTwo"
                     Content="See the pokemons"
                     FontSize="20"
                     Style="{StaticResource MyButtonHome}"
                     />
-            </StackPanel>
-
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup>
-                    <VisualState x:Name="NarrowLayout">
-                        <VisualState.StateTriggers>
-                            <AdaptiveTrigger MinWindowWidth="0"/>
-                        </VisualState.StateTriggers>
-                        <VisualState.Setters>
-                            <Setter Target="Welcome.FontSize" Value="40"/>
-                            <Setter Target="Describe.FontSize" Value="12"/>
-                            <Setter Target="ButtonAllTwo.FontSize" Value="20"/>
-                            <Setter Target="BarSearchResponsive.PlaceholderText" Value="Search..."/>
-                            <Setter Target="ShadowPage.Fill" Value="#B2000000"/>
-                        </VisualState.Setters>
-                    </VisualState>
-
-                    <VisualState x:Name="WideLayout">
-                        <VisualState.StateTriggers>
-                            <AdaptiveTrigger MinWindowWidth="800"/>
-                        </VisualState.StateTriggers>
-                        <VisualState.Setters>
-                            <Setter Target="Welcome.FontSize" Value="70"/>
-                            <Setter Target="Describe.FontSize" Value="20"/>
-                            <Setter Target="ButtonAllTwo.FontSize" Value="20"/>
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
+            </StackPanel>            
         </Grid>
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="NarrowLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Welcome.FontSize" Value="40"/>
+                        <Setter Target="Describe.FontSize" Value="12"/>
+                        <Setter Target="ButtonAllTwo.FontSize" Value="20"/>
+                        <Setter Target="BarSearchResponsive.PlaceholderText" Value="Search..."/>
+                        <Setter Target="ShadowPage.Fill" Value="#B2000000"/>
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="WideLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Welcome.FontSize" Value="70"/>
+                        <Setter Target="Describe.FontSize" Value="20"/>
+                        <Setter Target="ButtonAllTwo.FontSize" Value="20"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Frame>
 </Page>

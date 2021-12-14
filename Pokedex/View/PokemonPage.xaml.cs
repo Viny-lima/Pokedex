@@ -1,4 +1,5 @@
 ﻿using Pokedex.Model.DAO;
+using Pokedex.Model.Entities;
 using Pokedex.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -33,27 +34,7 @@ namespace Pokedex.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var search = e.Parameter as String;
-
-            var pokemonDAO = new PokemonDAO();
-
-            try
-            {
-
-                var Id = int.Parse(search);
-                View.Pokemon = pokemonDAO.FindById(Id).Result;
-
-                if(View.Pokemon == null)
-                {
-                    //Implementar tela de Erro e ExcetionPokemonNotFound
-                    /*throw new Exception();*/
-                }
-            }
-            catch (FormatException)
-            {
-                View.Pokemon = pokemonDAO.FindByName(search as String);
-            }
-            
+            View.Pokemon = e.Parameter as PokemonDB;                  
         }
 
         private void ButtonAbilities_Click(object sender, RoutedEventArgs e)
