@@ -251,6 +251,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\DictionaryPokemonPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
