@@ -14,47 +14,42 @@ namespace Pokedex.Model.DAO
         {
             PokedexContext context = new PokedexContext();
 
-            var pokemon = context.Pokemons
-                                    .Include(prop => prop.Types)
-                                    .ThenInclude(prop => prop.Type)
-                                    .Include(prop => prop.Moves)
-                                    .ThenInclude(prop => prop.Move)
-                                    .Include(prop => prop.Abilities)
-                                    .ThenInclude(prop => prop.Ability)
-                                    .FirstOrDefault(p => p.Id == id);
-
-            return pokemon;
-        }
-
-        public PokemonDB FindByName(string name)
-        {
-            PokedexContext context = new PokedexContext();
-
-            var pokemon = context.Pokemons
+            var pokemon = await context
+                                .Pokemons
                                 .Include(prop => prop.Types)
                                 .ThenInclude(prop => prop.Type)
                                 .Include(prop => prop.Moves)
                                 .ThenInclude(prop => prop.Move)
                                 .Include(prop => prop.Abilities)
                                 .ThenInclude(prop => prop.Ability)
-                                .FirstOrDefault(p => p.Name == name);
+                                .FirstOrDefaultAsync(p => p.Id == id);
 
             return pokemon;
         }
 
-        public async override Task<IList<PokemonDB>> FindAll()
+        public async Task<PokemonDB> FindByName(string name)
         {
             PokedexContext context = new PokedexContext();
 
-            var list = await context
-                                .Set<PokemonDB>()
+            var pokemon = await context.Pokemons
                                 .Include(prop => prop.Types)
                                 .ThenInclude(prop => prop.Type)
                                 .Include(prop => prop.Moves)
                                 .ThenInclude(prop => prop.Move)
                                 .Include(prop => prop.Abilities)
                                 .ThenInclude(prop => prop.Ability)
-                                .ToListAsync();
+                                .FirstOrDefaultAsync(p => p.Name == name);
+            return pokemon;
+        }
+
+        public async Task<IList<PokemonDB>> FindInRange(int start, int end)
+        {
+            PokedexContext context = new PokedexContext();
+
+            var list = await context.Set<PokemonDB>()
+                .Where(p => p.Id >= start && p.Id <= end)
+                .ToListAsync();
+
             return list;
         }
     }
