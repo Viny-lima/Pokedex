@@ -25,7 +25,7 @@ namespace Pokedex.View
     /// </summary>
     public sealed partial class PokemonPage : Page
     {
-        public PokemonViewModel View = new PokemonViewModel();
+        public PokemonViewModel view = new PokemonViewModel();
 
         public PokemonPage()
         {
@@ -34,7 +34,7 @@ namespace Pokedex.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            View.Pokemon = e.Parameter as PokemonDB;                  
+            view.Pokemon = e.Parameter as PokemonDB;                  
         }
 
         private void ButtonAbilities_Click(object sender, RoutedEventArgs e)

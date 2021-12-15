@@ -1,5 +1,6 @@
 ﻿using Pokedex.Model.DAO;
 using Pokedex.Model.Entities;
+using Pokedex.Model.Service;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,8 +25,10 @@ namespace Pokedex.View
     /// </summary>
     public sealed partial class Home : Page
     {
-        private string search;
-        private List<String> listaNamesPokemons = new List<String>();
+        private string _search;
+        private PokemonService _service = new PokemonService();        
+        private List<String> _listaNamesPokemons = new List<String>();
+        private PokemonDB _pokemon = new PokemonDB();
 
         public Home()
         {
@@ -35,50 +38,46 @@ namespace Pokedex.View
         private void Page_Loading(FrameworkElement sender, object args)
         {
 
+            foreach(var p  in new PokedexContext().Pokemons.ToList())
+            {
+                _listaNamesPokemons.Add(p.Name); 
+            }
+
         }
 
         private void BarSearchResponsive_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {                                
-            var autoSuggestBox = (AutoSuggestBox)sender;
-            var filtered = listaNamesPokemons.Where(p => p.StartsWith(autoSuggestBox.Text)).ToArray();
+            var autoSuggestBox = sender;
+            var filtered = _listaNamesPokemons.Where(p => p.StartsWith(autoSuggestBox.Text)).ToArray();
             autoSuggestBox.ItemsSource = filtered;
 
-            search = autoSuggestBox.Text;
+            _search = autoSuggestBox.Text;
         }
 
         private void BarSearchResponsive_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             try
             {
-                var id = int.Parse(search);
-                var pokemonSearch = new PokemonDB();
-                var pokemonDAO = new PokemonDAO();  
-
-                pokemonSearch = pokemonDAO.FindById(id);
-
-                if (pokemonSearch == null)
-                {
-                    //Implementar tela de Erro e ExcetionPokemonNotFound
-                    /*throw new Exception();*/
-                }
-
-                RootFrame.Navigate(typeof(PokemonPage), pokemonSearch);
+                var id = int.Parse(_search);
+                _pokemon = _service.FindPokemonById(id).Result;                
+            }            
+            catch (FormatException)
+            {
+                _pokemon = _service.FindPokemonByName(_search).Result;                              
             }
             catch (ArgumentNullException)
             {
                 ERRO.Visibility = Visibility.Visible;
                 ERRO.Text = "ERRO: This pokemon doesn't exist";
             }
-            catch (FormatException)
+            finally
             {
-                var pokemonSearch = new PokemonDB();
-                var pokemonDAO = new PokemonDAO();
-
-                pokemonSearch = pokemonDAO.FindByName(search as String);
-
-                RootFrame.Navigate(typeof(PokemonPage), pokemonSearch);
+                if (_pokemon != null)
+                {
+                    RootFrame.Navigate(typeof(PokemonPage), _pokemon);
+                }
             }
-            
+
         }
         
     }

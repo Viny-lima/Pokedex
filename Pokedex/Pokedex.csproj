@@ -130,7 +130,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\PokemonViewModel.cs" />
-    <Compile Include="ViewModel\PokemonViewModelList.cs" />
+    <Compile Include="ViewModel\PokemonListViewModel.cs" />
     <Compile Include="View\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
@@ -152,6 +152,7 @@
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\Components\ALL_FUNDO.jpg" />
     <Content Include="Assets\Components\HOME_FUNDO.jpg" />
     <Content Include="Assets\Components\LOGO.png" />
     <Content Include="Assets\Components\POKEMONPAGE_FUNDO.jpg" />

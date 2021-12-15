@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pokedex.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,21 @@ namespace Pokedex.View
     /// </summary>
     public sealed partial class All : Page
     {
+        public PokemonListViewModel viewList = new PokemonListViewModel(0,10);
+
         public All()
         {
             this.InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonNext_Click(object sender, RoutedEventArgs e)
+        {
+            viewList.NextPageListPokemons();
         }
     }
 }
