@@ -10,11 +10,18 @@ namespace Pokedex.Model.DAO
 {
     public class PokemonDAO : PokedexDAO<PokemonDB>
     {
-        public async Task<PokemonDB> FindById(int id)
+        public PokemonDB FindById(int id)
         {
             PokedexContext context = new PokedexContext();
 
-            var pokemon = await context.FindAsync<PokemonDB>(id);
+            var pokemon = context.Pokemons
+                                    .Include(prop => prop.Types)
+                                    .ThenInclude(prop => prop.Type)
+                                    .Include(prop => prop.Moves)
+                                    .ThenInclude(prop => prop.Move)
+                                    .Include(prop => prop.Abilities)
+                                    .ThenInclude(prop => prop.Ability)
+                                    .FirstOrDefault(p => p.Id == id);
 
             return pokemon;
         }

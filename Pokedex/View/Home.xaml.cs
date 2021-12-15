@@ -25,24 +25,22 @@ namespace Pokedex.View
     public sealed partial class Home : Page
     {
         private string search;
+        private List<String> listaNamesPokemons = new List<String>();
 
         public Home()
         {
             this.InitializeComponent();
         }
 
-        private void BarSearchResponsive_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        private void Page_Loading(FrameworkElement sender, object args)
         {
-            var pokemonDAO = new PokemonDAO();
-            var ListNamesPokemonsInDataBase = new List<String>();
-            
-            foreach(var PokemonDataBase in pokemonDAO.FindAll().Result)
-            {
-                ListNamesPokemonsInDataBase.Add(PokemonDataBase.Name);
-            }                     
 
+        }
+
+        private void BarSearchResponsive_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {                                
             var autoSuggestBox = (AutoSuggestBox)sender;
-            var filtered = ListNamesPokemonsInDataBase.Where(p => p.StartsWith(autoSuggestBox.Text)).ToArray();
+            var filtered = listaNamesPokemons.Where(p => p.StartsWith(autoSuggestBox.Text)).ToArray();
             autoSuggestBox.ItemsSource = filtered;
 
             search = autoSuggestBox.Text;
@@ -56,7 +54,7 @@ namespace Pokedex.View
                 var pokemonSearch = new PokemonDB();
                 var pokemonDAO = new PokemonDAO();  
 
-                pokemonSearch = pokemonDAO.FindById(id).Result;
+                pokemonSearch = pokemonDAO.FindById(id);
 
                 if (pokemonSearch == null)
                 {
@@ -82,5 +80,6 @@ namespace Pokedex.View
             }
             
         }
+        
     }
 }

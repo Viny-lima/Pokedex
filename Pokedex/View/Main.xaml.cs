@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Pokedex.Model.DAO;
+using Pokedex.Model.Entities;
+using Pokedex.Model.Service;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,7 +31,7 @@ namespace Pokedex.View
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
+        {            
             RootFrame.Navigate(typeof(Home));
         }
 

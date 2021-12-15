@@ -12,7 +12,7 @@ namespace Pokedex.Migrations.Startup
         {
             var pokemonDAO = new PokemonDAO();
 
-            var p = pokemonDAO.FindById(1).Result;
+            var p = pokemonDAO.FindById(1);
 
             Console.WriteLine(p.Types[0].Type.Name);
 
