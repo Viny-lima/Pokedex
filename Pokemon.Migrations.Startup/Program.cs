@@ -14,8 +14,9 @@ namespace Pokedex.Migrations.Startup
             //var p = new PokedexContext();
             //p.Database.Migrate();
             IPokemonService<PokemonDB> service = new PokemonService();
-
+          
             var pokemons = service.FindPokemonsById(2, 10).Result;
+
 
             foreach (var pokemon in pokemons)
             {

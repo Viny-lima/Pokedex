@@ -10,7 +10,7 @@ namespace Pokedex.Model.DAO
 {
     public class PokemonDAO : PokedexDAO<PokemonDB>
     {
-        public async Task<PokemonDB> FindById(int id)
+        public PokemonDB FindById(int id)
         {
             PokedexContext context = new PokedexContext();
 
@@ -39,7 +39,6 @@ namespace Pokedex.Model.DAO
                                 .Include(prop => prop.Abilities)
                                 .ThenInclude(prop => prop.Ability)
                                 .FirstOrDefaultAsync(p => p.Name == name);
-
             return pokemon;
         }
 
