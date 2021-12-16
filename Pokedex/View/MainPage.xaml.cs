@@ -23,36 +23,36 @@ namespace Pokedex.View
     /// <summary>
     /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
     /// </summary>
-    public sealed partial class Main : Page
+    public sealed partial class MainPage : Page
     {
-        public Main()
+        public MainPage()
         {
             this.InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {  
-            RootFrame.Navigate(typeof(Home));
+            RootFrame.Navigate(typeof(HomePage));
         }
 
         private void ButtonHome_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(Home));
+            RootFrame.Navigate(typeof(HomePage));
         }
 
         private void ButtonTypes_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(Types));
+            RootFrame.Navigate(typeof(TypePage));
         }
 
-        private void ButtonAllPokemons_Click(object sender, RoutedEventArgs e)
+        private void ButtonListPokemons_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(All));
+            RootFrame.Navigate(typeof(ListPage));
         }
 
         private void ButtonAbout_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(About));
+            RootFrame.Navigate(typeof(AboutPage));
         }
     }
 }

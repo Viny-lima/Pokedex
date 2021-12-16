@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Pokedex.View.Home"
+    x:Class="Pokedex.View.HomePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Pokedex.View"
@@ -12,9 +12,9 @@
     <Frame Name="RootFrame">
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="../Assets/Components/POKEMONPAGE_FUNDO.jpg"
-                        Stretch="UniformToFill"
-                        />
+                <ImageBrush ImageSource="../Assets/Components/VIEW_BG.png"
+                            Stretch="UniformToFill"
+                            />
             </Grid.Background>
 
             <Grid.ColumnDefinitions>

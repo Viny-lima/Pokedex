@@ -1,6 +1,6 @@
 ﻿using Pokedex.Model.DAO;
 using Pokedex.Model.Entities;
-using Pokedex.ViewModels;
+using Pokedex.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;

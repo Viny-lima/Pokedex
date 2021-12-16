@@ -3,9 +3,9 @@ using Pokedex.Model.Service;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Pokedex.ViewModels
+namespace Pokedex.ViewModel
 {
-    public class PokemonListViewModel
+    public class ListPokemonViewModel
     {
         private PokemonService _pokemonService = new PokemonService();
         private ObservableCollection<PokemonDB> _pokemons = new ObservableCollection<PokemonDB>();
@@ -15,7 +15,7 @@ namespace Pokedex.ViewModels
 
         public ObservableCollection<PokemonDB> Pokemons { get { return _pokemons; } }
 
-        public PokemonListViewModel(int quantity = 10)
+        public ListPokemonViewModel(int quantity = 10)
         {
             _start = 1;
             _quantity = quantity;

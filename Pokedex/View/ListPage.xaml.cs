@@ -1,6 +1,6 @@
 ﻿using Pokedex.Model.Entities;
 using Pokedex.Model.Service;
-using Pokedex.ViewModels;
+using Pokedex.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,19 +23,14 @@ namespace Pokedex.View
     /// <summary>
     /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
     /// </summary>
-    public sealed partial class All : Page
+    public sealed partial class ListPage : Page
     {
         private PokemonService _service = new PokemonService();
-        public PokemonListViewModel viewList = new PokemonListViewModel();
+        public ListPokemonViewModel viewList = new ListPokemonViewModel();
 
-        public All()
+        public ListPage()
         {            
             this.InitializeComponent();            
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)

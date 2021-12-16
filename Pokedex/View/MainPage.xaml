@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Pokedex.View.Main"
+    x:Class="Pokedex.View.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Pokedex.View"
@@ -39,7 +39,7 @@
                 Content="All"
                 Style="{StaticResource MyButtonHome}"
                 RelativePanel.LeftOf="ButtonAbout" 
-                Click="ButtonAllPokemons_Click"                  
+                Click="ButtonListPokemons_Click"                  
                 />
 
             <Button Name="ButtonAbout"

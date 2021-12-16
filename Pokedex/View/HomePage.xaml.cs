@@ -16,28 +16,22 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace Pokedex.View
 {
-    /// <summary>
-    /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
-    /// </summary>
-    public sealed partial class Home : Page
+    public sealed partial class HomePage : Page
     {
         private string _search;
         private PokemonService _service = new PokemonService();        
         private List<String> _listaNamesPokemons = new List<String>();
         private PokemonDB _pokemon = new PokemonDB();
 
-        public Home()
+        public HomePage()
         {
             this.InitializeComponent();
         }
 
         private void Page_Loading(FrameworkElement sender, object args)
         {
-
             foreach(var p  in new PokedexContext().Pokemons.ToList())
             {
                 _listaNamesPokemons.Add(p.Name); 

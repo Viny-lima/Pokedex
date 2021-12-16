@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Pokedex.View.All"
+    x:Class="Pokedex.View.ListPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Pokedex.View"
@@ -7,14 +7,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Loaded="Page_Loaded"
     >
 
     <Frame Name="RootFrame">
         <Grid>
 
             <Grid.Background>
-                <ImageBrush ImageSource="../Assets/Components/POKEMONPAGE_FUNDO.jpg"/>
+                <ImageBrush ImageSource="../Assets/Components/DEFAULT_BG.jpg"/>
             </Grid.Background>
 
             <Grid.RowDefinitions>

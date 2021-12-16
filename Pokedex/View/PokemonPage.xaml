@@ -12,7 +12,7 @@
     <Grid>
         
         <Grid.Background>
-            <ImageBrush ImageSource="../Assets/Components/POKEMONPAGE_FUNDO.jpg"
+            <ImageBrush ImageSource="../Assets/Components/DEFAULT_BG.jpg"
                         Stretch="UniformToFill"
                         />
         </Grid.Background>
