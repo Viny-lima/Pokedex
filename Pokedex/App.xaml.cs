@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pokedex.View;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -67,7 +68,7 @@ namespace Pokedex
                     // Quando a pilha de navegação não for restaurada, navegar para a primeira página,
                     // configurando a nova página passando as informações necessárias como um parâmetro
                     // de navegação
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(Main), e.Arguments);
                 }
                 // Verifique se a janela atual está ativa
                 Window.Current.Activate();
