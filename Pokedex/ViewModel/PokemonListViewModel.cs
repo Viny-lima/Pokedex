@@ -13,17 +13,16 @@ namespace Pokedex.ViewModels
         private int _start;
         private readonly int _quantity;
 
-
         public ObservableCollection<PokemonDB> Pokemons { get { return _pokemons; } }
 
-        public PokemonListViewModel(int start = 0, int quantity = 10)
+        public PokemonListViewModel(int quantity = 10)
         {
-            _start = start;
+            _start = 1;
             _quantity = quantity;
 
-            IList<PokemonDB> ListaPokemons = _pokemonService.FindPokemonsById(_start, _quantity).Result;
+            IList<PokemonDB> listPokemons = _pokemonService.FindPokemonsById(_start, _quantity).Result;
 
-            foreach (var pokemon in ListaPokemons)
+            foreach (var pokemon in listPokemons)
             {
                 this._pokemons.Add(pokemon);
             }
@@ -34,9 +33,9 @@ namespace Pokedex.ViewModels
         /// </summary>
         private void UpdateListPokemons()
         {
-            IList<PokemonDB> listPokemon = _pokemonService.FindPokemonsById(_start+1, _quantity).Result;
+            IList<PokemonDB> listPokemons = _pokemonService.FindPokemonsById(_start, _quantity).Result;
 
-            foreach (PokemonDB newPokemon in listPokemon)
+            foreach (PokemonDB newPokemon in listPokemons)
             {
                 this._pokemons.Add(newPokemon);
             }

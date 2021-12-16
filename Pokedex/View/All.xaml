@@ -10,32 +10,35 @@
     Loaded="Page_Loaded"
     >
 
-    <Grid>
+    <Frame Name="RootFrame">
+        <Grid>
 
-        <Grid.Background>
-            <ImageBrush ImageSource="../Assets/Components/POKEMONPAGE_FUNDO.jpg"/>
-        </Grid.Background>
+            <Grid.Background>
+                <ImageBrush ImageSource="../Assets/Components/POKEMONPAGE_FUNDO.jpg"/>
+            </Grid.Background>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <ListView Grid.Row="1"
+            <ListView Grid.Row="1"
                   ItemsSource="{x:Bind viewList.Pokemons}"
                   ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  IsItemClickEnabled="True"
+                  ItemClick="ListView_ItemClick"
                   >
-            
-            <ListView.ItemTemplate>
-                
-                <DataTemplate x:DataType="data:PokemonDB">
 
-                    <Grid Grid.Row="2"
+                <ListView.ItemTemplate>
+
+                    <DataTemplate x:DataType="data:PokemonDB">
+
+                        <Grid Grid.Row="2"
                           Background="White"
                           CornerRadius="10"
                           MinWidth="500"
@@ -43,45 +46,59 @@
                           HorizontalAlignment="Center"
                           >
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <Image MaxHeight="150" Grid.Column="0">
-                            <Image.Source>
-                                <BitmapImage UriSource="{Binding SpritesOfficialArtwork}"/>
-                            </Image.Source>
-                        </Image>
 
-                        <TextBlock  Text="{Binding Name}" 
+                            <TextBlock  Text="{Binding Id}" 
+                                    FontSize="50"
+                                    Foreground="{StaticResource MyColorPokemonPage}" 
+                                    FontFamily="Humnst777 BlkCn BT"
+                                    VerticalAlignment="Center"
+                                    Margin="20,0,0,0"
+                                    Grid.Column="0" 
+                                    />
+
+
+                            <Image MaxHeight="150"
+                               MaxWidth="150"
+                               Grid.Column="1">
+                                <Image.Source>
+                                    <BitmapImage UriSource="{Binding SpritesOfficialArtwork}"/>
+                                </Image.Source>
+                            </Image>
+
+                            <TextBlock  Text="{Binding Name}" 
                                     FontSize="50"
                                     Foreground="{StaticResource MyColorPokemonPage}" 
                                     FontFamily="Humnst777 BlkCn BT"
                                     VerticalAlignment="Center"
                                     Margin="20"
-                                    Grid.Column="1" 
+                                    Grid.Column="2" 
                                     />
-                    </Grid>
+                        </Grid>
 
-                </DataTemplate>                
-            </ListView.ItemTemplate>
-        </ListView>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
 
-            <Button Name="ButtonNext"
+                <Button Name="ButtonNext"
                     Content="Next" 
                     Style="{StaticResource MyButtonPokemonPage}"
                     Click="ButtonNext_Click"/>
-            
-        </StackPanel>
-        
-    </Grid>
+
+            </StackPanel>
+
+        </Grid>
+    </Frame>
     
 </Page>

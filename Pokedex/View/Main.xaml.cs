@@ -31,7 +31,7 @@ namespace Pokedex.View
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
-        {            
+        {  
             RootFrame.Navigate(typeof(Home));
         }
 

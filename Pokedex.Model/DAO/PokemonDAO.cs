@@ -46,7 +46,7 @@ namespace Pokedex.Model.DAO
             PokedexContext context = new PokedexContext();
 
             var list = await context.Set<PokemonDB>()
-                .Where(p => p.Id >= start && p.Id <= end)
+                .Where(p => p.Id >= start && p.Id < end)
                 .ToListAsync();
 
             return list;

@@ -1,4 +1,6 @@
-﻿using Pokedex.ViewModels;
+﻿using Pokedex.Model.Entities;
+using Pokedex.Model.Service;
+using Pokedex.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,11 +25,12 @@ namespace Pokedex.View
     /// </summary>
     public sealed partial class All : Page
     {
-        public PokemonListViewModel viewList = new PokemonListViewModel(0,10);
+        private PokemonService _service = new PokemonService();
+        public PokemonListViewModel viewList = new PokemonListViewModel();
 
         public All()
-        {
-            this.InitializeComponent();
+        {            
+            this.InitializeComponent();            
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -38,6 +41,14 @@ namespace Pokedex.View
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
             viewList.NextPageListPokemons();
+        }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var pokemonSelected = e.ClickedItem as PokemonDB;
+            var pokemon = _service.FindPokemonById(pokemonSelected.Id).Result;            
+
+            RootFrame.Navigate(typeof(PokemonPage), pokemon);
         }
     }
 }

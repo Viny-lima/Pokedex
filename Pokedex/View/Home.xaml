@@ -48,7 +48,7 @@
                 <TextBlock  Name="Describe"
                         TextWrapping="Wrap"
                         Style="{StaticResource MyDescribe}"
-                        Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics,Abilities and Movements."   
+                        Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics, abilities and movements."   
                         />
                 <TextBlock Name="ERRO"
                            Style="{StaticResource MyFontTitle}" 

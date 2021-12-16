@@ -74,7 +74,7 @@ namespace Pokedex.Model.Service
 
             var pokemons = await ((PokemonDAO)_pokemonDAO).FindInRange(start, end);
 
-            if (pokemons.Count < 10)
+            if (pokemons.Count < quantity)
             {
                 var pokemonsApi = ApiRequest.GetPokemonsList(start - 1, quantity);
 
@@ -88,7 +88,9 @@ namespace Pokedex.Model.Service
                     pokemons.Add(pokemonDb);
                     await _pokemonDAO.Add(pokemonDb);
                 }
-            }
+
+                pokemons = pokemons.OrderBy(p => p.Id).ToList();
+            }            
 
             return pokemons;
         }
