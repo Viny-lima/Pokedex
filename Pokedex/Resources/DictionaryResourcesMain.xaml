@@ -28,7 +28,7 @@
         <Setter Property="FontSize" Value="15" />
         <Setter Property="Padding" Value="10" />
         <Setter Property="Margin" Value="10,0" />
-        <Setter Property="Foreground" Value="{StaticResource MyColorFontTitle}"/>
+        <Setter Property="Foreground" Value="{StaticResource MyColorDescribe}"/>
         <Setter Property="FontFamily" Value="Verdana" />
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Background" Value="#00000000"/>

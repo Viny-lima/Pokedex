@@ -1,5 +1,5 @@
-﻿using Pokedex.Model.DAO;
-using Pokedex.Model.Entities;
+﻿using Pokedex.Model.Entities;
+using Pokedex.Model.Service;
 using Pokedex.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -23,34 +23,32 @@ namespace Pokedex.View
     /// <summary>
     /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
     /// </summary>
-    public sealed partial class PokemonPage : Page
+    public sealed partial class ListPage : Page
     {
-        public PokemonViewModel view = new PokemonViewModel();
+        private PokemonService _service = new PokemonService();
+        public ListPokemonViewModel viewList;
 
-        public PokemonPage()
-        {
-            this.InitializeComponent();
+        public ListPage()
+        {            
+            this.InitializeComponent();            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            view.Pokemon = e.Parameter as PokemonDB;                  
+            viewList = new ListPokemonViewModel((PageOrigin) e.Parameter);
         }
 
-        private void ButtonAbilities_Click(object sender, RoutedEventArgs e)
+        private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
-            PanelAbilities.Visibility = Visibility.Visible;
+            viewList.NextPageListPokemons();
         }
 
-        private void ButtonMoves_Click(object sender, RoutedEventArgs e)
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            PanelMoves.Visibility = Visibility.Visible;
-        }
+            var pokemonSelected = e.ClickedItem as PokemonDB;
+            var pokemon = _service.FindPokemonById(pokemonSelected.Id).Result;            
 
-        private void ButtonBack_Click(object sender, RoutedEventArgs e)
-        {
-            PanelAbilities.Visibility= Visibility.Collapsed;
-            PanelMoves.Visibility= Visibility.Collapsed;
+            RootFrame.Navigate(typeof(PokemonPage), pokemon);
         }
     }
 }

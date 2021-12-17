@@ -90,7 +90,9 @@ namespace Pokedex.Model.Service
                 }
 
                 pokemons = pokemons.OrderBy(p => p.Id).ToList();
+
             }
+
 
             return pokemons;
         }

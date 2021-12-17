@@ -12,19 +12,26 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
+using Pokedex.ViewModel;
+using Pokedex.Model.Entities;
+using Pokedex.Model.Service;
 
 namespace Pokedex.View
 {
-    /// <summary>
-    /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
-    /// </summary>
-    public sealed partial class All : Page
+    public sealed partial class TypePage : Page
     {
-        public All()
+        IList<TypeViewModel> typesFlipView = TypeViewModelManagement.GetImageSourceManagement();
+
+        public TypePage()
         {
             this.InitializeComponent();
+        }
+
+        private void MyFlipView_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            var itemSelect = (sender as FlipView).SelectedItem as TypeViewModel;
+
+            Test.Text = $"{itemSelect.Name}";
         }
     }
 }
