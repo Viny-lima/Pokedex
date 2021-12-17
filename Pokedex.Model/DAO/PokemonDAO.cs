@@ -10,7 +10,7 @@ namespace Pokedex.Model.DAO
 {
     public class PokemonDAO : PokedexDAO<PokemonDB>
     {
-        public PokemonDB FindById(int id)
+        public async Task<PokemonDB> FindById(int id)
         {
             PokedexContext context = new PokedexContext();
 
@@ -47,8 +47,26 @@ namespace Pokedex.Model.DAO
             PokedexContext context = new PokedexContext();
 
             var list = await context.Set<PokemonDB>()
-                .Where(p => p.Id >= start && p.Id <= end)
+                .Where(p => p.Id >= start && p.Id < end)
                 .ToListAsync();
+
+            return list;
+        }
+        
+        public async Task<IList<PokemonDB>> FindByType(string typeName, int start, int quantity)
+        {
+            PokedexContext context = new PokedexContext();
+
+            var type = await context.Set<TypeDB>()
+                .Include(prop => prop.Pokemons)
+                .ThenInclude(prop => prop.Pokemon)
+                .FirstOrDefaultAsync(t => t.Name == typeName);
+
+            var list = type.Pokemons
+                .Select(tp => tp.Pokemon)
+                .Skip(start)
+                .Take(quantity)
+                .ToList();
 
             return list;
         }

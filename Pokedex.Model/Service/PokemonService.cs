@@ -95,9 +95,11 @@ namespace Pokedex.Model.Service
             return pokemons;
         }
 
-        public Task<IList<PokemonDB>> FindPokemonsByType(string name)
+        public async Task<IList<PokemonDB>> FindPokemonsByType(string name, int start, int quantity)
         {
-            throw new NotImplementedException();
+            var pokemons = await ((PokemonDAO)_pokemonDAO).FindByType(name, start, quantity);
+
+            return pokemons;
         }
     }
 }
