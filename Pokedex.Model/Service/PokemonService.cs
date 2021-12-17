@@ -79,7 +79,7 @@ namespace Pokedex.Model.Service
                 var pokemonsApi = ApiRequest.GetPokemonsList(start - 1, quantity);
 
                 var pokemonsToBeAdded = pokemonsApi
-                                        .Where(api => pokemons.Any(p => p.Id != api.Id))
+                                        .Where(api => !pokemons.Any(p => p.Id == api.Id))
                                         .ToList();
 
                 foreach (var pokemon in pokemonsToBeAdded)
