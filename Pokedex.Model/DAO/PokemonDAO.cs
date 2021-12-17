@@ -51,5 +51,23 @@ namespace Pokedex.Model.DAO
 
             return list;
         }
+        
+        public async Task<IList<PokemonDB>> FindByType(string typeName, int start, int quantity)
+        {
+            PokedexContext context = new PokedexContext();
+
+            var type = await context.Set<TypeDB>()
+                .Include(prop => prop.Pokemons)
+                .ThenInclude(prop => prop.Pokemon)
+                .FirstOrDefaultAsync(t => t.Name == typeName);
+
+            var list = type.Pokemons
+                .Select(tp => tp.Pokemon)
+                .Skip(start)
+                .Take(quantity)
+                .ToList();
+
+            return list;
+        }
     }
 }

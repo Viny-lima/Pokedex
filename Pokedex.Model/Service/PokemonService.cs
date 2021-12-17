@@ -79,7 +79,7 @@ namespace Pokedex.Model.Service
                 var pokemonsApi = ApiRequest.GetPokemonsList(start - 1, quantity);
 
                 var pokemonsToBeAdded = pokemonsApi
-                                        .Where(api => !pokemons.Any(p => p.Id == api.Id))
+                                        .Where(api => pokemons.Any(p => p.Id != api.Id))
                                         .ToList();
 
                 foreach (var pokemon in pokemonsToBeAdded)
@@ -90,14 +90,18 @@ namespace Pokedex.Model.Service
                 }
 
                 pokemons = pokemons.OrderBy(p => p.Id).ToList();
-            }            
+
+            }
+
 
             return pokemons;
         }
 
-        public Task<IList<PokemonDB>> FindPokemonsByType(string name)
+        public async Task<IList<PokemonDB>> FindPokemonsByType(string name, int start, int quantity)
         {
-            throw new NotImplementedException();
+            var pokemons = await ((PokemonDAO)_pokemonDAO).FindByType(name, start, quantity);
+
+            return pokemons;
         }
     }
 }

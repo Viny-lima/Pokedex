@@ -12,7 +12,7 @@ namespace Pokedex.Model.Service
         Task UpdatePokemon(T pokemon);
         Task DeletePokemon(T pokemon);
         Task<IList<T>> FindPokemonsById(int start, int quantity);
-        Task<IList<T>> FindPokemonsByType(string type);
+        Task<IList<T>> FindPokemonsByType(string type, int start, int quantity);
         Task<T> FindPokemonByName(string name);
         Task<T> FindPokemonById(int id);
     }
