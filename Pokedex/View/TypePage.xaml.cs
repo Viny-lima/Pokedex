@@ -20,9 +20,7 @@ namespace Pokedex.View
 {
     public sealed partial class TypePage : Page
     {
-        private PokemonService _service = new PokemonService();
         IList<TypeViewModel> typesFlipView = TypeViewModelManagement.GetImageSourceManagement();
-        ListTypeViewModel listPokemonsInType = new ListTypeViewModel();
 
         public TypePage()
         {

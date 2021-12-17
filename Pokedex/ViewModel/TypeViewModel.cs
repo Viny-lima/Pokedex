@@ -49,11 +49,11 @@ namespace Pokedex.ViewModel
 
     public static class TypeViewModelManagement
     {
-        public static IList<TypeViewModel> GetImageSourceManagement(int numTypes = 18)
+        public static IList<TypeViewModel> GetImageSourceManagement()
         {
             var list = new List<TypeViewModel>();
 
-            for(int i = 1; i <= numTypes; i++)
+            for(int i = 1; i <= 18; i++)
             {
                 list.Add(new TypeViewModel { Name = (TypeNames)i, Source = $"{i}" });
             }
