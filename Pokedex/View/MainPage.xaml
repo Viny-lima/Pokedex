@@ -29,25 +29,25 @@
                 />
 
             <Button Name="ButtonTypes"
-                Content="Types"
-                Style="{StaticResource MyButtonHome}"                    
-                RelativePanel.LeftOf="ButtonAllPokemons" 
-                Click="ButtonTypes_Click"                  
-                />
+                    Content="Types"
+                    Style="{StaticResource MyButtonHome}"                    
+                    RelativePanel.LeftOf="ButtonAllPokemons" 
+                    Click="ButtonTypes_Click"                  
+                    />
 
             <Button Name="ButtonAllPokemons"
-                Content="All"
-                Style="{StaticResource MyButtonHome}"
-                RelativePanel.LeftOf="ButtonAbout" 
-                Click="ButtonListPokemons_Click"                  
-                />
+                    Content="List"
+                    Style="{StaticResource MyButtonHome}"
+                    RelativePanel.LeftOf="ButtonAbout" 
+                    Click="ButtonListPokemons_Click"                  
+                    />
 
             <Button Name="ButtonAbout"
-                Content="About"
-                Style="{StaticResource MyButtonHome}"
-                RelativePanel.AlignRightWithPanel="True" 
-                Click="ButtonAbout_Click"
-                />
+                    Content="About"
+                    Style="{StaticResource MyButtonHome}"
+                    RelativePanel.AlignRightWithPanel="True" 
+                    Click="ButtonAbout_Click"
+                    />
         </RelativePanel>
     </Grid>
 

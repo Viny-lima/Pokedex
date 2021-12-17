@@ -27,8 +27,7 @@
                       ItemsSource="{x:Bind typesFlipView}"
                       Background="#00000000"
                       Foreground="#00000000"
-                      Tapped="MyFlipView_Tapped"
-                      IsTapEnabled="False"
+                      Tapped="MyFlipView_Tapped"                      
                       >
                 <FlipView.ItemTemplate>
                     <DataTemplate x:DataType="model:TypeViewModel">

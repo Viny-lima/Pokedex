@@ -26,11 +26,16 @@ namespace Pokedex.View
     public sealed partial class ListPage : Page
     {
         private PokemonService _service = new PokemonService();
-        public ListPokemonViewModel viewList = new ListPokemonViewModel();
+        public ListPokemonViewModel viewList;
 
         public ListPage()
         {            
             this.InitializeComponent();            
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            viewList = new ListPokemonViewModel((PageOrigin) e.Parameter);
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)

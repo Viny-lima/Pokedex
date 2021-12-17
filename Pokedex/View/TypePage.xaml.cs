@@ -35,6 +35,5 @@ namespace Pokedex.View
 
             Test.Text = $"{itemSelect.Name}";
         }
-
     }
 }

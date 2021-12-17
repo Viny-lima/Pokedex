@@ -46,10 +46,10 @@
                        FontSize="80"
                        />
                 <TextBlock  Name="Describe"
-                        TextWrapping="Wrap"
-                        Style="{StaticResource MyDescribe}"
-                        Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics, abilities and movements."   
-                        />
+                            TextWrapping="Wrap"
+                            Style="{StaticResource MyDescribe}"
+                            Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics, abilities and movements."   
+                            />
                 <TextBlock Name="ERRO"
                            Style="{StaticResource MyFontTitle}" 
                            FontSize="12"
@@ -65,10 +65,10 @@
                                 QuerySubmitted="BarSearchResponsive_QuerySubmitted"
                                 />
                 <Button Name="ButtonAllTwo"
-                    Content="See the pokemons"
-                    FontSize="20"
-                    Style="{StaticResource MyButtonHome}"
-                    />
+                        Content="See the pokemons"
+                        FontSize="20"
+                        Style="{StaticResource MyButtonHome}"
+                        />
             </StackPanel>            
         </Grid>
         
