@@ -15,17 +15,16 @@ namespace Pokedex.Migrations.Startup
             //p.Database.Migrate();
             IPokemonService<PokemonDB> service = new PokemonService();
 
+            var pokemons = ApiRequest.GetPokemonsListByType(1, 0, 0);
+
             //var pdao = new PokemonDAO();
 
             //var pokemons = pdao.FindByType("normal").Result;
             //var pokemon = service.FindPokemonByName("eternatus").Result;
-            //var p = service.FindPokemonById(889).Result;
+            //var p = service.FindPokemonById(92).Result;
             //service.DeletePokemon(p);
 
-            var pokemons = service.FindPokemonsByType("fire", 1, 10).Result;
-
-            //Console.WriteLine(pokemon.Id);
-            //Console.WriteLine(pokemon.Name);
+            //var pokemons = service.FindPokemonsByType("ghost", 1, 10).Result;
 
             //var pokemontype = type.Pokemons;
 

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Pokedex.Model.Enums;
 using Pokedex.Model.PokeApi;
 using System;
 using System.Collections.Generic;
@@ -132,11 +133,11 @@ namespace Pokedex.Model.Service
         /// <param name="startIndex">Id do primeiro <see cref="PokemonAPI"/> que se deseja na adicionar na lista.</param>
         /// <param name="quantity">Quantidade de <see cref="PokemonAPI"/> adiciondos a lista.</param>
         /// <returns>Uma <see cref="List{Pokemon}"/> de pokemons construidas pela API.</returns>
-        public static List<PokemonAPI> GetPokemonsList(int startIndex = 0, int quantity = 10)
+        public static IList<PokemonAPI> GetPokemonsList(int startIndex = 0, int quantity = 10)
         {
             PokemonPropertiesList propertiesList = GetPropertiesListPokemons(startIndex, quantity);
 
-            List<PokemonAPI> pokemons = new List<PokemonAPI>();
+            IList<PokemonAPI> pokemons = new List<PokemonAPI>();
 
             foreach (PokemonAddressAPI address in propertiesList.Results)
             {
@@ -146,6 +147,26 @@ namespace Pokedex.Model.Service
             }
                 
             return pokemons;
-        }                  
+        }
+        
+        public static IList<PokemonAPI> GetPokemonsListByType(int typeNumber, int startIndex = 0, int quantity = 10)
+        {
+            string url = $"https://pokeapi.co/api/v2/type/{typeNumber}";
+
+            var propertiesList = Get<TypePageAPI>(url);
+
+            Console.WriteLine(propertiesList);
+
+            IList<PokemonAPI> pokemons = new List<PokemonAPI>();
+
+            foreach (var pokemon in propertiesList.Pokemons)
+            {
+                var propertiesUrl = pokemon.PokemonAddress.Url.ToString();
+
+                pokemons.Add(Get<PokemonAPI>(propertiesUrl));
+            }
+
+            return pokemons;
+        }
     }
 }
