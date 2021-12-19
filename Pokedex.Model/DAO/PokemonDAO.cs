@@ -62,13 +62,18 @@ namespace Pokedex.Model.DAO
                 .ThenInclude(prop => prop.Pokemon)
                 .FirstOrDefaultAsync(t => t.Name == typeName);
 
-            var list = type.Pokemons
-                .Select(tp => tp.Pokemon)
-                .Skip(start)
-                .Take(quantity)
-                .ToList();
+            if (type != null)
+            {
+                var list = type.Pokemons
+                    .Select(tp => tp.Pokemon)
+                    .Skip(start)
+                    .Take(quantity)
+                    .ToList();
 
-            return list;
+                return list;
+            }
+
+            return null;
         }
     }
 }
