@@ -1,9 +1,12 @@
 ﻿using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace Pokedex.Model.PokeApi
 {
     public class PokemonAddressAPI 
     {
+        public int Id { get; set; }
+
         [JsonProperty("name")]
         private string _name;
         public string NamePokemon
@@ -38,15 +41,21 @@ namespace Pokedex.Model.PokeApi
         {
             get
             {
-                string id = Url.ToString(); //https://pokeapi.co/api/v2/pokemon/1/
-
-                id = id.Substring(0, id.Length - 1); //https://pokeapi.co/api/v2/pokemon/1
-                id = id.Substring(id.LastIndexOf("/")); //1
-
-                string UrlImagem = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png";
+                string UrlImagem = $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{Id}.png";
 
                 return UrlImagem;
             }
+        }
+
+        [OnDeserialized]
+        private void SetIdOnDeserialized(StreamingContext context)
+        {
+            string id = Url.ToString(); //ex: https://pokeapi.co/api/v2/pokemon/1/
+
+            id = id.Substring(0, id.Length - 1); //ex: https://pokeapi.co/api/v2/pokemon/1
+            id = id.Substring(id.LastIndexOf("/") + 1); //ex: 1
+
+            this.Id = int.Parse(id);
         }
     }
 }
