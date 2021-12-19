@@ -149,21 +149,18 @@ namespace Pokedex.Model.Service
             return pokemons;
         }
         
-        public static IList<PokemonAPI> GetPokemonsListByType(int typeNumber, int startIndex = 0, int quantity = 10)
+        public static IList<PokemonAPI> GetPokemonsListByType(int typeNumber)
         {
             string url = $"https://pokeapi.co/api/v2/type/{typeNumber}";
 
             var propertiesList = Get<TypePageAPI>(url);
 
-            Console.WriteLine(propertiesList);
-
             IList<PokemonAPI> pokemons = new List<PokemonAPI>();
 
             foreach (var pokemon in propertiesList.Pokemons)
             {
-                var propertiesUrl = pokemon.PokemonAddress.Url.ToString();
-
-                pokemons.Add(Get<PokemonAPI>(propertiesUrl));
+                pokemons.Add(new PokemonAPI() { Id = pokemon.PokemonAddress.Id,
+                                                Name = pokemon.PokemonAddress.NamePokemon});
             }
 
             return pokemons;

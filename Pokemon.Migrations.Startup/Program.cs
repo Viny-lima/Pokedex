@@ -15,7 +15,7 @@ namespace Pokedex.Migrations.Startup
             //p.Database.Migrate();
             IPokemonService<PokemonDB> service = new PokemonService();
 
-            var pokemons = ApiRequest.GetPokemonsListByType(1, 0, 0);
+            var pokemons = ApiRequest.GetPokemonsListByType(1);
 
             //var pdao = new PokemonDAO();
 
