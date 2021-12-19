@@ -2,7 +2,7 @@
 using Pokedex.Model.Entities;
 using Pokedex.Model.PokeApi;
 
-namespace Pokedex.ViewModels
+namespace Pokedex.ViewModel
 {
     public class PokemonViewModel : ObservableObject
     {

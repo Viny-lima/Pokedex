@@ -14,8 +14,7 @@ namespace Pokedex.Model.DAO
         {
             PokedexContext context = new PokedexContext();
 
-            var pokemon = await context
-                                .Pokemons
+            var pokemon = await context.Pokemons
                                 .Include(prop => prop.Types)
                                 .ThenInclude(prop => prop.Type)
                                 .Include(prop => prop.Moves)

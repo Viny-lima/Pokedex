@@ -1,6 +1,7 @@
 ﻿using Pokedex.Model.DAO;
 using Pokedex.Model.Entities;
 using Pokedex.Model.Service;
+using Pokedex.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,43 +17,38 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace Pokedex.View
 {
-    /// <summary>
-    /// Uma página vazia que pode ser usada isoladamente ou navegada dentro de um Quadro.
-    /// </summary>
-    public sealed partial class Main : Page
+    public sealed partial class MainPage : Page
     {
-        public Main()
+        public MainPage()
         {
             this.InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
-        {            
-            RootFrame.Navigate(typeof(Home));
+        {  
+            RootFrame.Navigate(typeof(HomePage));
         }
 
         private void ButtonHome_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(Home));
+            RootFrame.Navigate(typeof(HomePage));
         }
 
         private void ButtonTypes_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(Types));
+            RootFrame.Navigate(typeof(TypePage));
         }
 
-        private void ButtonAllPokemons_Click(object sender, RoutedEventArgs e)
+        private void ButtonListPokemons_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(All));
+            RootFrame.Navigate(typeof(ListPage), PageOrigin.MainPage);
         }
 
         private void ButtonAbout_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(About));
+            RootFrame.Navigate(typeof(AboutPage));
         }
     }
 }
