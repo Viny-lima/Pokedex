@@ -98,7 +98,7 @@ namespace Pokedex.Model.Service
         /// <returns>Um object <see cref="PokemonAPI"/> construido pela API.</returns>
         public static PokemonAPI GetPokemon(int Id)
         {
-            var stringUrl = $"https://pokeapi.co/api/v2/pokemon/{Id}";
+            var stringUrl = $"{UrlConstants.BaseUrl}{UrlConstants.PokemonEndpoint}{Id}";
 
             return Get<PokemonAPI>(stringUrl);
         }
@@ -110,7 +110,7 @@ namespace Pokedex.Model.Service
         /// <returns>Um object <see cref="PokemonAPI"/> construido pela API.</returns>
         public static PokemonAPI GetPokemon(string name)
         {
-            var stringUrl = $"https://pokeapi.co/api/v2/pokemon/{name}";
+            var stringUrl = $"{UrlConstants.BaseUrl}{UrlConstants.PokemonEndpoint}{name}";
 
             return Get<PokemonAPI>(stringUrl);
         }
@@ -123,7 +123,7 @@ namespace Pokedex.Model.Service
         /// <returns>Um object <see cref="PokemonPropertiesList"/> construido pela API.</returns>
         public static PokemonPropertiesList GetPropertiesListPokemons(int startIndex = 0, int quantity = 10)
         {
-            string stringUrl = $"https://pokeapi.co/api/v2/pokemon?limit={quantity}&offset={startIndex}";
+            string stringUrl = $"{UrlConstants.BaseUrl}{UrlConstants.PokemonEndpoint}?limit={quantity}&offset={startIndex}";
             return Get<PokemonPropertiesList>(stringUrl);
         }
 
@@ -151,7 +151,7 @@ namespace Pokedex.Model.Service
         
         public static IList<PokemonAPI> GetPokemonsListByType(int typeNumber)
         {
-            string url = $"https://pokeapi.co/api/v2/type/{typeNumber}";
+            string url = $"{UrlConstants.BaseUrl}{UrlConstants.TypeEndpoint}{typeNumber}";
 
             var propertiesList = Get<TypePageAPI>(url);
 
