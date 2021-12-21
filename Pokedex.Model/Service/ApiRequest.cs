@@ -139,7 +139,7 @@ namespace Pokedex.Model.Service
 
             IList<PokemonAPI> pokemons = new List<PokemonAPI>();
 
-            foreach (PokemonAddressAPI address in propertiesList.Results)
+            foreach (PokemonUrlAPI address in propertiesList.Results)
             {
                 string stringUrl = address.Url.ToString();
 
@@ -160,7 +160,7 @@ namespace Pokedex.Model.Service
             foreach (var pokemon in propertiesList.Pokemons)
             {
                 pokemons.Add(new PokemonAPI() { Id = pokemon.PokemonAddress.Id,
-                                                Name = pokemon.PokemonAddress.NamePokemon});
+                                                Name = pokemon.PokemonAddress.Name });
             }
 
             return pokemons;
