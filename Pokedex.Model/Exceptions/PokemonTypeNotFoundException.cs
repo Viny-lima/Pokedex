@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Pokedex.Model.Exceptions
 {
-    class PokemonTypeNotFoundException : Exception
+    public class PokemonTypeNotFoundException : Exception
     {
         public PokemonTypeNotFoundException() { }
 

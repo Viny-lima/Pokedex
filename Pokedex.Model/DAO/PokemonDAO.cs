@@ -72,7 +72,18 @@ namespace Pokedex.Model.DAO
                 return list;
             }
 
-            return null;
+            return new List<PokemonDB>();
+        }
+
+        public async Task<int> FindLastId()
+        {
+            PokedexContext context = new PokedexContext();
+
+            var lastId = await context.Pokemons
+                                      .OrderByDescending(p => p.Id)
+                                      .FirstOrDefaultAsync();
+
+            return lastId.Id;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Pokedex.Model.DAO;
 using Pokedex.Model.Entities;
+using Pokedex.Model.Enums;
+using Pokedex.Model.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +13,12 @@ namespace Pokedex.Model.Service
     public class PokemonService : IPokemonService<PokemonDB>
     {
         private IDAO<PokemonDB> _pokemonDAO;
+        private IDAO<TypeDB> _typeDAO;
 
         public PokemonService()
         {
             _pokemonDAO = new PokemonDAO();
+            _typeDAO = new TypeDAO();
         }
 
         public async Task AddPokemon(PokemonDB pokemon)
@@ -22,9 +26,12 @@ namespace Pokedex.Model.Service
             await _pokemonDAO.Add(pokemon);
         }
 
-        public async Task AddCustomPokemon(PokemonDB pokemon)
+        public async Task AddCustomPokemon(PokemonDB pokemon, string typeName)
         {
-            
+            await SetCustomPokemonId(pokemon);
+
+            await SetCustomPokemonType(pokemon, typeName);
+
             await _pokemonDAO.Add(pokemon);
         }
 
@@ -128,6 +135,43 @@ namespace Pokedex.Model.Service
             var pokemons = await ((PokemonDAO)_pokemonDAO).FindByType(name, start, quantity);
 
             return pokemons;
+        }
+
+        private async Task SetCustomPokemonId(PokemonDB pokemon)
+        {
+            var lastId = await ((PokemonDAO)_pokemonDAO).FindLastId();
+
+            if (lastId < 100001)
+            {
+                pokemon.Id = 100001;
+            }
+            else
+            {
+                pokemon.Id = lastId + 1;
+            }
+        }
+
+        private async Task SetCustomPokemonType(PokemonDB pokemon, string typeName)
+        {
+            var type = await ((TypeDAO)_typeDAO).FindByName(typeName);
+
+            if (type == null)
+            {
+                if (Enum.IsDefined(typeof(TypeNames), typeName))
+                {
+                    pokemon.Types.Add(
+                            new TypePokemonDB() { Type = new TypeDB() { Name = typeName } }
+                        );
+                }
+                else
+                {
+                    throw new PokemonTypeNotFoundException("Pokemon type doesn't exist");
+                }
+            }
+            else
+            {
+                pokemon.Types.Add(new TypePokemonDB() { TypeId = type.Id });
+            }
         }
     }
 }
