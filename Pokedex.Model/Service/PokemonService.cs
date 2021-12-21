@@ -21,7 +21,13 @@ namespace Pokedex.Model.Service
         {
             await _pokemonDAO.Add(pokemon);
         }
-       
+
+        public async Task AddCustomPokemon(PokemonDB pokemon)
+        {
+            
+            await _pokemonDAO.Add(pokemon);
+        }
+
         public async Task UpdatePokemon(PokemonDB pokemon)
         {
             await _pokemonDAO.Update(pokemon);
@@ -36,15 +42,25 @@ namespace Pokedex.Model.Service
         {
             var pokemonFound = await ((PokemonDAO)_pokemonDAO).FindById(id);
 
-            if (pokemonFound == null)
+            if (pokemonFound == null || pokemonFound.Types == null)
             {
                 var pokemonApi = ApiRequest.GetPokemon(id);
                 
                 if (pokemonApi != null)
                 {
-                    pokemonFound = new PokemonDB(pokemonApi);
-                    await _pokemonDAO.Add(pokemonFound);
+                    var pokemonToAddOrUpdate = new PokemonDB(pokemonApi);
+
+                    if (pokemonFound == null)
+                    {
+                        await _pokemonDAO.Add(pokemonToAddOrUpdate);
+                    }
+                    else
+                    {
+                        await _pokemonDAO.Update(pokemonToAddOrUpdate);
+                    }
                 }
+
+                pokemonFound = await ((PokemonDAO)_pokemonDAO).FindById(id);
             }
 
             return pokemonFound;
@@ -54,15 +70,25 @@ namespace Pokedex.Model.Service
         {
             var pokemonFound = await ((PokemonDAO)_pokemonDAO).FindByName(name);
 
-            if (pokemonFound == null)
+            if (pokemonFound == null || pokemonFound.Types == null)
             {
                 var pokemonApi = ApiRequest.GetPokemon(name);
 
                 if (pokemonApi != null)
                 {
-                    pokemonFound = new PokemonDB(pokemonApi);
-                    await _pokemonDAO.Add(pokemonFound);
+                    var pokemonToAddOrUpdate = new PokemonDB(pokemonApi);
+
+                    if (pokemonFound == null)
+                    {
+                        await _pokemonDAO.Add(pokemonToAddOrUpdate);
+                    }
+                    else
+                    {
+                        await _pokemonDAO.Update(pokemonToAddOrUpdate);
+                    }
                 }
+
+                pokemonFound = await ((PokemonDAO)_pokemonDAO).FindByName(name);
             }
 
             return pokemonFound;
