@@ -10,6 +10,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources\DictionaryResourcesMain.xaml"/>
                 <ResourceDictionary Source="Resources\DictionaryPokemonPage.xaml"/>
+                <ResourceDictionary Source="Resources\DictionaryAddPokemonPage.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

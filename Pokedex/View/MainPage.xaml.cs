@@ -51,5 +51,10 @@ namespace Pokedex.View
         {
             RootFrame.Navigate(typeof(AboutPage));
         }
+
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            RootFrame.Navigate(typeof(AddPokemonPage));
+        }
     }
 }

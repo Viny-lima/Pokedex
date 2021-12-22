@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="Pokedex.View.AddPokemonPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Pokedex.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/Components/DEFAULT_BG.jpg"
+                        Stretch="UniformToFill"
+                        />
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Background="White" Padding="20" CornerRadius="10">
+            
+            <TextBlock Name="Title" Text="CREATE POKEMON" 
+                       Style="{StaticResource MyFontAddPokemonPage}" 
+                       RelativePanel.AlignTopWithPanel="True"/>
+
+            <TextBox x:Name="Name" Header= "Name" />
+
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="Hp" Header= "Hp" Margin="0,24,0,0"/>
+                <TextBox x:Name="Defense" Header= "Defense" Margin="20,24,0,0"/>
+                <TextBox x:Name="Attack" Header= "Attack" Margin="20,24,0,0"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="SpecialAttack" Header= "Special Attack" Margin="0,24,0,0" />
+                <TextBox x:Name="SpecialDefense" Header= "Special Defense" Margin="20,24,0,0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="Speed" Header= "Speed" Margin="0,24,0,0" />
+                <TextBox x:Name="Height" Header= "Height" Margin="20,24,0,0"/>
+                <TextBox x:Name="Weight" Header= "Weight" Margin="20,24,0,0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="BaseExperience" Header= "Base Experience" Margin="0,24,0,0" />
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Page>

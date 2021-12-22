@@ -68,6 +68,7 @@
                         Content="See the pokemons"
                         FontSize="20"
                         Style="{StaticResource MyButtonHome}"
+                        Click="ButtonAllTwo_Click"
                         />
             </StackPanel>            
         </Grid>

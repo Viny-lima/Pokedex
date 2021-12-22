@@ -63,7 +63,7 @@ namespace Pokedex.Model.DAO
 
             var list = type.Pokemons
                 .Select(tp => tp.Pokemon)
-                .Skip(start)
+                .Skip(start-1)
                 .Take(quantity)
                 .ToList();
 
