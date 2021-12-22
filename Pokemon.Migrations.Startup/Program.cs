@@ -4,6 +4,9 @@ using Pokedex.Model.Service;
 using Pokedex.Model.Entities;
 using Pokedex.Model.DAO;
 using System.Linq;
+using Microsoft.Data.Sqlite;
+using Pokedex.Model.Exceptions;
+using System.Diagnostics;
 
 namespace Pokedex.Migrations.Startup
 {
@@ -15,26 +18,25 @@ namespace Pokedex.Migrations.Startup
             //p.Database.Migrate();
             IPokemonService<PokemonDB> service = new PokemonService();
 
-            //var pdao = new PokemonDAO();
+            Console.ReadLine();
+            var timer = new Stopwatch();
+            timer.Start();
 
-            //var pokemons = pdao.FindByType("normal").Result;
-            //var pokemon = service.FindPokemonByName("eternatus").Result;
-            //var p = service.FindPokemonById(889).Result;
-            //service.DeletePokemon(p);
+            var pokemon = service.FindPokemonByName("toxel").Result;
 
-            var pokemons = service.FindPokemonsByType("fire", 1, 10).Result;
+            //foreach (var pokemon in pokemons)
+            //{
+            //    Console.WriteLine(pokemon.Id);
+            //    Console.WriteLine(pokemon.Name);
+            //}
 
-            //Console.WriteLine(pokemon.Id);
-            //Console.WriteLine(pokemon.Name);
 
-            //var pokemontype = type.Pokemons;
+            Console.WriteLine(pokemon.Name);
+            Console.WriteLine(pokemon.Id);
+            Console.WriteLine(pokemon.Types[0].Type.Name);
 
-            foreach (var pokemon in pokemons)
-            {
-                Console.WriteLine(pokemon.Id);
-                Console.WriteLine(pokemon.Name);
-            }
-
+            timer.Stop();
+            Console.WriteLine(timer.Elapsed.ToString());
         }
 
         private static void AdicionandoSemDuplicidade()

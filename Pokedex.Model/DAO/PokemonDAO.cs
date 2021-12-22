@@ -61,13 +61,29 @@ namespace Pokedex.Model.DAO
                 .ThenInclude(prop => prop.Pokemon)
                 .FirstOrDefaultAsync(t => t.Name == typeName);
 
-            var list = type.Pokemons
-                .Select(tp => tp.Pokemon)
-                .Skip(start-1)
-                .Take(quantity)
-                .ToList();
+            if (type != null)
+            {
+                var list = type.Pokemons
+                    .Select(tp => tp.Pokemon)
+                    .Skip(start)
+                    .Take(quantity)
+                    .ToList();
 
-            return list;
+                return list;
+            }
+
+            return new List<PokemonDB>();
+        }
+
+        public async Task<int> FindLastId()
+        {
+            PokedexContext context = new PokedexContext();
+
+            var lastId = await context.Pokemons
+                                      .OrderByDescending(p => p.Id)
+                                      .FirstOrDefaultAsync();
+
+            return lastId.Id;
         }
     }
 }

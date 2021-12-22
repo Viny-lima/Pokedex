@@ -9,6 +9,7 @@ namespace Pokedex.Model.Service
     public interface IPokemonService<T> where T : class, IEntity
     {
         Task AddPokemon(T pokemon);
+        Task AddCustomPokemon(T pokemon, string typeName);
         Task UpdatePokemon(T pokemon);
         Task DeletePokemon(T pokemon);
         Task<IList<T>> FindPokemonsById(int start, int quantity);
