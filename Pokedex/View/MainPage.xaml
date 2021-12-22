@@ -21,42 +21,41 @@
                     Source="..\Assets\Components\LOGO.png"
                     />
 
-            <Button x:Name="ButtonAdd"
-                    Content="Add"
-                    Style="{StaticResource MyButtonHome}"
-                    RelativePanel.LeftOf="ButtonHome" 
-                    Click="ButtonAdd_Click"
-                    />
-
             <Button Name="ButtonHome"
                 Content="Home"
-                Style="{StaticResource MyButtonHome}"
-                RelativePanel.LeftOf="ButtonTypes" 
+                Style="{StaticResource MyButtonWhite}"
+                RelativePanel.LeftOf="ButtonAdd" 
                 Click="ButtonHome_Click"
                 />
 
+            <Button x:Name="ButtonAdd"
+                    Content="Add"
+                    Style="{StaticResource MyButtonWhite}"
+                    RelativePanel.LeftOf="ButtonTypes" 
+                    Click="ButtonAdd_Click"
+                    />
+
             <Button Name="ButtonTypes"
                     Content="Types"
-                    Style="{StaticResource MyButtonHome}"                    
+                    Style="{StaticResource MyButtonWhite}"                    
                     RelativePanel.LeftOf="ButtonAllPokemons" 
                     Click="ButtonTypes_Click"                  
                     />
 
             <Button Name="ButtonAllPokemons"
                     Content="List"
-                    Style="{StaticResource MyButtonHome}"
+                    Style="{StaticResource MyButtonWhite}"
                     RelativePanel.LeftOf="ButtonAbout" 
                     Click="ButtonListPokemons_Click"                  
                     />
 
             <Button Name="ButtonAbout"
                     Content="About"
-                    Style="{StaticResource MyButtonHome}"
+                    Style="{StaticResource MyButtonWhite}"
                     RelativePanel.AlignRightWithPanel="True" 
                     Click="ButtonAbout_Click"
                     />
         </RelativePanel>
     </Grid>
-
     
 </Page>

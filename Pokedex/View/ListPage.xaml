@@ -57,13 +57,13 @@
 
 
                             <TextBlock  Text="{Binding Id}" 
-                                    FontSize="50"
-                                    Foreground="{StaticResource MyColorPokemonPage}" 
-                                    FontFamily="Humnst777 BlkCn BT"
-                                    VerticalAlignment="Center"
-                                    Margin="20,0,0,0"
-                                    Grid.Column="0" 
-                                    />
+                                        FontSize="50"
+                                        Foreground="{StaticResource MyColorGreen}" 
+                                        FontFamily="Humnst777 BlkCn BT"
+                                        VerticalAlignment="Center"
+                                        Margin="20,0,0,0"
+                                        Grid.Column="0" 
+                                        />
 
 
                             <Image MaxHeight="150"
@@ -75,13 +75,13 @@
                             </Image>
 
                             <TextBlock  Text="{Binding Name}" 
-                                    FontSize="50"
-                                    Foreground="{StaticResource MyColorPokemonPage}" 
-                                    FontFamily="Humnst777 BlkCn BT"
-                                    VerticalAlignment="Center"
-                                    Margin="20"
-                                    Grid.Column="2" 
-                                    />
+                                        FontSize="50"
+                                        Foreground="{StaticResource MyColorGreen}" 
+                                        FontFamily="Humnst777 BlkCn BT"
+                                        VerticalAlignment="Center"
+                                        Margin="20"
+                                        Grid.Column="2" 
+                                        />
                         </Grid>
 
                     </DataTemplate>
@@ -92,12 +92,12 @@
 
                 <Button Name="ButtonNext"
                     Content="Next" 
-                    Style="{StaticResource MyButtonPokemonPage}"
+                    Style="{StaticResource MyButtonGreen}"
                     Click="ButtonNext_Click"/>
 
             </StackPanel>
-
         </Grid>
+        
     </Frame>
     
 </Page>

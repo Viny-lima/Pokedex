@@ -28,13 +28,13 @@
         <StackPanel Grid.Row="1" Grid.Column="1" Background="White" Padding="20" CornerRadius="10">
             
             <TextBlock Name="Title" Text="CREATE POKEMON" 
-                       Style="{StaticResource MyFontAddPokemonPage}" 
+                       Style="{StaticResource MyFontTitleAddPokemonPage}" 
                        RelativePanel.AlignTopWithPanel="True"/>
 
             <TextBox x:Name="Name" Header= "Name" />
 
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="Hp" Header= "Hp" Margin="0,24,0,0"/>
+                <TextBox x:Name="Hp" Header= "Hp" Margin="0,24,0,0" Style="{StaticResource MyFontLabelAddPokemonPage}"/>
                 <TextBox x:Name="Defense" Header= "Defense" Margin="20,24,0,0"/>
                 <TextBox x:Name="Attack" Header= "Attack" Margin="20,24,0,0"/>
             </StackPanel>
