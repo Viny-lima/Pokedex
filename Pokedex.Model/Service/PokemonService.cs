@@ -132,7 +132,7 @@ namespace Pokedex.Model.Service
 
         public async Task<IList<PokemonDB>> FindPokemonsByType(string name, int start, int quantity)
         {
-            var pokemons = await ((PokemonDAO)_pokemonDAO).FindByType(name, start, quantity);
+            var pokemons = await ((PokemonDAO)_pokemonDAO).FindByType(name, start - 1, quantity);
 
             return pokemons;
         }
