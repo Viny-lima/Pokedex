@@ -82,89 +82,90 @@ namespace Pokedex.Model.Entities
             this.Weight = pokemonAPI.Weight;
             this.BaseExperience = pokemonAPI.BaseExperience;
 
-            AddTypes(pokemonAPI);
-            AddMoves(pokemonAPI);
-            AddAbilities(pokemonAPI);
+            AddTypesAPI(pokemonAPI);
+            AddMovesAPI(pokemonAPI);
+            AddAbilitiesAPI(pokemonAPI);
         }  
 
-        private async void AddTypes(PokemonAPI pokemonAPI)
+        private async void AddTypesAPI(PokemonAPI pokemonAPI)
         {
             for (int i = 0; i < pokemonAPI.Types.Count; i++)
             {
-                await ToCheckAndAdd(i);
+                await AddType(pokemonAPI.Types[i].Type.Name);
             }      
-            
-            Task ToCheckAndAdd(int i)       
-            {
-                var db = new TypeDAO();
-                var typeDB = new TypeDB() { Name = pokemonAPI.Types[i].Type.Name };                                              
+        }       
 
-                if (db.Exists(typeDB))
-                {
-                    typeDB = db.FindAll().Result.FirstOrDefault(p => p.Name == typeDB.Name);
-
-                    Types.Add(new TypePokemonDB() { TypeId = typeDB.Id });
-                }
-                else
-                {
-                    Types.Add(new TypePokemonDB() { Type = typeDB });
-                }
-
-                return Task.CompletedTask;
-            }
-        }
-
-        private async void AddMoves(PokemonAPI pokemonAPI)
+        private async void AddMovesAPI(PokemonAPI pokemonAPI)
         {
             for (int i = 0; i < pokemonAPI.Moves.Count; i++)
             {
-                await ToCheckAndAdd(i);
-            }
-
-            Task ToCheckAndAdd(int i)
-            {
-                var db = new MoveDAO();
-                var moveDB = new MoveDB() { Name = pokemonAPI.Moves[i].Move.Name };
-
-                if (db.Exists(moveDB))
-                {
-                    moveDB = db.FindAll().Result.FirstOrDefault(p => p.Name == moveDB.Name);
-
-                    Moves.Add(new MovePokemonDB() { MoveId = moveDB.Id });
-                }
-                else
-                {
-                    Moves.Add(new MovePokemonDB() { Move = moveDB });
-                }
-
-                return Task.CompletedTask;
-            }
+                await AddMove(pokemonAPI.Moves[i].Move.Name);
+            }            
         }
 
-        private async void AddAbilities(PokemonAPI pokemonAPI)
+        private async void AddAbilitiesAPI(PokemonAPI pokemonAPI)
         {
             for (int i = 0; i < pokemonAPI.Moves.Count; i++)
             {
-                await ToCheckAndAdd(i);
+                await AddAbility(pokemonAPI.Moves[i].Move.Name);
             }
+        }
 
-            Task ToCheckAndAdd(int i)
+        public Task AddType(string typeName)
+        {
+            var db = new TypeDAO();
+            var typeDB = new TypeDB() { Name = typeName };
+
+            if (db.Exists(typeDB))
             {
-                var db = new AbilityDAO();
-                var abilityDB = new AbilityDB() { Name = pokemonAPI.Moves[i].Move.Name };
+                typeDB = db.FindAll().Result.FirstOrDefault(p => p.Name == typeDB.Name);
 
-                if (db.Exists(abilityDB))
-                {
-                    abilityDB = db.FindAll().Result.FirstOrDefault(p => p.Name == abilityDB.Name);
-                    Abilities.Add(new AbilityPokemonDB() { AbilityId = abilityDB.Id });
-                }
-                else
-                {
-                    Abilities.Add(new AbilityPokemonDB() { Ability = abilityDB });
-                }
-
-                return Task.CompletedTask;
+                Types.Add(new TypePokemonDB() { TypeId = typeDB.Id });
             }
+            else
+            {
+                Types.Add(new TypePokemonDB() { Type = typeDB });
+            }
+
+            return Task.CompletedTask;
+        }
+
+        public Task AddMove(string moveName)
+        {
+            var db = new MoveDAO();
+            var moveDB = new MoveDB() { Name = moveName };
+
+            if (db.Exists(moveDB))
+            {
+                moveDB = db.FindAll().Result.FirstOrDefault(p => p.Name == moveDB.Name);
+
+                Moves.Add(new MovePokemonDB() { MoveId = moveDB.Id });
+            }
+            else
+            {
+                Moves.Add(new MovePokemonDB() { Move = moveDB });
+            }
+
+            return Task.CompletedTask;
+        }        
+
+        private Task AddAbility(string abilityName)
+        {
+            var db = new AbilityDAO();
+            var abilityDB = new AbilityDB() { Name = abilityName};
+
+            if (db.Exists(abilityDB))
+            {
+                abilityDB = db.FindAll().Result.FirstOrDefault(p => p.Name == abilityDB.Name);
+
+                Abilities.Add(new AbilityPokemonDB() { AbilityId = abilityDB.Id });
+            }
+            else
+            {
+                Abilities.Add(new AbilityPokemonDB() { Ability = abilityDB });
+            }
+
+            return Task.CompletedTask;
         }
 
     }

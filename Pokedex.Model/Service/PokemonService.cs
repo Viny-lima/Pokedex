@@ -26,11 +26,9 @@ namespace Pokedex.Model.Service
             await _pokemonDAO.Add(pokemon);
         }
 
-        public async Task AddCustomPokemon(PokemonDB pokemon, string typeName)
+        public async Task AddCustomPokemon(PokemonDB pokemon)
         {
-            await SetCustomPokemonId(pokemon);
-
-            await SetCustomPokemonType(pokemon, typeName);
+            pokemon = await SetCustomPokemonId(pokemon);
 
             await _pokemonDAO.Add(pokemon);
         }
@@ -137,7 +135,7 @@ namespace Pokedex.Model.Service
             return pokemons;
         }
 
-        private async Task SetCustomPokemonId(PokemonDB pokemon)
+        private async Task<PokemonDB> SetCustomPokemonId(PokemonDB pokemon)
         {
             var lastId = await ((PokemonDAO)_pokemonDAO).FindLastId();
 
@@ -149,6 +147,8 @@ namespace Pokedex.Model.Service
             {
                 pokemon.Id = lastId + 1;
             }
+
+            return pokemon;
         }
 
         private async Task SetCustomPokemonType(PokemonDB pokemon, string typeName)
