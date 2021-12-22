@@ -21,82 +21,62 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
 
             <ListView Grid.Row="1"
-                  ItemsSource="{x:Bind viewList.Pokemons}"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                  IsItemClickEnabled="True"
-                  ItemClick="ListView_ItemClick"
-                  >
-
+                      ItemsSource="{x:Bind viewList.Pokemons}"
+                      HorizontalAlignment="Center"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      IsItemClickEnabled="True"
+                      ItemClick="ListView_ItemClick"
+                      >
+                
                 <ListView.ItemTemplate>
 
                     <DataTemplate x:DataType="data:PokemonDB">
 
-                        <Grid Grid.Row="2"
-                          Background="White"
-                          CornerRadius="10"
-                          MinWidth="500"
-                          Margin="20"
-                          HorizontalAlignment="Center"
-                          >
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-
-                            <TextBlock  Text="{Binding Id}" 
-                                        FontSize="50"
-                                        Foreground="{StaticResource MyColorGreen}" 
-                                        FontFamily="Humnst777 BlkCn BT"
+                        <StackPanel   Name="ItemPokemon"
+                                      Background="White"
+                                      CornerRadius="10"
+                                      MinWidth="450"
+                                      Margin="20"
+                                      HorizontalAlignment="Center"
+                                      Orientation="Horizontal"
+                                      >
+                            
+                            <TextBlock  Text="{Binding Id}"                                         
+                                        Style="{StaticResource MyFontDescribeGreen}"
                                         VerticalAlignment="Center"
                                         Margin="20,0,0,0"
-                                        Grid.Column="0" 
                                         />
 
-
                             <Image MaxHeight="150"
-                               MaxWidth="150"
-                               Grid.Column="1">
+                                   MaxWidth="150"
+                                   Grid.Column="1">
                                 <Image.Source>
                                     <BitmapImage UriSource="{Binding SpritesOfficialArtwork}"/>
                                 </Image.Source>
                             </Image>
 
                             <TextBlock  Text="{Binding Name}" 
-                                        FontSize="50"
-                                        Foreground="{StaticResource MyColorGreen}" 
-                                        FontFamily="Humnst777 BlkCn BT"
+                                        Style="{StaticResource MyFontDescribeGreen}"
+                                        Margin="10,0"
                                         VerticalAlignment="Center"
-                                        Margin="20"
-                                        Grid.Column="2" 
                                         />
-                        </Grid>
-
-                    </DataTemplate>
+                        </StackPanel>                       
+                    </DataTemplate>                    
                 </ListView.ItemTemplate>
             </ListView>
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
 
-                <Button Name="ButtonNext"
+            <Button Name="ButtonNext"
+                    Grid.Row="2"
+                    Grid.Column="1"                        
                     Content="Next" 
-                    Style="{StaticResource MyButtonGreen}"
+                    Style="{StaticResource MyButtonWhite}"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
                     Click="ButtonNext_Click"/>
-
-            </StackPanel>
-        </Grid>
+        </Grid>       
         
     </Frame>
     
