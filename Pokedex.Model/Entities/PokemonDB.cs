@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Pokedex.Model.DAO;
 using Pokedex.Model.PokeApi;
+using Pokedex.Model.Service;
 
 namespace Pokedex.Model.Entities
 {
@@ -42,11 +43,22 @@ namespace Pokedex.Model.Entities
 
         public IList<TypePokemonDB> Types { get; internal set; }
 
-        public PokemonDB()
+        public PokemonDB() 
         {
             this.Abilities = new List<AbilityPokemonDB>();
             this.Moves = new List<MovePokemonDB>();
             this.Types = new List<TypePokemonDB>();
+        }
+
+        public PokemonDB(int id, string name)
+        {
+            this.Abilities = new List<AbilityPokemonDB>();
+            this.Moves = new List<MovePokemonDB>();
+            this.Types = new List<TypePokemonDB>();
+
+            this.Id = id;
+            this.Name = name;
+            this.SpritesOfficialArtwork = $"{UrlConstants.SpriteUrl}{UrlConstants.ArtworkEndpoint}{this.Id}{UrlConstants.SpriteExtension}";
         }
 
         //Pokemon Criado com base em um elemento da API
@@ -59,8 +71,8 @@ namespace Pokedex.Model.Entities
             this.Id = pokemonAPI.Id;
             this.Hp = pokemonAPI.StatusBase[0].ValueState;
             this.Attack = pokemonAPI.StatusBase[1].ValueState;
-            this.SpritesFrontDefault = pokemonAPI.Sprites.FrontDefault;
-            this.SpritesOfficialArtwork = pokemonAPI.Sprites.Other.OfficialArtwork.FrontDefault;
+            this.SpritesFrontDefault = $"{UrlConstants.SpriteUrl}{this.Id}{UrlConstants.SpriteExtension}";
+            this.SpritesOfficialArtwork = $"{UrlConstants.SpriteUrl}{UrlConstants.ArtworkEndpoint}{this.Id}{UrlConstants.SpriteExtension}";
             this.Defense = pokemonAPI.StatusBase[2].ValueState;
             this.SpecialAttack = pokemonAPI.StatusBase[3].ValueState;
             this.SpecialDefense = pokemonAPI.StatusBase[4].ValueState;
@@ -118,7 +130,7 @@ namespace Pokedex.Model.Entities
                 {
                     moveDB = db.FindAll().Result.FirstOrDefault(p => p.Name == moveDB.Name);
 
-                    Moves.Add(new MovePokemonDB() { MoveId = moveDB.Id});
+                    Moves.Add(new MovePokemonDB() { MoveId = moveDB.Id });
                 }
                 else
                 {

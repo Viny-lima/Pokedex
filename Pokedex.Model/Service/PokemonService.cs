@@ -49,7 +49,7 @@ namespace Pokedex.Model.Service
         {
             var pokemonFound = await ((PokemonDAO)_pokemonDAO).FindById(id);
 
-            if (pokemonFound == null || pokemonFound.Types == null)
+            if (pokemonFound == null || pokemonFound.Types == null || pokemonFound.Types.Count == 0)
             {
                 var pokemonApi = ApiRequest.GetPokemon(id);
                 
@@ -77,7 +77,7 @@ namespace Pokedex.Model.Service
         {
             var pokemonFound = await ((PokemonDAO)_pokemonDAO).FindByName(name);
 
-            if (pokemonFound == null || pokemonFound.Types == null)
+            if (pokemonFound == null || pokemonFound.Types == null || pokemonFound.Types.Count == 0)
             {
                 var pokemonApi = ApiRequest.GetPokemon(name);
 
@@ -112,12 +112,12 @@ namespace Pokedex.Model.Service
                 var pokemonsApi = ApiRequest.GetPokemonsList(start - 1, quantity);
 
                 var pokemonsToBeAdded = pokemonsApi
-                                        .Where(api => pokemons.Any(p => p.Id != api.Id))
+                                        .Where(api => !pokemons.Any(p => p.Id == api.Id))
                                         .ToList();
 
                 foreach (var pokemon in pokemonsToBeAdded)
                 {
-                    var pokemonDb = new PokemonDB(pokemon);
+                    var pokemonDb = new PokemonDB(pokemon.Id, pokemon.Name);
                     pokemons.Add(pokemonDb);
                     await _pokemonDAO.Add(pokemonDb);
                 }

@@ -8,6 +8,6 @@ namespace Pokedex.Model.PokeApi
     class PokemonTypePropertiesAPI
     {
         [JsonProperty("pokemon")]
-        public PokemonAddressAPI PokemonAddress { get; set; }
+        public PokemonUrlAPI PokemonAddress { get; set; }
     }
 }

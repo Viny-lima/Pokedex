@@ -5,66 +5,12 @@ using System.Collections.Generic;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class PokemonPropertiesList : ObservableObject
+    public class PokemonPropertiesList
     {
         [JsonProperty("count")]
-        private long _tamanhoDaLista;
-        public long TamanhoDaLista
-        {
-            get
-            {
-                return _tamanhoDaLista;
-            }
-
-            set
-            {
-                SetProperty(ref _tamanhoDaLista, value, nameof(TamanhoDaLista));
-            }
-        }
-
-        [JsonProperty("next")]
-        private string _next;
-        public string Next
-        {
-            get
-            {
-                return _next;
-            }
-
-            set
-            {
-                SetProperty(ref _next, value, nameof(Next));
-            }
-        }
-
-        [JsonProperty("previus")]
-        private string _previos;
-        public string Previous
-        {
-            get
-            {
-                return _previos;
-            }
-
-            set
-            {
-                SetProperty(ref _previos, value, nameof(Previous));
-            }
-        }
+        public long ListSize { get; set; }
 
         [JsonProperty("results")]
-        private List<PokemonAddressAPI> _results;
-        public List<PokemonAddressAPI> Results
-        {
-            get
-            {
-                return _results;
-            }
-
-            set
-            {
-                SetProperty(ref _results, value, nameof(Results));
-            }
-        }
+        public List<PokemonUrlAPI> Results { get; set; }
     }
 }

@@ -139,11 +139,9 @@ namespace Pokedex.Model.Service
 
             IList<PokemonAPI> pokemons = new List<PokemonAPI>();
 
-            foreach (PokemonUrlAPI address in propertiesList.Results)
+            foreach (var pokemon in propertiesList.Results)
             {
-                string stringUrl = address.Url.ToString();
-
-                pokemons.Add(Get<PokemonAPI>(stringUrl));
+                pokemons.Add(new PokemonAPI() { Id = pokemon.Id, Name = pokemon.Name });
             }
                 
             return pokemons;
