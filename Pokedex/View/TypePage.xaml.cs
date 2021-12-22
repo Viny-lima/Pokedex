@@ -31,7 +31,8 @@ namespace Pokedex.View
         {
             var itemSelect = (sender as FlipView).SelectedItem as TypeViewModel;
 
-            Test.Text = $"{itemSelect.Name}";
+            RootFrame.Navigate(typeof(ListPage),
+                                new Tuple<PageOrigin, TypeNames>(PageOrigin.TypePage, itemSelect.Name));
         }
     }
 }

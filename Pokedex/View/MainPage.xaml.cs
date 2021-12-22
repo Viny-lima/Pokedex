@@ -43,12 +43,18 @@ namespace Pokedex.View
 
         private void ButtonListPokemons_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(ListPage), PageOrigin.MainPage);
+            RootFrame.Navigate(typeof(ListPage), 
+                                new Tuple<PageOrigin,TypeNames>(PageOrigin.MainPage,TypeNames.none) );
         }
 
         private void ButtonAbout_Click(object sender, RoutedEventArgs e)
         {
             RootFrame.Navigate(typeof(AboutPage));
+        }
+
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            RootFrame.Navigate(typeof(AddPokemonPage));
         }
     }
 }

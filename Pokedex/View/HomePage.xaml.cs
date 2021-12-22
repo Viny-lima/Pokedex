@@ -1,6 +1,7 @@
 ﻿using Pokedex.Model.DAO;
 using Pokedex.Model.Entities;
 using Pokedex.Model.Service;
+using Pokedex.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -73,6 +74,11 @@ namespace Pokedex.View
             }
 
         }
-        
+
+        private void ButtonAllTwo_Click(object sender, RoutedEventArgs e)
+        {
+            RootFrame.Navigate(typeof(ListPage),
+                                new Tuple<PageOrigin, TypeNames>(PageOrigin.MainPage, TypeNames.none));
+        }
     }
 }

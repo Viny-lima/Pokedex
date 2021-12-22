@@ -21,6 +21,13 @@
                     Source="..\Assets\Components\LOGO.png"
                     />
 
+            <Button x:Name="ButtonAdd"
+                    Content="Add"
+                    Style="{StaticResource MyButtonHome}"
+                    RelativePanel.LeftOf="ButtonHome" 
+                    Click="ButtonAdd_Click"
+                    />
+
             <Button Name="ButtonHome"
                 Content="Home"
                 Style="{StaticResource MyButtonHome}"

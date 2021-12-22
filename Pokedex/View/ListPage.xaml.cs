@@ -35,7 +35,9 @@ namespace Pokedex.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            viewList = new ListPokemonViewModel((PageOrigin) e.Parameter);
+            Tuple<PageOrigin,TypeNames> parameterNavigation =(Tuple<PageOrigin,TypeNames>) e.Parameter;
+
+            viewList = new ListPokemonViewModel(parameterNavigation.Item1, parameterNavigation.Item2);
         }
 
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
