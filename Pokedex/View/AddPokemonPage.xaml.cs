@@ -39,7 +39,8 @@ namespace Pokedex.View
 
         private async void MyTypesView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            await _pokemonDB.AddType($"{(e.ClickedItem as TypeViewModel).Name}");        
+            var typeName = $"{(e.ClickedItem as TypeViewModel).Name}";
+            await _pokemonDB.AddType(typeName);        
         }
 
         private async void ButtonFinished_Click(object sender, RoutedEventArgs e)
@@ -52,11 +53,9 @@ namespace Pokedex.View
                 return;
             }
 
-            _pokemonDB = new PokemonDB
-            {
-                Name = Name.Text,
-                Hp = int.Parse(Hp.Text),
-            };
+            _pokemonDB.Name = Name.Text;
+            _pokemonDB.Hp = int.Parse(Hp.Text);
+            
 
             await _service.AddCustomPokemon(_pokemonDB);
 
@@ -70,7 +69,7 @@ namespace Pokedex.View
 
         private async void ButtonAddAbility_Click(object sender, RoutedEventArgs e)
         {
-            await _pokemonDB.AddMove(Abitily.Text);
+            await _pokemonDB.AddAbility(Abitily.Text);
         }
 
     }

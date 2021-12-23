@@ -9,6 +9,52 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/Components/DEFAULT_BG.jpg"
+                        Stretch="UniformToFill"
+                        />
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="2"
+                    Grid.ColumnSpan="3"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+            
+            <StackPanel>
+                <Image MaxWidth="400" 
+                       Source="../Assets/Components/Team/Rackel.png"/>
+                <TextBlock Text="Rackel" 
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource MyFontTitle}"/>
+            </StackPanel>
+            
+            <StackPanel>
+                <Image MaxWidth="400" 
+                       Source="../Assets/Components/Team/Ricardo.png"/>
+                <TextBlock Text="Ricardo" 
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource MyFontTitle}"/>
+            </StackPanel>
+            
+            <StackPanel Background="{StaticResource MyColorWhite}" 
+                        CornerRadius="50" 
+                        Margin="20,200"
+                        Padding="50"
+                        >
+                <Image MaxWidth="300" 
+                       Source="../Assets/Components/Team/Vinicius.png"/>
+                <TextBlock Text="Vinicius" 
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource MyFontTitle}"/>
+            </StackPanel>
+           
+        </StackPanel>
+        
 
     </Grid>
 </Page>

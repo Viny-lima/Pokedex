@@ -61,9 +61,9 @@
                                         Grid.Row="1"
                                         ItemsSource="{x:Bind typesFlipView}"
                                         Background="#00000000"
-                                        Foreground="#00000000"                                        
-                                        SelectionMode="Multiple"
+                                        Foreground="#00000000" 
                                         ItemClick="MyTypesView_ItemClick"
+                                        IsItemClickEnabled="True"
                                         >
                                 <GridView.ItemTemplate>
                                     <DataTemplate x:DataType="model:TypeViewModel">

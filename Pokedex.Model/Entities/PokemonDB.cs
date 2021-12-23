@@ -149,7 +149,7 @@ namespace Pokedex.Model.Entities
             return Task.CompletedTask;
         }        
 
-        private Task AddAbility(string abilityName)
+        public Task AddAbility(string abilityName)
         {
             var db = new AbilityDAO();
             var abilityDB = new AbilityDB() { Name = abilityName};
