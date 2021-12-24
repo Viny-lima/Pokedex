@@ -79,11 +79,16 @@ namespace Pokedex.Model.DAO
         {
             PokedexContext context = new PokedexContext();
 
-            var lastId = await context.Pokemons
+            var lastPokemon = await context.Pokemons
                                       .OrderByDescending(p => p.Id)
                                       .FirstOrDefaultAsync();
 
-            return lastId.Id;
+            if (lastPokemon == null)
+            {
+                return 0;
+            }
+
+            return lastPokemon.Id;
         }
     }
 }

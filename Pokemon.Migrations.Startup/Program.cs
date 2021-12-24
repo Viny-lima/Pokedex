@@ -15,14 +15,16 @@ namespace Pokedex.Migrations.Startup
         static void Main(string[] args)
         {
             //var p = new PokedexContext();
+            //p.Database.EnsureDeleted();
             //p.Database.Migrate();
+
             IPokemonService<PokemonDB> service = new PokemonService();
 
-            Console.ReadLine();
             var timer = new Stopwatch();
             timer.Start();
 
-            var pokemon = service.FindPokemonByName("toxel").Result;
+            //var pokemons = service.FindPokemonsByType("flying", 1, 10).Result;
+            var pokemon = service.FindPokemonById(11).Result;
 
             //foreach (var pokemon in pokemons)
             //{
@@ -30,10 +32,12 @@ namespace Pokedex.Migrations.Startup
             //    Console.WriteLine(pokemon.Name);
             //}
 
-
             Console.WriteLine(pokemon.Name);
             Console.WriteLine(pokemon.Id);
-            Console.WriteLine(pokemon.Types[0].Type.Name);
+            foreach (var typePokemon in pokemon.Types)
+            {
+                Console.WriteLine(typePokemon.Type.Name);
+            }
 
             timer.Stop();
             Console.WriteLine(timer.Elapsed.ToString());
