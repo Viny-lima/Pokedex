@@ -5,55 +5,128 @@
     xmlns:local="using:Pokedex.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:Pokedex.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="../Assets/Components/DEFAULT_BG.jpg"
+    <Frame Name="RootFrame">
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="../Assets/Components/DEFAULT_BG.jpg"
                         Stretch="UniformToFill"
                         />
-        </Grid.Background>
+            </Grid.Background>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Background="White" Padding="20" CornerRadius="10">
-            
-            <TextBlock Name="Title" Text="CREATE POKEMON" 
-                       Style="{StaticResource MyFontAddPokemonPage}" 
-                       RelativePanel.AlignTopWithPanel="True"/>
 
-            <TextBox x:Name="Name" Header= "Name" />
+            <RelativePanel Name="StatusView"
+                       Grid.Row="2"
+                       Background="{StaticResource MyColorWhite}"
+                       CornerRadius="20"
+                       Padding="50"
+                       MaxWidth="500"
+                       >
 
-            <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="Hp" Header= "Hp" Margin="0,24,0,0"/>
-                <TextBox x:Name="Defense" Header= "Defense" Margin="20,24,0,0"/>
-                <TextBox x:Name="Attack" Header= "Attack" Margin="20,24,0,0"/>
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="SpecialAttack" Header= "Special Attack" Margin="0,24,0,0" />
-                <TextBox x:Name="SpecialDefense" Header= "Special Defense" Margin="20,24,0,0"/>
-            </StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" 
+                          VerticalScrollMode="Enabled"
+                          >
 
-            <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="Speed" Header= "Speed" Margin="0,24,0,0" />
-                <TextBox x:Name="Height" Header= "Height" Margin="20,24,0,0"/>
-                <TextBox x:Name="Weight" Header= "Weight" Margin="20,24,0,0"/>
-            </StackPanel>
+                    <StackPanel Name="PanelStatusBase">
 
-            <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="BaseExperience" Header= "Base Experience" Margin="0,24,0,0" />
-            </StackPanel>
-        </StackPanel>
+                        <TextBlock Name="Title" Text="Create Your Pokemon" Style="{StaticResource MyFontTitle}" FontSize="30" Margin="0"/>
+                        <TextBox Name="Name" Header="Name" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <TextBox Name="Hp" Header="Hp" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <TextBox Name="Speed" Header="Speed" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <TextBox Name="Height" Header="Height" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <TextBox Name="Weight" Header="Weight" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <TextBox Name="Attack" Header="Attack" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <TextBox Name="Defense" Header="Defense" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <TextBox Name="SpecialAttack" Header="Special Attack" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <TextBox Name="SpecialDefense" Header="Special Defense" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <TextBox Name="BaseExperience" Header="Base Experience" BorderBrush="{StaticResource MyColorGreen}"/>
 
-    </Grid>
+                        <StackPanel HorizontalAlignment="Center"
+                                Margin="0,20"
+                                >
+                            <TextBlock Text="Selected Type" 
+                                       Style="{StaticResource MyFontDescribeGreen}" 
+                                       Margin="20,20" 
+                                       HorizontalAlignment="Center"/>
+
+                            <GridView   Name="MyTypesView"
+                                        Grid.Row="1"
+                                        ItemsSource="{x:Bind typesFlipView}"
+                                        Background="#00000000"
+                                        Foreground="#00000000" 
+                                        ItemClick="MyTypesView_ItemClick"
+                                        IsItemClickEnabled="True"
+                                        >
+                                <GridView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:TypeViewModel">
+                                        <Image Name="IMG_SELECT_TYPE" 
+                                               MaxWidth="100" 
+                                               Source="{Binding Source}"/>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                            </GridView>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <TextBox Name="Abitily" 
+                                     Header="Ability" 
+                                     BorderBrush="{StaticResource MyColorGreen}"/>
+                            <Button Name="ButtonAddAbility" 
+                                    Content="Add Ability"
+                                    HorizontalAlignment="Right"
+                                    Style="{StaticResource MyButtonGreen}" 
+                                    Margin="0"
+                                    Click="ButtonAddAbility_Click"
+                                    />
+                        </StackPanel>
+
+                        <StackPanel>
+                            <TextBox Name="Move" Header="Move" BorderBrush="{StaticResource MyColorGreen}"/>
+                            <Button Name="ButtonAddMove" 
+                                    Content="Add Move"
+                                    HorizontalAlignment="Right"
+                                    Style="{StaticResource MyButtonGreen}" 
+                                    Margin="0"
+                                    Click="ButtonAddMove_Click"
+                                    />
+                        </StackPanel>
+
+                        <StackPanel>
+                            <TextBlock Name="Finished" 
+                                       Text="Finished" 
+                                       Style="{StaticResource MyFontDescribeGreen}" 
+                                       FontSize="20"
+                                       Margin="20,0" 
+                                       HorizontalAlignment="Center"
+                                       />
+                            <TextBlock Name="ViewErro"
+                                       Style="{StaticResource MyFontErro}"
+                                       HorizontalAlignment="Center"
+                                       />
+                            <Button Name="ButtonFinished" 
+                                    Content="Yes"
+                                    HorizontalAlignment="Center"
+                                    Style="{StaticResource MyButtonGreen}" 
+                                    Margin="0"
+                                    Click="ButtonFinished_Click"
+                                    />
+                            
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+            </RelativePanel>
+
+        </Grid>
+    </Frame>
 </Page>

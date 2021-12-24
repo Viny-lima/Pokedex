@@ -26,12 +26,9 @@ namespace Pokedex.Model.Service
             await _pokemonDAO.Add(pokemon);
         }
 
-        public async Task AddCustomPokemon(PokemonDB pokemon, string typeName)
+        public async Task AddCustomPokemon(PokemonDB pokemon)
         {
             await SetCustomPokemonId(pokemon);
-
-            await SetPokemonType(pokemon, typeName);
-
             await _pokemonDAO.Add(pokemon);
         }
 

@@ -158,6 +158,9 @@
     <Content Include="Assets\BadgeLogo.scale-400.png" />
     <Content Include="Assets\Components\LOGO.png" />
     <Content Include="Assets\Components\DEFAULT_BG.jpg" />
+    <Content Include="Assets\Components\Team\Rackel.png" />
+    <Content Include="Assets\Components\Team\Ricardo.png" />
+    <Content Include="Assets\Components\Team\Vinicius.png" />
     <Content Include="Assets\Components\TEST_IMG.png" />
     <Content Include="Assets\Components\TYPES\T1.png" />
     <Content Include="Assets\Components\TYPES\T10.png" />
@@ -256,11 +259,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Resources\DictionaryAddPokemonPage.xaml">
+    <Page Include="Resources\DictionaryButtons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\DictionaryPokemonPage.xaml">
+    <Page Include="Resources\DictionaryFonts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -280,7 +283,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\DictionaryResourcesMain.xaml">
+    <Page Include="Resources\DictionaryColors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

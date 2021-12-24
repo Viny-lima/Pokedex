@@ -18,172 +18,163 @@
         </Grid.Background>
         
         <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        
-        <Grid Grid.Row="1" 
-              Grid.Column="1"
-              Grid.RowSpan="2"
-              Padding="30,0"
-              >
-            
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
 
-            <Rectangle Fill="White" 
-                       Grid.Row="0" 
-                       Grid.RowSpan="5" 
-                       Grid.Column="0"
-                       RadiusX="50"
-                       RadiusY="50"
-                       />
+        <RelativePanel Name="StatusView"
+                       Grid.Row="2"
+                       Background="{StaticResource MyColorWhite}"
+                       CornerRadius="20"
+                       Padding="20"
+                       MaxWidth="500"
+                       >
 
-            <Rectangle Fill="White" 
-                       Grid.Row="3"
-                       />
-
-            
-
-            <TextBlock  Name="PokemonName"
-                        Grid.Row="0"                        
-                        Text= "{x:Bind view.Pokemon.Name}"
-                        Style="{StaticResource MyFontTitlePokemonPage}"
-                        Margin="20,0,0,10"
-                        />
-
-            <GridView  Grid.Row="1" 
-                       Margin="20,0,0,0"
-                       MinHeight="50"
-                       ItemsSource="{x:Bind view.Pokemon.Types}">
-                <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="data:TypePokemonDB">
-                        <Button Name="PokemonStatusBase"
-                                Content="{x:Bind Type.Name}"
-                                Style="{StaticResource MyButtonPokemonPage}"
-                                />
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
-
-            <ScrollViewer Grid.Row="2" 
-                          Grid.RowSpan="2" 
-                          VerticalScrollBarVisibility="Hidden" 
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" 
                           VerticalScrollMode="Enabled">
                 
-                <RelativePanel>
+                <StackPanel>
+                    
+                    <TextBlock  Name="PokemonName"
+                                Grid.Row="0"                        
+                                Text= "{x:Bind view.Pokemon.Name}"
+                                Style="{StaticResource MyFontTitle}"
+                                Margin="0,0,0,10"
+                                />
+                    
+                    <GridView  Name="GridTypes"
+                               MinHeight="50"
+                               ItemsSource="{x:Bind view.Pokemon.Types}">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="data:TypePokemonDB">
+                                <Button Name="PokemonStatusBase"
+                                        Content="{x:Bind Type.Name}"
+                                        Style="{StaticResource MyButtonGreen}"
+                                        />
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+
                     <StackPanel Name="PanelStatusBase"
                                 Orientation="Horizontal" 
-                                Margin="30,0,30,30">
-                        
+                                Margin="0,30">
+
                         <StackPanel>
-                            <TextBlock Text="Id" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="Hp" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="Speed" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="Height" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="Weight" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="Attack" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="Defense" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="Special Attack" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="Special Defense" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="Base Experience" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <Button Name="ButtonAbilities" Content="Open Abilities" Style="{StaticResource MyButtonPokemonPage}" Click="ButtonAbilities_Click" />
-                            <Button Name="ButtonMoves" Content="Open Moves" Style="{StaticResource MyButtonPokemonPage}" Click="ButtonMoves_Click" />
-                            <Button Name="ButtonClose" Content="Close" Style="{StaticResource MyButtonPokemonPage}" Click="ButtonBack_Click" />
+                            <TextBlock Text="Id" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="Hp" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="Speed" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="Height" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="Weight" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="Attack" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="Defense" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="Special Attack" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="Special Defense" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="Base Experience" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <Button Name="ButtonAbilities" Content="Open Abilities" Style="{StaticResource MyButtonGreen}" Click="ButtonAbilities_Click" />
+                            <Button Name="ButtonMoves" Content="Open Moves" Style="{StaticResource MyButtonGreen}" Click="ButtonMoves_Click" />
+                            <Button Name="ButtonClose" Content="Close" Style="{StaticResource MyButtonGreen}" Click="ButtonBack_Click" />
 
                         </StackPanel>
 
-                        <StackPanel Margin="100,0,0,0">
-                            <TextBlock Text="{x:Bind view.Pokemon.Id}" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="{x:Bind view.Pokemon.Hp}" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="{x:Bind view.Pokemon.Speed}" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="{x:Bind view.Pokemon.Height}" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="{x:Bind view.Pokemon.Weight}" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="{x:Bind view.Pokemon.Attack}" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="{x:Bind view.Pokemon.Defense}" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="{x:Bind view.Pokemon.SpecialAttack}" Style="{StaticResource MyFontDescribePokemonPage}"/>
-                            <TextBlock Text="{x:Bind view.Pokemon.SpecialDefense}" Style="{StaticResource MyFontDescribePokemonPage}" />
-                            <TextBlock Text="{x:Bind view.Pokemon.BaseExperience}" Style="{StaticResource MyFontDescribePokemonPage}"/>                            
+                        <StackPanel Margin="50,0,0,0">
+                            <TextBlock Text="{x:Bind view.Pokemon.Id}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind view.Pokemon.Hp}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind view.Pokemon.Speed}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind view.Pokemon.Height}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind view.Pokemon.Weight}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind view.Pokemon.Attack}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind view.Pokemon.Defense}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind view.Pokemon.SpecialAttack}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind view.Pokemon.SpecialDefense}" Style="{StaticResource MyFontDescribeGreen}" />
+                            <TextBlock Text="{x:Bind view.Pokemon.BaseExperience}" Style="{StaticResource MyFontDescribeGreen}"/>
                         </StackPanel>
-                        
                     </StackPanel>
 
                     <StackPanel Name="PanelAbilities"
-                                RelativePanel.Below="PanelStatusBase"
                                 Visibility="Collapsed"
                                 >
-                        
-                        <TextBlock Style="{StaticResource MyFontTitlePokemonPage}"
+
+                        <TextBlock Style="{StaticResource MyFontTitle}"
                                    FontSize="30"
-                                   Margin="40,0"
                                    Text="Abilities"/>
 
-                        <GridView  Margin="50,10,0,0"
-                                   MinHeight="50"
-                                   ItemsSource="{x:Bind view.Pokemon.Abilities}"
-                                   >
+                        <GridView Margin="20, 10, 20,20"
+                                  MinHeight="50"
+                                  ItemsSource="{x:Bind view.Pokemon.Abilities}"
+                                  >
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="data:AbilityPokemonDB">
-                                    <TextBlock Text="{x:Bind Ability.Name}" Foreground="{StaticResource MyColorPokemonPage}"/>
+                                    <TextBlock Text="{x:Bind Ability.Name}" 
+                                               Foreground="{StaticResource MyColorGreen}"/>
                                 </DataTemplate>
                             </GridView.ItemTemplate>
-                        </GridView>                        
+                        </GridView>
+
                     </StackPanel>
 
                     <StackPanel Name="PanelMoves"
-                                RelativePanel.Below="PanelAbilities"
                                 Visibility="Collapsed">
 
-                        <TextBlock Style="{StaticResource MyFontTitlePokemonPage}"
+                        <TextBlock Style="{StaticResource MyFontTitle}"
                                    FontSize="30"
-                                   Margin="40,0"
                                    Text="Moves"/>
 
-                        <GridView  Margin="50,10,0,0"
+                        <GridView  Margin="20,10,20,20"
                                    MinHeight="50"
                                    ItemsSource="{x:Bind view.Pokemon.Moves}"
                                    >
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="data:MovePokemonDB">
-                                    <TextBlock Text="{x:Bind Move.Name}" Foreground="{StaticResource MyColorPokemonPage}"/>
+                                    <TextBlock Text="{x:Bind Move.Name}" 
+                                               Foreground="{StaticResource MyColorGreen}"/>
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
+
                     </StackPanel>
-
-                </RelativePanel>
-
+                    
+                </StackPanel>           
+                
             </ScrollViewer>
-
             
+        </RelativePanel>
 
-            <Image  Grid.Row="2"
-                    Grid.RowSpan="3"
-                    Grid.Column="2"
-                    MaxWidth="500"
-                    Name="ImgPokemon"
-                    Source="{x:Bind view.Pokemon.SpritesOfficialArtwork}"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    />                          
+        <Image  Name="ImgPokemon"
+                Grid.Row="2"
+                Grid.Column="2"
+                MaxWidth="500"
+                Source="{x:Bind view.Pokemon.SpritesOfficialArtwork}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                />                          
 
-        </Grid>
 
-        
-        
-        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="NarrowLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="StatusView.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="ImgPokemon.(Grid.Row)" Value="2"/>
+                        <Setter Target="ImgPokemon.MaxWidth" Value="150"/>
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="WideLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
     </Grid>
 </Page>

@@ -10,7 +10,7 @@
     >
 
     <Frame Name="RootFrame">
-        <Grid>
+        <Grid Name="MyGrid">
             <Grid.Background>
                 <ImageBrush ImageSource="../Assets/Components/VIEW_BG.png"
                             Stretch="UniformToFill"
@@ -24,8 +24,8 @@
 
 
             <Rectangle  x:Name="ShadowPage"
-                    Grid.RowSpan="5" 
-                    Grid.ColumnSpan="2">
+                        Grid.RowSpan="5" 
+                        Grid.ColumnSpan="2">
 
                 <Rectangle.Fill>
                     <LinearGradientBrush EndPoint="2,0" StartPoint="0,2">
@@ -35,26 +35,26 @@
                 </Rectangle.Fill>
             </Rectangle>
 
-            <StackPanel x:Name="HOME_TEXT"
-                    Grid.Row="1"
-                    VerticalAlignment="Center"
-                    >
+            <StackPanel Name="HOME_TEXT"
+                        Grid.Row="1"
+                        VerticalAlignment="Center"
+                        >
+                
                 <TextBlock Name="Welcome"
-                       Grid.Row="1"
-                       Text="Welcome"
-                       Style="{StaticResource MyFontTitle}"
-                       FontSize="80"
-                       />
+                           Grid.Row="1"
+                           Text="Welcome"
+                           Style="{StaticResource MyFontTitle}"
+                           Foreground="{StaticResource MyColorAqua}"
+                           />
+                
                 <TextBlock  Name="Describe"
                             TextWrapping="Wrap"
-                            Style="{StaticResource MyDescribe}"
+                            Style="{StaticResource MyFontDescribeWhite}"
                             Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics, abilities and movements."   
                             />
-                <TextBlock Name="ERRO"
-                           Style="{StaticResource MyFontTitle}" 
-                           FontSize="12"
-                           Foreground="Red" 
-                           Visibility="Collapsed"/>
+                
+                <TextBlock Name="ERRO" Style="{StaticResource MyFontErro}"/>
+                
                 <AutoSuggestBox Name="BarSearchResponsive"
                                 QueryIcon="Find"
                                 MinWidth="300"
@@ -67,7 +67,7 @@
                 <Button Name="ButtonAllTwo"
                         Content="See the pokemons"
                         FontSize="20"
-                        Style="{StaticResource MyButtonHome}"
+                        Style="{StaticResource MyButtonWhite}"
                         Click="ButtonAllTwo_Click"
                         />
             </StackPanel>            
@@ -85,18 +85,15 @@
                         <Setter Target="ButtonAllTwo.FontSize" Value="20"/>
                         <Setter Target="BarSearchResponsive.PlaceholderText" Value="Search..."/>
                         <Setter Target="ShadowPage.Fill" Value="#B2000000"/>
+                        <Setter Target="HOME_TEXT.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="HOME_TEXT.HorizontalAlignment" Value="Center"/>
                     </VisualState.Setters>
                 </VisualState>
 
                 <VisualState x:Name="WideLayout">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="800"/>
+                        <AdaptiveTrigger MinWindowWidth="700"/>
                     </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="Welcome.FontSize" Value="70"/>
-                        <Setter Target="Describe.FontSize" Value="20"/>
-                        <Setter Target="ButtonAllTwo.FontSize" Value="20"/>
-                    </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
