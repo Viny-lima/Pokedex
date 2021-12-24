@@ -14,13 +14,7 @@
                 <ResourceDictionary Source="Resources\DictionaryButtons.xaml"/>
                 <ResourceDictionary Source="Resources\DictionaryColors.xaml"/>
                 <ResourceDictionary Source="Resources\DictionaryFonts.xaml"/>
-                
-                <controls:XamlControlsResources>
-                    <controls:XamlControlsResources.MergedDictionaries>
-                        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                    </controls:XamlControlsResources.MergedDictionaries>
-                </controls:XamlControlsResources>
-                
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
             </ResourceDictionary.MergedDictionaries>            
         </ResourceDictionary>                     
     </Application.Resources>
