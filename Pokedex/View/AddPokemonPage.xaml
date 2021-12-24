@@ -5,9 +5,10 @@
     xmlns:local="using:Pokedex.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:model="using:Pokedex.ViewModel"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d"   
+    >
 
     <Frame Name="RootFrame">
         <Grid>
@@ -38,16 +39,16 @@
                     <StackPanel Name="PanelStatusBase">
 
                         <TextBlock Name="Title" Text="Create Your Pokemon" Style="{StaticResource MyFontTitle}" FontSize="30" Margin="0"/>
-                        <TextBox Name="Name" Header="Name" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <TextBox Name="Hp" Header="Hp" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <TextBox Name="Speed" Header="Speed" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <TextBox Name="Height" Header="Height" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <TextBox Name="Weight" Header="Weight" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <TextBox Name="Attack" Header="Attack" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <TextBox Name="Defense" Header="Defense" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <TextBox Name="SpecialAttack" Header="Special Attack" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <TextBox Name="SpecialDefense" Header="Special Defense" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <TextBox Name="BaseExperience" Header="Base Experience" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <TextBox Name="Name" Header="Name" BorderBrush="{StaticResource MyColorGreen}" />
+                        <controls:NumberBox Name="Hp" Header="Hp" BorderBrush="{StaticResource MyColorGreen}" Value="1" SmallChange="1" SpinButtonPlacementMode="Inline" ValidationMode="InvalidInputOverwritten"/>
+                        <controls:NumberBox Name="Speed" Header="Speed" BorderBrush="{StaticResource MyColorGreen}" Value="1" SmallChange="1" SpinButtonPlacementMode="Inline" ValidationMode="InvalidInputOverwritten" />
+                        <controls:NumberBox Name="Height" Header="Height" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <controls:NumberBox Name="Weight" Header="Weight" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <controls:NumberBox Name="Attack" Header="Attack" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <controls:NumberBox Name="Defense" Header="Defense" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <controls:NumberBox Name="SpecialAttack" Header="Special Attack" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <controls:NumberBox Name="SpecialDefense" Header="Special Defense" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <controls:NumberBox Name="BaseExperience" Header="Base Experience" BorderBrush="{StaticResource MyColorGreen}"/>
 
                         <StackPanel HorizontalAlignment="Center"
                                 Margin="0,20"

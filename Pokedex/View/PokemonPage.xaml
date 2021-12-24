@@ -38,16 +38,16 @@
 
             <ScrollViewer VerticalScrollBarVisibility="Hidden" 
                           VerticalScrollMode="Enabled">
-                
+
                 <StackPanel>
-                    
+
                     <TextBlock  Name="PokemonName"
                                 Grid.Row="0"                        
                                 Text= "{x:Bind view.Pokemon.Name}"
                                 Style="{StaticResource MyFontTitle}"
                                 Margin="0,0,0,10"
                                 />
-                    
+
                     <GridView  Name="GridTypes"
                                MinHeight="50"
                                ItemsSource="{x:Bind view.Pokemon.Types}">
@@ -138,21 +138,12 @@
                         </GridView>
 
                     </StackPanel>
-                    
-                </StackPanel>           
-                
-            </ScrollViewer>
-            
-        </RelativePanel>
 
-        <Image  Name="ImgPokemon"
-                Grid.Row="2"
-                Grid.Column="2"
-                MaxWidth="500"
-                Source="{x:Bind view.Pokemon.SpritesOfficialArtwork}"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                />                          
+                </StackPanel>
+
+            </ScrollViewer>
+
+        </RelativePanel>
 
 
         <VisualStateManager.VisualStateGroups>
