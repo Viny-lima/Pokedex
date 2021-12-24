@@ -145,6 +145,14 @@
 
         </RelativePanel>
 
+        <Image  Name="ImgPokemon"
+                Grid.Row="2"
+                Grid.Column="2"
+                MaxWidth="500"
+                Source="{x:Bind view.Pokemon.SpritesOfficialArtwork}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                />
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

@@ -120,11 +120,11 @@ namespace Pokedex.Model.Entities
             {
                 typeDB = db.FindAll().Result.FirstOrDefault(p => p.Name == typeDB.Name);
 
-                Types.Add(new TypePokemonDB() { PokemonId = this.Id, TypeId = typeDB.Id });
+                Types.Add(new TypePokemonDB() { PokemonId = Id ,TypeId = typeDB.Id });
             }
             else
             {
-                Types.Add(new TypePokemonDB() { PokemonId = this.Id, Type = typeDB });
+                Types.Add(new TypePokemonDB() { PokemonId = Id, Type = typeDB });
             }
 
             return Task.CompletedTask;

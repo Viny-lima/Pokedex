@@ -37,7 +37,6 @@ namespace Pokedex.View
             {
                 _listaNamesPokemons.Add(p.Name); 
             }
-
         }
 
         private void BarSearchResponsive_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

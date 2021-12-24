@@ -14,17 +14,14 @@ namespace Pokedex.Migrations.Startup
     {
         static void Main(string[] args)
         {
-            //var p = new PokedexContext();
-            //p.Database.EnsureDeleted();
-            //p.Database.Migrate();
+            var p = new PokedexContext();
+            p.Database.Migrate();
 
             IPokemonService<PokemonDB> service = new PokemonService();
 
-            var timer = new Stopwatch();
-            timer.Start();
 
-            //var pokemons = service.FindPokemonsByType("flying", 1, 10).Result;
-            var pokemon = service.FindPokemonById(11).Result;
+            //var pokemons = service.FindPokemonsByType("normal", 1, 10).Result;
+            var pokemon = service.FindPokemonById(16).Result;
 
             //foreach (var pokemon in pokemons)
             //{
@@ -39,8 +36,6 @@ namespace Pokedex.Migrations.Startup
                 Console.WriteLine(typePokemon.Type.Name);
             }
 
-            timer.Stop();
-            Console.WriteLine(timer.Elapsed.ToString());
         }
 
         private static void AdicionandoSemDuplicidade()
