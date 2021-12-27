@@ -23,7 +23,7 @@ namespace Pokedex.View
     {
         private string _search;
         private PokemonService _service = new PokemonService();
-        private PokemonDB _pokemon = new PokemonDB();
+        private PokemonDB _pokemon;
         private List<String> _listaNamesPokemons = new List<String>();
 
         public HomePage()
@@ -50,14 +50,32 @@ namespace Pokedex.View
 
         private void BarSearchResponsive_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
+            CheckedQuery();
+        }
+
+        private void ButtonAllTwo_Click(object sender, RoutedEventArgs e)
+        {
+            RootFrame.Navigate(typeof(ListPage),
+                                new Tuple<PageOrigin, TypeNames>(PageOrigin.MainPage, TypeNames.none));
+        }
+
+        private void CheckedQuery()
+        {
             try
             {
+                if (string.IsNullOrEmpty(_search))
+                {
+                    throw new ArgumentNullException();
+                }
+
+                _search = _search.ToLower().Trim();
+
                 var id = int.Parse(_search);
-                _pokemon = _service.FindPokemonById(id).Result;                
-            }            
+                _pokemon = _service.FindPokemonById(id).Result;
+            }
             catch (FormatException)
             {
-                _pokemon = _service.FindPokemonByName(_search).Result;                              
+                _pokemon = _service.FindPokemonByName(_search).Result;
             }
             catch (ArgumentNullException)
             {
@@ -71,13 +89,6 @@ namespace Pokedex.View
                     RootFrame.Navigate(typeof(PokemonPage), _pokemon);
                 }
             }
-
-        }
-
-        private void ButtonAllTwo_Click(object sender, RoutedEventArgs e)
-        {
-            RootFrame.Navigate(typeof(ListPage),
-                                new Tuple<PageOrigin, TypeNames>(PageOrigin.MainPage, TypeNames.none));
         }
     }
 }
