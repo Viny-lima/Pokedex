@@ -5,17 +5,33 @@
     xmlns:local="using:Pokedex.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"    
     xmlns:model="using:Pokedex.ViewModel"
+    xmlns:data="using:Pokedex.Model.Entities"
     mc:Ignorable="d"   
+    Loaded="Page_Loaded"
     >
 
+    <Page.Resources>
+        <DataTemplate x:Key="MyItemString" x:DataType="x:String">
+            <TextBlock Text="{x:Bind ToString()}" 
+                   Foreground="{StaticResource MyColorGreen}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MyPhotoTypes" x:DataType="model:TypeViewModel">
+            <Image  Name="IMG_SELECT_TYPE" 
+                    MaxWidth="100" 
+                    Source="{Binding Source}"/>
+        </DataTemplate>
+    </Page.Resources>
+    
     <Frame Name="RootFrame">
+
         <Grid>
             <Grid.Background>
                 <ImageBrush ImageSource="../Assets/Components/DEFAULT_BG.jpg"
-                        Stretch="UniformToFill"
-                        />
+                            Stretch="UniformToFill"
+                            />
             </Grid.Background>
 
             <Grid.RowDefinitions>
@@ -25,34 +41,36 @@
 
 
             <RelativePanel Name="StatusView"
-                       Grid.Row="2"
-                       Background="{StaticResource MyColorWhite}"
-                       CornerRadius="20"
-                       Padding="50"
-                       MaxWidth="500"
-                       >
+                           Grid.Row="2"
+                           Background="{StaticResource MyColorWhite}"
+                           CornerRadius="20"
+                           Padding="50"
+                           MaxWidth="500"
+                           >
 
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" 
-                          VerticalScrollMode="Enabled"
-                          >
+                              VerticalScrollMode="Enabled"
+                              >
 
                     <StackPanel Name="PanelStatusBase">
 
                         <TextBlock Name="Title" Text="Create Your Pokemon" Style="{StaticResource MyFontTitle}" FontSize="30" Margin="0"/>
                         <TextBox Name="Name" Header="Name" BorderBrush="{StaticResource MyColorGreen}" />
-                        <controls:NumberBox Name="Hp" Header="Hp" BorderBrush="{StaticResource MyColorGreen}" Value="1" SmallChange="1" SpinButtonPlacementMode="Inline" ValidationMode="InvalidInputOverwritten"/>
-                        <controls:NumberBox Name="Speed" Header="Speed" BorderBrush="{StaticResource MyColorGreen}" Value="1" SmallChange="1" SpinButtonPlacementMode="Inline" ValidationMode="InvalidInputOverwritten" />
-                        <controls:NumberBox Name="Height" Header="Height" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <controls:NumberBox Name="Weight" Header="Weight" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <controls:NumberBox Name="Attack" Header="Attack" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <controls:NumberBox Name="Defense" Header="Defense" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <controls:NumberBox Name="SpecialAttack" Header="Special Attack" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <controls:NumberBox Name="SpecialDefense" Header="Special Defense" BorderBrush="{StaticResource MyColorGreen}"/>
-                        <controls:NumberBox Name="BaseExperience" Header="Base Experience" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <controls:NumberBox Name="Hp" Header="Hp" Style="{StaticResource MyNumberBox}"/>
+                        <controls:NumberBox Name="Speed" Header="Speed" Style="{StaticResource MyNumberBox}" />
+                        <controls:NumberBox Name="Height" Header="Height" Style="{StaticResource MyNumberBox}"/>
+                        <controls:NumberBox Name="Weight" Header="Weight" Style="{StaticResource MyNumberBox}"/>
+                        <controls:NumberBox Name="Attack" Header="Attack" Style="{StaticResource MyNumberBox}"/>
+                        <controls:NumberBox Name="Defense" Header="Defense" Style="{StaticResource MyNumberBox}"/>
+                        <controls:NumberBox Name="SpecialAttack" Header="Special Attack" Style="{StaticResource MyNumberBox}"/>
+                        <controls:NumberBox Name="SpecialDefense" Header="Special Defense" Style="{StaticResource MyNumberBox}"/>
+                        <controls:NumberBox Name="BaseExperience" Header="Base Experience" Style="{StaticResource MyNumberBox}"/>
 
-                        <StackPanel HorizontalAlignment="Center"
-                                Margin="0,20"
-                                >
+                        <StackPanel Name="TypesSelected"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,20"
+                                    >
+                            
                             <TextBlock Text="Selected Type" 
                                        Style="{StaticResource MyFontDescribeGreen}" 
                                        Margin="20,20" 
@@ -63,23 +81,29 @@
                                         ItemsSource="{x:Bind typesFlipView}"
                                         Background="#00000000"
                                         Foreground="#00000000" 
-                                        ItemClick="MyTypesView_ItemClick"
+                                        SelectionMode="Multiple"                                        
                                         IsItemClickEnabled="True"
-                                        >
-                                <GridView.ItemTemplate>
-                                    <DataTemplate x:DataType="model:TypeViewModel">
-                                        <Image Name="IMG_SELECT_TYPE" 
-                                               MaxWidth="100" 
-                                               Source="{Binding Source}"/>
-                                    </DataTemplate>
-                                </GridView.ItemTemplate>
-                            </GridView>
+                                        ItemClick="MyTypesView_ItemClick"
+                                        ItemTemplate="{StaticResource MyPhotoTypes}"
+                                       />
+                            
                         </StackPanel>
 
-                        <StackPanel>
+                        <StackPanel Name="PanelAbilities">
+
+                            <TextBlock Style="{StaticResource MyFontTitle}"
+                                       FontSize="30"
+                                       Text="Abilities"/>
+
+                            <GridView Margin="20, 10, 20,20"
+                                      MinHeight="50"
+                                      ItemsSource="{x:Bind AbilitiesField}"
+                                      ItemTemplate="{StaticResource MyItemString}"
+                                      />
+
                             <TextBox Name="Abitily" 
-                                     Header="Ability" 
                                      BorderBrush="{StaticResource MyColorGreen}"/>
+                            
                             <Button Name="ButtonAddAbility" 
                                     Content="Add Ability"
                                     HorizontalAlignment="Right"
@@ -87,10 +111,23 @@
                                     Margin="0"
                                     Click="ButtonAddAbility_Click"
                                     />
+
                         </StackPanel>
 
-                        <StackPanel>
-                            <TextBox Name="Move" Header="Move" BorderBrush="{StaticResource MyColorGreen}"/>
+                        <StackPanel Name="PanelMoves">
+
+                            <TextBlock Style="{StaticResource MyFontTitle}"
+                                       FontSize="30"
+                                       Text="Moves"/>
+
+                            <GridView Margin="20, 10, 20,20"
+                                      MinHeight="50"
+                                      ItemsSource="{x:Bind MovesField}"
+                                      ItemTemplate="{StaticResource MyItemString}"
+                                      />
+
+                            <TextBox Name="Move"
+                                     BorderBrush="{StaticResource MyColorGreen}"/>
                             <Button Name="ButtonAddMove" 
                                     Content="Add Move"
                                     HorizontalAlignment="Right"
@@ -98,9 +135,10 @@
                                     Margin="0"
                                     Click="ButtonAddMove_Click"
                                     />
-                        </StackPanel>
+                        </StackPanel>                        
 
-                        <StackPanel>
+                        <StackPanel Name="PanelFinished">
+                            
                             <TextBlock Name="Finished" 
                                        Text="Finished" 
                                        Style="{StaticResource MyFontDescribeGreen}" 
@@ -108,10 +146,12 @@
                                        Margin="20,0" 
                                        HorizontalAlignment="Center"
                                        />
+                            
                             <TextBlock Name="ViewErro"
                                        Style="{StaticResource MyFontErro}"
                                        HorizontalAlignment="Center"
                                        />
+                            
                             <Button Name="ButtonFinished" 
                                     Content="Yes"
                                     HorizontalAlignment="Center"

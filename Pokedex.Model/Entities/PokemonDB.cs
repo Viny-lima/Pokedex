@@ -13,6 +13,8 @@ namespace Pokedex.Model.Entities
     {
         public int Id { get; set; }
 
+        public string Name { get; set; }
+
         public int Hp { get; set; }
 
         public int Attack { get; set; }
@@ -25,15 +27,13 @@ namespace Pokedex.Model.Entities
 
         public int Speed { get; set; }
 
-        public string Name { get; set; }
-
         public int Height { get; set; }
 
         public int Weight { get; set; }
 
         public int BaseExperience { get; set; }
 
-        public string SpritesFrontDefault { get; set; }
+        public string SpritesFrontDefault { get; set; } 
 
         public string SpritesOfficialArtwork { get; set; }
 

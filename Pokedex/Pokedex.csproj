@@ -156,6 +156,7 @@
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\Components\DEFAULT_POKEMON.png" />
     <Content Include="Assets\Components\LOGO.png" />
     <Content Include="Assets\Components\DEFAULT_BG.jpg" />
     <Content Include="Assets\Components\Team\Rackel.png" />
@@ -267,6 +268,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\DictionaryFonts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DictionaryTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

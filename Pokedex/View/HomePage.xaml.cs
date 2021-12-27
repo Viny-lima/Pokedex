@@ -22,9 +22,9 @@ namespace Pokedex.View
     public sealed partial class HomePage : Page
     {
         private string _search;
-        private PokemonService _service = new PokemonService();        
-        private List<String> _listaNamesPokemons = new List<String>();
+        private PokemonService _service = new PokemonService();
         private PokemonDB _pokemon = new PokemonDB();
+        private List<String> _listaNamesPokemons = new List<String>();
 
         public HomePage()
         {
