@@ -149,7 +149,7 @@
                 Grid.Row="2"
                 Grid.Column="2"
                 MaxWidth="500"
-                Source="{x:Bind view.Sprite}"
+                Source="{x:Bind view.This.SpritesOfficialArtwork}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 />

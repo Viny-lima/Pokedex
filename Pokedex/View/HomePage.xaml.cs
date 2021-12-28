@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.RegularExpressions;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -62,25 +63,47 @@ namespace Pokedex.View
         private void CheckedQuery()
         {
             try
-            {
-                if (string.IsNullOrEmpty(_search))
+            {               
+                if(_search != null)
+                {
+                    _search = _search.Trim().ToLower();
+                }
+
+                if (string.IsNullOrEmpty(_search) || Regex.IsMatch(_search, (@"[!""#$%&'()*+,-./:;?@[\\\]_`{|}~]")))
+                {
+                    throw new ArgumentNullException();
+                }                
+
+                if (int.TryParse(_search, out int Id))
+                {
+                    _pokemon = _service.FindPokemonById(Id).Result;
+                }
+                else
+                {
+                    _pokemon = _service.FindPokemonByName(_search).Result;
+                }
+
+                if(_pokemon == null)
                 {
                     throw new ArgumentNullException();
                 }
 
-                _search = _search.ToLower().Trim();
-
-                var id = int.Parse(_search);
-                _pokemon = _service.FindPokemonById(id).Result;
-            }
-            catch (FormatException)
-            {
-                _pokemon = _service.FindPokemonByName(_search).Result;
             }
             catch (ArgumentNullException)
             {
                 ERRO.Visibility = Visibility.Visible;
-                ERRO.Text = "ERRO: This pokemon doesn't exist";
+                ERRO.Text = "ERROR: This pokemon doesn't exist";
+            }
+            
+            catch (NullReferenceException)
+            {
+                ERRO.Visibility = Visibility.Visible;
+                ERRO.Text = "ERROR: Null Reference Exception";
+            }
+            catch (Exception)
+            {
+                ERRO.Visibility = Visibility.Visible;
+                ERRO.Text = "ERROR: Pokemon not Found";
             }
             finally
             {

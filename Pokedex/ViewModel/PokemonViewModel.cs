@@ -20,27 +20,6 @@ namespace Pokedex.ViewModel
                 SetProperty(ref _pokemon, value);
             }
         }
-        
-        public string Sprite
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_pokemon.SpritesOfficialArtwork))
-                {
-                    return "../Assets/Components/DEFAULT_POKEMON.png";
-                }
-
-                return _pokemon.SpritesOfficialArtwork;
-            }
-            set
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    _pokemon.SpritesOfficialArtwork = value;
-                }
-
-            }
-        }
 
     }
 }

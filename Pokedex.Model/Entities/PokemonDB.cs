@@ -33,9 +33,32 @@ namespace Pokedex.Model.Entities
 
         public int BaseExperience { get; set; }
 
-        public string SpritesFrontDefault { get; set; } 
+        public string SpritesFrontDefault { get; set; }
 
-        public string SpritesOfficialArtwork { get; set; }
+        private string _spriteOfficialArtwork;
+        public string SpritesOfficialArtwork
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_spriteOfficialArtwork))
+                {
+                    return "../Assets/Components/DEFAULT_POKEMON.png";
+                }
+
+                return _spriteOfficialArtwork;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    _spriteOfficialArtwork = "../Assets/Components/DEFAULT_POKEMON.png";
+                }
+                else
+                {
+                    _spriteOfficialArtwork = value;
+                }                           
+            }
+        }
 
         public IList<AbilityPokemonDB> Abilities { get; internal set; }
 
