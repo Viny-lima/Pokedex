@@ -9,7 +9,7 @@ namespace Pokedex.Model.PokeApi
         public int ValueState { get; set; }
 
         [JsonProperty("stat")]
-        public PropertiesAbilityAPI PropertiesState { get; set; }
+        public Names NameState { get; set; }
     }
 
 }
