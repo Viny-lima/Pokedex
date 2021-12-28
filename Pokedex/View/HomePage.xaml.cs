@@ -61,7 +61,7 @@ namespace Pokedex.View
         }
 
         private void CheckedQuery()
-        {
+        {           
             try
             {               
                 if(_search != null)
@@ -91,25 +91,25 @@ namespace Pokedex.View
             }
             catch (ArgumentNullException)
             {
-                ERRO.Visibility = Visibility.Visible;
-                ERRO.Text = "ERROR: This pokemon doesn't exist";
+                ERROR.Visibility = Visibility.Visible;
+                ERROR.Text = "ERROR: This query doesn't exist";
             }
             
             catch (NullReferenceException)
             {
-                ERRO.Visibility = Visibility.Visible;
-                ERRO.Text = "ERROR: Null Reference Exception";
+                ERROR.Visibility = Visibility.Visible;
+                ERROR.Text = "ERROR: Null Reference Exception";
             }
             catch (Exception)
             {
-                ERRO.Visibility = Visibility.Visible;
-                ERRO.Text = "ERROR: Pokemon not Found";
+                ERROR.Visibility = Visibility.Visible;
+                ERROR.Text = "ERROR: Pokemon not Found";
             }
             finally
             {
                 if (_pokemon != null)
                 {
-                    RootFrame.Navigate(typeof(PokemonPage), _pokemon);
+                    RootFrame.Navigate(typeof(PokemonPage), _pokemon.Id);
                 }
             }
         }

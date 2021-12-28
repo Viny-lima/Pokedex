@@ -54,7 +54,7 @@
                             Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics, abilities and movements."   
                             />
                 
-                <TextBlock Name="ERRO" Style="{StaticResource MyFontErro}"/>
+                <TextBlock Name="ERROR" Style="{StaticResource MyFontErro}"/>
                 
                 <AutoSuggestBox Name="BarSearchResponsive"
                                 QueryIcon="Find"

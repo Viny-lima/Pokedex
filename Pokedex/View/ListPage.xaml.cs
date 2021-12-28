@@ -28,10 +28,9 @@ namespace Pokedex.View
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var pokemonSelected = e.ClickedItem as PokemonDB;
-            var pokemon = _service.FindPokemonById(pokemonSelected.Id).Result;            
+            var pokemonSelected = e.ClickedItem as PokemonDB;         
 
-            RootFrame.Navigate(typeof(PokemonPage), pokemon);
+            RootFrame.Navigate(typeof(PokemonPage), pokemonSelected.Id);
         }
     }
 }

@@ -43,14 +43,14 @@
 
                     <TextBlock  Name="PokemonName"
                                 Grid.Row="0"                        
-                                Text= "{x:Bind view.This.Name}"
+                                Text= "{x:Bind pokemon.This.Name}"
                                 Style="{StaticResource MyFontTitle}"
                                 Margin="0,0,0,10"
                                 />
 
                     <GridView  Name="GridTypes"
                                MinHeight="50"
-                               ItemsSource="{x:Bind view.This.Types}">
+                               ItemsSource="{x:Bind pokemon.This.Types}">
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="data:TypePokemonDB">
                                 <Button Name="PokemonStatusBase"
@@ -83,16 +83,16 @@
                         </StackPanel>
 
                         <StackPanel Margin="50,0,0,0">
-                            <TextBlock Text="{x:Bind view.This.Id}" Style="{StaticResource MyFontDescribeGreen}"/>
-                            <TextBlock Text="{x:Bind view.This.Hp}" Style="{StaticResource MyFontDescribeGreen}"/>
-                            <TextBlock Text="{x:Bind view.This.Speed}" Style="{StaticResource MyFontDescribeGreen}"/>
-                            <TextBlock Text="{x:Bind view.This.Height}" Style="{StaticResource MyFontDescribeGreen}"/>
-                            <TextBlock Text="{x:Bind view.This.Weight}" Style="{StaticResource MyFontDescribeGreen}"/>
-                            <TextBlock Text="{x:Bind view.This.Attack}" Style="{StaticResource MyFontDescribeGreen}"/>
-                            <TextBlock Text="{x:Bind view.This.Defense}" Style="{StaticResource MyFontDescribeGreen}"/>
-                            <TextBlock Text="{x:Bind view.This.SpecialAttack}" Style="{StaticResource MyFontDescribeGreen}"/>
-                            <TextBlock Text="{x:Bind view.This.SpecialDefense}" Style="{StaticResource MyFontDescribeGreen}" />
-                            <TextBlock Text="{x:Bind view.This.BaseExperience}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind pokemon.This.Id}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind pokemon.This.Hp}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind pokemon.This.Speed}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind pokemon.This.Height}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind pokemon.This.Weight}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind pokemon.This.Attack}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind pokemon.This.Defense}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind pokemon.This.SpecialAttack}" Style="{StaticResource MyFontDescribeGreen}"/>
+                            <TextBlock Text="{x:Bind pokemon.This.SpecialDefense}" Style="{StaticResource MyFontDescribeGreen}" />
+                            <TextBlock Text="{x:Bind pokemon.This.BaseExperience}" Style="{StaticResource MyFontDescribeGreen}"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -106,7 +106,7 @@
 
                         <GridView Margin="20, 10, 20,20"
                                   MinHeight="50"
-                                  ItemsSource="{x:Bind view.This.Abilities}"
+                                  ItemsSource="{x:Bind pokemon.This.Abilities}"
                                   >
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="data:AbilityPokemonDB">
@@ -127,7 +127,7 @@
 
                         <GridView  Margin="20,10,20,20"
                                    MinHeight="50"
-                                   ItemsSource="{x:Bind view.This.Moves}"
+                                   ItemsSource="{x:Bind pokemon.This.Moves}"
                                    >
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="data:MovePokemonDB">
@@ -149,7 +149,7 @@
                 Grid.Row="2"
                 Grid.Column="2"
                 MaxWidth="500"
-                Source="{x:Bind view.This.SpritesOfficialArtwork}"
+                Source="{x:Bind pokemon.This.SpritesOfficialArtwork}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 />
