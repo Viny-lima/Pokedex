@@ -166,7 +166,7 @@ namespace Pokedex.Model.Service
 
                 pokemons = pokemons
                                 .OrderBy(p => p.Id)
-                                .Skip(start - 1)
+                                .Skip(start >= pokemons.Count ? 0 : start -1)
                                 .Take(quantity)
                                 .ToList();
             }
