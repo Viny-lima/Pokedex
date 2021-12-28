@@ -1,4 +1,5 @@
-﻿using Pokedex.Model.DAO;
+﻿using Microsoft.EntityFrameworkCore;
+using Pokedex.Model.DAO;
 using Pokedex.Model.Entities;
 using Pokedex.Model.Service;
 using Pokedex.ViewModel;
@@ -28,6 +29,14 @@ namespace Pokedex.View
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {  
+            //Limpando o banco de dados
+
+            /*using(PokedexContext context = new PokedexContext())
+            {
+                context.Database.EnsureDeleted();
+                context.Database.Migrate();
+            }*/
+
             RootFrame.Navigate(typeof(HomePage));
         }
 
@@ -45,11 +54,11 @@ namespace Pokedex.View
         {
             RootFrame.Navigate(typeof(ListPage), 
                                 new Tuple<PageOrigin,TypeNames>(PageOrigin.MainPage,TypeNames.none) );
-        }
+        }        
 
-        private void ButtonAbout_Click(object sender, RoutedEventArgs e)
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(AboutPage));
+            RootFrame.Navigate(typeof(AddPokemonPage));
         }
     }
 }

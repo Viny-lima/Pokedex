@@ -5,7 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Pokedex.ViewModel
-{
+{    
+
+    public class TypeViewModel
+    {
+        public TypeNames Name { get; set; }
+
+        private string _source;
+        public string Source
+        {
+            get
+            {
+                return _source;
+            }
+            set
+            {
+                _source = $"../Assets/Components/Types/T{value}.png";
+            }
+        }
+
+    }
+
+    #region HelpTypeViewModel
     public enum TypeNames
     {
         none = 0,
@@ -29,32 +50,13 @@ namespace Pokedex.ViewModel
         fairy = 18,
     }
 
-    public class TypeViewModel
-    {
-        public TypeNames Name { get; set; }
-
-        private string _source;
-        public string Source
-        {
-            get
-            {
-                return _source;
-            }
-            set
-            {
-                _source = $"../Assets/Components/Types/T{value}.png";
-            }
-        }
-
-    }
-
     public static class TypeViewModelManagement
     {
         public static IList<TypeViewModel> GetImageSourceManagement()
         {
             var list = new List<TypeViewModel>();
 
-            for(int i = 1; i <= 18; i++)
+            for (int i = 1; i <= 18; i++)
             {
                 list.Add(new TypeViewModel { Name = (TypeNames)i, Source = $"{i}" });
             }
@@ -63,4 +65,6 @@ namespace Pokedex.ViewModel
         }
 
     }
+    #endregion
+
 }

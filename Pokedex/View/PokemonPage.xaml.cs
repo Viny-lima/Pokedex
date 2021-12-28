@@ -34,7 +34,7 @@ namespace Pokedex.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            view.Pokemon = e.Parameter as PokemonDB;                  
+            view.This = e.Parameter as PokemonDB;                  
         }
 
         private void ButtonAbilities_Click(object sender, RoutedEventArgs e)

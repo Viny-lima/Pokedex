@@ -3,34 +3,12 @@ using Newtonsoft.Json;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class PropertiesStateAPI : ObservableObject
+    public class PropertiesStateAPI
     {
         [JsonProperty("name")]
-        private string _name;
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                SetProperty(ref _name, value, nameof(Name));
-            }
-        }
+        public string Name { get; set; }
 
         [JsonProperty("url")]
-        private string _url;
-        public string Url
-        {
-            get
-            {
-                return _url;
-            }
-            set
-            {
-                SetProperty(ref _url, value, nameof(Url));
-            }
-        }
+        public string Url { get; set; }
     }
 }

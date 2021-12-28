@@ -4,6 +4,9 @@ using Pokedex.Model.Service;
 using Pokedex.Model.Entities;
 using Pokedex.Model.DAO;
 using System.Linq;
+using Microsoft.Data.Sqlite;
+using Pokedex.Model.Exceptions;
+using System.Diagnostics;
 
 namespace Pokedex.Migrations.Startup
 {
@@ -11,28 +14,26 @@ namespace Pokedex.Migrations.Startup
     {
         static void Main(string[] args)
         {
-            //var p = new PokedexContext();
-            //p.Database.Migrate();
+            var p = new PokedexContext();
+            p.Database.Migrate();
+
             IPokemonService<PokemonDB> service = new PokemonService();
 
-            //var pdao = new PokemonDAO();
 
-            //var pokemons = pdao.FindByType("normal").Result;
-            //var pokemon = service.FindPokemonByName("eternatus").Result;
-            //var p = service.FindPokemonById(889).Result;
-            //service.DeletePokemon(p);
+            //var pokemons = service.FindPokemonsByType("normal", 1, 10).Result;
+            var pokemon = service.FindPokemonById(16).Result;
 
-            var pokemons = service.FindPokemonsByType("fire", 1, 10).Result;
+            //foreach (var pokemon in pokemons)
+            //{
+            //    Console.WriteLine(pokemon.Id);
+            //    Console.WriteLine(pokemon.Name);
+            //}
 
-            //Console.WriteLine(pokemon.Id);
-            //Console.WriteLine(pokemon.Name);
-
-            //var pokemontype = type.Pokemons;
-
-            foreach (var pokemon in pokemons)
+            Console.WriteLine(pokemon.Name);
+            Console.WriteLine(pokemon.Id);
+            foreach (var typePokemon in pokemon.Types)
             {
-                Console.WriteLine(pokemon.Id);
-                Console.WriteLine(pokemon.Name);
+                Console.WriteLine(typePokemon.Type.Name);
             }
 
         }

@@ -1,4 +1,5 @@
-﻿using Pokedex.Model.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Pokedex.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,16 @@ namespace Pokedex.Model.DAO
             var types = FindAll().Result.Where(p => p.Name == typeDB.Name);
 
             return   types.ToList().Count > 0;
+        }
+
+        internal async Task<TypeDB> FindByName(string name)
+        {
+            PokedexContext context = new PokedexContext();
+
+            var type = await context.Types
+                                    .FirstOrDefaultAsync(t => t.Name == name);
+
+            return type;
         }
     }
 }

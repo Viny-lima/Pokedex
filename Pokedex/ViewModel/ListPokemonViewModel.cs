@@ -61,6 +61,7 @@ namespace Pokedex.ViewModel
                     break;
             }
         }
+
         public void NextPageListPokemons()
         {
             _start += _quantity;

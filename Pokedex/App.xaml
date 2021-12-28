@@ -2,16 +2,22 @@
     x:Class="Pokedex.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     xmlns:local="using:Pokedex"
     RequestedTheme="Light">
-    
+
+
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources\DictionaryResourcesMain.xaml"/>
-                <ResourceDictionary Source="Resources\DictionaryPokemonPage.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+                
+                <ResourceDictionary Source="Resources\DictionaryButtons.xaml"/>
+                <ResourceDictionary Source="Resources\DictionaryColors.xaml"/>
+                <ResourceDictionary Source="Resources\DictionaryFonts.xaml"/>
+                <ResourceDictionary Source="Resources\DictionaryTemplates.xaml"/>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+            </ResourceDictionary.MergedDictionaries>            
+        </ResourceDictionary>                     
     </Application.Resources>
 
 </Application>

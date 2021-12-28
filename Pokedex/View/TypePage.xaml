@@ -13,13 +13,13 @@
     <Frame Name="RootFrame">
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="../Assets/Components/T_BG.png"/>
+                <ImageBrush ImageSource="../Assets/Components/T_BG.png" 
+                            Stretch="UniformToFill"/>
             </Grid.Background>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="70"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <FlipView Name="MyFlipView"
@@ -35,8 +35,6 @@
                     </DataTemplate>
                 </FlipView.ItemTemplate>
             </FlipView>
-
-            <TextBlock Name="Test" FontSize="20" Foreground="White"/>
         </Grid>
     </Frame>
 </Page>
