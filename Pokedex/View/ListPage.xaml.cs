@@ -23,7 +23,7 @@ namespace Pokedex.View
         {
             Tuple<PageOrigin,TypeNames> parameterNavigation =(Tuple<PageOrigin,TypeNames>) e.Parameter;
 
-            ListPokemons = new ListPokemonViewModel(parameterNavigation.Item1, parameterNavigation.Item2);
+            ListPokemons = new ListPokemonViewModel(ref MyProgressRing, parameterNavigation.Item1, parameterNavigation.Item2);
         }        
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)

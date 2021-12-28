@@ -25,20 +25,28 @@ namespace Pokedex.ViewModel
         private PokemonService _pokemonService = new PokemonService();
 
         private int _start;
-        private PageOrigin _origin;
         private readonly int _quantity;
+        private ProgressRing _progressRing;
+        private PageOrigin _origin;
         private TypeNames _typeSelected;
 
-        public ListPokemonViewModel(PageOrigin originPage, TypeNames typeSelected = TypeNames.normal)
+        public ListPokemonViewModel(ref ProgressRing progressRing, PageOrigin originPage, TypeNames typeSelected = TypeNames.normal)
         {
             _start = 1;
             _quantity = 10;
             _origin = originPage;
-            _typeSelected = typeSelected;          
+            _typeSelected = typeSelected;
+            _progressRing = progressRing;
         }
 
         private void UpdateListPokemons(ref CoreDispatcher coreDispatcher)
         {
+
+            coreDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                _progressRing.Visibility = Visibility.Visible;
+            });
+
 
             switch (_origin)
             {
@@ -65,11 +73,14 @@ namespace Pokedex.ViewModel
                         foreach (PokemonDB p in listTypesPokemons)
                         {
                             this.Add(p);
+                            _progressRing.Visibility = Visibility.Collapsed;
                         }
                     });
 
                     break;
             }
+
+            
         }
 
         public IAsyncOperation<LoadMoreItemsResult> LoadMoreItemsAsync(uint count)

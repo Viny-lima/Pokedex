@@ -66,16 +66,15 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>
-                    <ProgressRing   x:FieldModifier="public"
-                                    x:Name="MyProgress"
+                    <ProgressRing   x:Name="MyProgressRing"
                                     Grid.Row="2"
-                                    Width="30"
-                                    Height="30"
+                                    Width="50"
+                                    Height="50"
                                     Foreground="{StaticResource MyColorWhite}"
                                     Margin="0,5,0,0"
                                     VerticalAlignment="Top"                            
                                     Visibility="Collapsed"
-                                    IsActive="False"
+                                    IsActive="True"
                                     />
                 </ListView.Footer>
             </ListView>
