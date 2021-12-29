@@ -114,7 +114,7 @@ namespace Pokedex.Model.Entities
         {
             for (int i = 0; i < pokemonAPI.Types.Count; i++)
             {
-                await AddType(pokemonAPI.Types[i].Type.Name);
+                await AddType(pokemonAPI.Types[i].NamesType.Name);
             }      
         }       
 

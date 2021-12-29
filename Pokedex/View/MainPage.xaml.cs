@@ -30,7 +30,7 @@ namespace Pokedex.View
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {  
             //Limpando o banco de dados
-
+            
             /*using(PokedexContext context = new PokedexContext())
             {
                 context.Database.EnsureDeleted();

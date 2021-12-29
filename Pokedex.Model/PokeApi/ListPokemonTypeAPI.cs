@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Pokedex.Model.PokeApi
 {
-    class TypePageAPI
+    class ListPokemonTypeAPI
     {
         [JsonProperty("pokemon")]
-        public List<PokemonTypePropertiesAPI> Pokemons;
+        public List<ListPokemonTypeItemAPI> Pokemons { get; set; }
     }
 }

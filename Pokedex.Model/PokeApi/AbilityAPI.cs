@@ -6,6 +6,6 @@ namespace Pokedex.Model.PokeApi
     public class AbilityAPI
     {
         [JsonProperty("ability")]
-        public PropertiesAbilityAPI PropertiesAbility { get; set; }
+        public Names PropertiesAbility { get; set; }
     }
 }
