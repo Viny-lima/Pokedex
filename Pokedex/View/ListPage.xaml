@@ -23,13 +23,13 @@
             </Grid.RowDefinitions>
 
             <ListView Grid.Row="1"
-                      ItemsSource="{x:Bind viewList.Pokemons}"
+                      ItemsSource="{x:Bind ListPokemons}"
                       HorizontalAlignment="Center"
                       ScrollViewer.VerticalScrollBarVisibility="Hidden"
                       IsItemClickEnabled="True"
                       ItemClick="ListView_ItemClick"
                       >
-                
+
                 <ListView.ItemTemplate>
 
                     <DataTemplate x:DataType="data:PokemonDB">
@@ -42,7 +42,7 @@
                                       HorizontalAlignment="Center"
                                       Orientation="Horizontal"
                                       >
-                            
+
                             <TextBlock  Text="{Binding Id}"                                         
                                         Style="{StaticResource MyFontDescribeGreen}"
                                         VerticalAlignment="Center"
@@ -51,31 +51,34 @@
 
                             <Image MaxHeight="150"
                                    MaxWidth="150"
-                                   Grid.Column="1">
-                                <Image.Source>
-                                    <BitmapImage UriSource="{Binding SpritesOfficialArtwork}"/>
-                                </Image.Source>
-                            </Image>
+                                   Grid.Column="1"
+                                   Source="{Binding SpritesOfficialArtwork}"
+                                   />
 
                             <TextBlock  Text="{Binding Name}" 
                                         Style="{StaticResource MyFontDescribeGreen}"
                                         Margin="10,0"
                                         VerticalAlignment="Center"
                                         />
-                        </StackPanel>                       
-                    </DataTemplate>                    
+                        </StackPanel>
+                    </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <ProgressRing   x:Name="MyProgressRing"
+                                    Grid.Row="2"
+                                    Width="50"
+                                    Height="50"
+                                    Foreground="{StaticResource MyColorWhite}"
+                                    Margin="0,5,0,0"
+                                    VerticalAlignment="Top"                            
+                                    Visibility="Collapsed"
+                                    IsActive="True"
+                                    />
+                </ListView.Footer>
             </ListView>
+            
+            
 
-
-            <Button Name="ButtonNext"
-                    Grid.Row="2"
-                    Grid.Column="1"                        
-                    Content="Next" 
-                    Style="{StaticResource MyButtonWhite}"
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center"
-                    Click="ButtonNext_Click"/>
         </Grid>       
         
     </Frame>

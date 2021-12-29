@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class PokemonUrlAPI 
+    public class ListPokemonItemAPI 
     {
         public int Id { get; set; }
 

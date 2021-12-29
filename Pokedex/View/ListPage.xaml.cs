@@ -12,7 +12,7 @@ namespace Pokedex.View
     public sealed partial class ListPage : Page
     {
         private PokemonService _service = new PokemonService();
-        public ListPokemonViewModel viewList;
+        public ListPokemonViewModel ListPokemons;
 
         public ListPage()
         {            
@@ -23,20 +23,14 @@ namespace Pokedex.View
         {
             Tuple<PageOrigin,TypeNames> parameterNavigation =(Tuple<PageOrigin,TypeNames>) e.Parameter;
 
-            viewList = new ListPokemonViewModel(parameterNavigation.Item1, parameterNavigation.Item2);
-        }
-
-        private void ButtonNext_Click(object sender, RoutedEventArgs e)
-        {
-            viewList.NextPageListPokemons();
-        }
+            ListPokemons = new ListPokemonViewModel(ref MyProgressRing, parameterNavigation.Item1, parameterNavigation.Item2);
+        }        
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var pokemonSelected = e.ClickedItem as PokemonDB;
-            var pokemon = _service.FindPokemonById(pokemonSelected.Id).Result;            
+            var pokemonSelected = e.ClickedItem as PokemonDB;         
 
-            RootFrame.Navigate(typeof(PokemonPage), pokemon);
+            RootFrame.Navigate(typeof(PokemonPage), pokemonSelected.Id);
         }
     }
 }

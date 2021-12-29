@@ -1,5 +1,6 @@
 ﻿using Pokedex.Model.DAO;
 using Pokedex.Model.Entities;
+using Pokedex.Model.Service;
 using Pokedex.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,8 @@ namespace Pokedex.View
     /// </summary>
     public sealed partial class PokemonPage : Page
     {
-        public PokemonViewModel view = new PokemonViewModel();
+        private PokemonService _service = new PokemonService();
+        public PokemonViewModel pokemon = new PokemonViewModel();
 
         public PokemonPage()
         {
@@ -34,7 +36,9 @@ namespace Pokedex.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            view.This = e.Parameter as PokemonDB;                  
+            var id = (int) e.Parameter;
+
+            pokemon.This = _service.FindPokemonById(id).Result;
         }
 
         private void ButtonAbilities_Click(object sender, RoutedEventArgs e)
