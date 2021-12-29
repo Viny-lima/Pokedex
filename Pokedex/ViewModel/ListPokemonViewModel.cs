@@ -47,7 +47,6 @@ namespace Pokedex.ViewModel
                 _progressRing.Visibility = Visibility.Visible;
             });
 
-
             switch (_origin)
             {
                 case PageOrigin.MainPage:
@@ -59,6 +58,7 @@ namespace Pokedex.ViewModel
                         foreach (PokemonDB p in listPokemons)
                         {
                             this.Add(p);
+                            _progressRing.Visibility = Visibility.Collapsed;
                         }
                     });
 

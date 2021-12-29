@@ -51,11 +51,9 @@
 
                             <Image MaxHeight="150"
                                    MaxWidth="150"
-                                   Grid.Column="1">
-                                <Image.Source>
-                                    <BitmapImage UriSource="{Binding SpritesOfficialArtwork}"/>
-                                </Image.Source>
-                            </Image>
+                                   Grid.Column="1"
+                                   Source="{Binding SpritesOfficialArtwork}"
+                                   />
 
                             <TextBlock  Text="{Binding Name}" 
                                         Style="{StaticResource MyFontDescribeGreen}"
