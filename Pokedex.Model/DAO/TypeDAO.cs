@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pokedex.Model.DAO
 {
-    internal class TypeDAO : PokedexDAO<TypeDB>
+    public class TypeDAO : PokedexDAO<TypeDB>
     {
         internal bool Exists(TypeDB typeDB)
         {
@@ -17,7 +17,7 @@ namespace Pokedex.Model.DAO
             return   types.ToList().Count > 0;
         }
 
-        internal async Task<TypeDB> FindByName(string name)
+        public async Task<TypeDB> FindByName(string name)
         {
             PokedexContext context = new PokedexContext();
 
@@ -25,6 +25,24 @@ namespace Pokedex.Model.DAO
                                     .FirstOrDefaultAsync(t => t.Name == name);
 
             return type;
+        }
+
+        public async Task<bool> PokemonHasType(string name, int pokemonId)
+        {
+            PokedexContext context = new PokedexContext();
+
+            var type = await context.Types
+                                       .Include(t => t.Pokemons)
+                                       .FirstOrDefaultAsync(t => t.Name == name);
+
+            if (type == null)
+            {
+                return false;
+            }
+
+            var hasType = type.Pokemons.FirstOrDefault(tp => tp.PokemonId == pokemonId) != null;
+
+            return hasType;
         }
     }
 }
