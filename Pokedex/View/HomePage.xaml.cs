@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.RegularExpressions;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,9 +23,9 @@ namespace Pokedex.View
     public sealed partial class HomePage : Page
     {
         private string _search;
-        private PokemonService _service = new PokemonService();        
+        private PokemonService _service = new PokemonService();
+        private PokemonDB _pokemon;
         private List<String> _listaNamesPokemons = new List<String>();
-        private PokemonDB _pokemon = new PokemonDB();
 
         public HomePage()
         {
@@ -37,7 +38,6 @@ namespace Pokedex.View
             {
                 _listaNamesPokemons.Add(p.Name); 
             }
-
         }
 
         private void BarSearchResponsive_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -51,34 +51,67 @@ namespace Pokedex.View
 
         private void BarSearchResponsive_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            try
-            {
-                var id = int.Parse(_search);
-                _pokemon = _service.FindPokemonById(id).Result;                
-            }            
-            catch (FormatException)
-            {
-                _pokemon = _service.FindPokemonByName(_search).Result;                              
-            }
-            catch (ArgumentNullException)
-            {
-                ERRO.Visibility = Visibility.Visible;
-                ERRO.Text = "ERRO: This pokemon doesn't exist";
-            }
-            finally
-            {
-                if (_pokemon != null)
-                {
-                    RootFrame.Navigate(typeof(PokemonPage), _pokemon);
-                }
-            }
-
+            CheckedQuery();
         }
 
         private void ButtonAllTwo_Click(object sender, RoutedEventArgs e)
         {
             RootFrame.Navigate(typeof(ListPage),
                                 new Tuple<PageOrigin, TypeNames>(PageOrigin.MainPage, TypeNames.none));
+        }
+
+        private void CheckedQuery()
+        {           
+            try
+            {               
+                if(_search != null)
+                {
+                    _search = _search.Trim().ToLower();
+                }
+
+                if (string.IsNullOrEmpty(_search) || Regex.IsMatch(_search, (@"[!""#$%&'()*+,-./:;?@[\\\]_`{|}~]")))
+                {
+                    throw new ArgumentNullException();
+                }                
+
+                if (int.TryParse(_search, out int Id))
+                {
+                    _pokemon = _service.FindPokemonById(Id).Result;
+                }
+                else
+                {
+                    _pokemon = _service.FindPokemonByName(_search).Result;
+                }
+
+                if(_pokemon == null)
+                {
+                    throw new ArgumentNullException();
+                }
+
+            }
+            catch (ArgumentNullException)
+            {
+                ERROR.Visibility = Visibility.Visible;
+                ERROR.Text = "ERROR: This query doesn't exist";
+            }
+            
+            catch (NullReferenceException)
+            {
+                ERROR.Visibility = Visibility.Visible;
+                ERROR.Text = "ERROR: Null Reference Exception";
+            }
+            catch (Exception)
+            {
+                ERROR.Visibility = Visibility.Visible;
+                ERROR.Text = "ERROR: Pokemon not Found";
+            }
+            finally
+            {
+                if (_pokemon != null)
+                {
+                    RootFrame.Navigate(typeof(PokemonPage), _pokemon.Id);
+                }
+            }
         }
     }
 }

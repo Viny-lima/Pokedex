@@ -30,6 +30,7 @@ namespace Pokedex.View
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {  
             //Limpando o banco de dados
+            
             /*using(PokedexContext context = new PokedexContext())
             {
                 context.Database.EnsureDeleted();
@@ -53,12 +54,7 @@ namespace Pokedex.View
         {
             RootFrame.Navigate(typeof(ListPage), 
                                 new Tuple<PageOrigin,TypeNames>(PageOrigin.MainPage,TypeNames.none) );
-        }
-
-        private void ButtonAbout_Click(object sender, RoutedEventArgs e)
-        {
-            RootFrame.Navigate(typeof(AboutPage));
-        }
+        }        
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {

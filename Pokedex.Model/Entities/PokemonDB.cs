@@ -13,6 +13,8 @@ namespace Pokedex.Model.Entities
     {
         public int Id { get; set; }
 
+        public string Name { get; set; }
+
         public int Hp { get; set; }
 
         public int Attack { get; set; }
@@ -25,8 +27,6 @@ namespace Pokedex.Model.Entities
 
         public int Speed { get; set; }
 
-        public string Name { get; set; }
-
         public int Height { get; set; }
 
         public int Weight { get; set; }
@@ -35,7 +35,30 @@ namespace Pokedex.Model.Entities
 
         public string SpritesFrontDefault { get; set; }
 
-        public string SpritesOfficialArtwork { get; set; }
+        private string _spriteOfficialArtwork;
+        public string SpritesOfficialArtwork
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_spriteOfficialArtwork))
+                {
+                    return "../Assets/Components/DEFAULT_POKEMON.png";
+                }
+
+                return _spriteOfficialArtwork;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    _spriteOfficialArtwork = "../Assets/Components/DEFAULT_POKEMON.png";
+                }
+                else
+                {
+                    _spriteOfficialArtwork = value;
+                }                           
+            }
+        }
 
         public IList<AbilityPokemonDB> Abilities { get; internal set; }
 
@@ -120,11 +143,11 @@ namespace Pokedex.Model.Entities
             {
                 typeDB = db.FindAll().Result.FirstOrDefault(p => p.Name == typeDB.Name);
 
-                Types.Add(new TypePokemonDB() { PokemonId = this.Id, TypeId = typeDB.Id });
+                Types.Add(new TypePokemonDB() { PokemonId = Id ,TypeId = typeDB.Id });
             }
             else
             {
-                Types.Add(new TypePokemonDB() { PokemonId = this.Id, Type = typeDB });
+                Types.Add(new TypePokemonDB() { PokemonId = Id, Type = typeDB });
             }
 
             return Task.CompletedTask;
