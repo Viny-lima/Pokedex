@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Pokedex.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls" 
     mc:Ignorable="d"
     Loading="Page_Loading"
     >
@@ -53,17 +54,18 @@
                             Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics, abilities and movements."   
                             />
                 
-                <TextBlock Name="ERRO" Style="{StaticResource MyFontErro}"/>
+                <TextBlock Name="ERROR" Style="{StaticResource MyFontErro}"/>
                 
                 <AutoSuggestBox Name="BarSearchResponsive"
                                 QueryIcon="Find"
                                 MinWidth="300"
-                                PlaceholderText="Search for a Pokemon here..."
+                                PlaceholderText="Search for a Pokémon by Name or Id..."
                                 TextChanged="BarSearchResponsive_TextChanged"
                                 HorizontalAlignment="Left"
                                 Margin="20"
                                 QuerySubmitted="BarSearchResponsive_QuerySubmitted"
-                                />
+                                />                             
+
                 <Button Name="ButtonAllTwo"
                         Content="See the pokemons"
                         FontSize="20"

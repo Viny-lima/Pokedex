@@ -1,7 +1,15 @@
 ﻿using Pokedex.Model.Entities;
 using Pokedex.Model.Service;
+using Pokedex.View;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Windows.Foundation;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 
 namespace Pokedex.ViewModel
 {
@@ -12,40 +20,47 @@ namespace Pokedex.ViewModel
     }
     
 
-    public class ListPokemonViewModel
+    public class ListPokemonViewModel : ObservableCollection<PokemonDB>, ISupportIncrementalLoading
     {
         private PokemonService _pokemonService = new PokemonService();
-        private ObservableCollection<PokemonDB> _pokemons = new ObservableCollection<PokemonDB>();
 
         private int _start;
-        private PageOrigin _origin;
         private readonly int _quantity;
+        private ProgressRing _progressRing;
+        private PageOrigin _origin;
         private TypeNames _typeSelected;
 
-        public ObservableCollection<PokemonDB> Pokemons { get { return _pokemons; } }
-
-        public ListPokemonViewModel(PageOrigin originPage, TypeNames typeSelected = TypeNames.normal,int quantity = 10)
+        public ListPokemonViewModel(ref ProgressRing progressRing, PageOrigin originPage, TypeNames typeSelected = TypeNames.normal)
         {
             _start = 1;
-            _quantity = quantity;
+            _quantity = 10;
             _origin = originPage;
             _typeSelected = typeSelected;
-
-            UpdateListPokemons();            
+            _progressRing = progressRing;
         }
 
-        private void UpdateListPokemons()
+        private void UpdateListPokemons(ref CoreDispatcher coreDispatcher)
         {
+
+            coreDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                _progressRing.Visibility = Visibility.Visible;
+            });
+
+
             switch (_origin)
             {
                 case PageOrigin.MainPage:
 
                     IList<PokemonDB> listPokemons = _pokemonService.FindPokemonsById(_start, _quantity).Result;
 
-                    foreach (var pokemon in listPokemons)
+                    coreDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
-                        this._pokemons.Add(pokemon);
-                    }
+                        foreach (PokemonDB p in listPokemons)
+                        {
+                            this.Add(p);
+                        }
+                    });
 
                     break;
 
@@ -53,22 +68,38 @@ namespace Pokedex.ViewModel
 
                     IList<PokemonDB> listTypesPokemons = _pokemonService.FindPokemonsByType($"{_typeSelected}", _start, _quantity).Result;
 
-                    foreach (var pokemon in listTypesPokemons)
+                    coreDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
-                        this._pokemons.Add(pokemon);
-                    }
+                        foreach (PokemonDB p in listTypesPokemons)
+                        {
+                            this.Add(p);
+                            _progressRing.Visibility = Visibility.Collapsed;
+                        }
+                    });
 
                     break;
             }
+
+            
         }
-        public void NextPageListPokemons()
+
+        public IAsyncOperation<LoadMoreItemsResult> LoadMoreItemsAsync(uint count)
         {
-            _start += _quantity;
+            CoreDispatcher coreDispatcher = Window.Current.Dispatcher;
 
-            UpdateListPokemons();
+            return Task.Run(() =>
+            {                
+                UpdateListPokemons(ref coreDispatcher);
+
+                _start += _quantity;
+
+                return new LoadMoreItemsResult() { Count = count };
+            }).AsAsyncOperation();
+
+
         }
 
-
-    }
+        public bool HasMoreItems => Count < _start;
+    }       
 
 }

@@ -6,7 +6,7 @@ namespace Pokedex.Model.PokeApi
     public class TypeAPI
     {
         [JsonProperty("type")]
-        public PropertiesTypeAPI Type { get; set; }
+        public Names NamesType { get; set; }
     }
 
 }

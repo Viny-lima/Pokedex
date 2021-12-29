@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class PokemonPropertiesList
+    public class ListPokemonAPI
     {
         [JsonProperty("count")]
-        public long ListSize { get; set; }
+        public int Size { get; set; }
 
         [JsonProperty("results")]
-        public List<PokemonUrlAPI> Results { get; set; }
+        public List<ListPokemonItemAPI> Results { get; set; }
     }
 }

@@ -13,6 +13,8 @@ namespace Pokedex.Model.Entities
     {
         public int Id { get; set; }
 
+        public string Name { get; set; }
+
         public int Hp { get; set; }
 
         public int Attack { get; set; }
@@ -25,8 +27,6 @@ namespace Pokedex.Model.Entities
 
         public int Speed { get; set; }
 
-        public string Name { get; set; }
-
         public int Height { get; set; }
 
         public int Weight { get; set; }
@@ -35,7 +35,30 @@ namespace Pokedex.Model.Entities
 
         public string SpritesFrontDefault { get; set; }
 
-        public string SpritesOfficialArtwork { get; set; }
+        private string _spriteOfficialArtwork;
+        public string SpritesOfficialArtwork
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_spriteOfficialArtwork))
+                {
+                    return "../Assets/Components/DEFAULT_POKEMON.png";
+                }
+
+                return _spriteOfficialArtwork;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    _spriteOfficialArtwork = "../Assets/Components/DEFAULT_POKEMON.png";
+                }
+                else
+                {
+                    _spriteOfficialArtwork = value;
+                }                           
+            }
+        }
 
         public IList<AbilityPokemonDB> Abilities { get; internal set; }
 
@@ -91,7 +114,7 @@ namespace Pokedex.Model.Entities
         {
             for (int i = 0; i < pokemonAPI.Types.Count; i++)
             {
-                await AddType(pokemonAPI.Types[i].Type.Name);
+                await AddType(pokemonAPI.Types[i].NamesType.Name);
             }      
         }       
 

@@ -45,16 +45,10 @@
             <Button Name="ButtonAllPokemons"
                     Content="List"
                     Style="{StaticResource MyButtonWhite}"
-                    RelativePanel.LeftOf="ButtonAbout" 
+                    RelativePanel.AlignRightWithPanel="True"
                     Click="ButtonListPokemons_Click"                  
                     />
-
-            <Button Name="ButtonAbout"
-                    Content="About"
-                    Style="{StaticResource MyButtonWhite}"
-                    RelativePanel.AlignRightWithPanel="True" 
-                    Click="ButtonAbout_Click"
-                    />
+            
         </RelativePanel>
     </Grid>
     
