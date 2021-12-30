@@ -63,6 +63,10 @@ namespace Pokedex.Model.Service
                         await _pokemonDAO.Update(pokemonToAddOrUpdate);
                     }
                 }
+                else
+                {
+                    throw new PokemonNotFoundException();
+                }
 
                 pokemonFound = await ((PokemonDAO)_pokemonDAO).FindById(id);
             }
@@ -91,6 +95,10 @@ namespace Pokedex.Model.Service
                         await _pokemonDAO.Update(pokemonToAddOrUpdate);
                     }
                 }
+                else
+                {
+                    throw new PokemonNotFoundException();
+                }
 
                 pokemonFound = await ((PokemonDAO)_pokemonDAO).FindByName(name);
             }
@@ -106,6 +114,7 @@ namespace Pokedex.Model.Service
 
             if (end > 898)
             {
+                // número de pokemons normais - id inicial dos pokemons especiais
                 var offset = 9102;
 
                 var especialPokemons = await ((PokemonDAO)_pokemonDAO).FindInRange(start + offset, end + offset);
@@ -114,6 +123,7 @@ namespace Pokedex.Model.Service
 
                 if (end > 1118)
                 {
+                    // número de pokemons normais e especiais - id inicial dos pokemons criados pelos usuários
                     offset = 98882;
 
                     var customPokemons = await ((PokemonDAO)_pokemonDAO).FindInRange(start + offset, end + offset);
