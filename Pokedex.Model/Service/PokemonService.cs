@@ -102,7 +102,25 @@ namespace Pokedex.Model.Service
         {
             int end = start + quantity;
 
-            var pokemons = await ((PokemonDAO)_pokemonDAO).FindInRange(start, end);
+            List<PokemonDB> pokemons = await ((PokemonDAO)_pokemonDAO).FindInRange(start, end);
+
+            if (end > 898)
+            {
+                var offset = 9102;
+
+                var especialPokemons = await ((PokemonDAO)_pokemonDAO).FindInRange(start + offset, end + offset);
+
+                pokemons.AddRange(especialPokemons);
+
+                if (end > 1118)
+                {
+                    offset = 98882;
+
+                    var customPokemons = await ((PokemonDAO)_pokemonDAO).FindInRange(start + offset, end + offset);
+
+                    pokemons.AddRange(customPokemons);
+                }
+            }
 
             if (pokemons.Count < quantity)
             {
