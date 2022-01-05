@@ -41,7 +41,7 @@ namespace Pokedex.Model.DAO
             return pokemon;
         }
 
-        public async Task<IList<PokemonDB>> FindInRange(int start, int end)
+        public async Task<List<PokemonDB>> FindInRange(int start, int end)
         {
             PokedexContext context = new PokedexContext();
 
@@ -52,7 +52,7 @@ namespace Pokedex.Model.DAO
             return list;
         }
         
-        public async Task<IList<PokemonDB>> FindByType(string typeName, int start, int quantity)
+        public async Task<List<PokemonDB>> FindByType(string typeName, int start, int quantity)
         {
             PokedexContext context = new PokedexContext();
 

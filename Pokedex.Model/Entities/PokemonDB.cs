@@ -137,17 +137,19 @@ namespace Pokedex.Model.Entities
         public Task AddType(string typeName)
         {
             var db = new TypeDAO();
-            var typeDB = new TypeDB() { Name = typeName };
+            var typeDB = db.FindByName(typeName).Result;
 
-            if (db.Exists(typeDB))
+            if (typeDB != null)
             {
-                typeDB = db.FindAll().Result.FirstOrDefault(p => p.Name == typeDB.Name);
-
-                Types.Add(new TypePokemonDB() { PokemonId = Id ,TypeId = typeDB.Id });
+                if (!db.PokemonHasType(typeName, this.Id).Result)
+                {
+                    Types.Add(new TypePokemonDB() { TypeId = typeDB.Id });
+                }
             }
             else
             {
-                Types.Add(new TypePokemonDB() { PokemonId = Id, Type = typeDB });
+                var typeToBeAdded = new TypeDB() { Name = typeName }; 
+                Types.Add(new TypePokemonDB() { PokemonId = this.Id, Type = typeToBeAdded });
             }
 
             return Task.CompletedTask;
