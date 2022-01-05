@@ -41,6 +41,7 @@ namespace Pokedex.ViewModel
 
         private void UpdateListPokemons(ref CoreDispatcher coreDispatcher)
         {
+            IList<PokemonDB> listPokemons = new List<PokemonDB>();
 
             coreDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -51,36 +52,27 @@ namespace Pokedex.ViewModel
             {
                 case PageOrigin.MainPage:
 
-                    IList<PokemonDB> listPokemons = _pokemonService.FindPokemonsById(_start, _quantity).Result;
-
-                    coreDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        foreach (PokemonDB p in listPokemons)
-                        {
-                            this.Add(p);
-                            _progressRing.Visibility = Visibility.Collapsed;
-                        }
-                    });
+                    listPokemons = _pokemonService.FindPokemonsById(_start, _quantity).Result;
 
                     break;
 
                 case PageOrigin.TypePage:
 
-                    IList<PokemonDB> listTypesPokemons = _pokemonService.FindPokemonsByType($"{_typeSelected}", _start, _quantity).Result;
-
-                    coreDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        foreach (PokemonDB p in listTypesPokemons)
-                        {
-                            this.Add(p);
-                            _progressRing.Visibility = Visibility.Collapsed;
-                        }
-                    });
+                    listPokemons = _pokemonService.FindPokemonsByType($"{_typeSelected}", _start, _quantity).Result;                                         
 
                     break;
             }
 
-            
+            coreDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {                
+                foreach (PokemonDB p in listPokemons)
+                {
+                    this.Add(p);                    
+                }
+
+                _progressRing.Visibility = Visibility.Collapsed;
+            });
+
         }
 
         public IAsyncOperation<LoadMoreItemsResult> LoadMoreItemsAsync(uint count)
@@ -93,13 +85,13 @@ namespace Pokedex.ViewModel
 
                 _start += _quantity;
 
-                return new LoadMoreItemsResult() { Count = count };
+                return new LoadMoreItemsResult() { Count = (uint) _start };
             }).AsAsyncOperation();
 
 
         }
 
-        public bool HasMoreItems => Count < _start;
+        public bool HasMoreItems => Count + 1 == _start;
     }       
 
 }

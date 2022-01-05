@@ -31,11 +31,11 @@ namespace Pokedex.View
         {  
             //Limpando o banco de dados
             
-            /*using(PokedexContext context = new PokedexContext())
+            using(PokedexContext context = new PokedexContext())
             {
                 context.Database.EnsureDeleted();
                 context.Database.Migrate();
-            }*/
+            }
 
             RootFrame.Navigate(typeof(HomePage));
         }
