@@ -87,5 +87,14 @@ namespace Pokedex.Model.Service
 
             return pokemons;
         }
+
+        public static int GetPokemonCount()
+        {
+            var url = $"{BaseUrl}{PokemonEndpoint}?limit=-1&offset=0";
+
+            var count = Get<ListPokemonAPI>(url).Count;
+
+            return count;
+        }
     }
 }
