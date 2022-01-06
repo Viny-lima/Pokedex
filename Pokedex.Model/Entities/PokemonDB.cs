@@ -34,31 +34,21 @@ namespace Pokedex.Model.Entities
 
         public int BaseExperience { get; set; }
 
-        public string SpritesFrontDefault { get; set; }
-
-        private string _spriteOfficialArtwork;
-
-        public string SpritesOfficialArtwork
+        private string _sprite;
+        public string Sprite
         {
             get
             {
-                if (string.IsNullOrEmpty(_spriteOfficialArtwork))
+                if (string.IsNullOrEmpty(_sprite))
                 {
                     return "../Assets/Components/DEFAULT_POKEMON.png";
                 }
 
-                return _spriteOfficialArtwork;
+                return _sprite;
             }
             set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    _spriteOfficialArtwork = "../Assets/Components/DEFAULT_POKEMON.png";
-                }
-                else
-                {
-                    _spriteOfficialArtwork = value;
-                }                           
+            {                
+                _sprite = value;                                          
             }
         }
 
@@ -83,7 +73,7 @@ namespace Pokedex.Model.Entities
 
             this.Id = id;
             this.Name = name;
-            this.SpritesOfficialArtwork = $"{SpriteUrl}{ArtworkEndpoint}{this.Id}{SpriteExtension}";
+            this.Sprite = $"{SpriteUrl}{ArtworkEndpoint}{this.Id}{SpriteExtension}";
         }
 
         //Pokemon Criado com base em um elemento da API
@@ -96,8 +86,7 @@ namespace Pokedex.Model.Entities
             this.Id = pokemonAPI.Id;
             this.Hp = pokemonAPI.StatusBase[0].ValueState;
             this.Attack = pokemonAPI.StatusBase[1].ValueState;
-            this.SpritesFrontDefault = $"{SpriteUrl}{this.Id}{SpriteExtension}";
-            this.SpritesOfficialArtwork = $"{SpriteUrl}{ArtworkEndpoint}{this.Id}{SpriteExtension}";
+            this.Sprite = $"{SpriteUrl}{ArtworkEndpoint}{this.Id}{SpriteExtension}";
             this.Defense = pokemonAPI.StatusBase[2].ValueState;
             this.SpecialAttack = pokemonAPI.StatusBase[3].ValueState;
             this.SpecialDefense = pokemonAPI.StatusBase[4].ValueState;
