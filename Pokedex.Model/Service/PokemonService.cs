@@ -29,6 +29,7 @@ namespace Pokedex.Model.Service
         public async Task AddCustomPokemon(PokemonDB pokemon)
         {
             await SetCustomPokemonId(pokemon);
+            pokemon.IsComplete = true;
             await _pokemonDAO.Add(pokemon);
         }
 
@@ -46,13 +47,14 @@ namespace Pokedex.Model.Service
         {
             var pokemonFound = await ((PokemonDAO)_pokemonDAO).FindById(id);
 
-            if (pokemonFound == null || pokemonFound.Hp == 0)
+            if (pokemonFound == null || pokemonFound.IsComplete == false)
             {
                 var pokemonApi = ApiRequest.GetPokemonById(id);
                 
                 if (pokemonApi != null)
                 {
                     var pokemonToAddOrUpdate = new PokemonDB(pokemonApi);
+                    pokemonToAddOrUpdate.IsComplete = true;
 
                     if (pokemonFound == null)
                     {
@@ -78,13 +80,14 @@ namespace Pokedex.Model.Service
         {
             var pokemonFound = await ((PokemonDAO)_pokemonDAO).FindByName(name);
 
-            if (pokemonFound == null || pokemonFound.Hp == 0)
+            if (pokemonFound == null || pokemonFound.IsComplete == false)
             {
                 var pokemonApi = ApiRequest.GetPokemonByName(name);
 
                 if (pokemonApi != null)
                 {
                     var pokemonToAddOrUpdate = new PokemonDB(pokemonApi);
+                    pokemonToAddOrUpdate.IsComplete = true;
 
                     if (pokemonFound == null)
                     {

@@ -16,6 +16,8 @@ namespace Pokedex.Model.Entities
 
         public string Name { get; set; }
 
+        public bool IsComplete { get; set; }
+
         public int Hp { get; set; }
 
         public int Attack { get; set; }
