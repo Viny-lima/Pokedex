@@ -31,10 +31,7 @@ namespace Pokedex.View
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach (var p in new PokedexContext().Pokemons.ToList())
-            {
-                _listaNamesPokemons.Add(p.Name);
-            }
+            _listaNamesPokemons = _service.GetNamesPokemons();
         }
 
         private async void ButtonFinished_Click(object sender, RoutedEventArgs e)
