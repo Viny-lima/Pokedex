@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Pokedex.Model.Entities;
 using Microsoft.EntityFrameworkCore;
+using Pokedex.Model.Connection;
 
 namespace Pokedex.Model.DAO
 {

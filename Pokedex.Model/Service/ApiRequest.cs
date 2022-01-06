@@ -10,7 +10,7 @@ namespace Pokedex.Model.Service
 {
     public static class ApiRequest
     {
-        public static T Get<T>(string Url)
+        private static T Get<T>(string Url)
         {
             var request = WebRequest.Create(Url);
             request.Method = "GET";
@@ -43,18 +43,11 @@ namespace Pokedex.Model.Service
             }
         }
 
-        public static PokemonAPI GetPokemonById(int Id)
+        public static PokemonAPI GetPokemon<T>(T search)
         {
-            var stringUrl = $"{BaseUrl}{PokemonEndpoint}{Id}";
+            var url = $"{BaseUrl}{PokemonEndpoint}{search}";
 
-            return Get<PokemonAPI>(stringUrl);
-        }
-
-        public static PokemonAPI GetPokemonByName(string name)
-        {
-            var stringUrl = $"{BaseUrl}{PokemonEndpoint}{name}";
-
-            return Get<PokemonAPI>(stringUrl);
+            return Get<PokemonAPI>(url);
         }
 
 

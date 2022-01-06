@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pokedex.Model.Connection;
 using Pokedex.Model.DAO;
 using Pokedex.Model.Entities;
 using Pokedex.Model.Enums;

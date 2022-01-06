@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pokedex.Model.Connection;
 using Pokedex.Model.DAO;
 using Pokedex.View;
 using System;

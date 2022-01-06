@@ -5,7 +5,6 @@ using Pokedex.Model.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Pokedex.Model.Service
@@ -44,68 +43,49 @@ namespace Pokedex.Model.Service
 
         public async Task<PokemonDB> FindById(int id)
         {
-            var pokemonFound = await ((PokemonDAO)_pokemonDAO).FindById(id);
+            var pokemonFoundDatabase = await ((PokemonDAO)_pokemonDAO).FindById(id);
 
-            if (pokemonFound == null || pokemonFound.IsComplete == false)
+            if (pokemonFoundDatabase == null || !pokemonFoundDatabase.IsComplete)
             {
-                var pokemonApi = ApiRequest.GetPokemonById(id);
-                
-                if (pokemonApi != null)
-                {
-                    var pokemonToAddOrUpdate = new PokemonDB(pokemonApi);
-                    pokemonToAddOrUpdate.IsComplete = true;
+                var pokemonToAddOrUpdate = SearchAPI(id);
 
-                    if (pokemonFound == null)
-                    {
-                        await _pokemonDAO.Add(pokemonToAddOrUpdate);
-                    }
-                    else
-                    {
-                        await _pokemonDAO.Update(pokemonToAddOrUpdate);
-                    }
-                }
-                else
+                if (pokemonFoundDatabase == null)
                 {
-                    throw new PokemonNotFoundException();
+                    await _pokemonDAO.Add(pokemonToAddOrUpdate);
                 }
+                else if (!pokemonFoundDatabase.IsComplete)
+                {
+                    await _pokemonDAO.Update(pokemonToAddOrUpdate);
+                }               
 
-                pokemonFound = await ((PokemonDAO)_pokemonDAO).FindById(id);
+                pokemonFoundDatabase = await ((PokemonDAO)_pokemonDAO).FindById(id);
             }
 
-            return pokemonFound;
+
+            return pokemonFoundDatabase;
         }
 
         public async Task<PokemonDB> FindByName(string name)
         {
-            var pokemonFound = await ((PokemonDAO)_pokemonDAO).FindByName(name);
+            var pokemonFoundDatabase = await ((PokemonDAO)_pokemonDAO).FindByName(name);
 
-            if (pokemonFound == null || pokemonFound.IsComplete == false)
+            if (pokemonFoundDatabase == null || !pokemonFoundDatabase.IsComplete)
             {
-                var pokemonApi = ApiRequest.GetPokemonByName(name);
+                var pokemonToAddOrUpdate = SearchAPI(name);
 
-                if (pokemonApi != null)
+                if (pokemonFoundDatabase == null)
                 {
-                    var pokemonToAddOrUpdate = new PokemonDB(pokemonApi);
-                    pokemonToAddOrUpdate.IsComplete = true;
-
-                    if (pokemonFound == null)
-                    {
-                        await _pokemonDAO.Add(pokemonToAddOrUpdate);
-                    }
-                    else
-                    {
-                        await _pokemonDAO.Update(pokemonToAddOrUpdate);
-                    }
+                    await _pokemonDAO.Add(pokemonToAddOrUpdate);
                 }
-                else
+                else if(!pokemonFoundDatabase.IsComplete)
                 {
-                    throw new PokemonNotFoundException();
+                    await _pokemonDAO.Update(pokemonToAddOrUpdate);
                 }
 
-                pokemonFound = await ((PokemonDAO)_pokemonDAO).FindByName(name);
+                pokemonFoundDatabase = await ((PokemonDAO)_pokemonDAO).FindByName(name);
             }
 
-            return pokemonFound;
+            return pokemonFoundDatabase;
         }
 
         public async Task<IList<PokemonDB>> FindAllById(int start, int quantity)
@@ -247,5 +227,17 @@ namespace Pokedex.Model.Service
                 pokemon.Types.Add(new TypePokemonDB() { TypeId = type.Id });
             }
         }
+
+        private PokemonDB SearchAPI<T>(T search)
+        {
+            var pokemonApi = ApiRequest.GetPokemon(search);
+
+            if (pokemonApi == null) throw new PokemonNotFoundException();
+
+            var pokemon = new PokemonDB(pokemonApi);
+            pokemon.IsComplete = true;
+
+            return pokemon;
+        } 
     }
 }

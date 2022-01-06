@@ -7,6 +7,7 @@ using System.Linq;
 using Microsoft.Data.Sqlite;
 using Pokedex.Model.Exceptions;
 using System.Diagnostics;
+using Pokedex.Model.Connection;
 
 namespace Pokedex.Migrations.Startup
 {
@@ -51,7 +52,7 @@ namespace Pokedex.Migrations.Startup
 
             for (int i = 100; i < 111; i++)
             {
-                var p = new PokemonDB(ApiRequest.GetPokemonById(i));
+                var p = new PokemonDB(ApiRequest.GetPokemon(i));
                 pokemonDAO.Add(p);
             }
 
