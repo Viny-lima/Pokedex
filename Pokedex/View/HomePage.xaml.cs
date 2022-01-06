@@ -1,22 +1,15 @@
 ﻿using Pokedex.Model.DAO;
 using Pokedex.Model.Entities;
+using Pokedex.Model.Enums;
 using Pokedex.Model.Service;
 using Pokedex.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.RegularExpressions;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Pokedex.View
 {
@@ -57,7 +50,7 @@ namespace Pokedex.View
         private void ButtonAllTwo_Click(object sender, RoutedEventArgs e)
         {
             RootFrame.Navigate(typeof(ListPage),
-                                new Tuple<PageOrigin, TypeNames>(PageOrigin.MainPage, TypeNames.none));
+                                new Tuple<PageOrigin, TypeNames>(PageOrigin.MainPage, TypeNames.All));
         }
 
         private void CheckedQuery()

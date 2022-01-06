@@ -1,4 +1,5 @@
 ﻿using Pokedex.Model.Entities;
+using Pokedex.Model.Enums;
 using Pokedex.Model.Service;
 using Pokedex.View;
 using System;

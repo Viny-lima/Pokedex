@@ -1,8 +1,8 @@
 ﻿using Pokedex.Model.Entities;
+using Pokedex.Model.Enums;
 using Pokedex.Model.Service;
 using Pokedex.ViewModel;
 using System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 

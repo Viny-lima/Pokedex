@@ -76,9 +76,8 @@
                             <TextBlock Text="Special Attack" Style="{StaticResource MyFontDescribeGreen}"/>
                             <TextBlock Text="Special Defense" Style="{StaticResource MyFontDescribeGreen}"/>
                             <TextBlock Text="Base Experience" Style="{StaticResource MyFontDescribeGreen}"/>
-                            <Button Name="ButtonAbilities" Content="Open Abilities" Style="{StaticResource MyButtonGreen}" Click="ButtonAbilities_Click" />
-                            <Button Name="ButtonMoves" Content="Open Moves" Style="{StaticResource MyButtonGreen}" Click="ButtonMoves_Click" />
-                            <Button Name="ButtonClose" Content="Close" Style="{StaticResource MyButtonGreen}" Click="ButtonBack_Click" />
+                            <Button Name="ButtonAbilities" Content="Show Abilities" Style="{StaticResource MyButtonGreen}" Click="ButtonAbilities_Click" />
+                            <Button Name="ButtonMoves" Content="Show Moves" Style="{StaticResource MyButtonGreen}" Click="ButtonMoves_Click" />
 
                         </StackPanel>
 
