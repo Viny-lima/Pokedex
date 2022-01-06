@@ -48,7 +48,7 @@ namespace Pokedex.Model.Service
 
             if (pokemonFound == null || pokemonFound.Hp == 0)
             {
-                var pokemonApi = ApiRequest.GetPokemon(id);
+                var pokemonApi = ApiRequest.GetPokemonById(id);
                 
                 if (pokemonApi != null)
                 {
@@ -80,7 +80,7 @@ namespace Pokedex.Model.Service
 
             if (pokemonFound == null || pokemonFound.Hp == 0)
             {
-                var pokemonApi = ApiRequest.GetPokemon(name);
+                var pokemonApi = ApiRequest.GetPokemonByName(name);
 
                 if (pokemonApi != null)
                 {

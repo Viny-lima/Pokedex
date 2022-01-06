@@ -49,7 +49,7 @@ namespace Pokedex.Migrations.Startup
 
             for (int i = 100; i < 111; i++)
             {
-                var p = new PokemonDB(ApiRequest.GetPokemon(i));
+                var p = new PokemonDB(ApiRequest.GetPokemonById(i));
                 pokemonDAO.Add(p);
             }
 
