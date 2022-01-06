@@ -5,6 +5,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Pokedex.Model.DAO;
 using Pokedex.Model.PokeApi;
 using Pokedex.Model.Service;
+using static Pokedex.Model.Service.UrlConstants;
 
 namespace Pokedex.Model.Entities
 {
@@ -36,6 +37,7 @@ namespace Pokedex.Model.Entities
         public string SpritesFrontDefault { get; set; }
 
         private string _spriteOfficialArtwork;
+
         public string SpritesOfficialArtwork
         {
             get
@@ -81,7 +83,7 @@ namespace Pokedex.Model.Entities
 
             this.Id = id;
             this.Name = name;
-            this.SpritesOfficialArtwork = $"{UrlConstants.SpriteUrl}{UrlConstants.ArtworkEndpoint}{this.Id}{UrlConstants.SpriteExtension}";
+            this.SpritesOfficialArtwork = $"{SpriteUrl}{ArtworkEndpoint}{this.Id}{SpriteExtension}";
         }
 
         //Pokemon Criado com base em um elemento da API
@@ -94,8 +96,8 @@ namespace Pokedex.Model.Entities
             this.Id = pokemonAPI.Id;
             this.Hp = pokemonAPI.StatusBase[0].ValueState;
             this.Attack = pokemonAPI.StatusBase[1].ValueState;
-            this.SpritesFrontDefault = $"{UrlConstants.SpriteUrl}{this.Id}{UrlConstants.SpriteExtension}";
-            this.SpritesOfficialArtwork = $"{UrlConstants.SpriteUrl}{UrlConstants.ArtworkEndpoint}{this.Id}{UrlConstants.SpriteExtension}";
+            this.SpritesFrontDefault = $"{SpriteUrl}{this.Id}{SpriteExtension}";
+            this.SpritesOfficialArtwork = $"{SpriteUrl}{ArtworkEndpoint}{this.Id}{SpriteExtension}";
             this.Defense = pokemonAPI.StatusBase[2].ValueState;
             this.SpecialAttack = pokemonAPI.StatusBase[3].ValueState;
             this.SpecialDefense = pokemonAPI.StatusBase[4].ValueState;
@@ -105,33 +107,9 @@ namespace Pokedex.Model.Entities
             this.Weight = pokemonAPI.Weight;
             this.BaseExperience = pokemonAPI.BaseExperience;
 
-            AddTypesAPI(pokemonAPI);
-            AddMovesAPI(pokemonAPI);
-            AddAbilitiesAPI(pokemonAPI);
-        }  
-
-        private async void AddTypesAPI(PokemonAPI pokemonAPI)
-        {
-            for (int i = 0; i < pokemonAPI.Types.Count; i++)
-            {
-                await AddType(pokemonAPI.Types[i].NamesType.Name);
-            }      
-        }       
-
-        private async void AddMovesAPI(PokemonAPI pokemonAPI)
-        {
-            for (int i = 0; i < pokemonAPI.Moves.Count; i++)
-            {
-                await AddMove(pokemonAPI.Moves[i].Move.Name);
-            }            
-        }
-
-        private async void AddAbilitiesAPI(PokemonAPI pokemonAPI)
-        {
-            for (int i = 0; i < pokemonAPI.Moves.Count; i++)
-            {
-                await AddAbility(pokemonAPI.Moves[i].Move.Name);
-            }
+            pokemonAPI.Types.ForEach(t => AddType(t.NamesType.Name));
+            pokemonAPI.Moves.ForEach(m => AddMove(m.Move.Name));
+            pokemonAPI.Abilities.ForEach(a => AddAbility(a.PropertiesAbility.Name));
         }
 
         public Task AddType(string typeName)
