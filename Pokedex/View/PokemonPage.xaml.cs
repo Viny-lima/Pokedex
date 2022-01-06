@@ -38,7 +38,7 @@ namespace Pokedex.View
         {
             var id = (int) e.Parameter;
 
-            pokemon.This = _service.FindPokemonById(id).Result;
+            pokemon.This = _service.FindById(id).Result;
         }
 
         private void ButtonAbilities_Click(object sender, RoutedEventArgs e)

@@ -31,7 +31,7 @@ namespace Pokedex.View
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            _listaNamesPokemons = _service.GetNamesPokemons();
+            _listaNamesPokemons = _service.GetNames();
         }
 
         private async void ButtonFinished_Click(object sender, RoutedEventArgs e)
@@ -53,7 +53,7 @@ namespace Pokedex.View
             MovesField.Distinct().ToList().ForEach(m => pokemonDB.This.AddMove(m));
             TypesField.Distinct().ToList().ForEach(t => pokemonDB.This.AddType(t));
 
-            await _service.AddPokemon(pokemonDB.This);
+            await _service.Add(pokemonDB.This);
 
             RootFrame.Navigate(typeof(AddPokemonPage));
         }        

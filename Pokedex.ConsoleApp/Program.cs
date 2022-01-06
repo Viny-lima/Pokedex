@@ -22,8 +22,8 @@ namespace Pokedex.Migrations.Startup
             IPokemonService<PokemonDB> service = new PokemonService();
 
 
-            //var pokemons = service.FindPokemonsByType("normal", 1, 10).Result;
-            var pokemon = service.FindPokemonById(16).Result;
+            //var pokemons = service.FindAllByType("normal", 1, 10).Result;
+            var pokemon = service.FindById(16).Result;
 
             //foreach (var pokemon in pokemons)
             //{

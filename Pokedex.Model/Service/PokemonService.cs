@@ -21,28 +21,28 @@ namespace Pokedex.Model.Service
             _typeDAO = new TypeDAO();
         }
 
-        public async Task AddPokemon(PokemonDB pokemon)
+        public async Task Add(PokemonDB pokemon)
         {
             if (pokemon.IsCreatedByTheUser)
             {
-                await SetCustomPokemonId(pokemon);
+                await SetId(pokemon);
                 pokemon.IsComplete = true;
             }
             
             await _pokemonDAO.Add(pokemon);
         }
 
-        public async Task UpdatePokemon(PokemonDB pokemon)
+        public async Task Update(PokemonDB pokemon)
         {
             await _pokemonDAO.Update(pokemon);
         }
 
-        public async Task DeletePokemon(PokemonDB pokemon)
+        public async Task Delete(PokemonDB pokemon)
         {
             await _pokemonDAO.Delete(pokemon);
         }
 
-        public async Task<PokemonDB> FindPokemonById(int id)
+        public async Task<PokemonDB> FindById(int id)
         {
             var pokemonFound = await ((PokemonDAO)_pokemonDAO).FindById(id);
 
@@ -75,7 +75,7 @@ namespace Pokedex.Model.Service
             return pokemonFound;
         }
 
-        public async Task<PokemonDB> FindPokemonByName(string name)
+        public async Task<PokemonDB> FindByName(string name)
         {
             var pokemonFound = await ((PokemonDAO)_pokemonDAO).FindByName(name);
 
@@ -108,7 +108,7 @@ namespace Pokedex.Model.Service
             return pokemonFound;
         }
 
-        public async Task<IList<PokemonDB>> FindPokemonsById(int start, int quantity)
+        public async Task<IList<PokemonDB>> FindAllById(int start, int quantity)
         {
             int end = start + quantity;
 
@@ -157,7 +157,7 @@ namespace Pokedex.Model.Service
             return pokemons;
         }
 
-        public async Task<IList<PokemonDB>> FindPokemonsByType(string typeName, int start, int quantity)
+        public async Task<IList<PokemonDB>> FindAllByType(string typeName, int start, int quantity)
         {
             var pokemons = await ((PokemonDAO)_pokemonDAO).FindByType(typeName, start - 1, quantity);
 
@@ -180,7 +180,7 @@ namespace Pokedex.Model.Service
                     {
                         if (pokemonFound.Types.FirstOrDefault(t => t.Type.Name == typeName) == null)
                         {
-                            await SetPokemonType(pokemonFound, typeName);
+                            await SetType(pokemonFound, typeName);
                             await _pokemonDAO.Update(pokemonFound);
                             pokemons.Add(pokemonFound);
                         }
@@ -188,7 +188,7 @@ namespace Pokedex.Model.Service
                     else
                     {
                         var pokemonDb = new PokemonDB(pokemon.Id, pokemon.Name);
-                        await SetPokemonType(pokemonDb, typeName);
+                        await SetType(pokemonDb, typeName);
                         pokemons.Add(pokemonDb);
                         await _pokemonDAO.Add(pokemonDb);
                     }
@@ -204,14 +204,14 @@ namespace Pokedex.Model.Service
             return pokemons;
         }
 
-        public List<string> GetNamesPokemons()
+        public List<string> GetNames()
         {
             List<string> namesPokemonsInDatabase = _pokemonDAO.FindAll().Result.Select(p => p.Name).ToList();
 
             return namesPokemonsInDatabase;
         }
 
-        private async Task SetCustomPokemonId(PokemonDB pokemon)
+        private async Task SetId(PokemonDB pokemon)
         {
             var lastId = await ((PokemonDAO)_pokemonDAO).FindLastId();
 
@@ -225,7 +225,7 @@ namespace Pokedex.Model.Service
             }
         }
 
-        private async Task SetPokemonType(PokemonDB pokemon, string typeName)
+        private async Task SetType(PokemonDB pokemon, string typeName)
         {
             var type = await ((TypeDAO)_typeDAO).FindByName(typeName);
 

@@ -27,7 +27,7 @@ namespace Pokedex.View
 
         private void Page_Loading(FrameworkElement sender, object args)
         {
-            _listaNamesPokemons = _service.GetNamesPokemons();
+            _listaNamesPokemons = _service.GetNames();
         }
 
         private void BarSearchResponsive_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -66,11 +66,11 @@ namespace Pokedex.View
 
                 if (int.TryParse(_search, out int Id))
                 {
-                    _pokemon = _service.FindPokemonById(Id).Result;
+                    _pokemon = _service.FindById(Id).Result;
                 }
                 else
                 {
-                    _pokemon = _service.FindPokemonByName(_search).Result;
+                    _pokemon = _service.FindByName(_search).Result;
                 }
 
                 if(_pokemon == null)
