@@ -8,7 +8,7 @@ namespace Pokedex.Model.Service
 {
     public interface IPokemonService<T> where T : class, IEntity
     {
-        Task Add(T pokemon);
+        Task RegisterIsCreatedByUser(T pokemon);
         Task Update(T pokemon);
         Task Delete(T pokemon);
         Task<IList<T>> FindAllById(int start, int quantity);

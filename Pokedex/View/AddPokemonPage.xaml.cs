@@ -53,7 +53,7 @@ namespace Pokedex.View
             MovesField.Distinct().ToList().ForEach(m => pokemonDB.This.AddMove(m));
             TypesField.Distinct().ToList().ForEach(t => pokemonDB.This.AddType(t));
 
-            await _service.Add(pokemonDB.This);
+            await _service.RegisterIsCreatedByUser(pokemonDB.This);
 
             RootFrame.Navigate(typeof(AddPokemonPage));
         }        
