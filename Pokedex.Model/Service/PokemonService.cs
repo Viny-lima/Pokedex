@@ -228,7 +228,7 @@ namespace Pokedex.Model.Service
             }
         }
 
-        private PokemonDB SearchAPI<T>(T search)
+        private PokemonDB SearchAPI(string search)
         {
             var pokemonApi = ApiRequest.GetPokemon(search);
 
@@ -238,6 +238,11 @@ namespace Pokedex.Model.Service
             pokemon.IsComplete = true;
 
             return pokemon;
-        } 
+        }
+
+        private PokemonDB SearchAPI(int search)
+        {        
+            return SearchAPI($"{search}");
+        }
     }
 }

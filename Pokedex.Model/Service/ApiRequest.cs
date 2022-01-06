@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Pokedex.Model.Exceptions;
 using Pokedex.Model.PokeApi;
 using System;
 using System.Collections.Generic;
@@ -34,22 +35,27 @@ namespace Pokedex.Model.Service
                     }
                 }
             }
-            catch (Exception e)
-            {                
-                Console.WriteLine(e.Message);
-                Console.WriteLine(e.StackTrace);
-
+            catch(Exception)
+            {               
                 return default(T);
             }
         }
 
-        public static PokemonAPI GetPokemon<T>(T search)
+        public static PokemonAPI GetPokemon(string search)
         {
+            if(String.IsNullOrEmpty(search)) return null;
+
             var url = $"{BaseUrl}{PokemonEndpoint}{search}";
 
-            return Get<PokemonAPI>(url);
+            var pokemonAPI = Get<PokemonAPI>(url);               
+
+            return pokemonAPI;
         }
 
+        public static PokemonAPI GetPokemon(int search)
+        {           
+            return GetPokemon($"{search}");
+        }
 
         public static IList<PokemonAPI> GetPokemonsList(int startIndex = 0, int quantity = 10)
         {
