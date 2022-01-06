@@ -15,6 +15,8 @@ namespace Pokedex.Migrations.Startup
         static void Main(string[] args)
         {
             var p = new PokedexContext();
+
+            p.Database.EnsureDeleted();
             p.Database.Migrate();
 
             IPokemonService<PokemonDB> service = new PokemonService();

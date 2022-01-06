@@ -23,13 +23,12 @@ namespace Pokedex.Model.Service
 
         public async Task AddPokemon(PokemonDB pokemon)
         {
-            await _pokemonDAO.Add(pokemon);
-        }
-
-        public async Task AddCustomPokemon(PokemonDB pokemon)
-        {
-            await SetCustomPokemonId(pokemon);
-            pokemon.IsComplete = true;
+            if (pokemon.IsCreatedByTheUser)
+            {
+                await SetCustomPokemonId(pokemon);
+                pokemon.IsComplete = true;
+            }
+            
             await _pokemonDAO.Add(pokemon);
         }
 

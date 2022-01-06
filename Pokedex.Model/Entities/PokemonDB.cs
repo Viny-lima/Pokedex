@@ -14,9 +14,7 @@ namespace Pokedex.Model.Entities
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
-
-        public bool IsComplete { get; set; }
+        public string Name { get; set; }        
 
         public int Hp { get; set; }
 
@@ -53,6 +51,10 @@ namespace Pokedex.Model.Entities
                 _sprite = value;                                          
             }
         }
+
+        public bool IsComplete { get; set; }
+
+        public bool IsCreatedByTheUser { get; set; }
 
         public IList<AbilityPokemonDB> Abilities { get; internal set; }
 

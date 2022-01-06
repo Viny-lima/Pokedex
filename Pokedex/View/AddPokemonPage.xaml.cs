@@ -40,7 +40,7 @@ namespace Pokedex.View
         private async void ButtonFinished_Click(object sender, RoutedEventArgs e)
         {
             if (!RequiredName()) return;
-
+            
             pokemonDB.This.Name = Name.Text;
             pokemonDB.This.Attack = int.Parse(Attack.Text);
             pokemonDB.This.Defense = int.Parse(Defense.Text);
@@ -50,24 +50,13 @@ namespace Pokedex.View
             pokemonDB.This.Height = int.Parse(Height.Text);
             pokemonDB.This.Weight = int.Parse(Weight.Text);
             pokemonDB.This.BaseExperience = int.Parse(BaseExperience.Text);
+            pokemonDB.This.IsCreatedByTheUser = true;
 
+            AbilitiesField.Distinct().ToList().ForEach(a => pokemonDB.This.AddAbility(a));
+            MovesField.Distinct().ToList().ForEach(m => pokemonDB.This.AddMove(m));
+            TypesField.Distinct().ToList().ForEach(t => pokemonDB.This.AddType(t));
 
-            foreach(var item in AbilitiesField.Distinct())
-            {
-                await pokemonDB.This.AddAbility(item);
-            }
-
-            foreach(var item in MovesField.Distinct())
-            {
-                await pokemonDB.This.AddMove(item);
-            }
-
-            foreach (var item in TypesField.Distinct())
-            {
-                await pokemonDB.This.AddType(item);
-            }
-
-            await _service.AddCustomPokemon(pokemonDB.This);
+            await _service.AddPokemon(pokemonDB.This);
 
             RootFrame.Navigate(typeof(AddPokemonPage));
         }        
