@@ -18,7 +18,7 @@ namespace Pokedex.View
         private string _search;
         private PokemonService _service = new PokemonService();
         private PokemonDB _pokemon;
-        private List<String> _listaNamesPokemons = new List<String>();
+        private List<String> _listaNamesPokemons;
 
         public HomePage()
         {
@@ -27,10 +27,7 @@ namespace Pokedex.View
 
         private void Page_Loading(FrameworkElement sender, object args)
         {
-            foreach(var p  in new PokedexContext().Pokemons.ToList())
-            {
-                _listaNamesPokemons.Add(p.Name); 
-            }
+            _listaNamesPokemons = _service.GetNamesPokemons();
         }
 
         private void BarSearchResponsive_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

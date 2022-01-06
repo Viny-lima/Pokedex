@@ -202,6 +202,13 @@ namespace Pokedex.Model.Service
             return pokemons;
         }
 
+        public List<string> GetNamesPokemons()
+        {
+            List<string> namesPokemonsInDatabase = _pokemonDAO.FindAll().Result.Select(p => p.Name).ToList();
+
+            return namesPokemonsInDatabase;
+        }
+
         private async Task SetCustomPokemonId(PokemonDB pokemon)
         {
             var lastId = await ((PokemonDAO)_pokemonDAO).FindLastId();
