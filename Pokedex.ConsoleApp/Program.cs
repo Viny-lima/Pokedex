@@ -39,8 +39,8 @@ namespace Pokedex.Migrations.Startup
         }
 
         private static void AdicionandoSemDuplicidade()
-        {          
-            using(var contexto = new PokedexContext())
+        {
+            using (var contexto = new PokedexContext())
             {
                 contexto.Database.Migrate();
             }
@@ -52,7 +52,7 @@ namespace Pokedex.Migrations.Startup
                 var p = new PokemonDB(ApiRequest.GetPokemon(i));
                 pokemonDAO.Add(p);
             }
-            
+
         }
 
         private static void MostrarTiposDosPokemonsNoDatabase()
@@ -72,7 +72,7 @@ namespace Pokedex.Migrations.Startup
                 Console.WriteLine("------------------");
             }
         }
-        
+
         private static void MostrarPokemons()
         {
             var db = new PokemonDAO();
