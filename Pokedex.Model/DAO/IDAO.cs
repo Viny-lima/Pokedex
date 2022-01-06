@@ -12,6 +12,6 @@ namespace Pokedex.Model.DAO
         Task Add(T type);
         Task Update(T type);
         Task Delete(T type);
-        Task<IList<T>> FindAll();
+        Task<List<T>> FindAll();
     }
 }

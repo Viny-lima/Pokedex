@@ -156,9 +156,6 @@
     <Content Include="Assets\Components\DEFAULT_POKEMON.png" />
     <Content Include="Assets\Components\LOGO.png" />
     <Content Include="Assets\Components\DEFAULT_BG.jpg" />
-    <Content Include="Assets\Components\Team\Rackel.png" />
-    <Content Include="Assets\Components\Team\Ricardo.png" />
-    <Content Include="Assets\Components\Team\Vinicius.png" />
     <Content Include="Assets\Components\TEST_IMG.png" />
     <Content Include="Assets\Components\TYPES\T1.png" />
     <Content Include="Assets\Components\TYPES\T10.png" />

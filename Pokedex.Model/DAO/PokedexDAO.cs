@@ -30,7 +30,7 @@ namespace Pokedex.Model.DAO
             await context.SaveChangesAsync();
         }
 
-        public async virtual Task<IList<T>> FindAll()
+        public async virtual Task<List<T>> FindAll()
         {
             PokedexContext context = new PokedexContext();
 
