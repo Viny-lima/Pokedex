@@ -148,7 +148,7 @@
                 Grid.Row="2"
                 Grid.Column="2"
                 MaxWidth="500"
-                Source="{x:Bind pokemon.This.SpritesOfficialArtwork}"
+                Source="{x:Bind pokemon.This.Sprite}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 />

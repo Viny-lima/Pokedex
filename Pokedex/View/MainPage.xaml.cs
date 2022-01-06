@@ -22,7 +22,6 @@ namespace Pokedex.View
             
             using(PokedexContext context = new PokedexContext())
             {
-                context.Database.EnsureDeleted();
                 context.Database.Migrate();
             }
 

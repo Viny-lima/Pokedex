@@ -52,7 +52,7 @@
                             <Image MaxHeight="150"
                                    MaxWidth="150"
                                    Grid.Column="1"
-                                   Source="{Binding SpritesOfficialArtwork}"
+                                   Source="{Binding Sprite}"
                                    />
 
                             <TextBlock  Text="{Binding Name}" 
