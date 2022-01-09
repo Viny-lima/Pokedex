@@ -236,7 +236,7 @@ namespace Pokedex.Model.Service
         }
 
         //A ser testado
-        private PokemonDB SearchAPI(string search)
+        public PokemonDB SearchAPI(string search)
         {
             var pokemonApi = ApiRequest.GetPokemon(search);
 
@@ -249,7 +249,7 @@ namespace Pokedex.Model.Service
         }
 
         //A ser testado
-        private PokemonDB SearchAPI(int search)
+        public PokemonDB SearchAPI(int search)
         {        
             return SearchAPI($"{search}");
         }
