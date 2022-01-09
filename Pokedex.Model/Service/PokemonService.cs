@@ -71,6 +71,11 @@ namespace Pokedex.Model.Service
         //A ser testado
         public async Task<IList<PokemonDB>> FindAllById(int start, int quantity)
         {
+            if (start < 1 || quantity < 1)
+            {
+                throw new ArgumentException("start and quantity should greater than zero");
+            }
+
             int end = start + quantity;
 
             List<PokemonDB> pokemons = await PokemonServiceHelper.FindInRangeWithOffset(_pokemonDAO, start, end);
@@ -100,6 +105,11 @@ namespace Pokedex.Model.Service
         //A ser testado
         public async Task<IList<PokemonDB>> FindAllByType(TypeNames typeName, int start, int quantity)
         {
+            if (start < 1)
+            {
+                return null;
+            }
+
             var pokemons = await ((PokemonDAO)_pokemonDAO).FindByType(typeName.ToString(), start - 1, quantity);
 
             if (pokemons.Count < quantity)

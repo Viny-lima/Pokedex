@@ -24,17 +24,17 @@ namespace Pokedex.Tests
             var _quantidade = quantidade;
 
             //Act
-            var resultado = service.FindAllByType(_nome, 1, 10).Result;
+            var resultado = service.FindAllByType(_nome, 1, _quantidade).Result;
 
             //Assert
             Assert.Equal(_quantidade, resultado.Count);
         }
 
         [Theory]
-        [InlineData(TypeNames.normal, "vigoroth")]
-        [InlineData(TypeNames.fighting, "pangoro")]
-        [InlineData(TypeNames.flying, "pelipper")]
-        [InlineData(TypeNames.dragon, "kommo-o")]
+        [InlineData(TypeNames.normal, "rattata")]
+        [InlineData(TypeNames.fighting, "tyrogue")]
+        [InlineData(TypeNames.flying, "pidgey")]
+        [InlineData(TypeNames.dragon, "dratini")]
         public async void DadoNomeDoTipoDeveRetornarUmaListaContendoPokemonDaqueleTipo(TypeNames nome, string nomePokemon)
         {
             //Arrange

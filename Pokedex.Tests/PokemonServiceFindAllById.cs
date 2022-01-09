@@ -29,8 +29,8 @@ namespace Pokedex.Tests
         }
 
         [Theory]
-        [InlineData(-10, 10)]
-        [InlineData(10001, 7)]
+        [InlineData(25000, 10)]
+        [InlineData(57000, 7)]
         public async void RetornarListaVaziaQuandoNaoExistir(int inicio, int quantidade)
         {
             //Arrange
@@ -51,7 +51,7 @@ namespace Pokedex.Tests
         [InlineData(100, 110)]
         [InlineData(0, 110)]
         [InlineData(897, 1)]
-        public async void UltimoPokemonDeveTerIdIgualQtdMaisInicio(int inicio, int quantidade)
+        public async void UltimoPokemonDeveTerIdIgualQtdMaisInicioMenosUm(int inicio, int quantidade)
         {
             //Arrange
             var service = new PokemonService();
@@ -62,7 +62,7 @@ namespace Pokedex.Tests
             var resultado = await service.FindAllById(_inicio, _quantidade);
 
             //Assert
-            var esperado = _inicio + _quantidade;
+            var esperado = _inicio + _quantidade -1;
             Assert.Equal(esperado, resultado.Last().Id);
         }        
 
