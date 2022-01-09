@@ -98,7 +98,7 @@ namespace Pokedex.Model.Service
         }
 
         //A ser testado
-        internal static  PokemonDB SearchAPI(string search)
+        internal static PokemonDB SearchAPI(string search)
         {
             var pokemonApi = ApiRequest.GetPokemon(search);
 
@@ -111,7 +111,7 @@ namespace Pokedex.Model.Service
         }
 
         //A ser testado
-        public static PokemonDB SearchAPI(int search)
+        internal static PokemonDB SearchAPI(int search)
         {
             return SearchAPI($"{search}");
         }
