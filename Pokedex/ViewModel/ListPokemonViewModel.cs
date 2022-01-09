@@ -59,7 +59,7 @@ namespace Pokedex.ViewModel
 
                 case PageOrigin.TypePage:
 
-                    listPokemons = _pokemonService.FindAllByType($"{_typeSelected}", _start, _quantity).Result;                                         
+                    listPokemons = _pokemonService.FindAllByType(_typeSelected, _start, _quantity).Result;                                         
 
                     break;
             }

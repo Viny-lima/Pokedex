@@ -95,27 +95,7 @@ namespace Pokedex.Model.Service
         {
             int end = start + quantity;
 
-            List<PokemonDB> pokemons = await ((PokemonDAO)_pokemonDAO).FindInRange(start, end);
-
-            if (end > 898)
-            {
-                // número de pokemons normais - id inicial dos pokemons especiais
-                var offset = 9102;
-
-                var especialPokemons = await ((PokemonDAO)_pokemonDAO).FindInRange(start + offset, end + offset);
-
-                pokemons.AddRange(especialPokemons);
-
-                if (end > 1118)
-                {
-                    // número de pokemons normais e especiais - id inicial dos pokemons criados pelos usuários
-                    offset = 98882;
-
-                    var customPokemons = await ((PokemonDAO)_pokemonDAO).FindInRange(start + offset, end + offset);
-
-                    pokemons.AddRange(customPokemons);
-                }
-            }
+            List<PokemonDB> pokemons = await PokemonServiceHelper.FindInRangeWithOffset(_pokemonDAO, start, end);
 
             if (pokemons.Count < quantity)
             {
@@ -141,16 +121,13 @@ namespace Pokedex.Model.Service
         }
 
         //A ser testado
-        public async Task<IList<PokemonDB>> FindAllByType(string typeName, int start, int quantity)
+        public async Task<IList<PokemonDB>> FindAllByType(TypeNames typeName, int start, int quantity)
         {
-            var pokemons = await ((PokemonDAO)_pokemonDAO).FindByType(typeName, start - 1, quantity);
+            var pokemons = await ((PokemonDAO)_pokemonDAO).FindByType(typeName.ToString(), start - 1, quantity);
 
             if (pokemons.Count < quantity)
             {
-                // temporário, substituir por TypeNames depois.
-                var typeEnum = Enum.Parse(typeof(TypeNames), typeName);
-
-                var pokemonsApi = ApiRequest.GetPokemonsListByType(typeEnum.ToString());
+                var pokemonsApi = ApiRequest.GetPokemonsListByType(typeName.ToString());
 
                 var pokemonsToBeAdded = pokemonsApi
                                         .Where(api => !pokemons.Any(p => p.Id == api.Id))
@@ -162,20 +139,17 @@ namespace Pokedex.Model.Service
 
                     if (pokemonFound != null)
                     {
-                        if (pokemonFound.Types.FirstOrDefault(t => t.Type.Name == typeName) == null)
-                        {
-                            await SetType(pokemonFound, typeName);
-                            await _pokemonDAO.Update(pokemonFound);
-                            pokemons.Add(pokemonFound);
-                        }
+                        await pokemonFound.AddType(typeName.ToString());
+                        await _pokemonDAO.Update(pokemonFound);
                     }
                     else
                     {
-                        var pokemonDb = new PokemonDB(pokemon.Id, pokemon.Name);
-                        await SetType(pokemonDb, typeName);
-                        pokemons.Add(pokemonDb);
-                        await _pokemonDAO.Add(pokemonDb);
+                        pokemonFound = new PokemonDB(pokemon.Id, pokemon.Name);
+                        await pokemonFound.AddType(typeName.ToString());
+                        await _pokemonDAO.Add(pokemonFound);
                     }
+
+                    pokemons.Add(pokemonFound);
                 }
 
                 pokemons = pokemons

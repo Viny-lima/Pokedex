@@ -49,7 +49,7 @@ namespace Pokedex.Tests
         [Theory]
         [InlineData(1, -100)]
         [InlineData(100, -1000)]
-        public void RetornarQtdApiMenosAQtdIformadaQuandoQuantidadeForNegativa(int inicio, int quantidade)
+        public void RetornarQtdApiMenosQtdInformadaQuandoQuantidadeForNegativa(int inicio, int quantidade)
         {
             //Arrange
             var _quantidade = quantidade;
