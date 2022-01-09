@@ -8,7 +8,7 @@ using Xunit;
 
 namespace Pokedex.Tests
 {
-    public class PokemonServiceSearchAPI
+    public class PokemonServiceHelperSearchAPI
 
     {
         [Theory]
@@ -27,7 +27,7 @@ namespace Pokedex.Tests
             //assert
             var valorEsperado = id;
             var valorObtido = pokemon.Id;
-            Assert.Equal(valorEsperado,valorObtido);
+            Assert.Equal(valorEsperado, valorObtido);
         }
 
     }
