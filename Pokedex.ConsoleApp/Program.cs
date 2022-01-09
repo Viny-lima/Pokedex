@@ -3,10 +3,6 @@ using System;
 using Pokedex.Model.Service;
 using Pokedex.Model.Entities;
 using Pokedex.Model.DAO;
-using System.Linq;
-using Microsoft.Data.Sqlite;
-using Pokedex.Model.Exceptions;
-using System.Diagnostics;
 using Pokedex.Model.Connection;
 
 namespace Pokedex.Migrations.Startup
@@ -16,7 +12,6 @@ namespace Pokedex.Migrations.Startup
         static void Main(string[] args)
         {
             var p = new PokedexContext();
-            IPokemonService<PokemonDB> service = new PokemonService();
 
             p.Database.EnsureDeleted();
             p.Database.Migrate();         

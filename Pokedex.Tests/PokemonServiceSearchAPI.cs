@@ -15,16 +15,14 @@ namespace Pokedex.Tests
         [InlineData(25)]
         [InlineData(20)]
         [InlineData(2)]
-        [InlineData(0)]
 
         public void RetorneResultadoDeBuscaPorId(int search)
         {
             //arrange
             var id = search;
-            var service = new PokemonService();
 
             //act
-            var pokemon = service.SearchAPI(id);
+            var pokemon = PokemonServiceHelper.SearchAPI(id);
 
             //assert
             var valorEsperado = id;

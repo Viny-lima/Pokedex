@@ -22,7 +22,7 @@ namespace Pokedex.Model.Enums
         electric = 13,
         psychic = 14,
         ice = 15,
-        gragon = 16,
+        dragon = 16,
         dark = 17,
         fairy = 18,
     }
