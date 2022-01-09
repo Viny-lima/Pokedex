@@ -60,16 +60,16 @@ namespace Pokedex.View
 
         private bool RequiredName()
         {
-            Name.Text = Name.Text.ToLower().Trim();
+            var name = Name.Text;
 
-            if (string.IsNullOrEmpty(Name.Text))
+            if (ValidateString.Validate (ref name))
             {
                 ViewErro.Visibility = Visibility.Visible;
                 ViewErro.Text = $"Request {Name.Header}";
 
                 return false;
             }
-            if (_listaNamesPokemons.Contains(Name.Text))
+            if (_listaNamesPokemons.Contains(name))
             {
                 ViewErro.Visibility = Visibility.Visible;
                 ViewErro.Text = $"Name Exists";
