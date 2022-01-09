@@ -16,28 +16,25 @@ namespace Pokedex.Migrations.Startup
         static void Main(string[] args)
         {
             var p = new PokedexContext();
-
-            p.Database.EnsureDeleted();
-            p.Database.Migrate();
-
             IPokemonService<PokemonDB> service = new PokemonService();
 
+            p.Database.EnsureDeleted();
+            p.Database.Migrate();         
 
-            //var pokemons = service.FindAllByType("normal", 1, 10).Result;
-            var pokemon = service.FindById(16).Result;
+            
+            var a = new AbilityDB() { Id = 1 ,Name = "o"};
+            var b = new AbilityDB() { Id = 1 ,Name = "o"};
+            
 
-            //foreach (var pokemon in pokemons)
-            //{
-            //    Console.WriteLine(pokemon.Id);
-            //    Console.WriteLine(pokemon.Name);
-            //}
-
-            Console.WriteLine(pokemon.Name);
-            Console.WriteLine(pokemon.Id);
-            foreach (var typePokemon in pokemon.Types)
+            if(Equals(a, b))
             {
-                Console.WriteLine(typePokemon.Type.Name);
+                Console.WriteLine("São iguais o teste ta bugado!");
             }
+            else
+            {
+                Console.WriteLine("Tu ta fazendo errado !");
+            }
+            
 
         }
 

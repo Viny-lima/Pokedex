@@ -197,7 +197,7 @@ namespace Pokedex.Model.Service
         }
 
         //A ser testado
-        private async Task SetId(PokemonDB pokemon)
+        public async Task SetId(PokemonDB pokemon)
         {
             var lastId = await ((PokemonDAO)_pokemonDAO).FindLastId();
 

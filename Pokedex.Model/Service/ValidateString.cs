@@ -14,7 +14,7 @@ namespace Pokedex.Model.Service
         {                 
                 if (validateString != null)
                 {
-                validateString = validateString.Trim().ToLower();
+                    validateString = validateString.Trim().ToLower();
                 }
                 if (string.IsNullOrEmpty(validateString) || Regex.IsMatch(validateString, (@"[!""#$%&'()*+,-./:;?@[\\\]_`{|}~]")))
                 {
