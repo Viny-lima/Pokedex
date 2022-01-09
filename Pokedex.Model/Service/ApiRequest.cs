@@ -72,9 +72,9 @@ namespace Pokedex.Model.Service
             return pokemons;
         }
         
-        public static IList<PokemonAPI> GetPokemonsListByType(string typeNumber)
+        public static IList<PokemonAPI> GetPokemonsListByType(string typeName)
         {
-            var url = $"{BaseUrl}{TypeEndpoint}{typeNumber}";
+            var url = $"{BaseUrl}{TypeEndpoint}{typeName}";
             var typesInAPI = Get<ListPokemonTypeAPI>(url);
 
             IList<PokemonAPI> pokemons = new List<PokemonAPI>();

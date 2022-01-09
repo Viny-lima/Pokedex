@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -164,5 +165,52 @@ namespace Pokedex.Model.Entities
             return Task.CompletedTask;
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is PokemonDB dB &&
+                   Id == dB.Id &&
+                   Name == dB.Name &&
+                   Hp == dB.Hp &&
+                   Attack == dB.Attack &&
+                   Defense == dB.Defense &&
+                   SpecialAttack == dB.SpecialAttack &&
+                   SpecialDefense == dB.SpecialDefense &&
+                   Speed == dB.Speed &&
+                   Height == dB.Height &&
+                   Weight == dB.Weight &&
+                   BaseExperience == dB.BaseExperience &&
+                   _sprite == dB._sprite &&
+                   Sprite == dB.Sprite &&
+                   IsComplete == dB.IsComplete &&
+                   IsCreatedByTheUser == dB.IsCreatedByTheUser &&
+                   Enumerable.SequenceEqual(Abilities.OrderBy(fElement => fElement.Ability.Name), dB.Abilities.OrderBy(sElement => sElement.Ability.Name)) &&            
+                   Enumerable.SequenceEqual(Moves.OrderBy(fElement => fElement.Move.Name), dB.Moves.OrderBy(sElement => sElement.Move.Name)) &&            
+                   Enumerable.SequenceEqual(Types.OrderBy(fElement => fElement.Type.Name), dB.Types.OrderBy(sElement => sElement.Type.Name));            
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(Name);
+            hash.Add(Hp);
+            hash.Add(Attack);
+            hash.Add(Defense);
+            hash.Add(SpecialAttack);
+            hash.Add(SpecialDefense);
+            hash.Add(Speed);
+            hash.Add(Height);
+            hash.Add(Weight);
+            hash.Add(BaseExperience);
+            hash.Add(_sprite);
+            hash.Add(Sprite);
+            hash.Add(IsComplete);
+            hash.Add(IsCreatedByTheUser);
+            hash.Add(Abilities);
+            hash.Add(Moves);
+            hash.Add(Types);
+
+            return hash.ToHashCode();
+        }
     }
 }
