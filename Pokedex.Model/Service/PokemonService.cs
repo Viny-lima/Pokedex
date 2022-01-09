@@ -19,7 +19,7 @@ namespace Pokedex.Model.Service
             _pokemonDAO = new PokemonDAO();
             _typeDAO = new TypeDAO();
         }
-        //A ser testado
+        
         public async Task RegisterIsCreatedByUser(PokemonDB pokemon)
         {
             if (pokemon.IsCreatedByTheUser)
@@ -30,18 +30,18 @@ namespace Pokedex.Model.Service
                 await _pokemonDAO.Add(pokemon);
             }                      
         }
-        //Não ser testado
+        
         public async Task Update(PokemonDB pokemon)
         {
             await _pokemonDAO.Update(pokemon);
         }
-        //Não ser testado
+        
         public async Task Delete(PokemonDB pokemon)
         {
             await _pokemonDAO.Delete(pokemon);
         }
 
-        //A ser testado
+        
         public async Task<PokemonDB> FindById(int id)
         {
             var pokemonFoundDatabase = await ((PokemonDAO)_pokemonDAO).FindById(id);
@@ -65,8 +65,7 @@ namespace Pokedex.Model.Service
 
             return pokemonFoundDatabase;
         }
-
-        //A ser testado
+        
         public async Task<PokemonDB> FindByName(string name)
         {
             var pokemonFoundDatabase = await ((PokemonDAO)_pokemonDAO).FindByName(name);
