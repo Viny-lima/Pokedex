@@ -19,7 +19,7 @@ namespace Pokedex.View
         private PokemonService _service = new PokemonService();
         private PokemonDB _pokemon;
         private List<String> _listaNamesPokemons;
-
+        
         public HomePage()
         {
             this.InitializeComponent();
@@ -53,16 +53,12 @@ namespace Pokedex.View
         private void CheckedQuery()
         {           
             try
-            {               
-                if(_search != null)
-                {
-                    _search = _search.Trim().ToLower();
-                }
 
-                if (string.IsNullOrEmpty(_search) || Regex.IsMatch(_search, (@"[!""#$%&'()*+,-./:;?@[\\\]_`{|}~]")))
+            {
+                if(!ValidateString.Validate(ref _search) )
                 {
-                    throw new ArgumentNullException();
-                }                
+                    throw new ArgumentException();
+                }                             
 
                 if (int.TryParse(_search, out int Id))
                 {
@@ -73,13 +69,8 @@ namespace Pokedex.View
                     _pokemon = _service.FindByName(_search).Result;
                 }
 
-                if(_pokemon == null)
-                {
-                    throw new ArgumentNullException();
-                }
-
             }
-            catch (ArgumentNullException)
+            catch (ArgumentException)
             {
                 ERROR.Visibility = Visibility.Visible;
                 ERROR.Text = "ERROR: This query doesn't exist";
@@ -102,6 +93,7 @@ namespace Pokedex.View
                     RootFrame.Navigate(typeof(PokemonPage), _pokemon.Id);
                 }
             }
-        }
+        }  
     }
+
 }
