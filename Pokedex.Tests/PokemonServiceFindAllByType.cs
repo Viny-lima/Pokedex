@@ -48,5 +48,20 @@ namespace Pokedex.Tests
             //Assert
             Assert.True(resultado.Any(p => p.Name == _nomePokemon));
         }
+
+        [Theory]
+        [InlineData(10, -1)]
+        [InlineData(0, -1)]
+        [InlineData(-10, 10)]
+        public async void LançaExcecaoQuandoPeloMenosUmDosValoresPassadosForemMenoresQueUm(int inicio, int quantidade)
+        {
+            //Arrange
+            var service = new PokemonService();
+            var _quantidade = quantidade;
+            var _inicio = inicio;
+
+            //Assert
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.FindAllByType(TypeNames.normal, _inicio, _quantidade));
+        }
     }
 }

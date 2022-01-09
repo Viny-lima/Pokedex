@@ -47,9 +47,9 @@ namespace Pokedex.Tests
         }        
 
         [Theory]
-        [InlineData(0, 10)]
+        [InlineData(1, 10)]
         [InlineData(100, 110)]
-        [InlineData(0, 110)]
+        [InlineData(1, 110)]
         [InlineData(897, 1)]
         public async void UltimoPokemonDeveTerIdIgualQtdMaisInicioMenosUm(int inicio, int quantidade)
         {
@@ -64,7 +64,21 @@ namespace Pokedex.Tests
             //Assert
             var esperado = _inicio + _quantidade -1;
             Assert.Equal(esperado, resultado.Last().Id);
-        }        
+        }       
+        
+        [Theory]
+        [InlineData(10, -1)]
+        [InlineData(0, -1)]
+        [InlineData(-10, 10)]
+        public async void LançaExcecaoQuandoPeloMenosUmDosValoresPassadosForemMenoresQueUm(int inicio, int quantidade)
+        {
+            //Arrange
+            var service = new PokemonService();
+            var _quantidade = quantidade;
+            var _inicio = inicio;
 
+            //Assert
+            await Assert.ThrowsAsync<ArgumentException>(async () => await service.FindAllById(_inicio, _quantidade));
+        }
     }
 }

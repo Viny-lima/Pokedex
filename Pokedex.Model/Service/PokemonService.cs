@@ -105,9 +105,9 @@ namespace Pokedex.Model.Service
         //A ser testado
         public async Task<IList<PokemonDB>> FindAllByType(TypeNames typeName, int start, int quantity)
         {
-            if (start < 1)
+            if (start < 1 || quantity < 1)
             {
-                return null;
+                throw new ArgumentException("start and quantity should greater than zero");
             }
 
             var pokemons = await ((PokemonDAO)_pokemonDAO).FindByType(typeName.ToString(), start - 1, quantity);
