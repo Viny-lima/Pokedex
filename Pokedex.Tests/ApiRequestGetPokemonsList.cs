@@ -92,7 +92,6 @@ namespace Pokedex.Tests
             //Arrange
             var _quantidade = quantidade;
             var _inicio = inicio;
-            var totalDePokemonsDaApi = ApiRequest.GetPokemonCount();
 
             //Act
             var resultado = ApiRequest.GetPokemonsList(_inicio, _quantidade);

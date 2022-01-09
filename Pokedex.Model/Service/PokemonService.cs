@@ -12,12 +12,10 @@ namespace Pokedex.Model.Service
     public class PokemonService : IPokemonService<PokemonDB>
     {
         private IDAO<PokemonDB> _pokemonDAO;
-        private IDAO<TypeDB> _typeDAO;
 
         public PokemonService()
         {
             _pokemonDAO = new PokemonDAO();
-            _typeDAO = new TypeDAO();
         }
         
         public async Task RegisterIsCreatedByUser(PokemonDB pokemon)
