@@ -46,22 +46,12 @@ namespace Pokedex.Model.Service
         {
             var pokemonFoundDatabase = await ((PokemonDAO)_pokemonDAO).FindById(id);
 
-            if (pokemonFoundDatabase == null || !pokemonFoundDatabase.IsComplete)
+            var pokemonExists = pokemonFoundDatabase != null;
+
+            if (!pokemonExists || !pokemonFoundDatabase.IsComplete)
             {
-                var pokemonToAddOrUpdate = PokemonServiceHelper.SearchAPI(id);
-
-                if (pokemonFoundDatabase == null)
-                {
-                    await _pokemonDAO.Add(pokemonToAddOrUpdate);
-                }
-                else if (!pokemonFoundDatabase.IsComplete)
-                {
-                    await _pokemonDAO.Update(pokemonToAddOrUpdate);
-                }               
-
-                pokemonFoundDatabase = await ((PokemonDAO)_pokemonDAO).FindById(id);
+                pokemonFoundDatabase = await PokemonServiceHelper.AddPokemonFromAPI(_pokemonDAO, id, pokemonExists);
             }
-
 
             return pokemonFoundDatabase;
         }
@@ -70,21 +60,12 @@ namespace Pokedex.Model.Service
         public async Task<PokemonDB> FindByName(string name)
         {
             var pokemonFoundDatabase = await ((PokemonDAO)_pokemonDAO).FindByName(name);
+            
+            var pokemonExists = pokemonFoundDatabase != null;
 
-            if (pokemonFoundDatabase == null || !pokemonFoundDatabase.IsComplete)
+            if (!pokemonExists || !pokemonFoundDatabase.IsComplete)
             {
-                var pokemonToAddOrUpdate = PokemonServiceHelper.SearchAPI(name);
-
-                if (pokemonFoundDatabase == null)
-                {
-                    await _pokemonDAO.Add(pokemonToAddOrUpdate);
-                }
-                else if(!pokemonFoundDatabase.IsComplete)
-                {
-                    await _pokemonDAO.Update(pokemonToAddOrUpdate);
-                }
-
-                pokemonFoundDatabase = await ((PokemonDAO)_pokemonDAO).FindByName(name);
+                pokemonFoundDatabase = await PokemonServiceHelper.AddPokemonFromAPI(_pokemonDAO, name, pokemonExists);
             }
 
             return pokemonFoundDatabase;
@@ -113,7 +94,6 @@ namespace Pokedex.Model.Service
                 }
 
                 pokemons = pokemons.OrderBy(p => p.Id).ToList();
-
             }
 
 
