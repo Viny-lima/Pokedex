@@ -1,17 +1,20 @@
 ﻿using Pokedex.Model.DAO;
 using Pokedex.Model.Entities;
+using Pokedex.Model.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+[assembly: InternalsVisibleTo("Pokedex.Tests")]
 namespace Pokedex.Model.Service
 {
-    public static class PokemonServiceHelper
+    static class PokemonServiceHelper
     {
 
-        public static async Task<List<PokemonDB>> FindInRangeWithOffset(IDAO<PokemonDB> pokemonDAO, int start, int end)
+        internal static async Task<List<PokemonDB>> FindInRangeWithOffset(IDAO<PokemonDB> pokemonDAO, int start, int end)
         {
             List<PokemonDB> pokemons = await ((PokemonDAO)pokemonDAO).FindInRange(start, end);
 
@@ -38,7 +41,7 @@ namespace Pokedex.Model.Service
             return pokemons;
         }
 
-        public static async Task<List<PokemonDB>> AddPokemonsInRangeFromAPI(IDAO<PokemonDB> pokemonDAO, List<PokemonDB> pokemons, int start, int quantity)
+        internal static async Task<List<PokemonDB>> AddPokemonsInRangeFromAPI(IDAO<PokemonDB> pokemonDAO, List<PokemonDB> pokemons, int start, int quantity)
         {
             var pokemonsApi = ApiRequest.GetPokemonsList(start - 1, quantity);
 
@@ -58,5 +61,38 @@ namespace Pokedex.Model.Service
             return pokemons;
         }
 
+        //A ser testado
+        internal static async Task SetId(this PokemonDB pokemon)
+        {
+            var lastId = await ((PokemonDAO)new PokemonDAO()).FindLastId();
+
+            if (lastId < 100001)
+            {
+                pokemon.Id = 100001;
+            }
+            else
+            {
+                pokemon.Id = lastId + 1;
+            }
+        }
+
+        //A ser testado
+        internal static  PokemonDB SearchAPI(string search)
+        {
+            var pokemonApi = ApiRequest.GetPokemon(search);
+
+            if (pokemonApi == null) throw new PokemonNotFoundException();
+
+            var pokemon = new PokemonDB(pokemonApi);
+            pokemon.IsComplete = true;
+
+            return pokemon;
+        }
+
+        //A ser testado
+        public static PokemonDB SearchAPI(int search)
+        {
+            return SearchAPI($"{search}");
+        }
     }
 }

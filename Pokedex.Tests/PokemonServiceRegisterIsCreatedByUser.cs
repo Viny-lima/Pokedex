@@ -43,7 +43,7 @@ namespace Pokedex.Tests
             await pokemon.AddType("Type1 Test");
             await pokemon.AddType("Type2 Test");
 
-            await new PokemonService().SetId(pokemon);
+            await pokemon.SetId();
 
             //Act
             await new PokemonService().RegisterIsCreatedByUser(pokemon);

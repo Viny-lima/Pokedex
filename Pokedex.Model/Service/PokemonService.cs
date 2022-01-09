@@ -24,7 +24,7 @@ namespace Pokedex.Model.Service
         {
             if (pokemon.IsCreatedByTheUser)
             {
-                await SetId(pokemon);
+                await pokemon.SetId();
                 pokemon.IsComplete = true;
 
                 await _pokemonDAO.Add(pokemon);
@@ -48,7 +48,7 @@ namespace Pokedex.Model.Service
 
             if (pokemonFoundDatabase == null || !pokemonFoundDatabase.IsComplete)
             {
-                var pokemonToAddOrUpdate = SearchAPI(id);
+                var pokemonToAddOrUpdate = PokemonServiceHelper.SearchAPI(id);
 
                 if (pokemonFoundDatabase == null)
                 {
@@ -73,7 +73,7 @@ namespace Pokedex.Model.Service
 
             if (pokemonFoundDatabase == null || !pokemonFoundDatabase.IsComplete)
             {
-                var pokemonToAddOrUpdate = SearchAPI(name);
+                var pokemonToAddOrUpdate = PokemonServiceHelper.SearchAPI(name);
 
                 if (pokemonFoundDatabase == null)
                 {
@@ -161,71 +161,13 @@ namespace Pokedex.Model.Service
 
             return pokemons;
         }
-
-        //Não ser testado
+        
         public List<string> GetNames()
         {
             List<string> namesPokemonsInDatabase = _pokemonDAO.FindAll().Result.Select(p => p.Name).ToList();
 
             return namesPokemonsInDatabase;
         }
-
-        //A ser testado
-        public async Task SetId(PokemonDB pokemon)
-        {
-            var lastId = await ((PokemonDAO)_pokemonDAO).FindLastId();
-
-            if (lastId < 100001)
-            {
-                pokemon.Id = 100001;
-            }
-            else
-            {
-                pokemon.Id = lastId + 1;
-            }
-        }
-
-        //A ser testado
-        private async Task SetType(PokemonDB pokemon, string typeName)
-        {
-            var type = await ((TypeDAO)_typeDAO).FindByName(typeName);
-
-            if (type == null)
-            {
-                if (Enum.IsDefined(typeof(TypeNames), typeName))
-                {
-                    pokemon.Types.Add(
-                            new TypePokemonDB() { Type = new TypeDB() { Name = typeName } }
-                        );
-                }
-                else
-                {
-                    throw new PokemonTypeNotFoundException("Pokemon type doesn't exist");
-                }
-            }
-            else
-            {
-                pokemon.Types.Add(new TypePokemonDB() { TypeId = type.Id });
-            }
-        }
-
-        //A ser testado
-        private PokemonDB SearchAPI(string search)
-        {
-            var pokemonApi = ApiRequest.GetPokemon(search);
-
-            if (pokemonApi == null) throw new PokemonNotFoundException();
-
-            var pokemon = new PokemonDB(pokemonApi);
-            pokemon.IsComplete = true;
-
-            return pokemon;
-        }
-
-        //A ser testado
-        private PokemonDB SearchAPI(int search)
-        {        
-            return SearchAPI($"{search}");
-        }
+        
     }
 }
