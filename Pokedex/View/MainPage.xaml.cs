@@ -1,22 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pokedex.Model.Connection;
 using Pokedex.Model.DAO;
 using Pokedex.Model.Entities;
-using Pokedex.Model.Service;
+using Pokedex.Model.Enums;
 using Pokedex.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Pokedex.View
 {
@@ -52,13 +42,28 @@ namespace Pokedex.View
 
         private void ButtonListPokemons_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(ListPage), 
-                                new Tuple<PageOrigin,TypeNames>(PageOrigin.MainPage,TypeNames.none) );
+            RootFrame.Navigate(typeof(ListPage), new Tuple<PageOrigin,TypeNames>(PageOrigin.MainPage,TypeNames.All) );
         }        
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             RootFrame.Navigate(typeof(AddPokemonPage));
+        }
+
+        private void ButtonNext_Click(object sender, RoutedEventArgs e)
+        {           
+            if (RootFrame.CanGoForward)
+            {
+                RootFrame.GoForward();
+            }
+        }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (RootFrame.CanGoBack)
+            {
+                RootFrame.GoBack();
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Pokedex.Model.Entities
+﻿using System;
+
+namespace Pokedex.Model.Entities
 {
     public class TypePokemonDB : IEntity
     {
@@ -7,5 +9,19 @@
 
         public int TypeId { get; set; }
         public TypeDB Type { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is TypePokemonDB dB
+                   && Type.Name == dB.Type.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Type.Name);
+
+            return hash.ToHashCode();
+        }
     }
 }

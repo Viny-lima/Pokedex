@@ -3,10 +3,7 @@ using System;
 using Pokedex.Model.Service;
 using Pokedex.Model.Entities;
 using Pokedex.Model.DAO;
-using System.Linq;
-using Microsoft.Data.Sqlite;
-using Pokedex.Model.Exceptions;
-using System.Diagnostics;
+using Pokedex.Model.Connection;
 
 namespace Pokedex.Migrations.Startup
 {
@@ -15,32 +12,30 @@ namespace Pokedex.Migrations.Startup
         static void Main(string[] args)
         {
             var p = new PokedexContext();
-            p.Database.Migrate();
 
-            IPokemonService<PokemonDB> service = new PokemonService();
+            p.Database.EnsureDeleted();
+            p.Database.Migrate();         
 
+            
+            var a = new AbilityDB() { Id = 1 ,Name = "o"};
+            var b = new AbilityDB() { Id = 1 ,Name = "o"};
+            
 
-            //var pokemons = service.FindPokemonsByType("normal", 1, 10).Result;
-            var pokemon = service.FindPokemonById(16).Result;
-
-            //foreach (var pokemon in pokemons)
-            //{
-            //    Console.WriteLine(pokemon.Id);
-            //    Console.WriteLine(pokemon.Name);
-            //}
-
-            Console.WriteLine(pokemon.Name);
-            Console.WriteLine(pokemon.Id);
-            foreach (var typePokemon in pokemon.Types)
+            if(Equals(a, b))
             {
-                Console.WriteLine(typePokemon.Type.Name);
+                Console.WriteLine("São iguais o teste ta bugado!");
             }
+            else
+            {
+                Console.WriteLine("Tu ta fazendo errado !");
+            }
+            
 
         }
 
         private static void AdicionandoSemDuplicidade()
-        {          
-            using(var contexto = new PokedexContext())
+        {
+            using (var contexto = new PokedexContext())
             {
                 contexto.Database.Migrate();
             }
@@ -52,7 +47,7 @@ namespace Pokedex.Migrations.Startup
                 var p = new PokemonDB(ApiRequest.GetPokemon(i));
                 pokemonDAO.Add(p);
             }
-            
+
         }
 
         private static void MostrarTiposDosPokemonsNoDatabase()
@@ -72,7 +67,7 @@ namespace Pokedex.Migrations.Startup
                 Console.WriteLine("------------------");
             }
         }
-        
+
         private static void MostrarPokemons()
         {
             var db = new PokemonDAO();

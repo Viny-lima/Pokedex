@@ -1,4 +1,5 @@
 ﻿using Pokedex.Model.Entities;
+using Pokedex.Model.Enums;
 using Pokedex.Model.Service;
 using Pokedex.View;
 using System;
@@ -30,64 +31,59 @@ namespace Pokedex.ViewModel
         private PageOrigin _origin;
         private TypeNames _typeSelected;
 
-        public ListPokemonViewModel(ref ProgressRing progressRing, PageOrigin originPage, TypeNames typeSelected = TypeNames.normal)
+        public ListPokemonViewModel(PageOrigin originPage, TypeNames typeSelected = TypeNames.normal)
         {
             _start = 1;
             _quantity = 10;
             _origin = originPage;
             _typeSelected = typeSelected;
-            _progressRing = progressRing;
-        }
-
-        private void UpdateListPokemons(ref CoreDispatcher coreDispatcher)
-        {
-            IList<PokemonDB> listPokemons = new List<PokemonDB>();
-
-            coreDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                _progressRing.Visibility = Visibility.Visible;
-            });
-
-            switch (_origin)
-            {
-                case PageOrigin.MainPage:
-
-                    listPokemons = _pokemonService.FindPokemonsById(_start, _quantity).Result;
-
-                    break;
-
-                case PageOrigin.TypePage:
-
-                    listPokemons = _pokemonService.FindPokemonsByType($"{_typeSelected}", _start, _quantity).Result;                                         
-
-                    break;
-            }
-
-            coreDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {                
-                foreach (PokemonDB p in listPokemons)
-                {
-                    this.Add(p);                    
-                }
-
-                _progressRing.Visibility = Visibility.Collapsed;
-            });
-
+            _progressRing = ((((Window.Current.Content as Frame).Content as MainPage).RootFrame).Content as ListPage).MyProgressRing;
         }
 
         public IAsyncOperation<LoadMoreItemsResult> LoadMoreItemsAsync(uint count)
         {
-            CoreDispatcher coreDispatcher = Window.Current.Dispatcher;
+            var coreDispather = Window.Current.Dispatcher;
 
             return Task.Run(() =>
-            {                
-                UpdateListPokemons(ref coreDispatcher);
+            {
+                IList<PokemonDB> listPokemons = new List<PokemonDB>();
+
+                var loadAction = coreDispather
+                .RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    _progressRing.Visibility = Visibility.Visible;
+                });
+
+                switch (_origin)
+                {
+                    case PageOrigin.MainPage:
+
+                        listPokemons = _pokemonService.FindAllById(_start, _quantity).Result;
+
+                        break;
+
+                    case PageOrigin.TypePage:
+
+                        listPokemons = _pokemonService.FindAllByType(_typeSelected, _start, _quantity).Result;
+
+                        break;
+                }
+
+                var addAction = coreDispather
+                .RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    foreach (PokemonDB p in listPokemons)
+                    {
+                        this.Add(p);
+                    }
+
+                    _progressRing.Visibility = Visibility.Collapsed;
+                });
 
                 _start += _quantity;
 
                 return new LoadMoreItemsResult() { Count = (uint) _start };
             }).AsAsyncOperation();
-
 
         }
 
