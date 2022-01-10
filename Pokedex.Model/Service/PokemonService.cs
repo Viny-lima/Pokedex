@@ -29,6 +29,11 @@ namespace Pokedex.Model.Service
             }                      
         }
         
+        public async Task<int> ReturnIdByName(string name)
+        {
+            return await ((PokemonDAO)_pokemonDAO).ReturnIdByName(name);
+        }
+
         public async Task Update(PokemonDB pokemon)
         {
             await _pokemonDAO.Update(pokemon);

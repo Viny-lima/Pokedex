@@ -91,5 +91,14 @@ namespace Pokedex.Model.DAO
 
             return lastPokemon.Id;
         }
+
+        public async Task<int> ReturnIdByName(string name)
+        {
+            PokedexContext context = new PokedexContext();
+
+            var pokemon =  await context.Pokemons.FirstOrDefaultAsync(p => p.Name == name);
+
+            return pokemon.Id;
+        }
     }
 }

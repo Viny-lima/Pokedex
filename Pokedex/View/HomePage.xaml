@@ -30,44 +30,41 @@
                         Fill="#78000000"
                         />
 
-            <StackPanel Name="HOME_TEXT"
-                        Grid.Row="1"
-                        VerticalAlignment="Center"
-                        >
-                
-                <TextBlock Name="Welcome"
-                           Grid.Row="1"
-                           Text="Welcome"
-                           Style="{StaticResource MyFontTitle}"
-                           Foreground="{StaticResource MyColorAqua}"
-                           />
-                
-                <TextBlock  Name="Describe"
+            <Frame  Name="HomeActions"
+                    Grid.Row="1"
+                    VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBlock  Name="Welcome"
+                                Text="Welcome"
+                                Style="{StaticResource MyFontTitle}"
+                                Foreground="{StaticResource MyColorAqua}"
+                                />
+
+                    <TextBlock  Name="Describe"
                             TextWrapping="Wrap"
                             Style="{StaticResource MyFontDescribeWhite}"
                             Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics, abilities and movements."   
-                            />               
-                
-                
-                <AutoSuggestBox Name="BarSearchResponsive"
+                            />
+
+
+                    <AutoSuggestBox Name="BarSearch"
                                 QueryIcon="Find"
                                 MinWidth="300"
                                 PlaceholderText="Search for a Pokémon by Name or Id..."
-                                TextChanged="BarSearchResponsive_TextChanged"
                                 HorizontalAlignment="Left"
                                 Margin="20"
-                                QuerySubmitted="BarSearchResponsive_QuerySubmitted"
-                                />                             
+                                QuerySubmitted="BarSearch_QuerySubmitted"                                
+                                TextChanged="BarSearch_TextChanged"
+                                />
 
-                <Button Name="ButtonAllTwo"
-                        Content="See the pokemons"
-                        FontSize="20"
-                        Style="{StaticResource MyButtonWhite}"
-                        Click="ButtonAllTwo_Click"
-                        />
-            </StackPanel>
-
-            
+                    <Button Name="ButtonAllTwo"
+                            Content="See the pokemons"
+                            FontSize="20"
+                            Style="{StaticResource MyButtonWhite}"
+                            Click="ButtonAllTwo_Click"
+                            />
+                </StackPanel>
+            </Frame>                      
 
             <Popup x:Name="PopupError"  
                    IsOpen="False" 
@@ -123,9 +120,9 @@
                         <Setter Target="Welcome.FontSize" Value="40"/>
                         <Setter Target="Describe.FontSize" Value="12"/>
                         <Setter Target="ButtonAllTwo.FontSize" Value="20"/>
-                        <Setter Target="BarSearchResponsive.PlaceholderText" Value="Search..."/>
-                        <Setter Target="HOME_TEXT.(Grid.ColumnSpan)" Value="2"/>
-                        <Setter Target="HOME_TEXT.HorizontalAlignment" Value="Center"/>
+                        <Setter Target="BarSearch.PlaceholderText" Value="Search..."/>
+                        <Setter Target="HomeActions.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="HomeActions.HorizontalAlignment" Value="Center"/>
                     </VisualState.Setters>
                 </VisualState>
 

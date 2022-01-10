@@ -11,7 +11,9 @@
 
     <Grid>
 
-        <Frame x:Name="RootFrame"/>
+        <Frame x:Name="RootFrame"
+               x:FieldModifier="public"
+               />
 
         <RelativePanel x:Name="NAVE">
 
@@ -48,7 +50,24 @@
                     RelativePanel.AlignRightWithPanel="True"
                     Click="ButtonListPokemons_Click"                  
                     />
-            
+
+            <Button Name="ButtonBack"
+                    Content="&#xE72B;"
+                    Style="{StaticResource MyButtonWhite}"
+                    RelativePanel.RightOf="LOGO"
+                    FontFamily="Segoe MDL2 Assets"
+                    Margin="0,15"
+                    Click="ButtonBack_Click"  
+                    />
+            <Button Name="ButtonNext"
+                    Content="&#xE72A;"
+                    Style="{StaticResource MyButtonWhite}"
+                    RelativePanel.RightOf="ButtonBack"
+                    FontFamily="Segoe MDL2 Assets"
+                    Margin="0,15"
+                    Click="ButtonNext_Click"  
+                    />
+
         </RelativePanel>
     </Grid>
     

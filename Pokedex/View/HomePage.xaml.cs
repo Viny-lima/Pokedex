@@ -17,15 +17,18 @@ namespace Pokedex.View
     public sealed partial class HomePage : Page
     {
         private string _search;
-        private PokemonService _service = new PokemonService();
+        private PokemonService _service;
         private PokemonDB _pokemon;
         private List<String> _listaNamesPokemons;
-        private SolidColorBrush fundoEscuro = new SolidColorBrush(Windows.UI.Color.FromArgb(178, 0, 0, 0));
-        private SolidColorBrush fundoClaro = new SolidColorBrush(Windows.UI.Color.FromArgb(120, 0, 0, 0));
+        private SolidColorBrush _fundoEscuro;
+        private SolidColorBrush _fundoClaro; 
         
         public HomePage()
         {
             this.InitializeComponent();
+            _service = new PokemonService();
+            _fundoEscuro = new SolidColorBrush(Windows.UI.Color.FromArgb(178, 0, 0, 0));
+            _fundoClaro = new SolidColorBrush(Windows.UI.Color.FromArgb(120, 0, 0, 0));
         }
 
         private void Page_Loading(FrameworkElement sender, object args)
@@ -33,36 +36,44 @@ namespace Pokedex.View
             _listaNamesPokemons = _service.GetNames();
         }
 
-        private void BarSearchResponsive_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
-        {                                
-            var autoSuggestBox = sender;
-            var filtered = _listaNamesPokemons.Where(p => p.StartsWith(autoSuggestBox.Text)).ToArray();
-            autoSuggestBox.ItemsSource = filtered;
-
-            _search = autoSuggestBox.Text;
+        private void BarSearch_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {            
+            _search = args.QueryText;
+            CheckedQuery();            
         }
 
-        private void BarSearchResponsive_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        private void BarSearch_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            CheckedQuery();
+            var autoSuggestBox = sender;
+            var filtered = _listaNamesPokemons.Where(p => p.StartsWith(autoSuggestBox.Text.Trim().ToLower())).ToArray();
+            autoSuggestBox.ItemsSource = filtered;
         }
+        
 
         private void ButtonAllTwo_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(ListPage),
-                                new Tuple<PageOrigin, TypeNames>(PageOrigin.MainPage, TypeNames.All));
+            ((Window.Current.Content as Frame).Content as MainPage)
+            .RootFrame.Navigate(typeof(ListPage), new Tuple<PageOrigin, TypeNames>(PageOrigin.MainPage, TypeNames.All));
         }
 
-        private void CheckedQuery()
-        {           
+        private void ButtonClosePopup_Click(object sender, RoutedEventArgs e)
+        {
+            HomeActions.IsEnabled = true;
+            ShadowPage.Fill = _fundoClaro;
+            PopupError.IsOpen = !PopupError.IsOpen;
+        }
+
+        private void OpenPopup()
+        {
+            HomeActions.IsEnabled = false;
+            ShadowPage.Fill = _fundoEscuro;
+            PopupError.IsOpen = !PopupError.IsOpen;
+        }
+
+        private void ChangePage()
+        {
             try
-
             {
-                if(!ValidateString.Validate(ref _search) )
-                {
-                    throw new ArgumentException();
-                }                             
-
                 if (int.TryParse(_search, out int Id))
                 {
                     _pokemon = _service.FindById(Id).Result;
@@ -70,21 +81,19 @@ namespace Pokedex.View
                 else
                 {
                     _pokemon = _service.FindByName(_search).Result;
-                }
+                }              
 
+
+                ((Window.Current.Content as Frame).Content as MainPage)
+                    .RootFrame.Navigate(typeof(PokemonPage), _pokemon.Id);                
             }
-            catch (ArgumentException)
-            {                
-                ERROR.Text = "ERROR: invalid search";
-                OpenPopup();
-            }                        
             catch (AggregateException aggregateException)
             {
                 foreach (var e in aggregateException.InnerExceptions)
                 {
                     // Handle the custom exception.
                     if (e is PokemonNotFoundException)
-                    {                        
+                    {
                         ERROR.Text = "ERROR: Pokemon not Found";
                     }
                     // Rethrow any other exception.
@@ -96,28 +105,27 @@ namespace Pokedex.View
 
                 OpenPopup();
             }
-            finally
-            {
-                if (_pokemon != null)
+        }
+
+        private void CheckedQuery()
+        {           
+            try
+            {                               
+                if(!ValidateString.Validate(ref _search))
                 {
-                    RootFrame.Navigate(typeof(PokemonPage), _pokemon.Id);
+                    throw new ArgumentException();
                 }
+
+                ChangePage();
             }
-        }
-
-        private void ButtonClosePopup_Click(object sender, RoutedEventArgs e)
-        {
-            ShadowPage.Fill = fundoClaro;
-            PopupError.IsOpen = !PopupError.IsOpen;
-        }
-
-        private void OpenPopup()
-        {
-            ShadowPage.Fill = fundoEscuro;
-            PopupError.IsOpen = !PopupError.IsOpen;
-        }
-
-
+            catch (ArgumentException)
+            {                
+                ERROR.Text = "ERROR: invalid search";
+                OpenPopup();
+            }                                  
+            
+        }              
+        
     }
 
 }
