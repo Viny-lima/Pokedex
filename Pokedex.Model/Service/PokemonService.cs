@@ -114,7 +114,7 @@ namespace Pokedex.Model.Service
 
             if (pokemons.Count < quantity)
             {
-                pokemons = await PokemonServiceHelper.AddPokemonsByTypeFromAPI(_pokemonDAO, pokemons, typeName.ToString());
+                pokemons = await PokemonServiceHelper.AddPokemonsByTypeFromAPI(_pokemonDAO, pokemons, typeName.ToString(), start);
 
                 pokemons = pokemons
                                 .OrderBy(p => p.Id)
