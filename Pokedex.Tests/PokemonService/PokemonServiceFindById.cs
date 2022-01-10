@@ -1,5 +1,6 @@
 ﻿using Pokedex.Model.Exceptions;
 using Pokedex.Model.Service;
+using Pokedex.Tests.Startup;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,27 @@ using Xunit;
 
 namespace Pokedex.Tests
 {
+
+    [Collection("Database")]
     public class PokemonServiceFindById
     {
+
+        DatabaseFixture _databaseFixture;
+
+        public PokemonServiceFindById(DatabaseFixture fixture)
+        {
+            _databaseFixture = fixture;
+        }
+
         [Fact]
-        public async void RetornePokemonDoIdInformado()
+        public void RetornePokemonDoIdInformado()
         {
             //Arrange
             var id = 25;
             var service = new PokemonService();
 
             //Act
-            var pokemon = await service.FindById(id);
+            var pokemon = service.FindById(id).Result;
 
             //Assert
             var valorEsperado = id;
@@ -28,14 +39,14 @@ namespace Pokedex.Tests
         }
 
         [Fact]
-        public async void LancePokemonNotFoundExceptionQuandoNaoEncontrar()
+        public void LancePokemonNotFoundExceptionQuandoNaoEncontrar()
         {
             //arrange
             var id = 0;
             var service = new PokemonService();
 
             // act & assert
-            await Assert.ThrowsAsync<PokemonNotFoundException>(async () => await service.FindById(id));
+            Assert.ThrowsAsync<PokemonNotFoundException>(async () => await service.FindById(id));
         }
     }
 }

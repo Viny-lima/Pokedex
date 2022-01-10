@@ -2,6 +2,7 @@
 using Pokedex.Model.Connection;
 using Pokedex.Model.Entities;
 using Pokedex.Model.Service;
+using Pokedex.Tests.Startup;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +12,26 @@ using Xunit;
 
 namespace Pokedex.Tests
 {
+
+    [Collection("Database")]
     public class PokemonServiceRegisterIsCreatedByUser
     {
+        DatabaseFixture _databaseFixture;
+
+        public PokemonServiceRegisterIsCreatedByUser(DatabaseFixture fixture)
+        {
+            _databaseFixture = fixture;
+        }
+
         [Fact]
         public async void CadastrandoNovoPokemonEleDeTerRegistroNoDatabase()
         {      
             //Arrange            
-            using(var db = new PokedexContext())
+            /*using(var db = new PokedexContext())
             {
                 db.Database.EnsureDeleted();
                 db.Database.Migrate();
-            }
+            }*/
 
             var pokemon = new PokemonDB()
             {

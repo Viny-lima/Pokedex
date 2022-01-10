@@ -1,13 +1,23 @@
 ﻿using Pokedex.Model.Entities;
 using Pokedex.Model.Service;
+using Pokedex.Tests.Startup;
 using Xunit;
 
 namespace Pokedex.Tests
 {
+
+    [Collection("Database")]
     public class PokemonServiceHelperSetId
     {
+        DatabaseFixture _databaseFixture;
+
+        public PokemonServiceHelperSetId(DatabaseFixture fixture)
+        {
+            _databaseFixture = fixture;
+        }
+
         [Fact]
-        public async void RealizeAleteracaoNoId()
+        public async void RealizeAlteracaoNoId()
         {
             //Arrange
 

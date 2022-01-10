@@ -1,5 +1,6 @@
 ﻿using Pokedex.Model.Enums;
 using Pokedex.Model.Service;
+using Pokedex.Tests.Startup;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,17 @@ using Xunit;
 
 namespace Pokedex.Tests
 {
+
+    [Collection("Database")]
     public class PokemonServiceFindAllByType
     {
+        DatabaseFixture _databaseFixture;
+
+        public PokemonServiceFindAllByType(DatabaseFixture fixture)
+        {
+            _databaseFixture = fixture;
+        }
+
         [Theory]
         [InlineData(TypeNames.normal, 130)]
         [InlineData(TypeNames.fighting, 78)]
@@ -35,7 +45,7 @@ namespace Pokedex.Tests
         [InlineData(TypeNames.fighting, "tyrogue")]
         [InlineData(TypeNames.flying, "pidgey")]
         [InlineData(TypeNames.dragon, "dratini")]
-        public async void DadoNomeDoTipoDeveRetornarUmaListaContendoPokemonDaqueleTipo(TypeNames nome, string nomePokemon)
+        public void DadoNomeDoTipoDeveRetornarUmaListaContendoPokemonDaqueleTipo(TypeNames nome, string nomePokemon)
         {
             //Arrange
             var service = new PokemonService();
@@ -43,7 +53,7 @@ namespace Pokedex.Tests
             var _nomePokemon = nomePokemon;
 
             //Act
-            var resultado = await service.FindAllByType(_nome , 1, 10);
+            var resultado = service.FindAllByType(_nome , 1, 10).Result;
 
             //Assert
             Assert.True(resultado.Any(p => p.Name == _nomePokemon));
@@ -53,7 +63,7 @@ namespace Pokedex.Tests
         [InlineData(10, -1)]
         [InlineData(0, -1)]
         [InlineData(-10, 10)]
-        public async void LançaExcecaoQuandoPeloMenosUmDosValoresPassadosForemMenoresQueUm(int inicio, int quantidade)
+        public void LançaExcecaoQuandoPeloMenosUmDosValoresPassadosForemMenoresQueUm(int inicio, int quantidade)
         {
             //Arrange
             var service = new PokemonService();
@@ -61,7 +71,7 @@ namespace Pokedex.Tests
             var _inicio = inicio;
 
             //Assert
-            await Assert.ThrowsAsync<ArgumentException>(async () => await service.FindAllByType(TypeNames.normal, _inicio, _quantidade));
+            Assert.ThrowsAsync<ArgumentException>(async () => await service.FindAllByType(TypeNames.normal, _inicio, _quantidade));
         }
     }
 }
