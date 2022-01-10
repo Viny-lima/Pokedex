@@ -52,7 +52,8 @@ namespace Pokedex.View
 
         private void ButtonAllTwo_Click(object sender, RoutedEventArgs e)
         {
-            RootFrame.Navigate(typeof(ListPage), new Tuple<PageOrigin, TypeNames>(PageOrigin.MainPage, TypeNames.All));
+            ((Window.Current.Content as Frame).Content as MainPage)
+            .RootFrame.Navigate(typeof(ListPage), new Tuple<PageOrigin, TypeNames>(PageOrigin.MainPage, TypeNames.All));
         }
 
         private void ButtonClosePopup_Click(object sender, RoutedEventArgs e)
