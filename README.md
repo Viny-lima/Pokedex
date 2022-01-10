@@ -1,8 +1,7 @@
 # Pokedex
 
+## Objetivo
 ![imagem](https://upww.screenrec.com/images/f_WqTKEastA2QkYSXd1DHzMZjxrpnNLGgm.png)
-
-#### Objetivo
 
 Esse projeto tem por objetivo a criação de uma aplicação visual para fazer a listagem de Pokémons, com
 a exibição de suas características. Os dados serão coletados através da API pública PokéAPI(https://pokeapi.co/)
@@ -15,7 +14,7 @@ a exibição de suas características. Os dados serão coletados através da API
 | PokeAPI      | Api utilizada no projeto |
 | xUnit    | Testes automatizados |
 
-#### Requistos
+## Requistos
 - Fazer uso do banco de dados SQLite para persistência de dados
 - ![imagem](https://upww.screenrec.com/images/f_QOefuBIczMvsCxTA6EqyHl0a8Y1XkL7W.png)
 
@@ -44,12 +43,15 @@ a exibição de suas características. Os dados serão coletados através da API
 
 - [@vinylima](https://github.com/viny-lima)
 
-![@vinylima](https://avatars.githubusercontent.com/u/82112071?v=4)
+<img src="https://avatars.githubusercontent.com/u/82112071?v=4" width=200px height=200px>
+
 
 - [@ricardotenorio](https://github.com/ricardotenorio)
 
-![@ricardotenorio](https://avatars.githubusercontent.com/u/26755330?v=4)
+<img src="https://avatars.githubusercontent.com/u/26755330?v=4" width=200px height=200px>
+
 
 - [@rackel21](https://github.com/rackel-21)
 
-![@rackel21](https://avatars.githubusercontent.com/u/90733097?v=4)
+<img src="https://avatars.githubusercontent.com/u/90733097?v=4" width=200px height=200px>
+
