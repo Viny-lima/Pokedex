@@ -62,7 +62,7 @@ namespace Pokedex.View
         {
             var name = Name.Text;
 
-            if (ValidateString.Validate (ref name))
+            if (!ValidateString.Validate (ref name))
             {
                 ViewErro.Visibility = Visibility.Visible;
                 ViewErro.Text = $"Request {Name.Header}";
@@ -76,7 +76,6 @@ namespace Pokedex.View
 
                 return false;
             }
-
             
             return true;
         }
