@@ -36,8 +36,6 @@ a exibição de suas características. Os dados serão coletados através da API
 - Implementar cadastro de novos Pokémons.
 - ![imagem](https://upww.screenrec.com/images/f_zKNJ6itVxE73PLmTc1vWpF2A9qCwfsGy.png)
 
-##### Projeto Realizado Por:
-
 ## Quem colaborou com o projeto
 
 
