@@ -65,6 +65,7 @@
                 </ListView.ItemTemplate>
                 <ListView.Footer>
                     <ProgressRing   x:Name="MyProgressRing"
+                                    x:FieldModifier="public"
                                     Grid.Row="2"
                                     Width="50"
                                     Height="50"

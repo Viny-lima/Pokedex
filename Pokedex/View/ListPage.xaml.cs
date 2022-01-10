@@ -3,6 +3,7 @@ using Pokedex.Model.Enums;
 using Pokedex.Model.Service;
 using Pokedex.ViewModel;
 using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -21,16 +22,16 @@ namespace Pokedex.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Tuple<PageOrigin,TypeNames> parameterNavigation =(Tuple<PageOrigin,TypeNames>) e.Parameter;
+            Tuple<PageOrigin,TypeNames> parameterNavigation = (Tuple<PageOrigin,TypeNames>) e.Parameter;
 
-            ListPokemons = new ListPokemonViewModel(ref MyProgressRing, parameterNavigation.Item1, parameterNavigation.Item2);
+            ListPokemons = new ListPokemonViewModel(parameterNavigation.Item1, parameterNavigation.Item2);
         }        
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var pokemonSelected = e.ClickedItem as PokemonDB;         
+            var pokemonSelected = e.ClickedItem as PokemonDB;
 
-            RootFrame.Navigate(typeof(PokemonPage), pokemonSelected.Id);
+            ((Window.Current.Content as Frame).Content as MainPage).RootFrame.Navigate(typeof(PokemonPage), pokemonSelected.Id);
         }
     }
 }

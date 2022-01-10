@@ -38,7 +38,7 @@ namespace Pokedex.View
         {
             if (!RequiredName()) return;
             
-            pokemonDB.This.Name = Name.Text;
+            pokemonDB.This.Name = Name.Text.Trim().ToLower();
             pokemonDB.This.Attack = int.Parse(Attack.Text);
             pokemonDB.This.Defense = int.Parse(Defense.Text);
             pokemonDB.This.SpecialAttack = int.Parse(SpecialAttack.Text);
@@ -47,6 +47,7 @@ namespace Pokedex.View
             pokemonDB.This.Height = int.Parse(Height.Text);
             pokemonDB.This.Weight = int.Parse(Weight.Text);
             pokemonDB.This.BaseExperience = int.Parse(BaseExperience.Text);
+            pokemonDB.This.IsComplete = true;
             pokemonDB.This.IsCreatedByTheUser = true;
 
             AbilitiesField.Distinct().ToList().ForEach(a => pokemonDB.This.AddAbility(a));
@@ -54,8 +55,8 @@ namespace Pokedex.View
             TypesField.Distinct().ToList().ForEach(t => pokemonDB.This.AddType(t));
 
             await _service.RegisterIsCreatedByUser(pokemonDB.This);
-
-            RootFrame.Navigate(typeof(AddPokemonPage));
+            
+            ShowPokemonIsCreatedByTheUser();
         }        
 
         private bool RequiredName()
@@ -116,6 +117,14 @@ namespace Pokedex.View
 
             AbilitiesField.Add(Abitily.Text);
         }
-        
+
+        private void ShowPokemonIsCreatedByTheUser()
+        {
+            var id = _service.ReturnIdByName(Name.Text.Trim().ToLower()).Result;
+
+            ((Window.Current.Content as Frame).Content as MainPage).RootFrame.Navigate(typeof(PokemonPage), id);
+        }
+
+
     }
 }

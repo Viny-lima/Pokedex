@@ -49,5 +49,21 @@ namespace Pokedex.View
         {
             RootFrame.Navigate(typeof(AddPokemonPage));
         }
+
+        private void ButtonNext_Click(object sender, RoutedEventArgs e)
+        {           
+            if (RootFrame.CanGoForward)
+            {
+                RootFrame.GoForward();
+            }
+        }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (RootFrame.CanGoBack)
+            {
+                RootFrame.GoBack();
+            }
+        }
     }
 }
