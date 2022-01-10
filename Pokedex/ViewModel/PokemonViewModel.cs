@@ -1,13 +1,14 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Pokedex.Model.Entities;
 using Pokedex.Model.PokeApi;
+using System.Collections.Generic;
 
-namespace Pokedex.ViewModels
+namespace Pokedex.ViewModel
 {
     public class PokemonViewModel : ObservableObject
     {
-        private Model.PokeApi.PokemonAPI _pokemon = new Model.PokeApi.PokemonAPI();
-        public Model.PokeApi.PokemonAPI Pokemon
+        private PokemonDB _pokemon = new PokemonDB();
+        public PokemonDB This
         {
             get
             {
@@ -16,11 +17,9 @@ namespace Pokedex.ViewModels
             }
             set
             {
-                SetProperty(ref _pokemon, value, nameof(Pokemon));
+                SetProperty(ref _pokemon, value);
             }
         }
-
-        public PokemonViewModel() { }
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Pokedex.Model.Enums;
 using Pokedex.Model.PokeApi;
 using System;
 using System.Collections.Generic;
@@ -97,43 +98,70 @@ namespace Pokedex.Model.Service
         /// <returns>Um object <see cref="PokemonAPI"/> construido pela API.</returns>
         public static PokemonAPI GetPokemon(int Id)
         {
-            var stringUrl = $"https://pokeapi.co/api/v2/pokemon/{Id}";
+            var stringUrl = $"{UrlConstants.BaseUrl}{UrlConstants.PokemonEndpoint}{Id}";
 
             return Get<PokemonAPI>(stringUrl);
         }
 
         /// <summary>
-        /// Responsável construção de um <see cref="Object"/> da class <see cref="PokemonPropertiesList"/> apartir de um Json da API.
+        /// Responsável construção de um <see cref="Object"/> da class <see cref="PokemonAPI"/> apartir de um Json da API. Gerado por uma Url + <paramref name="name"/>.
+        /// </summary>
+        /// <param name="name">Nome do Pokemon na API></param>
+        /// <returns>Um object <see cref="PokemonAPI"/> construido pela API.</returns>
+        public static PokemonAPI GetPokemon(string name)
+        {
+            var stringUrl = $"{UrlConstants.BaseUrl}{UrlConstants.PokemonEndpoint}{name}";
+
+            return Get<PokemonAPI>(stringUrl);
+        }
+
+        /// <summary>
+        /// Responsável construção de um <see cref="Object"/> da class <see cref="ListPokemonAPI"/> apartir de um Json da API.
         /// </summary>
         /// <param name="startIndex">Id do primeiro <see cref="PokemonAPI"/> que se deseja na adicionar na lista.</param>
         /// <param name="qtdPokemons">Quantidade de <see cref="PokemonAPI"/> adiciondos a lista.</param>
-        /// <returns>Um object <see cref="PokemonPropertiesList"/> construido pela API.</returns>
-        public static PokemonPropertiesList GetPropertiesListPokemons(int startIndex = 0, int qtdPokemons = 10)
+        /// <returns>Um object <see cref="ListPokemonAPI"/> construido pela API.</returns>
+        public static ListPokemonAPI GetPropertiesListPokemons(int startIndex = 0, int quantity = 10)
         {
-            string stringUrl = $"https://pokeapi.co/api/v2/pokemon?limit={qtdPokemons}&offset={startIndex}";
-            return Get<PokemonPropertiesList>(stringUrl);
+            string stringUrl = $"{UrlConstants.BaseUrl}{UrlConstants.PokemonEndpoint}?limit={quantity}&offset={startIndex}";
+            return Get<ListPokemonAPI>(stringUrl);
         }
 
         /// <summary>
         /// Responsável pela criação de um <see cref="List{Pokemon}"/> de <see cref="PokemonAPI"/> apartir de um Json da API.
         /// </summary>
         /// <param name="startIndex">Id do primeiro <see cref="PokemonAPI"/> que se deseja na adicionar na lista.</param>
-        /// <param name="qtdPokemons">Quantidade de <see cref="PokemonAPI"/> adiciondos a lista.</param>
+        /// <param name="quantity">Quantidade de <see cref="PokemonAPI"/> adiciondos a lista.</param>
         /// <returns>Uma <see cref="List{Pokemon}"/> de pokemons construidas pela API.</returns>
-        public static List<PokemonAPI> GetListaDePokemons(int startIndex = 0, int qtdPokemons = 10)
+        public static IList<PokemonAPI> GetPokemonsList(int startIndex = 0, int quantity = 10)
         {
-            PokemonPropertiesList propertiesList = GetPropertiesListPokemons(startIndex, qtdPokemons);
+            ListPokemonAPI propertiesList = GetPropertiesListPokemons(startIndex, quantity);
 
-            List<PokemonAPI> ListaDePokemons = new List<PokemonAPI>();
+            IList<PokemonAPI> pokemons = new List<PokemonAPI>();
 
-            foreach (PokemonAddressAPI address in propertiesList.Results)
+            foreach (var pokemon in propertiesList.Results)
             {
-                string stringUrl = address.Url.ToString();
-
-                ListaDePokemons.Add(Get<PokemonAPI>(stringUrl));
+                pokemons.Add(new PokemonAPI() { Id = pokemon.Id, Name = pokemon.Name });
             }
                 
-            return ListaDePokemons;
-        }                  
+            return pokemons;
+        }
+        
+        public static IList<PokemonAPI> GetPokemonsListByType(string typeNumber)
+        {
+            string url = $"{UrlConstants.BaseUrl}{UrlConstants.TypeEndpoint}{typeNumber}";
+
+            var propertiesList = Get<ListPokemonTypeAPI>(url);
+
+            IList<PokemonAPI> pokemons = new List<PokemonAPI>();
+
+            foreach (var pokemon in propertiesList.Pokemons)
+            {
+                pokemons.Add(new PokemonAPI() { Id = pokemon.PokemonItemList.Id,
+                                                Name = pokemon.PokemonItemList.Name });
+            }
+
+            return pokemons;
+        }
     }
 }

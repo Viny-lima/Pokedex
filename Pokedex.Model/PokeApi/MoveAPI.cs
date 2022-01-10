@@ -3,21 +3,10 @@ using Newtonsoft.Json;
 
 namespace Pokedex.Model.PokeApi
 {
-    public class MoveAPI : ObservableObject
+    public class MoveAPI 
     {
         [JsonProperty("move")]
-        private PropertiesMove _move;
-        public PropertiesMove Move
-        {
-            get
-            {
-                return _move;
-            }
-            set
-            {
-                SetProperty(ref _move, value);
-            }
-        }
+        public Names Move { get; set; }
     }
 
 }

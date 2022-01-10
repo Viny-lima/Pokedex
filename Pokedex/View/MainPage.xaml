@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="Pokedex.View.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Pokedex.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded"
+    >      
+
+    <Grid>
+
+        <Frame x:Name="RootFrame"/>
+
+        <RelativePanel x:Name="NAVE">
+
+            <Image  Name="LOGO"
+                    Width="30"
+                    Margin="20"
+                    Source="..\Assets\Components\LOGO.png"
+                    />
+
+            <Button Name="ButtonHome"
+                Content="Home"
+                Style="{StaticResource MyButtonWhite}"
+                RelativePanel.LeftOf="ButtonAdd" 
+                Click="ButtonHome_Click"
+                />
+
+            <Button x:Name="ButtonAdd"
+                    Content="Add"
+                    Style="{StaticResource MyButtonWhite}"
+                    RelativePanel.LeftOf="ButtonTypes" 
+                    Click="ButtonAdd_Click"
+                    />
+
+            <Button Name="ButtonTypes"
+                    Content="Types"
+                    Style="{StaticResource MyButtonWhite}"                    
+                    RelativePanel.LeftOf="ButtonAllPokemons" 
+                    Click="ButtonTypes_Click"                  
+                    />
+
+            <Button Name="ButtonAllPokemons"
+                    Content="List"
+                    Style="{StaticResource MyButtonWhite}"
+                    RelativePanel.AlignRightWithPanel="True"
+                    Click="ButtonListPokemons_Click"                  
+                    />
+            
+        </RelativePanel>
+    </Grid>
+    
+</Page>

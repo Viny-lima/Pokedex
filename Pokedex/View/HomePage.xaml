@@ -1,0 +1,103 @@
+﻿<Page
+    x:Class="Pokedex.View.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Pokedex.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls" 
+    mc:Ignorable="d"
+    Loading="Page_Loading"
+    >
+
+    <Frame Name="RootFrame">
+        <Grid Name="MyGrid">
+            <Grid.Background>
+                <ImageBrush ImageSource="../Assets/Components/VIEW_BG.png"
+                            Stretch="UniformToFill"
+                            />
+            </Grid.Background>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Rectangle  x:Name="ShadowPage"
+                        Grid.RowSpan="5" 
+                        Grid.ColumnSpan="2">
+
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="2,0" StartPoint="0,2">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#00000000" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <StackPanel Name="HOME_TEXT"
+                        Grid.Row="1"
+                        VerticalAlignment="Center"
+                        >
+                
+                <TextBlock Name="Welcome"
+                           Grid.Row="1"
+                           Text="Welcome"
+                           Style="{StaticResource MyFontTitle}"
+                           Foreground="{StaticResource MyColorAqua}"
+                           />
+                
+                <TextBlock  Name="Describe"
+                            TextWrapping="Wrap"
+                            Style="{StaticResource MyFontDescribeWhite}"
+                            Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics, abilities and movements."   
+                            />
+                
+                <TextBlock Name="ERROR" Style="{StaticResource MyFontErro}"/>
+                
+                <AutoSuggestBox Name="BarSearchResponsive"
+                                QueryIcon="Find"
+                                MinWidth="300"
+                                PlaceholderText="Search for a Pokémon by Name or Id..."
+                                TextChanged="BarSearchResponsive_TextChanged"
+                                HorizontalAlignment="Left"
+                                Margin="20"
+                                QuerySubmitted="BarSearchResponsive_QuerySubmitted"
+                                />                             
+
+                <Button Name="ButtonAllTwo"
+                        Content="See the pokemons"
+                        FontSize="20"
+                        Style="{StaticResource MyButtonWhite}"
+                        Click="ButtonAllTwo_Click"
+                        />
+            </StackPanel>            
+        </Grid>
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="NarrowLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Welcome.FontSize" Value="40"/>
+                        <Setter Target="Describe.FontSize" Value="12"/>
+                        <Setter Target="ButtonAllTwo.FontSize" Value="20"/>
+                        <Setter Target="BarSearchResponsive.PlaceholderText" Value="Search..."/>
+                        <Setter Target="ShadowPage.Fill" Value="#B2000000"/>
+                        <Setter Target="HOME_TEXT.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="HOME_TEXT.HorizontalAlignment" Value="Center"/>
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="WideLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Frame>
+</Page>
