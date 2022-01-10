@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Pokedex.Model.DAO;
 using Pokedex.Model.PokeApi;
 using Pokedex.Model.Service;
+using static Pokedex.Model.Service.UrlConstants;
 
 namespace Pokedex.Model.Entities
 {
@@ -13,7 +15,7 @@ namespace Pokedex.Model.Entities
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; }        
 
         public int Hp { get; set; }
 
@@ -33,32 +35,27 @@ namespace Pokedex.Model.Entities
 
         public int BaseExperience { get; set; }
 
-        public string SpritesFrontDefault { get; set; }
-
-        private string _spriteOfficialArtwork;
-        public string SpritesOfficialArtwork
+        private string _sprite;
+        public string Sprite
         {
             get
             {
-                if (string.IsNullOrEmpty(_spriteOfficialArtwork))
+                if (string.IsNullOrEmpty(_sprite))
                 {
                     return "../Assets/Components/DEFAULT_POKEMON.png";
                 }
 
-                return _spriteOfficialArtwork;
+                return _sprite;
             }
             set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    _spriteOfficialArtwork = "../Assets/Components/DEFAULT_POKEMON.png";
-                }
-                else
-                {
-                    _spriteOfficialArtwork = value;
-                }                           
+            {                
+                _sprite = value;                                          
             }
         }
+
+        public bool IsComplete { get; set; }
+
+        public bool IsCreatedByTheUser { get; set; }
 
         public IList<AbilityPokemonDB> Abilities { get; internal set; }
 
@@ -81,7 +78,7 @@ namespace Pokedex.Model.Entities
 
             this.Id = id;
             this.Name = name;
-            this.SpritesOfficialArtwork = $"{UrlConstants.SpriteUrl}{UrlConstants.ArtworkEndpoint}{this.Id}{UrlConstants.SpriteExtension}";
+            this.Sprite = $"{SpriteUrl}{ArtworkEndpoint}{this.Id}{SpriteExtension}";
         }
 
         //Pokemon Criado com base em um elemento da API
@@ -94,8 +91,7 @@ namespace Pokedex.Model.Entities
             this.Id = pokemonAPI.Id;
             this.Hp = pokemonAPI.StatusBase[0].ValueState;
             this.Attack = pokemonAPI.StatusBase[1].ValueState;
-            this.SpritesFrontDefault = $"{UrlConstants.SpriteUrl}{this.Id}{UrlConstants.SpriteExtension}";
-            this.SpritesOfficialArtwork = $"{UrlConstants.SpriteUrl}{UrlConstants.ArtworkEndpoint}{this.Id}{UrlConstants.SpriteExtension}";
+            this.Sprite = $"{SpriteUrl}{ArtworkEndpoint}{this.Id}{SpriteExtension}";
             this.Defense = pokemonAPI.StatusBase[2].ValueState;
             this.SpecialAttack = pokemonAPI.StatusBase[3].ValueState;
             this.SpecialDefense = pokemonAPI.StatusBase[4].ValueState;
@@ -105,33 +101,9 @@ namespace Pokedex.Model.Entities
             this.Weight = pokemonAPI.Weight;
             this.BaseExperience = pokemonAPI.BaseExperience;
 
-            AddTypesAPI(pokemonAPI);
-            AddMovesAPI(pokemonAPI);
-            AddAbilitiesAPI(pokemonAPI);
-        }  
-
-        private async void AddTypesAPI(PokemonAPI pokemonAPI)
-        {
-            for (int i = 0; i < pokemonAPI.Types.Count; i++)
-            {
-                await AddType(pokemonAPI.Types[i].NamesType.Name);
-            }      
-        }       
-
-        private async void AddMovesAPI(PokemonAPI pokemonAPI)
-        {
-            for (int i = 0; i < pokemonAPI.Moves.Count; i++)
-            {
-                await AddMove(pokemonAPI.Moves[i].Move.Name);
-            }            
-        }
-
-        private async void AddAbilitiesAPI(PokemonAPI pokemonAPI)
-        {
-            for (int i = 0; i < pokemonAPI.Moves.Count; i++)
-            {
-                await AddAbility(pokemonAPI.Moves[i].Move.Name);
-            }
+            pokemonAPI.Types.ForEach(t => AddType(t.NamesType.Name));
+            pokemonAPI.Moves.ForEach(m => AddMove(m.Move.Name));
+            pokemonAPI.Abilities.ForEach(a => AddAbility(a.PropertiesAbility.Name));
         }
 
         public Task AddType(string typeName)
@@ -193,5 +165,52 @@ namespace Pokedex.Model.Entities
             return Task.CompletedTask;
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is PokemonDB dB &&
+                   Id == dB.Id &&
+                   Name == dB.Name &&
+                   Hp == dB.Hp &&
+                   Attack == dB.Attack &&
+                   Defense == dB.Defense &&
+                   SpecialAttack == dB.SpecialAttack &&
+                   SpecialDefense == dB.SpecialDefense &&
+                   Speed == dB.Speed &&
+                   Height == dB.Height &&
+                   Weight == dB.Weight &&
+                   BaseExperience == dB.BaseExperience &&
+                   _sprite == dB._sprite &&
+                   Sprite == dB.Sprite &&
+                   IsComplete == dB.IsComplete &&
+                   IsCreatedByTheUser == dB.IsCreatedByTheUser &&
+                   Enumerable.SequenceEqual(Abilities.OrderBy(fElement => fElement.Ability.Name), dB.Abilities.OrderBy(sElement => sElement.Ability.Name)) &&            
+                   Enumerable.SequenceEqual(Moves.OrderBy(fElement => fElement.Move.Name), dB.Moves.OrderBy(sElement => sElement.Move.Name)) &&            
+                   Enumerable.SequenceEqual(Types.OrderBy(fElement => fElement.Type.Name), dB.Types.OrderBy(sElement => sElement.Type.Name));            
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(Name);
+            hash.Add(Hp);
+            hash.Add(Attack);
+            hash.Add(Defense);
+            hash.Add(SpecialAttack);
+            hash.Add(SpecialDefense);
+            hash.Add(Speed);
+            hash.Add(Height);
+            hash.Add(Weight);
+            hash.Add(BaseExperience);
+            hash.Add(_sprite);
+            hash.Add(Sprite);
+            hash.Add(IsComplete);
+            hash.Add(IsCreatedByTheUser);
+            hash.Add(Abilities);
+            hash.Add(Moves);
+            hash.Add(Types);
+
+            return hash.ToHashCode();
+        }
     }
 }

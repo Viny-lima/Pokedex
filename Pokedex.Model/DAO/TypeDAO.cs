@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pokedex.Model.Connection;
 using Pokedex.Model.Entities;
 using System;
 using System.Collections.Generic;

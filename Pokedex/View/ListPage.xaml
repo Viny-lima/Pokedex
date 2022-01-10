@@ -52,7 +52,7 @@
                             <Image MaxHeight="150"
                                    MaxWidth="150"
                                    Grid.Column="1"
-                                   Source="{Binding SpritesOfficialArtwork}"
+                                   Source="{Binding Sprite}"
                                    />
 
                             <TextBlock  Text="{Binding Name}" 
@@ -65,6 +65,7 @@
                 </ListView.ItemTemplate>
                 <ListView.Footer>
                     <ProgressRing   x:Name="MyProgressRing"
+                                    x:FieldModifier="public"
                                     Grid.Row="2"
                                     Width="50"
                                     Height="50"

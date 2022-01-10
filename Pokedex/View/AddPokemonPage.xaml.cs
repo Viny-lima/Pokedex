@@ -31,17 +31,14 @@ namespace Pokedex.View
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach (var p in new PokedexContext().Pokemons.ToList())
-            {
-                _listaNamesPokemons.Add(p.Name);
-            }
+            _listaNamesPokemons = _service.GetNames();
         }
 
         private async void ButtonFinished_Click(object sender, RoutedEventArgs e)
         {
             if (!RequiredName()) return;
-
-            pokemonDB.This.Name = Name.Text;
+            
+            pokemonDB.This.Name = Name.Text.Trim().ToLower();
             pokemonDB.This.Attack = int.Parse(Attack.Text);
             pokemonDB.This.Defense = int.Parse(Defense.Text);
             pokemonDB.This.SpecialAttack = int.Parse(SpecialAttack.Text);
@@ -50,47 +47,36 @@ namespace Pokedex.View
             pokemonDB.This.Height = int.Parse(Height.Text);
             pokemonDB.This.Weight = int.Parse(Weight.Text);
             pokemonDB.This.BaseExperience = int.Parse(BaseExperience.Text);
+            pokemonDB.This.IsComplete = true;
+            pokemonDB.This.IsCreatedByTheUser = true;
 
+            AbilitiesField.Distinct().ToList().ForEach(a => pokemonDB.This.AddAbility(a));
+            MovesField.Distinct().ToList().ForEach(m => pokemonDB.This.AddMove(m));
+            TypesField.Distinct().ToList().ForEach(t => pokemonDB.This.AddType(t));
 
-            foreach(var item in AbilitiesField.Distinct())
-            {
-                await pokemonDB.This.AddAbility(item);
-            }
-
-            foreach(var item in MovesField.Distinct())
-            {
-                await pokemonDB.This.AddMove(item);
-            }
-
-            foreach (var item in TypesField.Distinct())
-            {
-                await pokemonDB.This.AddType(item);
-            }
-
-            await _service.AddCustomPokemon(pokemonDB.This);
-
-            RootFrame.Navigate(typeof(AddPokemonPage));
+            await _service.RegisterIsCreatedByUser(pokemonDB.This);
+            
+            ShowPokemonIsCreatedByTheUser();
         }        
 
         private bool RequiredName()
         {
-            Name.Text = Name.Text.ToLower().Trim();
+            var name = Name.Text;
 
-            if (string.IsNullOrEmpty(Name.Text))
+            if (!ValidateString.Validate (ref name))
             {
                 ViewErro.Visibility = Visibility.Visible;
                 ViewErro.Text = $"Request {Name.Header}";
 
                 return false;
             }
-            if (_listaNamesPokemons.Contains(Name.Text))
+            if (_listaNamesPokemons.Contains(name))
             {
                 ViewErro.Visibility = Visibility.Visible;
                 ViewErro.Text = $"Name Exists";
 
                 return false;
             }
-
             
             return true;
         }
@@ -131,6 +117,14 @@ namespace Pokedex.View
 
             AbilitiesField.Add(Abitily.Text);
         }
-        
+
+        private void ShowPokemonIsCreatedByTheUser()
+        {
+            var id = _service.ReturnIdByName(Name.Text.Trim().ToLower()).Result;
+
+            ((Window.Current.Content as Frame).Content as MainPage).RootFrame.Navigate(typeof(PokemonPage), id);
+        }
+
+
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Pokedex.Model.Migrations
 {
-    public partial class Initial : Migration
+    public partial class AlterTableColumnSpriteAndIsComplete : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,18 +38,18 @@ namespace Pokedex.Model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true),
+                    IsComplete = table.Column<bool>(nullable: false),
                     Hp = table.Column<int>(nullable: false),
                     Attack = table.Column<int>(nullable: false),
                     Defense = table.Column<int>(nullable: false),
                     SpecialAttack = table.Column<int>(nullable: false),
                     SpecialDefense = table.Column<int>(nullable: false),
                     Speed = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
                     Height = table.Column<int>(nullable: false),
                     Weight = table.Column<int>(nullable: false),
                     BaseExperience = table.Column<int>(nullable: false),
-                    SpritesFrontDefault = table.Column<string>(nullable: true),
-                    SpritesOfficialArtwork = table.Column<string>(nullable: true)
+                    Sprite = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pokedex.Model.Entities;
 
-namespace Pokedex.Model.DAO
+namespace Pokedex.Model.Connection
 {
     public class PokedexContext : DbContext
     {

@@ -10,13 +10,13 @@ namespace Pokedex.Model.Service
 {
     public static class ValidateString
     {      
-        public static bool Validate(string validateString)
+        public static bool Validate(ref string validateString)
         {                 
                 if (validateString != null)
                 {
-                validateString = validateString.Trim().ToLower();
+                    validateString = validateString.Trim().ToLower();
                 }
-                if (string.IsNullOrEmpty(validateString) || Regex.IsMatch(validateString, (@"[!""#$%&'()*+,-./:;?@[\\\]_`{|}~]")))
+                if (string.IsNullOrEmpty(validateString) || Regex.IsMatch(validateString, (@"[!""#$%&'()*+,./:;?@[\\\]_`{|}~]")))
                 {
                     return false;
                 }

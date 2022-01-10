@@ -1,20 +1,18 @@
 ﻿using Pokedex.Model.Entities;
-using System;
+using Pokedex.Model.Enums;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Pokedex.Model.Service
 {
     public interface IPokemonService<T> where T : class, IEntity
     {
-        Task AddPokemon(T pokemon);
-        Task AddCustomPokemon(T pokemon);
-        Task UpdatePokemon(T pokemon);
-        Task DeletePokemon(T pokemon);
-        Task<IList<T>> FindPokemonsById(int start, int quantity);
-        Task<IList<T>> FindPokemonsByType(string type, int start, int quantity);
-        Task<T> FindPokemonByName(string name);
-        Task<T> FindPokemonById(int id);
+        Task RegisterIsCreatedByUser(T pokemon);
+        Task Update(T pokemon);
+        Task Delete(T pokemon);
+        Task<IList<T>> FindAllById(int start, int quantity);
+        Task<IList<T>> FindAllByType(TypeNames typeName, int start, int quantity);
+        Task<T> FindByName(string name);
+        Task<T> FindById(int id);
     }
 }

@@ -38,23 +38,38 @@ namespace Pokedex.View
         {
             var id = (int) e.Parameter;
 
-            pokemon.This = _service.FindPokemonById(id).Result;
+            pokemon.This = _service.FindById(id).Result;
         }
 
         private void ButtonAbilities_Click(object sender, RoutedEventArgs e)
         {
-            PanelAbilities.Visibility = Visibility.Visible;
+            if(PanelAbilities.Visibility == Visibility.Collapsed)
+            {
+                PanelAbilities.Visibility = Visibility.Visible;
+                ButtonAbilities.Content = "Hide Abilties";
+            }
+            else
+            {
+                PanelAbilities.Visibility = Visibility.Collapsed;
+                ButtonAbilities.Content = "Show Abilties";
+            }
+
         }
 
         private void ButtonMoves_Click(object sender, RoutedEventArgs e)
         {
-            PanelMoves.Visibility = Visibility.Visible;
+
+            if (PanelMoves.Visibility == Visibility.Collapsed)
+            {
+                PanelMoves.Visibility = Visibility.Visible;
+                ButtonMoves.Content = "Hide Moves";
+            }
+            else
+            {
+                PanelMoves.Visibility = Visibility.Collapsed;
+                ButtonMoves.Content = "Show Moves";
+            }
         }
 
-        private void ButtonBack_Click(object sender, RoutedEventArgs e)
-        {
-            PanelAbilities.Visibility= Visibility.Collapsed;
-            PanelMoves.Visibility= Visibility.Collapsed;
-        }
     }
 }

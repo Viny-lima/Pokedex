@@ -26,53 +26,88 @@
 
             <Rectangle  x:Name="ShadowPage"
                         Grid.RowSpan="5" 
-                        Grid.ColumnSpan="2">
+                        Grid.ColumnSpan="2"
+                        Fill="#78000000"
+                        />
 
-                <Rectangle.Fill>
-                    <LinearGradientBrush EndPoint="2,0" StartPoint="0,2">
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="#00000000" Offset="0.5"/>
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
+            <Frame  Name="HomeActions"
+                    Grid.Row="1"
+                    VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBlock  Name="Welcome"
+                                Text="Welcome"
+                                Style="{StaticResource MyFontTitle}"
+                                Foreground="{StaticResource MyColorAqua}"
+                                />
 
-            <StackPanel Name="HOME_TEXT"
-                        Grid.Row="1"
-                        VerticalAlignment="Center"
-                        >
-                
-                <TextBlock Name="Welcome"
-                           Grid.Row="1"
-                           Text="Welcome"
-                           Style="{StaticResource MyFontTitle}"
-                           Foreground="{StaticResource MyColorAqua}"
-                           />
-                
-                <TextBlock  Name="Describe"
+                    <TextBlock  Name="Describe"
                             TextWrapping="Wrap"
                             Style="{StaticResource MyFontDescribeWhite}"
                             Text="Welcome to Pokedex. Here you can learn about pokemons, their types, characteristics, abilities and movements."   
                             />
-                
-                <TextBlock Name="ERROR" Style="{StaticResource MyFontErro}"/>
-                
-                <AutoSuggestBox Name="BarSearchResponsive"
+
+
+                    <AutoSuggestBox Name="BarSearch"
                                 QueryIcon="Find"
                                 MinWidth="300"
                                 PlaceholderText="Search for a Pokémon by Name or Id..."
-                                TextChanged="BarSearchResponsive_TextChanged"
                                 HorizontalAlignment="Left"
                                 Margin="20"
-                                QuerySubmitted="BarSearchResponsive_QuerySubmitted"
-                                />                             
+                                QuerySubmitted="BarSearch_QuerySubmitted"                                
+                                TextChanged="BarSearch_TextChanged"
+                                />
 
-                <Button Name="ButtonAllTwo"
-                        Content="See the pokemons"
-                        FontSize="20"
-                        Style="{StaticResource MyButtonWhite}"
-                        Click="ButtonAllTwo_Click"
-                        />
-            </StackPanel>            
+                    <Button Name="ButtonAllTwo"
+                            Content="See the pokemons"
+                            FontSize="20"
+                            Style="{StaticResource MyButtonWhite}"
+                            Click="ButtonAllTwo_Click"
+                            />
+                </StackPanel>
+            </Frame>                      
+
+            <Popup x:Name="PopupError"  
+                   IsOpen="False" 
+                   Width="500" 
+                   Height="200"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Grid.ColumnSpan="2"
+                   >
+                <RelativePanel  Width="{Binding ElementName=PopupError, Path=Width}" 
+                                Height="{Binding ElementName=PopupError, Path=Height}" 
+                                Background="White"
+                                Padding="10"
+                                CornerRadius="10"
+                                Opacity="50"
+                                >
+                    <Button x:Name="ButtonClosePopup" 
+                            Click="ButtonClosePopup_Click"
+                            Content="&#xE711;" 
+                            FontFamily="Segoe MDL2 Assets" 
+                            FontWeight="ExtraBlack"
+                            RelativePanel.AlignRightWithPanel="True"
+                            Background="red"
+                            Foreground="White"
+                            />
+                    <TextBlock Name="ERROR"
+                           TextWrapping="Wrap"
+                           FontFamily="Verdana"
+                           FontWeight="Bold"
+                           Foreground="red"
+                           RelativePanel.RightOf="Img_erro"
+                           RelativePanel.AlignVerticalCenterWithPanel="True"
+                           Padding="0,0,20,0"
+                           />
+                    <Image Name="Img_erro"
+                           Source="../Assets/Components/IMG_ERROR.png" 
+                           Width="100"
+                           RelativePanel.AlignVerticalCenterWithPanel="True"
+                           Margin="50,0,10,0"
+                           />
+                </RelativePanel>
+            </Popup>
+            
         </Grid>
         
         <VisualStateManager.VisualStateGroups>
@@ -85,10 +120,9 @@
                         <Setter Target="Welcome.FontSize" Value="40"/>
                         <Setter Target="Describe.FontSize" Value="12"/>
                         <Setter Target="ButtonAllTwo.FontSize" Value="20"/>
-                        <Setter Target="BarSearchResponsive.PlaceholderText" Value="Search..."/>
-                        <Setter Target="ShadowPage.Fill" Value="#B2000000"/>
-                        <Setter Target="HOME_TEXT.(Grid.ColumnSpan)" Value="2"/>
-                        <Setter Target="HOME_TEXT.HorizontalAlignment" Value="Center"/>
+                        <Setter Target="BarSearch.PlaceholderText" Value="Search..."/>
+                        <Setter Target="HomeActions.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="HomeActions.HorizontalAlignment" Value="Center"/>
                     </VisualState.Setters>
                 </VisualState>
 
