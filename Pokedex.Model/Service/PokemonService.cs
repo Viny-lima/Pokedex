@@ -114,30 +114,7 @@ namespace Pokedex.Model.Service
 
             if (pokemons.Count < quantity)
             {
-                var pokemonsApi = ApiRequest.GetPokemonsListByType(typeName.ToString());
-
-                var pokemonsToBeAdded = pokemonsApi
-                                        .Where(api => !pokemons.Any(p => p.Id == api.Id))
-                                        .ToList();
-
-                foreach (var pokemon in pokemonsToBeAdded)
-                {
-                    var pokemonFound = ((PokemonDAO)_pokemonDAO).FindById(pokemon.Id).Result;
-
-                    if (pokemonFound != null)
-                    {
-                        await pokemonFound.AddType(typeName.ToString());
-                        await _pokemonDAO.Update(pokemonFound);
-                    }
-                    else
-                    {
-                        pokemonFound = new PokemonDB(pokemon.Id, pokemon.Name);
-                        await pokemonFound.AddType(typeName.ToString());
-                        await _pokemonDAO.Add(pokemonFound);
-                    }
-
-                    pokemons.Add(pokemonFound);
-                }
+                pokemons = await PokemonServiceHelper.AddPokemonsByTypeFromAPI(_pokemonDAO, pokemons, typeName.ToString());
 
                 pokemons = pokemons
                                 .OrderBy(p => p.Id)

@@ -82,10 +82,35 @@ namespace Pokedex.Model.Service
             return await AddPokemonFromAPI(pokemonDAO, $"{search}", pokemonExists);
         }
 
-        /*internal static async Task<List<PokemonDB>> AddPokemonsByTypeFromAPI(IDAO<PokemonDB> pokemonDAO, List<PokemonDB> pokemons, string typeName)
+        internal static async Task<List<PokemonDB>> AddPokemonsByTypeFromAPI(IDAO<PokemonDB> pokemonDAO, List<PokemonDB> pokemons, string typeName)
         {
+            var pokemonsApi = ApiRequest.GetPokemonsListByType(typeName.ToString());
 
-        }*/
+            var pokemonsToBeAdded = pokemonsApi
+                                    .Where(api => !pokemons.Any(p => p.Id == api.Id))
+                                    .ToList();
+
+            foreach (var pokemon in pokemonsToBeAdded)
+            {
+                var pokemonFound = ((PokemonDAO)pokemonDAO).FindById(pokemon.Id).Result;
+
+                if (pokemonFound != null)
+                {
+                    await pokemonFound.AddType(typeName.ToString());
+                    await pokemonDAO.Update(pokemonFound);
+                }
+                else
+                {
+                    pokemonFound = new PokemonDB(pokemon.Id, pokemon.Name);
+                    await pokemonFound.AddType(typeName.ToString());
+                    await pokemonDAO.Add(pokemonFound);
+                }
+
+                pokemons.Add(pokemonFound);
+            }
+
+            return pokemons;
+        }
 
         //A ser testado
         internal static async Task SetId(this PokemonDB pokemon)
