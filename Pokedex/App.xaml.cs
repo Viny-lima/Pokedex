@@ -27,6 +27,7 @@ namespace Pokedex
 
             using (var db = new PokedexContext())
             {
+                // Deletando banco de dados
                 db.Database.EnsureDeleted();
                 db.Database.Migrate();
             }
