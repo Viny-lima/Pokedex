@@ -1,4 +1,5 @@
 ﻿using Pokedex.Model.Service;
+using Pokedex.Tests.Startup;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,16 @@ using Xunit;
 
 namespace Pokedex.Tests
 {
+    [Collection("Database")]
     public class PokemonServiceHelperSearchAPI
-
     {
+        DatabaseFixture _databaseFixture;
+
+        public PokemonServiceHelperSearchAPI(DatabaseFixture fixture)
+        {
+            _databaseFixture = fixture;
+        }
+
         [Theory]
         [InlineData(25)]
         [InlineData(20)]
